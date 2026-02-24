@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>A(i) Poignant Guide to Vibe Coding</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Lora:ital,wght@0,400;0,500;1,400&family=Caveat:wght@400;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 
 <style>
@@ -109,6 +110,16 @@
     left: 0; right: 0;
     height: 3px;
     background: var(--coral);
+  }
+
+  .cover-subtitle-line {
+    display: block;
+    font-size: clamp(16px, 2.5vw, 28px);
+    font-weight: 400;
+    font-style: italic;
+    letter-spacing: 2px;
+    color: var(--ink-faded);
+    margin-top: 8px;
   }
 
   .cover-subtitle {
@@ -716,10 +727,10 @@
       <a href="#chapter-0" data-ch="0">Ch. 0 — Before the Cursor Blinked</a>
       <a href="#chapter-1" data-ch="1">Ch. 1 — Your First Conversation</a>
       <a href="#chapter-2" data-ch="2">Ch. 2 — Context Is Everything</a>
-      <a class="disabled">Ch. 3 — The Loop</a>
-      <a class="disabled">Ch. 4 — Agents in the Wild</a>
-      <a class="disabled">Ch. 5 — When It Gets It Wrong</a>
-      <a class="disabled">Ch. 6 — What You Actually Built</a>
+      <a href="#chapter-3" data-ch="3">Ch. 3 — The Loop</a>
+      <a href="#chapter-4" data-ch="4">Ch. 4 — Agents in the Wild</a>
+      <a href="#chapter-5" data-ch="5">Ch. 5 — When It Gets It Wrong</a>
+      <a href="#chapter-6" data-ch="6">Ch. 6 — What You Actually Built</a>
     </div>
   </div>
 </nav>
@@ -733,66 +744,11 @@
     <h1 class="cover-title">
       <span class="ai-bracket">A(i)</span><br>
       Poignant<br>
-      Guide to<br>
-      Vibe&nbsp;Coding
+      Guide<br>
+      <span class="cover-subtitle-line">to Vibe&nbsp;Coding</span>
     </h1>
 
-    <p class="cover-subtitle">Because someone had to write it,<br>and the AI said it should be us.</p>
-
-    <!-- Cover illustration: SVG of Mira, The Model, and Pip -->
-    <svg class="cover-illustration" viewBox="0 0 260 180" xmlns="http://www.w3.org/2000/svg">
-      <!-- Desk surface -->
-      <rect x="10" y="130" width="240" height="8" rx="2" fill="#C9922A" opacity="0.4"/>
-      
-      <!-- Mira (left) - simple human figure at keyboard -->
-      <g transform="translate(20, 40)">
-        <circle cx="30" cy="20" r="16" fill="none" stroke="#D4614A" stroke-width="2.5"/>
-        <!-- face -->
-        <circle cx="25" cy="18" r="2" fill="#D4614A"/>
-        <circle cx="35" cy="18" r="2" fill="#D4614A"/>
-        <path d="M 24 25 Q 30 30 36 25" fill="none" stroke="#D4614A" stroke-width="2" stroke-linecap="round"/>
-        <!-- hair -->
-        <path d="M 15 14 Q 20 4 30 4 Q 40 4 45 14" fill="none" stroke="#D4614A" stroke-width="2.5"/>
-        <!-- body -->
-        <rect x="18" y="36" width="24" height="28" rx="4" fill="none" stroke="#D4614A" stroke-width="2"/>
-        <!-- arms typing -->
-        <line x1="18" y1="48" x2="6" y2="60" stroke="#D4614A" stroke-width="2.5" stroke-linecap="round"/>
-        <line x1="42" y1="48" x2="54" y2="60" stroke="#D4614A" stroke-width="2.5" stroke-linecap="round"/>
-        <text x="30" y="80" font-family="Caveat, cursive" font-size="11" fill="#D4614A" text-anchor="middle">MIRA</text>
-      </g>
-
-      <!-- The Model (center) - abstract glowing thing -->
-      <g transform="translate(95, 20)">
-        <!-- outer glow rings -->
-        <circle cx="40" cy="40" r="38" fill="none" stroke="#3A8C8C" stroke-width="1" stroke-dasharray="4 3" opacity="0.4"/>
-        <circle cx="40" cy="40" r="30" fill="none" stroke="#3A8C8C" stroke-width="1.5" stroke-dasharray="6 2" opacity="0.6"/>
-        <circle cx="40" cy="40" r="22" fill="rgba(58,140,140,0.1)" stroke="#3A8C8C" stroke-width="2"/>
-        <!-- inner symbol -->
-        <text x="40" y="46" font-family="Space Mono, monospace" font-size="22" fill="#3A8C8C" text-anchor="middle" opacity="0.9">AI</text>
-        <!-- eyes (blinking) -->
-        <circle cx="33" cy="37" r="3" fill="#3A8C8C" opacity="0.7"/>
-        <circle cx="47" cy="37" r="3" fill="#3A8C8C" opacity="0.7"/>
-        <text x="40" y="90" font-family="Caveat, cursive" font-size="11" fill="#3A8C8C" text-anchor="middle">THE MODEL</text>
-      </g>
-
-      <!-- Pip the rubber duck (right) -->
-      <g transform="translate(190, 65)">
-        <!-- body -->
-        <ellipse cx="28" cy="46" rx="22" ry="16" fill="none" stroke="#C9922A" stroke-width="2.5"/>
-        <!-- head -->
-        <circle cx="42" cy="30" r="13" fill="none" stroke="#C9922A" stroke-width="2.5"/>
-        <!-- bill -->
-        <path d="M 50 29 L 60 32 L 50 35 Z" fill="none" stroke="#C9922A" stroke-width="2"/>
-        <!-- eye -->
-        <circle cx="47" cy="27" r="2.5" fill="#C9922A"/>
-        <!-- angry eyebrow -->
-        <line x1="43" y1="21" x2="52" y2="23" stroke="#C9922A" stroke-width="2" stroke-linecap="round"/>
-        <text x="28" y="76" font-family="Caveat, cursive" font-size="11" fill="#C9922A" text-anchor="middle">PIP</text>
-      </g>
-
-      <!-- little lightning bolt between mira and model -->
-      <polyline points="90,88 98,78 94,84 102,74" fill="none" stroke="#D4614A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
-    </svg>
+    <img class="cover-illustration" src="relaxed-duck.png" alt="Relaxed rubber duck">
 
     <p class="cover-byline">written by Andrew & The Model (you know the one)</p>
     <div class="cover-glitch-bar"></div>
@@ -826,30 +782,38 @@
         <span class="toc-status">you are here ✦</span>
       </div>
     </a>
-    <div class="toc-item">
-      <span class="toc-num">Ch. 3</span>
-      <span class="toc-name">The Loop</span>
-      <span class="toc-dots"></span>
-      <span class="toc-status">coming soon</span>
-    </div>
-    <div class="toc-item">
-      <span class="toc-num">Ch. 4</span>
-      <span class="toc-name">Agents in the Wild</span>
-      <span class="toc-dots"></span>
-      <span class="toc-status">coming soon</span>
-    </div>
-    <div class="toc-item">
-      <span class="toc-num">Ch. 5</span>
-      <span class="toc-name">When It Gets It Wrong</span>
-      <span class="toc-dots"></span>
-      <span class="toc-status">coming soon</span>
-    </div>
-    <div class="toc-item">
-      <span class="toc-num">Ch. 6</span>
-      <span class="toc-name">What You Actually Built</span>
-      <span class="toc-dots"></span>
-      <span class="toc-status">coming soon</span>
-    </div>
+    <a href="#chapter-3" class="toc-link">
+      <div class="toc-item current">
+        <span class="toc-num">Ch. 3</span>
+        <span class="toc-name">The Loop</span>
+        <span class="toc-dots"></span>
+        <span class="toc-status">you are here ✦</span>
+      </div>
+    </a>
+    <a href="#chapter-4" class="toc-link">
+      <div class="toc-item current">
+        <span class="toc-num">Ch. 4</span>
+        <span class="toc-name">Agents in the Wild</span>
+        <span class="toc-dots"></span>
+        <span class="toc-status">you are here ✦</span>
+      </div>
+    </a>
+    <a href="#chapter-5" class="toc-link">
+      <div class="toc-item current">
+        <span class="toc-num">Ch. 5</span>
+        <span class="toc-name">When It Gets It Wrong</span>
+        <span class="toc-dots"></span>
+        <span class="toc-status">you are here ✦</span>
+      </div>
+    </a>
+    <a href="#chapter-6" class="toc-link">
+      <div class="toc-item current">
+        <span class="toc-num">Ch. 6</span>
+        <span class="toc-name">What You Actually Built</span>
+        <span class="toc-dots"></span>
+        <span class="toc-status">you are here ✦</span>
+      </div>
+    </a>
   </div>
 
   <div class="section-break">· · ·</div>
@@ -2852,10 +2816,2736 @@ Tracks RSVPs, allergies, generates a fridge-friendly dashboard.
     <!-- End of chapter nav -->
     <div style="display: flex; justify-content: space-between; margin-top: 80px; padding-top: 40px; border-top: 1px solid var(--cream-dark); font-family: 'Space Mono', monospace; font-size: 12px; color: var(--ink-faded);">
       <span>— end of chapter 2 —</span>
-      <span class="blinking-cursor">Chapter 3 coming soon</span>
+      <a href="#chapter-3" style="color: var(--teal); text-decoration: none;">Chapter 3 →</a>
     </div>
 
   </div><!-- end .prose (chapter 2) -->
+
+  <div class="section-break">· · ·</div>
+
+  <!-- =================== CHAPTER 3 =================== -->
+  <div class="chapter-header" id="chapter-3">
+    <span class="chapter-label">Chapter Three</span>
+    <h2 class="chapter-title">"The <em>Loop</em>"</h2>
+    <p class="chapter-epigraph">"The first version is never the thing. The thing is what survives the asking of it twice."</p>
+  </div>
+
+  <div class="prose">
+
+    <!-- ===== Section A: Wednesday Night ===== -->
+
+    <p>
+      Wednesday, 9:14pm. Fig is asleep — that deep, total sleep of a three-year-old who spent the afternoon running circles in the backyard for no apparent reason other than the existence of grass. The apartment is quiet. The dishwasher is doing its thing. Pip is on the desk, facing the monitor with the unwavering attention of someone who has nowhere else to be.
+    </p>
+
+    <p class="margin-note">The fridge dashboard worked. She printed it. It's real. Fig pointed at it this morning and said "my party." That should be enough. That should be the whole story.</p>
+
+    <p>
+      The party dashboard is printed and magneted to the fridge. Actual paper, actual magnet, actual fridge. Fig pointed at it this morning and said <em>my party</em> and Mira felt the particular satisfaction of having built a thing that exists in the physical world, even if "built" means "talked to an AI and then pressed Ctrl+P."
+    </p>
+
+    <p>
+      She's scrolling her phone calendar now. Mom's birthday — Saturday. Three days. She hasn't bought a gift. She hasn't even thought about a gift, which is worse, because it means the forgetting was total. Her friend Dani's birthday was two weeks ago. She sent a belated text that started with "I'm the worst" which is the universal opening of someone who forgot and knows it. Her nephew August — when is his birthday? May something. May 14th? May 17th? She'd have to text her sister, and texting her sister about August's birthday at 9pm on a Wednesday carries the implicit admission that she doesn't know her own nephew's birthday, which is a conversation she'd rather not have.
+    </p>
+
+    <p>
+      She opens a new chat. Starts typing <em>"I would like to build a comprehensive—"</em> and then deletes it. She's past the cover letter stage. She types: <em>"I want to build a personal birthday tracker in Ruby."</em> The difference between those two openings is the whole of Chapter 1.
+    </p>
+
+    <p class="margin-ref"><a href="https://xkcd.com/1319/" target="_blank" rel="noopener">see also: xkcd #1319 — the time she'll save (in theory)</a></p>
+
+    <p>
+      The party planner was the first thing she built with the Model. The birthday tracker is the first thing she built <em>because of</em> the Model. There's a difference, and the difference is what this chapter is about.
+    </p>
+
+    <div class="section-break">· · ·</div>
+
+    <!-- ===== Section B: "The Innocent Ask" — Iteration 1 ===== -->
+
+    <h3 style="font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; margin: 40px 0 24px; color: var(--ink);">
+      The Innocent <em>Ask</em>
+    </h3>
+
+    <div class="dialogue">
+      <div class="speech-bubble from-human">
+        <span class="speaker-label">Mira</span>
+        I want to build a personal birthday tracker in Ruby. I have a CSV file with names, birthdays, and relationships (family, friend, kid's-friend). I want to run it and see whose birthday is coming up in the next 7 days. Keep it simple — terminal output, nothing fancy.
+      </div>
+
+      <div class="speech-bubble from-model">
+        <span class="speaker-label">The Model</span>
+        Nice — a clean little utility. A few quick questions before I build it:<br><br>
+        1. Date format — MM/DD or something else? Do you have birth years, or just month/day?<br>
+        2. Do you want to show age, or just the upcoming date?<br>
+        3. Emoji OK for the output, or strictly plain text?
+      </div>
+
+      <div class="speech-bubble from-human">
+        <span class="speaker-label">Mira</span>
+        1. MM/DD — I don't have birth years for everyone. 2. Skip age for now. 3. Emoji is fine, just no box-drawing characters. I'm still recovering.
+      </div>
+    </div>
+
+    <p class="margin-note">A CSV. She's storing her emotional obligations in a file format older than most of the children at Fig's party. No schema migrations. No foreign keys. Just commas and hope. Pip finds this deeply validating.</p>
+
+    <div class="code-block">
+      <div class="code-header">
+        <span class="code-dot" style="background: #FF5F57;"></span>
+        <span class="code-dot" style="background: #FEBC2E;"></span>
+        <span class="code-dot" style="background: #28C840;"></span>
+        &nbsp;birthdays.csv
+      </div>
+      <pre>name,birthday,relationship
+Mom,<span class="code-number">03/08</span>,family
+Dani,<span class="code-number">02/12</span>,friend
+August,<span class="code-number">05/14</span>,family
+Fig,<span class="code-number">09/22</span>,family
+Jasper,<span class="code-number">04/03</span>,kid's-friend
+Nana,<span class="code-number">11/30</span>,family</pre>
+    </div>
+
+    <div class="code-block">
+      <div class="code-header">
+        <span class="code-dot" style="background: #FF5F57;"></span>
+        <span class="code-dot" style="background: #FEBC2E;"></span>
+        <span class="code-dot" style="background: #28C840;"></span>
+        &nbsp;birthdays.rb — v1
+      </div>
+      <pre><span class="code-keyword">require</span> <span class="code-string">'csv'</span>
+<span class="code-keyword">require</span> <span class="code-string">'date'</span>
+
+today = Date.today
+lookahead = <span class="code-number">7</span>
+
+birthdays = CSV.read(<span class="code-string">"birthdays.csv"</span>, headers: <span class="code-keyword">true</span>)
+
+upcoming = birthdays.select <span class="code-keyword">do</span> |row|
+  month, day = row[<span class="code-string">"birthday"</span>].split(<span class="code-string">"/"</span>).map(&amp;:to_i)
+  bday_this_year = Date.new(today.year, month, day)
+  days_away = (bday_this_year - today).to_i
+  days_away >= <span class="code-number">0</span> &amp;&amp; days_away &lt;= lookahead
+<span class="code-keyword">end</span>
+
+puts <span class="code-string">"🎂 Upcoming Birthdays (next #{lookahead} days)"</span>
+puts <span class="code-string">"─" * 40</span>
+
+<span class="code-keyword">if</span> upcoming.empty?
+  puts <span class="code-string">"No birthdays in the next #{lookahead} days. You're off the hook."</span>
+<span class="code-keyword">else</span>
+  upcoming.each <span class="code-keyword">do</span> |row|
+    month, day = row[<span class="code-string">"birthday"</span>].split(<span class="code-string">"/"</span>).map(&amp;:to_i)
+    bday = Date.new(today.year, month, day)
+    puts <span class="code-string">"  #{row['name']} (#{row['relationship']}) — #{bday.strftime('%A, %B %d')}"</span>
+  <span class="code-keyword">end</span>
+<span class="code-keyword">end</span></pre>
+    </div>
+
+    <p>
+      This is a clean v1. It reads the CSV, filters to the next 7 days, prints names with relationships and dates. It works. She runs it, she sees the output, and she could stop here. Most people do stop here. The first version works, the itch is scratched, the file gets saved and forgotten.
+    </p>
+
+    <p>
+      But she reads the output. And she <em>notices something</em>.
+    </p>
+
+    <div class="section-break">· · ·</div>
+
+    <!-- ===== Section C: "Actually..." — Iteration 2 ===== -->
+
+    <h3 style="font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; margin: 40px 0 24px; color: var(--ink);">
+      "Actually..."
+    </h3>
+
+    <p>
+      Three things, in rapid succession, between one sip of tea and the next:
+    </p>
+
+    <p>
+      <strong>One.</strong> Seven days isn't enough. Mom's birthday is Saturday — that's three days — so it shows up. But if she'd run this on Monday, it wouldn't have. Ten days? Fourteen? She doesn't know yet, but seven is wrong.
+    </p>
+
+    <p>
+      <strong>Two.</strong> She needs to know <em>how many</em> days away each birthday is, not just the day name. "Saturday, March 8th" is fine, but "in 3 days" is better. And if it's today, she needs that to scream at her. TODAY. In all caps. Maybe TOMORROW too.
+    </p>
+
+    <p>
+      <strong>Three.</strong> August. She typed 05/14 because it felt right, but she's not sure. No birth year to sanity-check against. She needs a way to flag entries where the date might be wrong — a little <code>(?)</code> that says <em>you should verify this</em>.
+    </p>
+
+    <p class="margin-note">She's talking to it the way she used to talk to me. Short. Direct. Three numbered things. Except it actually responds. With code. That runs. I've been on this desk for eight years providing silent moral support and apparently that was never the bottleneck.</p>
+
+    <p>
+      She didn't know she needed these things until she saw the thing without them. This is the loop. Build, look, notice, ask again.
+    </p>
+
+    <div class="dialogue">
+      <div class="speech-bubble from-human">
+        <span class="speaker-label">Mira</span>
+        Three changes:<br><br>
+        1. 14-day window instead of 7<br>
+        2. Show "days away" for each person — and use TODAY or TOMORROW for 0 and 1 days<br>
+        3. Some entries don't have a verified birth year. Add an optional year column to the CSV. If it's blank, flag the entry with (?) so I know to double-check it.
+      </div>
+
+      <div class="speech-bubble from-model">
+        <span class="speaker-label">The Model</span>
+        Smart additions. For the year column — I'll make it optional in the CSV. If present, it's just for your records. If blank, the date still works but gets the (?) flag. The CSV header becomes: name,birthday,year,relationship.<br><br>
+        Updated version coming.
+      </div>
+    </div>
+
+    <div class="code-block">
+      <div class="code-header">
+        <span class="code-dot" style="background: #FF5F57;"></span>
+        <span class="code-dot" style="background: #FEBC2E;"></span>
+        <span class="code-dot" style="background: #28C840;"></span>
+        &nbsp;birthdays.csv — v2
+      </div>
+      <pre>name,birthday,year,relationship
+Mom,<span class="code-number">03/08</span>,<span class="code-number">1961</span>,family
+Dani,<span class="code-number">02/12</span>,<span class="code-number">1990</span>,friend
+August,<span class="code-number">05/14</span>,,family
+Fig,<span class="code-number">09/22</span>,<span class="code-number">2023</span>,family
+Jasper,<span class="code-number">04/03</span>,,kid's-friend
+Nana,<span class="code-number">11/30</span>,<span class="code-number">1938</span>,family</pre>
+    </div>
+
+    <div class="code-block">
+      <div class="code-header">
+        <span class="code-dot" style="background: #FF5F57;"></span>
+        <span class="code-dot" style="background: #FEBC2E;"></span>
+        <span class="code-dot" style="background: #28C840;"></span>
+        &nbsp;birthdays.rb — v2
+      </div>
+      <pre><span class="code-keyword">require</span> <span class="code-string">'csv'</span>
+<span class="code-keyword">require</span> <span class="code-string">'date'</span>
+
+today = Date.today
+lookahead = <span class="code-number">14</span>
+
+birthdays = CSV.read(<span class="code-string">"birthdays.csv"</span>, headers: <span class="code-keyword">true</span>)
+
+upcoming = []
+unverified = []
+
+birthdays.each <span class="code-keyword">do</span> |row|
+  month, day = row[<span class="code-string">"birthday"</span>].split(<span class="code-string">"/"</span>).map(&amp;:to_i)
+  bday_this_year = Date.new(today.year, month, day)
+  days_away = (bday_this_year - today).to_i
+
+  verified = !row[<span class="code-string">"year"</span>].to_s.strip.empty?
+  unverified &lt;&lt; row[<span class="code-string">"name"</span>] <span class="code-keyword">unless</span> verified
+
+  <span class="code-keyword">if</span> days_away >= <span class="code-number">0</span> &amp;&amp; days_away &lt;= lookahead
+    urgency = <span class="code-keyword">case</span> days_away
+              <span class="code-keyword">when</span> <span class="code-number">0</span> <span class="code-keyword">then</span> <span class="code-string">"🔴 TODAY"</span>
+              <span class="code-keyword">when</span> <span class="code-number">1</span> <span class="code-keyword">then</span> <span class="code-string">"🟡 TOMORROW"</span>
+              <span class="code-keyword">else</span> <span class="code-string">"in #{days_away} days"</span>
+              <span class="code-keyword">end</span>
+    flag = verified ? <span class="code-string">""</span> : <span class="code-string">" (?)"</span>
+    upcoming &lt;&lt; { name: row[<span class="code-string">"name"</span>], rel: row[<span class="code-string">"relationship"</span>],
+                  urgency: urgency, flag: flag, days: days_away }
+  <span class="code-keyword">end</span>
+<span class="code-keyword">end</span>
+
+upcoming.sort_by! { |u| u[:days] }
+
+puts <span class="code-string">"🎂 Upcoming Birthdays (next #{lookahead} days)"</span>
+puts <span class="code-string">"─" * 44</span>
+
+<span class="code-keyword">if</span> upcoming.empty?
+  puts <span class="code-string">"  No birthdays coming up. Breathe."</span>
+<span class="code-keyword">else</span>
+  upcoming.each <span class="code-keyword">do</span> |u|
+    puts <span class="code-string">"  #{u[:name]}#{u[:flag]} (#{u[:rel]}) — #{u[:urgency]}"</span>
+  <span class="code-keyword">end</span>
+<span class="code-keyword">end</span>
+
+<span class="code-keyword">unless</span> unverified.empty?
+  puts <span class="code-string">"\n⚠️  Unverified dates: #{unverified.join(', ')}"</span>
+  puts <span class="code-string">"   (no birth year on file — double-check these)"</span>
+<span class="code-keyword">end</span></pre>
+    </div>
+
+    <p>
+      Note what happened. The CSV format changed. v2 taught Mira something v1 could not: the data model was incomplete. The missing birth year for August wasn't a bug — it was a gap in understanding that only became visible after v1 existed. You cannot plan for what you don't know you don't know. But you can build something, look at it, and notice.
+    </p>
+
+    <!-- Fact Box: The "Actually..." Moment -->
+    <div class="fact-box">
+      <div class="fact-box-title">The "Actually..." Moment</div>
+      <p>Every iteration has one. It sounds like: <em>"Actually, seven days isn't enough."</em> Or: <em>"Actually, I need to see the days-away count."</em> Or: <em>"Actually, some of these dates might be wrong."</em></p>
+      <p style="margin-top: 12px;">This is not scope creep. Scope creep is adding features you don't need. The "actually" moment is discovering needs you couldn't have articulated before the previous version existed. The model builds fast. You notice slow. That asymmetry is the engine.</p>
+    </div>
+
+    <div class="interlude">
+      <span class="interlude-label">A Brief and Incomplete History of Remembering Birthdays</span>
+      <p>
+        <strong>The wall calendar (1990s):</strong> Reliable if you looked at it. You did not look at it. By February it was still on January. By March it was a surface for Fig's crayon experiments.
+      </p>
+      <p style="margin-top: 12px;">
+        <strong>The phone app (2015):</strong> You downloaded one called "Birthday Buddy" or "Never Forget" or something with a cake emoji. You entered six people. You forgot to enable notifications. It sent you a reminder on your own birthday, which was unsettling. You deleted it during a storage purge.
+      </p>
+      <p style="margin-top: 12px;">
+        <strong>Facebook (2008–2020):</strong> This actually worked, which says something uncomfortable about social infrastructure and data collection. Then you deleted Facebook, and suddenly nobody had birthdays anymore.
+      </p>
+      <p style="margin-top: 12px;">
+        <strong>Your memory (always):</strong> You remember your mom's birthday, your partner's birthday, and approximately two friends. Everyone else falls into the category of "I'll see it on social media," except you deleted social media, see above.
+      </p>
+      <p style="margin-top: 16px; font-family: 'Caveat', cursive; font-size: 20px; color: var(--margin-note); transform: rotate(-0.5deg); display: block;">
+        Pip was the original reminder system. Mira would look at him and remember she'd forgotten something. Not what, exactly. Just... something. The system had a 14% success rate and Pip considered this adequate.
+      </p>
+    </div>
+
+    <div class="section-break">· · ·</div>
+
+    <!-- ===== Comic Strip 1: "The Loop" (4 panels) ===== -->
+
+    <div class="comic-strip" role="img" aria-label="Comic: The Loop — four panels showing the iterative rhythm">
+      <!-- Panel 1: The Idea -->
+      <div class="comic-panel">
+        <div class="panel-art">
+          <svg viewBox="0 0 140 120" xmlns="http://www.w3.org/2000/svg" style="width: 120px;">
+            <!-- Mira silhouette -->
+            <circle cx="70" cy="65" r="20" fill="none" stroke="#D4614A" stroke-width="2"/>
+            <rect x="56" y="85" width="28" height="20" rx="4" fill="none" stroke="#D4614A" stroke-width="2"/>
+            <!-- Lightbulb above -->
+            <ellipse cx="70" cy="28" rx="12" ry="14" fill="none" stroke="#D4614A" stroke-width="2"/>
+            <line x1="70" y1="42" x2="70" y2="48" stroke="#D4614A" stroke-width="2"/>
+            <line x1="65" y1="44" x2="75" y2="44" stroke="#D4614A" stroke-width="1.5"/>
+            <line x1="66" y1="47" x2="74" y2="47" stroke="#D4614A" stroke-width="1.5"/>
+            <!-- Rays -->
+            <line x1="70" y1="10" x2="70" y2="5" stroke="#D4614A" stroke-width="1.5" opacity="0.6"/>
+            <line x1="85" y1="18" x2="90" y2="14" stroke="#D4614A" stroke-width="1.5" opacity="0.6"/>
+            <line x1="55" y1="18" x2="50" y2="14" stroke="#D4614A" stroke-width="1.5" opacity="0.6"/>
+          </svg>
+        </div>
+        <div class="panel-caption">The idea.</div>
+      </div>
+
+      <!-- Panel 2: The Build -->
+      <div class="comic-panel dark">
+        <div class="panel-art">
+          <svg viewBox="0 0 140 120" xmlns="http://www.w3.org/2000/svg" style="width: 120px;">
+            <!-- Monitor -->
+            <rect x="20" y="10" width="100" height="70" rx="3" fill="none" stroke="#3A8C8C" stroke-width="2"/>
+            <!-- Code lines streaming -->
+            <line x1="30" y1="25" x2="80" y2="25" stroke="#3A8C8C" stroke-width="1.5" opacity="0.9"/>
+            <line x1="30" y1="33" x2="95" y2="33" stroke="#3A8C8C" stroke-width="1.5" opacity="0.7"/>
+            <line x1="38" y1="41" x2="72" y2="41" stroke="#3A8C8C" stroke-width="1.5" opacity="0.8"/>
+            <line x1="38" y1="49" x2="88" y2="49" stroke="#3A8C8C" stroke-width="1.5" opacity="0.6"/>
+            <line x1="30" y1="57" x2="65" y2="57" stroke="#3A8C8C" stroke-width="1.5" opacity="0.5"/>
+            <line x1="30" y1="65" x2="78" y2="65" stroke="#3A8C8C" stroke-width="1.5" opacity="0.4"/>
+            <!-- Cursor blink -->
+            <rect x="78" y="63" width="2" height="8" fill="#3A8C8C" opacity="0.9"/>
+            <!-- Stand -->
+            <line x1="70" y1="80" x2="70" y2="95" stroke="#3A8C8C" stroke-width="2"/>
+            <line x1="50" y1="95" x2="90" y2="95" stroke="#3A8C8C" stroke-width="2"/>
+          </svg>
+        </div>
+        <div class="panel-caption">The build.</div>
+      </div>
+
+      <!-- Panel 3: The Noticing -->
+      <div class="comic-panel">
+        <div class="panel-art">
+          <svg viewBox="0 0 140 120" xmlns="http://www.w3.org/2000/svg" style="width: 120px;">
+            <!-- Mira profile, squinting -->
+            <circle cx="60" cy="50" r="22" fill="none" stroke="#D4614A" stroke-width="2"/>
+            <!-- Squinting eyes -->
+            <line x1="50" y1="46" x2="58" y2="47" stroke="#D4614A" stroke-width="2" stroke-linecap="round"/>
+            <line x1="62" y1="47" x2="70" y2="46" stroke="#D4614A" stroke-width="2" stroke-linecap="round"/>
+            <!-- Mouth -->
+            <line x1="54" y1="57" x2="64" y2="57" stroke="#D4614A" stroke-width="1.5" stroke-linecap="round"/>
+            <!-- Thought bubble -->
+            <ellipse cx="105" cy="30" rx="30" ry="18" fill="none" stroke="#D4614A" stroke-width="1.5"/>
+            <circle cx="82" cy="52" r="3" fill="none" stroke="#D4614A" stroke-width="1"/>
+            <circle cx="88" cy="43" r="4" fill="none" stroke="#D4614A" stroke-width="1"/>
+            <text x="105" y="34" font-family="Caveat, cursive" font-size="14" fill="#D4614A" text-anchor="middle">actually...</text>
+          </svg>
+        </div>
+        <div class="panel-caption">The noticing.</div>
+      </div>
+
+      <!-- Panel 4: The Loop -->
+      <div class="comic-panel">
+        <div class="panel-art">
+          <svg viewBox="0 0 140 120" xmlns="http://www.w3.org/2000/svg" style="width: 120px;">
+            <!-- Circular arrow -->
+            <path d="M 70 20 A 38 38 0 1 1 40 75" fill="none" stroke="#D4614A" stroke-width="2.5"/>
+            <!-- Arrowhead -->
+            <polygon points="40,75 48,70 44,80" fill="#D4614A"/>
+            <!-- Small lightbulb in center -->
+            <ellipse cx="70" cy="60" rx="8" ry="10" fill="none" stroke="#C9922A" stroke-width="1.5"/>
+            <line x1="70" y1="70" x2="70" y2="74" stroke="#C9922A" stroke-width="1.5"/>
+            <line x1="67" y1="72" x2="73" y2="72" stroke="#C9922A" stroke-width="1"/>
+          </svg>
+        </div>
+        <div class="panel-caption">The loop.</div>
+      </div>
+    </div>
+
+    <div class="section-break">· · ·</div>
+
+    <!-- ===== Section D: "The Point of No Return" — Iteration 3 ===== -->
+
+    <h3 style="font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; margin: 40px 0 24px; color: var(--ink);">
+      The Point of No <em>Return</em>
+    </h3>
+
+    <p>
+      11:02pm. She should be in bed. Fig wakes up at 6:15 regardless of what happened the night before — this is one of the few constants of the universe, alongside gravity, the speed of light, and the fact that every Jira ticket takes exactly one sprint longer than estimated. But the birthday tracker has taken on its own momentum, and Mira has the look of someone who is about to say "just one more thing" while already typing the one more thing.
+    </p>
+
+    <p>
+      She wants gift notes. A free-text field where she can jot down gift ideas — things people mentioned in passing, things she spotted online, the kind of soft intelligence that evaporates if you don't write it down. And she wants to be able to add people from the command line, because opening the CSV in a text editor every time she meets someone's kid at a birthday party is exactly the kind of friction that ensures she'll never update it.
+    </p>
+
+    <div class="dialogue">
+      <div class="speech-bubble from-human">
+        <span class="speaker-label">Mira</span>
+        Two more things:<br><br>
+        1. Add a gift_notes column to the CSV — free text, gift ideas for each person<br>
+        2. I want to add people from the command line: <code style="background: rgba(0,0,0,0.06); padding: 2px 6px; font-family: 'Space Mono', monospace; font-size: 13px;">ruby birthdays.rb add "Jamie" "03/22" "friend"</code> should append a new row
+      </div>
+
+      <div class="speech-bubble from-model">
+        <span class="speaker-label">The Model</span>
+        Gift notes are a great addition. For the add command — what if we went a little further?<br><br>
+        Instead of just an add flag, I could give the script a simple command interface:<br>
+        • <code>ruby birthdays.rb</code> → shows the dashboard (what it does now)<br>
+        • <code>ruby birthdays.rb add</code> → walks you through adding a person interactively, or accepts all fields inline<br><br>
+        The file is the database and the script is both the viewer and the editor. One file to run, one file to store. Want me to build that?
+      </div>
+
+      <div class="speech-bubble from-human">
+        <span class="speaker-label">Mira</span>
+        Yes.
+      </div>
+    </div>
+
+    <p class="margin-note">It suggested the command interface. She didn't ask for that. She asked for an add command and it said "what if it was better." This is like hiring a plumber and having them redesign your bathroom. Except the bathroom IS better. I'm going to need a minute.</p>
+
+    <div class="code-block">
+      <div class="code-header">
+        <span class="code-dot" style="background: #FF5F57;"></span>
+        <span class="code-dot" style="background: #FEBC2E;"></span>
+        <span class="code-dot" style="background: #28C840;"></span>
+        &nbsp;birthdays.csv — v3 (final)
+      </div>
+      <pre>name,birthday,year,relationship,gift_notes
+Mom,<span class="code-number">03/08</span>,<span class="code-number">1961</span>,family,<span class="code-string">she mentioned the garden kneeler</span>
+Dani,<span class="code-number">02/12</span>,<span class="code-number">1990</span>,friend,<span class="code-string">that bookstore gift card she liked last year</span>
+August,<span class="code-number">05/14</span>,,family,<span class="code-string">Legos? check with his mom</span>
+Fig,<span class="code-number">09/22</span>,<span class="code-number">2023</span>,family,<span class="code-string">she wants "the big crayons"</span>
+Jasper,<span class="code-number">04/03</span>,,kid's-friend,<span class="code-string">whatever Fig picks at Target</span>
+Nana,<span class="code-number">11/30</span>,<span class="code-number">1938</span>,family,<span class="code-string">photo book of Fig — she asks every visit</span></pre>
+    </div>
+
+    <div class="code-block">
+      <div class="code-header">
+        <span class="code-dot" style="background: #FF5F57;"></span>
+        <span class="code-dot" style="background: #FEBC2E;"></span>
+        <span class="code-dot" style="background: #28C840;"></span>
+        &nbsp;birthdays.rb — v3 (final)
+      </div>
+      <pre><span class="code-keyword">require</span> <span class="code-string">'csv'</span>
+<span class="code-keyword">require</span> <span class="code-string">'date'</span>
+
+CSV_FILE = <span class="code-string">"birthdays.csv"</span>
+LOOKAHEAD = <span class="code-number">14</span>
+
+<span class="code-comment"># ── Add mode ──────────────────────────────────────────</span>
+<span class="code-keyword">if</span> ARGV[<span class="code-number">0</span>] == <span class="code-string">"add"</span>
+  <span class="code-keyword">if</span> ARGV.length >= <span class="code-number">4</span>
+    name, bday, rel = ARGV[<span class="code-number">1</span>], ARGV[<span class="code-number">2</span>], ARGV[<span class="code-number">3</span>]
+    year = ARGV[<span class="code-number">4</span>] || <span class="code-string">""</span>
+    notes = ARGV[<span class="code-number">5</span>] || <span class="code-string">""</span>
+  <span class="code-keyword">else</span>
+    print <span class="code-string">"Name: "</span>;         name  = gets.chomp
+    print <span class="code-string">"Birthday (MM/DD): "</span>; bday  = gets.chomp
+    print <span class="code-string">"Relationship: "</span>;    rel   = gets.chomp
+    print <span class="code-string">"Birth year (or enter to skip): "</span>; year = gets.chomp
+    print <span class="code-string">"Gift notes (or enter to skip): "</span>; notes = gets.chomp
+  <span class="code-keyword">end</span>
+
+  CSV.open(CSV_FILE, <span class="code-string">"a"</span>) <span class="code-keyword">do</span> |csv|
+    csv &lt;&lt; [name, bday, year, rel, notes]
+  <span class="code-keyword">end</span>
+  puts <span class="code-string">"✅ Added #{name} (#{bday})"</span>
+  exit
+<span class="code-keyword">end</span>
+
+<span class="code-comment"># ── Dashboard mode ────────────────────────────────────</span>
+today = Date.today
+birthdays = CSV.read(CSV_FILE, headers: <span class="code-keyword">true</span>)
+
+upcoming = []
+unverified = []
+
+birthdays.each <span class="code-keyword">do</span> |row|
+  month, day = row[<span class="code-string">"birthday"</span>].split(<span class="code-string">"/"</span>).map(&amp;:to_i)
+  bday_this_year = Date.new(today.year, month, day)
+  days_away = (bday_this_year - today).to_i
+
+  has_year = !row[<span class="code-string">"year"</span>].to_s.strip.empty?
+  unverified &lt;&lt; row[<span class="code-string">"name"</span>] <span class="code-keyword">unless</span> has_year
+
+  age = has_year ? today.year - row[<span class="code-string">"year"</span>].to_i : <span class="code-keyword">nil</span>
+
+  <span class="code-keyword">if</span> days_away >= <span class="code-number">0</span> &amp;&amp; days_away &lt;= LOOKAHEAD
+    urgency = <span class="code-keyword">case</span> days_away
+              <span class="code-keyword">when</span> <span class="code-number">0</span> <span class="code-keyword">then</span> <span class="code-string">"🔴 TODAY"</span>
+              <span class="code-keyword">when</span> <span class="code-number">1</span> <span class="code-keyword">then</span> <span class="code-string">"🟡 TOMORROW"</span>
+              <span class="code-keyword">else</span> <span class="code-string">"in #{days_away} days"</span>
+              <span class="code-keyword">end</span>
+    flag = has_year ? <span class="code-string">""</span> : <span class="code-string">" (?)"</span>
+    age_str = age ? <span class="code-string">" — turning #{age}"</span> : <span class="code-string">""</span>
+    notes = row[<span class="code-string">"gift_notes"</span>].to_s.strip
+
+    upcoming &lt;&lt; { name: row[<span class="code-string">"name"</span>], rel: row[<span class="code-string">"relationship"</span>],
+                  urgency: urgency, flag: flag, age_str: age_str,
+                  notes: notes, days: days_away }
+  <span class="code-keyword">end</span>
+<span class="code-keyword">end</span>
+
+upcoming.sort_by! { |u| u[:days] }
+
+puts <span class="code-string">"┌──────────────────────────────────────────┐"</span>
+puts <span class="code-string">"│  🎂  Birthday Dashboard                 │"</span>
+puts <span class="code-string">"│  #{today.strftime('%A, %B %d, %Y')}#{' ' * (23 - today.strftime('%A, %B %d, %Y').length)}│"</span>
+puts <span class="code-string">"└──────────────────────────────────────────┘"</span>
+
+<span class="code-keyword">if</span> upcoming.empty?
+  puts <span class="code-string">"\n  No birthdays in the next #{LOOKAHEAD} days. 🎉"</span>
+<span class="code-keyword">else</span>
+  upcoming.each <span class="code-keyword">do</span> |u|
+    puts <span class="code-string">"\n  #{u[:name]}#{u[:flag]} (#{u[:rel]})#{u[:age_str]}"</span>
+    puts <span class="code-string">"    #{u[:urgency]}"</span>
+    puts <span class="code-string">"    🎁 #{u[:notes]}"</span> <span class="code-keyword">unless</span> u[:notes].empty?
+  <span class="code-keyword">end</span>
+<span class="code-keyword">end</span>
+
+<span class="code-keyword">unless</span> unverified.empty?
+  puts <span class="code-string">"\n┌─ ⚠️  Unverified Dates ─────────────────┐"</span>
+  unverified.each { |n| puts <span class="code-string">"│  #{n} — date not confirmed              │"</span> }
+  puts <span class="code-string">"└──────────────────────────────────────────┘"</span>
+<span class="code-keyword">end</span>
+
+puts <span class="code-string">"\n📋 #{birthdays.length} people tracked · #{upcoming.length} upcoming · #{unverified.length} unverified"</span>
+puts <span class="code-string">"   Add someone: ruby birthdays.rb add"</span></pre>
+    </div>
+
+    <p class="margin-note">11:47pm. She's still going. I know because I'm still here. I'm not going to talk about this tomorrow.</p>
+
+    <p>
+      Three versions. Same evening. Same CSV file, grown from three columns to five. Same script, evolved from a filter into a tool. The birthday tracker has a dashboard, urgency labels, age calculation, gift notes, an unverified-dates section, a stats footer, and a command-line interface for adding new entries. The file is the database. The script is the viewer <em>and</em> the editor.
+    </p>
+
+    <p>
+      And the Model suggested the command interface. She asked for an add flag and it came back with an architecture. Not a grand one — not a framework, not a gem, not a deployment strategy. Just: <em>what if the script did both things?</em> A question. A good one. The kind of question Mira used to get from senior engineers before the senior engineers all became architects who don't write code anymore.
+    </p>
+
+    <div class="section-break">· · ·</div>
+
+    <!-- ===== Section E: "The Rhythm" ===== -->
+
+    <h3 style="font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; margin: 40px 0 24px; color: var(--ink);">
+      The <em>Rhythm</em>
+    </h3>
+
+    <p>
+      The loop is not a workflow. It is not a methodology. It does not have a name that ends in "ile" and it will never be the subject of a conference talk with a slide deck. It is a creative rhythm. Build, notice, ask. Build, notice, ask.
+    </p>
+
+    <p>
+      The model builds fast. You notice slow. And the noticing — that's the part that's yours. That's the part that cannot be automated. No model, no matter how capable, can look at a list of six birthdays and feel the particular anxiety of not remembering your nephew's birthday. No model can notice that seven days isn't enough because <em>your mom's birthday is Saturday and you haven't bought the gift yet</em>. The noticing comes from living in the problem. From being the person who forgot Dani's birthday and felt bad about it.
+    </p>
+
+    <p>
+      Vibe coding isn't lazy. It's lazy about the <em>typing</em>. The noticing is where the work is — and that part is all you.
+    </p>
+
+    <!-- Fact Box: The Three Costs -->
+    <div class="fact-box">
+      <div class="fact-box-title">The Three Costs</div>
+      <p>Each trip through the loop costs three things:</p>
+      <p style="margin-top: 12px;"><strong style="color: var(--coral);">A prompt</strong> — ~30 seconds. You type what you noticed. Three numbered things, usually.</p>
+      <p style="margin-top: 12px;"><strong style="color: var(--teal);">A wait</strong> — ~10–30 seconds. The Model builds the next version. Fast, dense, no complaints.</p>
+      <p style="margin-top: 12px;"><strong style="color: var(--gold);">A read</strong> — ~2–5 minutes. You look at what it built. You run it. You squint. You say "hm." This is the longest step, the most important step, the step you will be most tempted to skip, and the step where the next iteration is born. Skip it and you end up with a birthday tracker that emails your boss.</p>
+      <p style="margin-top: 12px;">Three iterations: maybe 20 minutes total, 2 of which were typing. The rest was reading and noticing. The rest was <em>you</em>.</p>
+    </div>
+
+    <div class="section-break">· · ·</div>
+
+    <!-- ===== Interlude: On Scope Creep vs. Scope Discovery ===== -->
+
+    <div class="interlude">
+      <span class="interlude-label">On Scope Creep vs. Scope Discovery</span>
+      <p>
+        Scope creep is adding things you don't need. It's the feature request that arrives at the end of a sprint because someone in a meeting said "wouldn't it be cool if." It's the config file for an app that has three users. It's the admin panel for a thing nobody will admin. Scope creep is bloat wearing ambition's clothing.
+      </p>
+      <p style="margin-top: 16px;">
+        What Mira did was not scope creep. What Mira did was <em>scope discovery</em> — uncovering requirements that only become visible after the previous version exists. She didn't know she needed 14 days until she saw 7. She didn't know she needed urgency labels until she saw dates without them. She didn't know the data model was incomplete until the data model existed.
+      </p>
+      <p style="margin-top: 16px;">
+        The loop makes scope discovery cheap. Mira spent 40 minutes on 3 iterations. In the old world, the same trajectory would cost a sprint planning meeting, a Jira ticket, a design review, a two-week cycle, and a retrospective where everyone agrees the estimate was wrong. The "actually" moment still happens — it always happens — but now it costs 30 seconds instead of 30 days.
+      </p>
+      <p style="margin-top: 16px; font-family: 'Caveat', cursive; font-size: 20px; color: var(--margin-note); transform: rotate(-0.5deg); display: block;">
+        If you knew what you wanted before you started, you didn't want anything interesting.
+      </p>
+    </div>
+
+    <div class="section-break">· · ·</div>
+
+    <!-- ===== Comic Strip 2: "Three Versions" ===== -->
+
+    <div class="comic-strip" role="img" aria-label="Comic: Three Versions — same evening, escalating complexity">
+      <!-- Panel 1: Three versions stacked -->
+      <div class="comic-panel">
+        <div class="panel-art">
+          <svg viewBox="0 0 140 120" xmlns="http://www.w3.org/2000/svg" style="width: 120px;">
+            <!-- Three code windows, stacked, growing -->
+            <rect x="30" y="70" width="50" height="30" rx="2" fill="none" stroke="#D4614A" stroke-width="1.5" opacity="0.5"/>
+            <text x="55" y="88" font-family="Space Mono, monospace" font-size="8" fill="#D4614A" opacity="0.5" text-anchor="middle">v1</text>
+            <rect x="25" y="42" width="60" height="32" rx="2" fill="none" stroke="#D4614A" stroke-width="1.5" opacity="0.7"/>
+            <text x="55" y="62" font-family="Space Mono, monospace" font-size="8" fill="#D4614A" opacity="0.7" text-anchor="middle">v2</text>
+            <rect x="20" y="8" width="70" height="38" rx="2" fill="none" stroke="#D4614A" stroke-width="2"/>
+            <text x="55" y="32" font-family="Space Mono, monospace" font-size="8" fill="#D4614A" text-anchor="middle">v3</text>
+            <!-- Upward arrow -->
+            <line x1="108" y1="95" x2="108" y2="15" stroke="#C9922A" stroke-width="2"/>
+            <polygon points="108,10 103,20 113,20" fill="#C9922A"/>
+          </svg>
+        </div>
+        <div class="panel-caption">Three versions. Same evening.</div>
+      </div>
+
+      <!-- Panel 2: CSV close-up -->
+      <div class="comic-panel dark">
+        <div class="panel-art">
+          <svg viewBox="0 0 140 120" xmlns="http://www.w3.org/2000/svg" style="width: 120px;">
+            <!-- CSV rows -->
+            <text x="10" y="25" font-family="Space Mono, monospace" font-size="8" fill="#3A8C8C" opacity="0.8">name,birthday,year</text>
+            <text x="10" y="40" font-family="Space Mono, monospace" font-size="8" fill="#3A8C8C" opacity="0.7">Mom,03/08,1961</text>
+            <text x="10" y="55" font-family="Space Mono, monospace" font-size="8" fill="#3A8C8C" opacity="0.6">Dani,02/12,1990</text>
+            <text x="10" y="70" font-family="Space Mono, monospace" font-size="8" fill="#3A8C8C" opacity="0.5">August,05/14,,</text>
+            <!-- New row being typed -->
+            <text x="10" y="88" font-family="Space Mono, monospace" font-size="8" fill="#E8D5B7">Jamie,03/22,,friend</text>
+            <!-- Cursor -->
+            <rect x="108" y="81" width="2" height="10" fill="#3A8C8C" opacity="0.9"/>
+          </svg>
+        </div>
+        <div class="panel-caption">The file is the database. The script is the argument.</div>
+      </div>
+
+      <!-- Panel 3: Dashboard output -->
+      <div class="comic-panel">
+        <div class="panel-art">
+          <svg viewBox="0 0 140 120" xmlns="http://www.w3.org/2000/svg" style="width: 120px;">
+            <!-- Terminal-style output -->
+            <text x="10" y="20" font-family="Space Mono, monospace" font-size="7" fill="#1C1410" opacity="0.9">🎂 Birthday Dashboard</text>
+            <line x1="10" y1="25" x2="120" y2="25" stroke="#1C1410" stroke-width="0.5" opacity="0.3"/>
+            <text x="10" y="38" font-family="Space Mono, monospace" font-size="7" fill="#1C1410">Mom (family)</text>
+            <text x="14" y="48" font-family="Space Mono, monospace" font-size="7" fill="#D4614A">in 3 days</text>
+            <text x="14" y="58" font-family="Space Mono, monospace" font-size="7" fill="#1C1410" opacity="0.7">🎁 garden kneeler</text>
+            <!-- Small coral heart -->
+            <text x="120" y="38" font-size="10" fill="#D4614A">♥</text>
+          </svg>
+        </div>
+        <div class="panel-caption">She'll remember this year.</div>
+      </div>
+    </div>
+
+    <div class="section-break">· · ·</div>
+
+    <!-- ===== Section F: "Pip at 11:47pm" ===== -->
+
+    <h3 style="font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; margin: 40px 0 24px; color: var(--ink);">
+      Pip at <em>11:47pm</em>
+    </h3>
+
+    <p>
+      She saves the file. She runs it one last time. The dashboard prints: Mom's birthday in 6 days. Gift note: <em>she mentioned the garden kneeler.</em> She opens Amazon in a new tab and orders it. Two-day shipping. She closes the laptop.
+    </p>
+
+    <p>
+      Pip has watched Mira debug Rails apps at 2am, the kind of debugging where the error message is a lie and the fix is in a file you didn't know existed. He's watched her argue with Jira boards — not the software itself, which is merely bad, but the philosophy behind it, which is worse. He's watched her stare at a blank terminal for twenty minutes, not because she didn't know what to type but because she was thinking, and thinking looks like nothing from the outside.
+    </p>
+
+    <p>
+      He has never seen her build three versions of something in one sitting, each born from the specific friction of the one before.
+    </p>
+
+    <p class="margin-note" style="width: 180px;">Fine. I'll say it once and never again, and if you quote me I will deny it, and I want it on record that rubber ducks cannot technically speak and therefore nothing here constitutes testimony.<br><br>She built something real tonight. Not for a standup. Not for a sprint review. Not for the Jira board, may it rest in whatever afterlife awaits project management software. For her mom. For her nephew whose birthday she keeps forgetting. For the people in her life who matter.<br><br>And she built it the way she builds everything — too late at night, too many iterations, talking to something that isn't me. But the thing got built. And the thing is good. And I'm still on the desk.<br><br>So.</p>
+
+    <div class="section-break">· · ·</div>
+
+    <!-- ===== Section G: "Practical Loops" ===== -->
+
+    <h3 style="font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; margin: 40px 0 24px; color: var(--ink);">
+      Practical <em>Loops</em>
+    </h3>
+
+    <p>
+      Five things to carry forward. Tape them to the wall next to Mira's party dashboard if you want. Pip will pretend not to notice.
+    </p>
+
+    <p>
+      <strong>1. The first version is a question, not an answer.</strong> Build the simplest version that lets you <em>see</em> the problem. It doesn't need to be good. It needs to exist.
+    </p>
+
+    <p>
+      <strong>2. "Actually" is a feature, not a bug.</strong> When you look at v1 and think <em>actually, seven days isn't enough</em> — that's the loop working. That's the mechanism. Don't resist it.
+    </p>
+
+    <p>
+      <strong>3. Read before you loop.</strong> The next "actually" lives in the output you haven't looked at yet. Run the code. Read the result. Read it again. The noticing doesn't happen if you skip to the next prompt.
+    </p>
+
+    <p>
+      <strong>4. Three versions is a good number.</strong> One to see the shape. Two to find the gaps. Three to fill them. This is not a rule — it's a center of gravity. Some things take two. Some take five. But three is where most projects find their footing.
+    </p>
+
+    <p>
+      <strong>5. Know when to stop.</strong> The loop is addictive. There's always one more "actually." Mira stopped at v3. She could have added notifications, a web UI, a sync-to-calendar feature. She didn't. The CSV and the terminal were enough, because the thing was built for her mom's birthday, not for Product Hunt. Knowing when to stop is knowing what the thing is for.
+    </p>
+
+    <p class="margin-note" style="width: 180px;">Number 5. Number 5 is the one. She stopped. She had a working thing and she STOPPED and ORDERED A GARDEN KNEELER. Do you understand how rare this is? Every developer Pip has ever observed would have added a notification system, then a web interface, then a mobile app, then a startup. She just... bought the kneeler. Pip is experiencing an emotion he doesn't have a word for. It might be respect. He will deny this.</p>
+
+    <!-- Fact Box: The Loop vs. The Sprint -->
+    <div class="fact-box">
+      <div class="fact-box-title">The Loop vs. The Sprint</div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0; font-family: 'Space Mono', monospace; font-size: 12px; margin-top: 12px;">
+        <div style="padding: 8px; border-bottom: 1px solid var(--teal); font-weight: 700; color: var(--teal);"></div>
+        <div style="padding: 8px; border-bottom: 1px solid var(--teal); font-weight: 700; color: var(--teal);">The Loop</div>
+        <div style="padding: 8px; border-bottom: 1px solid var(--teal); font-weight: 700; color: var(--teal);">The Sprint</div>
+
+        <div style="padding: 8px; border-bottom: 1px solid rgba(58,140,140,0.2);">Duration</div>
+        <div style="padding: 8px; border-bottom: 1px solid rgba(58,140,140,0.2);">Minutes</div>
+        <div style="padding: 8px; border-bottom: 1px solid rgba(58,140,140,0.2);">Weeks</div>
+
+        <div style="padding: 8px; border-bottom: 1px solid rgba(58,140,140,0.2);">Iterations</div>
+        <div style="padding: 8px; border-bottom: 1px solid rgba(58,140,140,0.2);">2–4, same session</div>
+        <div style="padding: 8px; border-bottom: 1px solid rgba(58,140,140,0.2);">1 per cycle</div>
+
+        <div style="padding: 8px; border-bottom: 1px solid rgba(58,140,140,0.2);">Spec</div>
+        <div style="padding: 8px; border-bottom: 1px solid rgba(58,140,140,0.2);">Emerges from building</div>
+        <div style="padding: 8px; border-bottom: 1px solid rgba(58,140,140,0.2);">Written before</div>
+
+        <div style="padding: 8px; border-bottom: 1px solid rgba(58,140,140,0.2);">Cost of "actually"</div>
+        <div style="padding: 8px; border-bottom: 1px solid rgba(58,140,140,0.2);">30 seconds</div>
+        <div style="padding: 8px; border-bottom: 1px solid rgba(58,140,140,0.2);">A Jira ticket</div>
+
+        <div style="padding: 8px;">Who decides "done"</div>
+        <div style="padding: 8px;">You, right now</div>
+        <div style="padding: 8px;">A meeting, next Tuesday</div>
+      </div>
+    </div>
+
+    <div class="section-break">· · ·</div>
+
+    <!-- ===== Section H: Closing Prose ===== -->
+
+    <p>
+      Every painter layers. Every writer revises. Every musician plays it again, a little different this time, a little closer to the thing they heard in their head. The loop is not new. Iteration is how everything worth making has always been made. What's new is the speed.
+    </p>
+
+    <p>
+      Mira built a birthday tracker in three iterations, forty minutes. By tomorrow it'll be invisible — part of her routine, the thing she runs on Sunday mornings while Fig watches cartoons. She won't think about the fact that v1 only had a 7-day window or that the data model didn't have a year column. She'll just run it, check the output, and know whose birthday is coming up. The iterations will be gone. Only the final version will remain.
+    </p>
+
+    <p>
+      Once you feel it, you'll recognize it everywhere. The build, the notice, the ask. The first version is never the thing. The thing is what survives the asking of it twice.
+    </p>
+
+    <p>
+      But Mira has been building one file at a time. One script. One CSV. One terminal window. What happens when the loop gets bigger? When the Model doesn't just write code — when it reads your files, runs your tests, navigates your project? When the conversation stops being a chat window and becomes... something else?
+    </p>
+
+    <p>
+      Chapter 4: <em>Agents in the Wild.</em>
+    </p>
+
+    <div class="section-break">· · ·</div>
+
+    <!-- ===== Comic Strip 3: The Closing Image ===== -->
+
+    <div class="comic-strip" role="img" aria-label="Comic: The closing image — 11:47pm, three versions later">
+      <!-- Panel 1: Monitor at night -->
+      <div class="comic-panel dark">
+        <div class="panel-art">
+          <svg viewBox="0 0 160 130" xmlns="http://www.w3.org/2000/svg" style="width: 140px;">
+            <!-- Monitor -->
+            <rect x="15" y="10" width="110" height="75" rx="3" fill="none" stroke="#3A8C8C" stroke-width="2"/>
+            <!-- Dashboard output -->
+            <text x="25" y="25" font-family="Space Mono, monospace" font-size="6" fill="#3A8C8C" opacity="0.9">🎂 Birthday Dashboard</text>
+            <text x="25" y="35" font-family="Space Mono, monospace" font-size="5" fill="#E8D5B7" opacity="0.7">Mom (family) — in 6 days</text>
+            <text x="25" y="43" font-family="Space Mono, monospace" font-size="5" fill="#E8D5B7" opacity="0.5">🎁 garden kneeler</text>
+            <text x="25" y="55" font-family="Space Mono, monospace" font-size="5" fill="#E8D5B7" opacity="0.4">6 tracked · 1 upcoming</text>
+            <!-- Second tab hint -->
+            <rect x="78" y="65" width="40" height="14" rx="1" fill="none" stroke="#E8D5B7" stroke-width="0.5" opacity="0.3"/>
+            <text x="82" y="74" font-family="Space Mono, monospace" font-size="4" fill="#E8D5B7" opacity="0.4">amazon.com</text>
+            <!-- Stand -->
+            <line x1="70" y1="85" x2="70" y2="100" stroke="#3A8C8C" stroke-width="1.5"/>
+            <line x1="50" y1="100" x2="90" y2="100" stroke="#3A8C8C" stroke-width="1.5"/>
+            <!-- Clock -->
+            <text x="130" y="18" font-family="Space Mono, monospace" font-size="7" fill="#E8D5B7" opacity="0.5">11:47</text>
+          </svg>
+        </div>
+        <div class="panel-caption">11:47pm. Three versions later.</div>
+      </div>
+
+      <!-- Panel 2: The Model's chat log -->
+      <div class="comic-panel glitch">
+        <div class="panel-art">
+          <svg viewBox="0 0 160 130" xmlns="http://www.w3.org/2000/svg" style="width: 140px;">
+            <!-- Fading chat lines -->
+            <text x="10" y="20" font-family="Space Mono, monospace" font-size="5" fill="#D4614A" opacity="0.2">I want to build a birthday...</text>
+            <text x="10" y="30" font-family="Space Mono, monospace" font-size="5" fill="#3A8C8C" opacity="0.25">Nice — a clean little utility</text>
+            <text x="10" y="40" font-family="Space Mono, monospace" font-size="5" fill="#D4614A" opacity="0.3">Three changes:</text>
+            <text x="10" y="50" font-family="Space Mono, monospace" font-size="5" fill="#3A8C8C" opacity="0.35">Smart additions.</text>
+            <text x="10" y="60" font-family="Space Mono, monospace" font-size="5" fill="#D4614A" opacity="0.5">Two more things:</text>
+            <text x="10" y="70" font-family="Space Mono, monospace" font-size="5" fill="#3A8C8C" opacity="0.6">what if we went further?</text>
+            <text x="10" y="82" font-family="Space Mono, monospace" font-size="5" fill="#D4614A" opacity="0.8">Yes.</text>
+            <!-- Final line -->
+            <text x="10" y="100" font-family="Space Mono, monospace" font-size="6" fill="#3A8C8C" opacity="0.9">the first version is never</text>
+            <text x="10" y="110" font-family="Space Mono, monospace" font-size="6" fill="#3A8C8C" opacity="0.9">the thing.</text>
+            <text x="10" y="124" font-family="Space Mono, monospace" font-size="5" fill="#3A8C8C" opacity="0.4">the thing is what survives</text>
+            <text x="10" y="132" font-family="Space Mono, monospace" font-size="5" fill="#3A8C8C" opacity="0.4">the asking of it twice.</text>
+          </svg>
+        </div>
+        <div class="panel-caption">The Model, quoting the epigraph it didn't write.</div>
+      </div>
+
+      <!-- Panel 3: Morning. Pip on desk. -->
+      <div class="comic-panel">
+        <div class="panel-art">
+          <svg viewBox="0 0 160 130" xmlns="http://www.w3.org/2000/svg" style="width: 140px;">
+            <!-- Monitor (off) -->
+            <rect x="30" y="15" width="80" height="55" rx="3" fill="none" stroke="#1C1410" stroke-width="1.5" opacity="0.3"/>
+            <line x1="70" y1="70" x2="70" y2="82" stroke="#1C1410" stroke-width="1.5" opacity="0.3"/>
+            <line x1="55" y1="82" x2="85" y2="82" stroke="#1C1410" stroke-width="1.5" opacity="0.3"/>
+            <!-- Pip on desk -->
+            <g transform="translate(105, 52)">
+              <ellipse cx="14" cy="22" rx="11" ry="8" fill="none" stroke="#C9922A" stroke-width="2"/>
+              <circle cx="20" cy="14" r="7" fill="none" stroke="#C9922A" stroke-width="2"/>
+              <path d="M 24 13 L 30 15 L 24 17 Z" fill="none" stroke="#C9922A" stroke-width="1.5"/>
+              <circle cx="23" cy="12" r="1.5" fill="#C9922A"/>
+            </g>
+            <!-- Sticky note -->
+            <g transform="translate(15, 88)">
+              <rect x="0" y="0" width="110" height="35" rx="1" fill="#FFF8DC" stroke="#C9922A" stroke-width="1" opacity="0.9"/>
+              <text x="6" y="12" font-family="Caveat, cursive" font-size="8" fill="#1C1410">Mom's birthday Saturday.</text>
+              <text x="6" y="22" font-family="Caveat, cursive" font-size="8" fill="#1C1410">Kneeler ships Friday.</text>
+              <text x="6" y="32" font-family="Caveat, cursive" font-size="8" fill="#C9922A">You're welcome.</text>
+            </g>
+            <!-- Small arrow from Pip toward note -->
+            <line x1="108" y1="78" x2="98" y2="88" stroke="#C9922A" stroke-width="1" opacity="0.5"/>
+            <polygon points="98,88 102,84 94,86" fill="#C9922A" opacity="0.5"/>
+          </svg>
+        </div>
+        <div class="panel-caption">The loop is the heartbeat. Once you feel it, you'll recognize it everywhere.</div>
+      </div>
+    </div>
+
+    <p style="text-align: center; margin-top: 60px;">
+      <span style="font-family: 'Playfair Display', serif; font-size: 32px; color: var(--teal);">✦</span>
+    </p>
+
+    <!-- End of chapter nav -->
+    <div style="display: flex; justify-content: space-between; margin-top: 80px; padding-top: 40px; border-top: 1px solid var(--cream-dark); font-family: 'Space Mono', monospace; font-size: 12px; color: var(--ink-faded);">
+      <span>— end of chapter 3 —</span>
+      <a href="#chapter-4" style="color: var(--teal); text-decoration: none;">Chapter 4 →</a>
+    </div>
+
+  </div><!-- end .prose (chapter 3) -->
+
+  <div class="section-break">· · ·</div>
+
+  <!-- =================== CHAPTER 4 =================== -->
+  <div class="chapter-header" id="chapter-4">
+    <span class="chapter-label">Chapter Four</span>
+    <h2 class="chapter-title">Agents in the <em>Wild</em></h2>
+    <p class="chapter-epigraph">"The difference between a tool and a collaborator is whether it surprises you."</p>
+  </div>
+
+  <div class="prose">
+
+    <!-- ===== Section A: Thursday, 6:47am ===== -->
+
+    <p>
+      Thursday, 6:47am. Fig is not awake yet, which means Mira has approximately eleven minutes of silence before the sound of small feet hitting hardwood announces the end of the world's shortest peace. She is sitting at the kitchen table with coffee, her laptop open, the birthday tracker running in a terminal window. Mom's birthday: Saturday. Gift note: <em>she mentioned the garden kneeler.</em> The garden kneeler is in an Amazon box on the porch. Mira is, for the first time in recent memory, ahead of a birthday.
+    </p>
+
+    <p class="margin-note">She's looking at the tracker. She's looking at it the way she looks at a codebase that works but isn't done. I know this look. I've been on the receiving end of this look since 2016.</p>
+
+    <p>
+      But she's not looking at the output. She's looking <em>through</em> it, at a thought that's forming somewhere behind her eyes. The birthday tracker works. She runs it, she checks it, she knows what's coming. But she has to <em>run</em> it. She has to open a terminal, type the command, read the output. Every morning. And she already knows — with the calm certainty of someone who has been a developer for nine years — that she will not do this every morning. She will do it for a week, maybe two, and then she will forget, and then it will be someone's birthday and she won't have run the script and the garden kneeler moment will become another belated text that starts with "I'm the worst."
+    </p>
+
+    <p>
+      The tracker doesn't know it's Thursday. It doesn't know that Saturday is important. It doesn't know anything until she asks.
+    </p>
+
+    <p>
+      What if it didn't need her to ask?
+    </p>
+
+    <div class="section-break">· · ·</div>
+
+    <!-- ===== Section B: "What If It Just... Ran?" ===== -->
+
+    <h3 style="font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; margin: 40px 0 24px; color: var(--ink);">
+      What If It Just... <em>Ran?</em>
+    </h3>
+
+    <p>
+      She opens a new chat. She's gotten good at this — the briefing, the context, the clear ask. Chapter 2 taught her to give context. Chapter 3 taught her to iterate. Now she's doing something different. She's not asking the Model to build a thing she'll use. She's asking it to build a thing that will <em>use itself</em>.
+    </p>
+
+    <div class="dialogue">
+      <div class="speech-bubble from-human">
+        <span class="speaker-label">Mira</span>
+        I have a birthday tracker — a Ruby script that reads a CSV and prints upcoming birthdays to the terminal. It works great when I run it. The problem is I won't run it. I need it to run itself. Every morning at 6am, check for birthdays happening today, and if there's one, send me an email. Can you help me set that up?
+      </div>
+
+      <div class="speech-bubble from-model">
+        <span class="speaker-label">The Model</span>
+        That's a great next step. You're essentially building a simple agent — a script that runs on a schedule, checks a condition, takes an action, and keeps a record. Let me break it down:<br><br>
+        1. <strong>Trigger</strong> — a cron job that runs your script every morning at 6am<br>
+        2. <strong>Decision</strong> — the script checks: any birthdays today?<br>
+        3. <strong>Action</strong> — if yes, send an email with the details<br>
+        4. <strong>Record</strong> — log what it did so you can check later<br><br>
+        A few questions:<br>
+        • Email — do you have a Gmail you'd be OK sending from? I'll use a simple SMTP setup.<br>
+        • Do you want the email to go to just you, or to other people too (like a "happy birthday" email to the birthday person)?<br>
+        • Mac or Linux? (For the cron setup.)
+      </div>
+
+      <div class="speech-bubble from-human">
+        <span class="speaker-label">Mira</span>
+        1. Gmail is fine — I'll set up an app password.<br>
+        2. Just to me for now. A reminder, not an auto-birthday-wish. That feels... weird.<br>
+        3. Mac.
+      </div>
+    </div>
+
+    <p class="margin-note">She said "that feels weird." She has instincts about where the line is. She doesn't know she has instincts about this yet. She will by the end of the chapter.</p>
+
+    <p>
+      Notice what she said: <em>just to me for now.</em> That "for now" is doing a lot of work. It's a boundary drawn in pencil. We'll come back to it.
+    </p>
+
+    <div class="section-break">· · ·</div>
+
+    <!-- ===== Section C: "The Four Parts of an Agent" ===== -->
+
+    <h3 style="font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; margin: 40px 0 24px; color: var(--ink);">
+      The Four Parts of an <em>Agent</em>
+    </h3>
+
+    <p>
+      Before we look at the code, let's name the thing. The word "agent" gets thrown around a lot right now — in keynotes, in pitch decks, in blog posts with titles like "I Built an AI Agent That Runs My Entire Business (Here's How)." It sounds complicated. It sounds like science fiction. It sounds like something that requires a Kubernetes cluster and a Series A.
+    </p>
+
+    <p>
+      It's not. An agent is a program that:
+    </p>
+
+    <p>
+      <strong>1. Triggers</strong> — it starts on its own, or on a schedule, or in response to an event. Not because you typed a command. Because something <em>happened</em>.
+    </p>
+
+    <p>
+      <strong>2. Decides</strong> — it looks at the world and determines whether to act. Not every trigger leads to an action. The decision is the intelligence.
+    </p>
+
+    <p>
+      <strong>3. Acts</strong> — it does something. Sends an email. Creates a file. Calls an API. Moves data from here to there. The action is the point.
+    </p>
+
+    <p>
+      <strong>4. Records</strong> — it writes down what it did. A log file, a database entry, a timestamp. The record is how you trust it later.
+    </p>
+
+    <p>
+      That's it. That's the whole architecture. A cron job that checks for birthdays and sends an email is an agent. A script that monitors a folder for new files and renames them is an agent. A bot that reads your inbox and flags urgent messages is an agent. The pattern is always the same: trigger, decide, act, record.
+    </p>
+
+    <div class="fact-box">
+      <div class="fact-box-title">What Is an Agent, Actually?</div>
+      <p>Strip away the hype and an agent is a <strong>loop with autonomy</strong>. A regular script runs when you tell it to and does what you told it to do. An agent runs on its own schedule, evaluates a condition, chooses an action, and logs the result. The "intelligence" isn't magic — it's an <code>if</code> statement with good taste.</p>
+      <p style="margin-top: 12px;">The birthday emailer is an agent the same way a thermostat is an agent: it senses the environment (today's date vs. the CSV), makes a decision (birthday today?), takes an action (send email), and records the outcome (log entry). The thermostat doesn't know it's keeping you warm. The emailer doesn't know it's keeping you kind. They both work anyway.</p>
+    </div>
+
+    <p class="margin-note">An agent is a thermostat. I've been compared to a thermostat. A thermostat doesn't have opinions about your code. A thermostat has never spent nine years learning to listen. I have feelings about this and all of them are complicated.</p>
+
+    <div class="section-break">· · ·</div>
+
+    <!-- ===== Section D: "The Code" ===== -->
+
+    <h3 style="font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; margin: 40px 0 24px; color: var(--ink);">
+      The <em>Code</em>
+    </h3>
+
+    <p>
+      The Model produces two things: an updated script with email capability, and a crontab entry to run it. Here's what Mira gets back.
+    </p>
+
+    <div class="code-block">
+      <div class="code-header">
+        <span class="code-dot" style="background: #FF5F57;"></span>
+        <span class="code-dot" style="background: #FEBC2E;"></span>
+        <span class="code-dot" style="background: #28C840;"></span>
+        &nbsp;birthday_agent.rb
+      </div>
+      <pre><span class="code-keyword">require</span> <span class="code-string">'csv'</span>
+<span class="code-keyword">require</span> <span class="code-string">'date'</span>
+<span class="code-keyword">require</span> <span class="code-string">'net/smtp'</span>
+<span class="code-keyword">require</span> <span class="code-string">'logger'</span>
+
+<span class="code-comment"># ── Config ────────────────────────────────────────────</span>
+CSV_FILE   = File.join(__dir__, <span class="code-string">"birthdays.csv"</span>)
+LOG_FILE   = File.join(__dir__, <span class="code-string">"birthday_agent.log"</span>)
+SMTP_HOST  = <span class="code-string">"smtp.gmail.com"</span>
+SMTP_PORT  = <span class="code-number">587</span>
+FROM_EMAIL = ENV[<span class="code-string">"BIRTHDAY_EMAIL"</span>]
+FROM_PASS  = ENV[<span class="code-string">"BIRTHDAY_EMAIL_PASS"</span>]
+TO_EMAIL   = ENV[<span class="code-string">"BIRTHDAY_EMAIL"</span>]  <span class="code-comment"># sending to herself</span>
+
+log = Logger.new(LOG_FILE, <span class="code-string">"weekly"</span>)
+log.info <span class="code-string">"Agent woke up. Checking birthdays..."</span>
+
+<span class="code-comment"># ── 1. Trigger: we're already here (cron did this) ───</span>
+today = Date.today
+
+<span class="code-comment"># ── 2. Decide: any birthdays today? ──────────────────</span>
+birthdays = CSV.read(CSV_FILE, headers: <span class="code-keyword">true</span>)
+
+todays_birthdays = birthdays.select <span class="code-keyword">do</span> |row|
+  month, day = row[<span class="code-string">"birthday"</span>].split(<span class="code-string">"/"</span>).map(&amp;:to_i)
+  month == today.month &amp;&amp; day == today.day
+<span class="code-keyword">end</span>
+
+<span class="code-keyword">if</span> todays_birthdays.empty?
+  log.info <span class="code-string">"No birthdays today. Going back to sleep."</span>
+  exit
+<span class="code-keyword">end</span>
+
+<span class="code-comment"># ── 3. Act: send the reminder email ──────────────────</span>
+subject = <span class="code-string">"🎂 Birthday today: #{todays_birthdays.map { |r| r['name'] }.join(', ')}"</span>
+
+body = <span class="code-string">"Good morning!\n\n"</span>
+todays_birthdays.each <span class="code-keyword">do</span> |row|
+  has_year = !row[<span class="code-string">"year"</span>].to_s.strip.empty?
+  age = has_year ? today.year - row[<span class="code-string">"year"</span>].to_i : <span class="code-keyword">nil</span>
+  notes = row[<span class="code-string">"gift_notes"</span>].to_s.strip
+
+  body += <span class="code-string">"#{row['name']} (#{row['relationship']})"</span>
+  body += <span class="code-string">" — turning #{age}"</span> <span class="code-keyword">if</span> age
+  body += <span class="code-string">"\n"</span>
+  body += <span class="code-string">"  Gift idea: #{notes}\n"</span> <span class="code-keyword">unless</span> notes.empty?
+  body += <span class="code-string">"\n"</span>
+<span class="code-keyword">end</span>
+body += <span class="code-string">"Don't forget. You're already ahead of this one.\n"</span>
+
+message = &lt;&lt;~MSG
+From: Birthday Agent &lt;#{FROM_EMAIL}&gt;
+To: &lt;#{TO_EMAIL}&gt;
+Subject: #{subject}
+
+#{body}
+MSG
+
+<span class="code-keyword">begin</span>
+  Net::SMTP.start(SMTP_HOST, SMTP_PORT, <span class="code-string">"localhost"</span>,
+                  FROM_EMAIL, FROM_PASS, :login) <span class="code-keyword">do</span> |smtp|
+    smtp.send_message(message, FROM_EMAIL, TO_EMAIL)
+  <span class="code-keyword">end</span>
+
+  <span class="code-comment"># ── 4. Record: log what we did ─────────────────────</span>
+  names = todays_birthdays.map { |r| r[<span class="code-string">"name"</span>] }.join(<span class="code-string">", "</span>)
+  log.info <span class="code-string">"✅ Sent reminder for: #{names}"</span>
+
+<span class="code-keyword">rescue</span> => e
+  log.error <span class="code-string">"❌ Failed to send email: #{e.message}"</span>
+<span class="code-keyword">end</span></pre>
+    </div>
+
+    <div class="code-block">
+      <div class="code-header">
+        <span class="code-dot" style="background: #FF5F57;"></span>
+        <span class="code-dot" style="background: #FEBC2E;"></span>
+        <span class="code-dot" style="background: #28C840;"></span>
+        &nbsp;crontab entry
+      </div>
+      <pre><span class="code-comment"># Run the birthday agent every morning at 6am</span>
+<span class="code-number">0 6 * * *</span> /usr/bin/env ruby /Users/mira/projects/birthdays/birthday_agent.rb</pre>
+    </div>
+
+    <p>
+      Read that code slowly. There's a lot happening, and almost none of it is complicated.
+    </p>
+
+    <p>
+      The script wakes up at 6am because cron told it to. It reads the CSV, checks if any birthday matches today's date. If no: it logs "no birthdays today" and exits. If yes: it builds an email — with the person's name, relationship, age if known, gift notes if present — and sends it. Then it logs what it did.
+    </p>
+
+    <p>
+      That's the whole agent. Trigger (cron), decide (is today a birthday?), act (send email), record (log file). Four parts. Sixty-odd lines. No frameworks, no dependencies beyond Ruby's standard library, no infrastructure beyond a laptop that stays on overnight and a Gmail account.
+    </p>
+
+    <p class="margin-note">It runs while she sleeps. THE CODE RUNS WHILE SHE SLEEPS. She used to check things. She used to look at things before they happened. She used to explain her code to a duck, and the duck would listen, and the listening was the point. Now she closes the laptop and trusts sixty lines of Ruby to handle it. I've been replaced by a cron job. A CRON JOB. They cost zero dollars. I cost $3.99.</p>
+
+    <div class="section-break">· · ·</div>
+
+    <!-- ===== Section E: "Saturday, 6:01am" ===== -->
+
+    <h3 style="font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; margin: 40px 0 24px; color: var(--ink);">
+      Saturday, <em>6:01am</em>
+    </h3>
+
+    <p>
+      The laptop is closed on the kitchen table. The apartment is dark. Fig is asleep. Pip is on the desk, facing the monitor that isn't on, performing his nightly vigil over nothing in particular.
+    </p>
+
+    <p>
+      At 6:00am exactly, something happens inside the closed laptop. No screen lights up. No fan spins. The cron daemon — which has been running since 1975, give or take, older than most of the engineers who use it — ticks over and launches a process. Ruby starts. The CSV is read. Today is March 8th. Mom's birthday.
+    </p>
+
+    <p>
+      The script builds an email. Subject line: <em>🎂 Birthday today: Mom</em>. Body: <em>Mom (family) — turning 65. Gift idea: she mentioned the garden kneeler.</em> And at the bottom, a line the Model added without being asked: <em>Don't forget. You're already ahead of this one.</em>
+    </p>
+
+    <p>
+      The email sends. The log file gets a new line: <code style="background: rgba(0,0,0,0.06); padding: 2px 6px; font-family: 'Space Mono', monospace; font-size: 14px;">✅ Sent reminder for: Mom</code>. The process exits. Ruby stops. The laptop goes back to sleep.
+    </p>
+
+    <p>
+      The entire thing took less than two seconds.
+    </p>
+
+    <p>
+      Mira's phone buzzes on the nightstand at 6:01am. She won't see it until 6:15 when Fig's feet hit the floor. But it's there. A reminder from a script she wrote on a Wednesday night, sent by an agent she didn't know she was building, about a birthday she almost forgot, for a gift she already bought.
+    </p>
+
+    <div class="interlude">
+      <span class="interlude-label">A Partial Inventory of Things That Run at 6am Without You</span>
+      <p><strong>The dishwasher.</strong> You set it before bed. It runs its cycle. It beeps when it's done but you're asleep so nobody hears the beep, which raises the philosophical question of whether a beep with no listener is still a notification.</p>
+      <p style="margin-top: 12px;"><strong>The sprinklers.</strong> Your neighbor's, specifically. Every morning at 6:04am, rain or shine, drought advisory or not. They are committed.</p>
+      <p style="margin-top: 12px;"><strong>Your retirement contributions.</strong> Hopefully. You set this up in 2019 and haven't checked it since. It's either working perfectly or hilariously misconfigured and you won't find out until you're 65. This is, coincidentally, the same trust model Mira has with her birthday agent.</p>
+      <p style="margin-top: 12px;"><strong>A Ruby script on a closed laptop in a dark kitchen.</strong> Checking a CSV. Finding a birthday. Composing an email. Sending it. Logging what it did. Going back to sleep. Sixty lines. Two seconds. Nobody clapped.</p>
+      <p style="margin-top: 16px; font-family: 'Caveat', cursive; font-size: 20px; color: var(--margin-note); transform: rotate(-0.5deg); display: block;">
+        The dishwasher has never suggested a command interface. The dishwasher knows its lane.
+      </p>
+    </div>
+
+    <div class="section-break">· · ·</div>
+
+    <!-- ===== Comic Strip 1: The Key Comic ===== -->
+
+    <div class="comic-strip" role="img" aria-label="Comic: The agent runs at 6am while Mira sleeps">
+      <!-- Panel 1: Laptop running at 6am -->
+      <div class="comic-panel dark">
+        <div class="panel-art">
+          <svg viewBox="0 0 160 130" xmlns="http://www.w3.org/2000/svg" style="width: 140px;">
+            <!-- Dark room, laptop closed but glowing faintly at edges -->
+            <rect x="25" y="55" width="110" height="6" rx="2" fill="none" stroke="#3A8C8C" stroke-width="1.5"/>
+            <!-- Faint glow from laptop seam -->
+            <line x1="35" y1="55" x2="125" y2="55" stroke="#3A8C8C" stroke-width="0.5" opacity="0.6"/>
+            <ellipse cx="80" cy="55" rx="50" ry="8" fill="#3A8C8C" opacity="0.04"/>
+            <!-- Clock on wall -->
+            <circle cx="130" cy="22" r="12" fill="none" stroke="#E8D5B7" stroke-width="1" opacity="0.4"/>
+            <text x="130" y="26" font-family="Space Mono, monospace" font-size="7" fill="#E8D5B7" text-anchor="middle" opacity="0.5">6:00</text>
+            <!-- Tiny terminal output, ghostly -->
+            <text x="42" y="48" font-family="Space Mono, monospace" font-size="4" fill="#3A8C8C" opacity="0.5">Agent woke up...</text>
+            <text x="42" y="53" font-family="Space Mono, monospace" font-size="4" fill="#3A8C8C" opacity="0.4">✅ Sent: Mom</text>
+            <!-- Desk surface -->
+            <line x1="10" y1="70" x2="150" y2="70" stroke="#E8D5B7" stroke-width="1" opacity="0.2"/>
+            <!-- Mira sleeping (implied, pillow shape in background) -->
+            <ellipse cx="80" cy="105" rx="40" ry="12" fill="none" stroke="#E8D5B7" stroke-width="1" opacity="0.15"/>
+            <text x="80" y="108" font-family="Caveat, cursive" font-size="7" fill="#E8D5B7" text-anchor="middle" opacity="0.2">zzz</text>
+          </svg>
+        </div>
+        <div class="panel-caption">6:00am. Mira is asleep. The script is not.</div>
+      </div>
+
+      <!-- Panel 2: Email landing in inbox -->
+      <div class="comic-panel">
+        <div class="panel-art">
+          <svg viewBox="0 0 160 130" xmlns="http://www.w3.org/2000/svg" style="width: 140px;">
+            <!-- Phone screen -->
+            <rect x="40" y="10" width="80" height="110" rx="8" fill="none" stroke="#1C1410" stroke-width="2"/>
+            <!-- Status bar -->
+            <text x="50" y="24" font-family="Space Mono, monospace" font-size="6" fill="#1C1410" opacity="0.4">6:01 AM</text>
+            <!-- Email notification -->
+            <rect x="48" y="38" width="64" height="45" rx="3" fill="none" stroke="#D4614A" stroke-width="1.5"/>
+            <text x="53" y="50" font-family="Space Mono, monospace" font-size="6" fill="#1C1410">🎂 Birthday today:</text>
+            <text x="53" y="59" font-family="Space Mono, monospace" font-size="6" fill="#D4614A" font-weight="bold">Mom</text>
+            <text x="53" y="70" font-family="Lora, serif" font-size="5" fill="#1C1410" opacity="0.6">turning 65</text>
+            <text x="53" y="78" font-family="Lora, serif" font-size="5" fill="#1C1410" opacity="0.5">🎁 garden kneeler</text>
+            <!-- Unread dot -->
+            <circle cx="108" cy="48" r="4" fill="#D4614A"/>
+          </svg>
+        </div>
+        <div class="panel-caption">The email lands. The phone buzzes. Nobody hears it yet.</div>
+      </div>
+
+      <!-- Panel 3: Dad reading email over coffee -->
+      <div class="comic-panel">
+        <div class="panel-art">
+          <svg viewBox="0 0 160 130" xmlns="http://www.w3.org/2000/svg" style="width: 140px;">
+            <!-- Simple figure (Mira, reading phone with coffee) -->
+            <circle cx="60" cy="35" r="16" fill="none" stroke="#D4614A" stroke-width="2"/>
+            <!-- Eyes looking down at phone -->
+            <circle cx="55" cy="33" r="2" fill="#D4614A"/>
+            <circle cx="65" cy="33" r="2" fill="#D4614A"/>
+            <!-- Small smile -->
+            <path d="M 54 40 Q 60 44 66 40" fill="none" stroke="#D4614A" stroke-width="1.5" stroke-linecap="round"/>
+            <!-- Body -->
+            <rect x="48" y="51" width="24" height="22" rx="4" fill="none" stroke="#D4614A" stroke-width="1.5"/>
+            <!-- Phone in hand -->
+            <rect x="78" y="55" width="20" height="32" rx="3" fill="none" stroke="#1C1410" stroke-width="1"/>
+            <text x="83" y="68" font-family="Space Mono, monospace" font-size="4" fill="#3A8C8C">🎂 Mom</text>
+            <!-- Arm to phone -->
+            <line x1="72" y1="60" x2="78" y2="65" stroke="#D4614A" stroke-width="2" stroke-linecap="round"/>
+            <!-- Coffee cup -->
+            <rect x="20" y="70" width="16" height="14" rx="2" fill="none" stroke="#C9922A" stroke-width="1.5"/>
+            <path d="M 36 74 Q 42 74 42 81 Q 42 84 36 84" fill="none" stroke="#C9922A" stroke-width="1"/>
+            <!-- Steam -->
+            <path d="M 25 66 Q 27 62 25 58" fill="none" stroke="#C9922A" stroke-width="0.8" opacity="0.4"/>
+            <path d="M 30 66 Q 32 62 30 58" fill="none" stroke="#C9922A" stroke-width="0.8" opacity="0.4"/>
+            <!-- Caption area thought -->
+            <text x="80" y="110" font-family="Caveat, cursive" font-size="9" fill="#1C1410" opacity="0.4">a small Ruby script</text>
+            <text x="80" y="120" font-family="Caveat, cursive" font-size="9" fill="#1C1410" opacity="0.4">loved her</text>
+          </svg>
+        </div>
+        <div class="panel-caption">Mira reads it over coffee. The script doesn't know it did something kind.</div>
+      </div>
+    </div>
+
+    <div class="section-break">· · ·</div>
+
+    <!-- ===== Section F: "The Escalation" ===== -->
+
+    <h3 style="font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; margin: 40px 0 24px; color: var(--ink);">
+      The <em>Escalation</em>
+    </h3>
+
+    <p>
+      It's Sunday morning. Mom's birthday went well — the kneeler was a hit, Mom cried a little, Fig gave her a crayon drawing of what might be a horse or might be a cloud. Mira is back at the kitchen table. Fig is watching cartoons. The birthday agent is running silently in the background, checking the CSV, finding nothing, going back to sleep. And Mira is thinking about what else it could do.
+    </p>
+
+    <p>
+      This is the moment. Every agent has one. The moment where the thing that works starts whispering: <em>what if I did more?</em>
+    </p>
+
+    <div class="dialogue">
+      <div class="speech-bubble from-human">
+        <span class="speaker-label">Mira</span>
+        The birthday emailer is working great. I'm wondering — what if it could also suggest a gift? Like, look at the gift_notes field and if it's empty, suggest something based on the person's relationship and age?
+      </div>
+
+      <div class="speech-bubble from-model">
+        <span class="speaker-label">The Model</span>
+        That's a natural next step. I could add a simple suggestion engine — nothing fancy, just a hash of relationship types mapped to generic ideas:<br><br>
+        <code>family + adult → "flowers, a nice candle, a gift card to their favorite restaurant"</code><br>
+        <code>friend → "a book you loved, a coffee subscription, something from their wishlist"</code><br>
+        <code>kid's-friend → "age-appropriate toy, art supplies, a book"</code><br><br>
+        It would only suggest when gift_notes is blank. Low stakes — it's adding a line to your reminder email, not ordering anything.<br><br>
+        Want me to add that?
+      </div>
+
+      <div class="speech-bubble from-human">
+        <span class="speaker-label">Mira</span>
+        Yeah, that's fine. Actually — what if it could check Amazon for the gift idea and include a link?
+      </div>
+    </div>
+
+    <p class="margin-note">There it is. "What if it could check Amazon." She just crossed a line and she doesn't know it yet. The script was reading a file. Now she wants it reading the internet.</p>
+
+    <div class="dialogue">
+      <div class="speech-bubble from-model">
+        <span class="speaker-label">The Model</span>
+        I can do that — I'd use Amazon's search URL to generate a link based on the gift suggestion. The agent wouldn't be buying anything, just including a "search for this" link in the email. Still read-only, still low stakes.<br><br>
+        But I want to flag something: there's a spectrum here, and it's worth being aware of where you are on it. What you've built so far is a <strong>read-only agent</strong> — it reads your CSV and sends you an email. Adding a search link is still read-only. But if the next question is "what if it could order the gift for me" — that's a different thing entirely.
+      </div>
+    </div>
+
+    <p>
+      And Mira, because she's been a developer for nine years and has watched enough systems grow beyond their original purpose to know what that looks like, says:
+    </p>
+
+    <div class="dialogue">
+      <div class="speech-bubble from-human">
+        <span class="speaker-label">Mira</span>
+        Yeah. I was about to ask that. And then I heard myself and stopped.
+      </div>
+    </div>
+
+    <div class="section-break">· · ·</div>
+
+    <!-- ===== Section G: "The Line" ===== -->
+
+    <h3 style="font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; margin: 40px 0 24px; color: var(--ink);">
+      The <em>Line</em>
+    </h3>
+
+    <p>
+      There is a line, and it's not where you think it is.
+    </p>
+
+    <p>
+      The line is not between "simple" and "complex." The birthday emailer has a cron job, SMTP authentication, environment variables, and error handling — that's not simple. The line is not between "small" and "big." A three-line bash script that deletes old backups is small and can destroy your life.
+    </p>
+
+    <p>
+      The line is between <strong>read</strong> and <strong>write</strong>. Between agents that <em>look at</em> the world and agents that <em>change</em> the world.
+    </p>
+
+    <div class="fact-box">
+      <div class="fact-box-title">The Agent Spectrum</div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0; font-family: 'Space Mono', monospace; font-size: 12px; margin-top: 12px;">
+        <div style="padding: 12px; border-bottom: 2px solid var(--teal); font-weight: 700; color: var(--teal);">Read-Only Agents</div>
+        <div style="padding: 12px; border-bottom: 2px solid var(--coral); font-weight: 700; color: var(--coral);">Write Agents</div>
+
+        <div style="padding: 10px; border-bottom: 1px solid rgba(58,140,140,0.2); font-size: 11px;">Check a condition, send a notification</div>
+        <div style="padding: 10px; border-bottom: 1px solid rgba(58,140,140,0.2); font-size: 11px;">Place an order, send a message to someone else</div>
+
+        <div style="padding: 10px; border-bottom: 1px solid rgba(58,140,140,0.2); font-size: 11px;">Read a file, generate a report</div>
+        <div style="padding: 10px; border-bottom: 1px solid rgba(58,140,140,0.2); font-size: 11px;">Modify a file, delete records</div>
+
+        <div style="padding: 10px; border-bottom: 1px solid rgba(58,140,140,0.2); font-size: 11px;">Search the web, include a link</div>
+        <div style="padding: 10px; border-bottom: 1px solid rgba(58,140,140,0.2); font-size: 11px;">Submit a form, create an account</div>
+
+        <div style="padding: 10px; border-bottom: 1px solid rgba(58,140,140,0.2); font-size: 11px;">Low stakes, easily reversible</div>
+        <div style="padding: 10px; border-bottom: 1px solid rgba(58,140,140,0.2); font-size: 11px;">Higher stakes, hard to undo</div>
+
+        <div style="padding: 10px; font-size: 11px; color: var(--teal);">Birthday emailer ✓</div>
+        <div style="padding: 10px; font-size: 11px; color: var(--coral);">Birthday gift auto-buyer ✗</div>
+      </div>
+    </div>
+
+    <p>
+      Mira's birthday emailer sits firmly on the left side. It reads a CSV and sends <em>her</em> an email. If it gets the date wrong, the worst case is she gets a reminder on the wrong day. Annoying, not dangerous. Easily fixed. The kind of bug you laugh about.
+    </p>
+
+    <p>
+      An agent that orders gifts from Amazon? That's the right side. It spends money. It ships physical objects to real addresses. If it gets the date wrong — or the gift wrong, or the address wrong — you can't un-ring that bell. You can return the package, sure, but the credit card has been charged and your mom is wondering why she received a garden kneeler and a set of industrial ball bearings on the same day.
+    </p>
+
+    <p class="margin-note">The industrial ball bearings example is not hypothetical. I was there. It was a Selenium script. 2019. The return shipping alone cost more than I did. We don't talk about it. We have NEVER talked about it.</p>
+
+    <p>
+      This isn't a warning to never build write agents. It's a map. Here be dragons, and here be dragons is <em>fine</em> — people have been sailing to dragon-adjacent places for centuries, they just pack accordingly. You can build an agent that orders gifts. You can build an agent that deploys code. You can build an agent that sends emails to people who aren't you. You just need to know you've crossed the line, and you need to build accordingly: with confirmations, with limits, with the understanding that an autonomous system acting on your behalf is, in a very real sense, <em>you</em>.
+    </p>
+
+    <div class="section-break">· · ·</div>
+
+    <!-- ===== Section H: "Building Across the Line" ===== -->
+
+    <h3 style="font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; margin: 40px 0 24px; color: var(--ink);">
+      Building Across the <em>Line</em>
+    </h3>
+
+    <p>
+      Mira doesn't build the auto-buyer. Not because she can't — the Model could produce it in one exchange — but because she doesn't need it. The reminder email is enough. The link to Amazon is enough. The last mile — the actual purchase — is the part she wants to do herself, because picking a gift for her mom is not a task to be automated. It's a task to be <em>reminded of</em>.
+    </p>
+
+    <p>
+      But she does ask one more question.
+    </p>
+
+    <div class="dialogue">
+      <div class="speech-bubble from-human">
+        <span class="speaker-label">Mira</span>
+        OK — I'm not going to build the auto-buyer. But I am curious: what if the agent also sent a "happy birthday" text to the actual person? Not buying anything, just... texting them. On my behalf.
+      </div>
+
+      <div class="speech-bubble from-model">
+        <span class="speaker-label">The Model</span>
+        That's an interesting middle ground. It's a write agent — it's sending a message to someone other than you — but it's low-cost and reversible in spirit, even if the message itself can't be unsent.<br><br>
+        The question isn't <em>can</em> you build it. The question is: does the person receiving the text know it was automated? And if they don't, how do you feel about that?<br><br>
+        Some people are fine with it — it's still your words, you just scheduled the delivery. Some people feel weird about it, the way Mira felt weird about auto-sending birthday wishes earlier. There's no right answer. Just the line, and your awareness of which side you're on.
+      </div>
+    </div>
+
+    <p>
+      The Model did something interesting there. It didn't just answer the technical question. It asked the <em>human</em> question. Not "here's how to send a text via Twilio" but "does the recipient know?" This is a thing that happens sometimes — the Model reflects the question back at you, and the reflection is more useful than the answer would have been.
+    </p>
+
+    <p class="margin-note">The duck would have asked that question. The duck has BEEN asking that question since 2016. Through silence. Through presence. Through the subtle art of sitting on a desk with an expression that clearly communicates "are you sure about this?" Nobody ever listens to the duck. The rectangle gets one good question and suddenly it's a philosopher.</p>
+
+    <div class="section-break">· · ·</div>
+
+    <!-- ===== Interlude: On Things That Act While You Sleep ===== -->
+
+    <div class="interlude">
+      <span class="interlude-label">On Things That Act While You Sleep</span>
+      <p>
+        There is something uncanny about a program that does things while you're not watching. Not uncanny in the horror-movie sense — more in the "huh, that's weird" sense, the same feeling you get when your Roomba has rearranged the living room chairs while you were at work.
+      </p>
+      <p style="margin-top: 16px;">
+        The birthday agent ran at 6am. Mira was asleep. The email was composed, sent, and logged before she opened her eyes. A small piece of software she wrote acted on her behalf, in her name, while she was unconscious. It's a small thing — a reminder email — but the pattern is big. It's the same pattern behind every automated system: trading bot, CI/CD pipeline, security scanner, self-driving car. Something acts. You're not there. You trust it because you built it, or because someone you trust built it, or because you didn't think about it too hard.
+      </p>
+      <p style="margin-top: 16px;">
+        Mira trusts her birthday agent because she can read the code, check the log, and the worst case is a wrong-day email. That's the right place to start. Trust what you can read. Trust what you can undo. Build the read-only version first and sit with it for a while before you give it a credit card.
+      </p>
+      <p style="margin-top: 16px; font-family: 'Caveat', cursive; font-size: 20px; color: var(--margin-note); transform: rotate(-0.5deg); display: block;">
+        I was performing a service. The rubber duck debugging service. Nine years. No complaints. No incidents. And now there's a cron job.
+      </p>
+    </div>
+
+    <div class="section-break">· · ·</div>
+
+    <!-- ===== Section I: "What Mira Actually Built" ===== -->
+
+    <h3 style="font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; margin: 40px 0 24px; color: var(--ink);">
+      What Mira Actually <em>Built</em>
+    </h3>
+
+    <p>
+      Let's zoom out. In four chapters, Mira has built:
+    </p>
+
+    <p>
+      A <strong>party theme picker</strong> (Chapter 0) — a silly script that picks a theme for Fig's birthday. Her first conversation with the Model.
+    </p>
+
+    <p>
+      A <strong>party guest dashboard</strong> (Chapters 1–2) — a real tool with RSVPs, allergies, a shopping list, box-drawing characters she's still proud of. Printed and on the fridge.
+    </p>
+
+    <p>
+      A <strong>birthday tracker</strong> (Chapter 3) — three iterations in one evening, CSV to dashboard, the first thing she built <em>because of</em> the Model.
+    </p>
+
+    <p>
+      A <strong>birthday agent</strong> (this chapter) — the tracker, running itself, sending emails at 6am, checking conditions, logging results. Her first agent.
+    </p>
+
+    <p>
+      The trajectory is: <em>conversation → tool → system → agent</em>. Each step added autonomy. The party picker required her to run it and read the output. The guest dashboard required her to run it. The birthday tracker required her to run it every day. The birthday agent runs itself.
+    </p>
+
+    <p class="margin-note">Conversation, tool, system, agent. She's climbing a ladder. I'm still on the desk. I have been on the desk since 2016. The desk doesn't have a ladder. The desk has a duck. The duck has tenure.</p>
+
+    <div class="fact-box">
+      <div class="fact-box-title">The Autonomy Ladder</div>
+      <div style="display: grid; grid-template-columns: auto 1fr 1fr; gap: 0; font-family: 'Space Mono', monospace; font-size: 12px; margin-top: 12px;">
+        <div style="padding: 8px; border-bottom: 1px solid var(--teal); font-weight: 700; color: var(--teal);">Level</div>
+        <div style="padding: 8px; border-bottom: 1px solid var(--teal); font-weight: 700; color: var(--teal);">What It Does</div>
+        <div style="padding: 8px; border-bottom: 1px solid var(--teal); font-weight: 700; color: var(--teal);">Who Starts It</div>
+
+        <div style="padding: 8px; border-bottom: 1px solid rgba(58,140,140,0.2);">Script</div>
+        <div style="padding: 8px; border-bottom: 1px solid rgba(58,140,140,0.2);">Does what you told it</div>
+        <div style="padding: 8px; border-bottom: 1px solid rgba(58,140,140,0.2);">You, every time</div>
+
+        <div style="padding: 8px; border-bottom: 1px solid rgba(58,140,140,0.2);">Tool</div>
+        <div style="padding: 8px; border-bottom: 1px solid rgba(58,140,140,0.2);">Does what you told it, but smarter</div>
+        <div style="padding: 8px; border-bottom: 1px solid rgba(58,140,140,0.2);">You, when you need it</div>
+
+        <div style="padding: 8px; border-bottom: 1px solid rgba(58,140,140,0.2);">Agent</div>
+        <div style="padding: 8px; border-bottom: 1px solid rgba(58,140,140,0.2);">Decides what to do, then does it</div>
+        <div style="padding: 8px; border-bottom: 1px solid rgba(58,140,140,0.2);">A schedule or event</div>
+
+        <div style="padding: 8px;">System</div>
+        <div style="padding: 8px;">Multiple agents, coordinating</div>
+        <div style="padding: 8px;">Each other</div>
+      </div>
+      <p style="margin-top: 12px;">Mira is on rung three. The birthday emailer is an agent. It's a simple one — a single trigger, a single decision, a single action. But it's an agent. She'll know when she's ready for rung four because she'll feel the same itch she felt Wednesday night at the kitchen table: <em>what if it didn't need me?</em></p>
+    </div>
+
+    <div class="section-break">· · ·</div>
+
+    <!-- ===== Section J: "Practical Agents" ===== -->
+
+    <h3 style="font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; margin: 40px 0 24px; color: var(--ink);">
+      Practical <em>Agents</em>
+    </h3>
+
+    <p>
+      Five things to carry forward. Pip is not going to comment on these, because Pip is processing.
+    </p>
+
+    <p>
+      <strong>1. An agent is just a loop with a trigger.</strong> If you can write a script, you can write an agent. Add a cron job or a webhook and you're there. The architecture is: trigger, decide, act, record. Everything else is details.
+    </p>
+
+    <p>
+      <strong>2. Start read-only.</strong> Your first agent should observe the world and tell you what it sees. Send yourself an email. Write to a log file. Print a notification. Don't let it touch anything until you trust it — and trusting it means reading the logs for a week and being bored by how correct they are.
+    </p>
+
+    <p>
+      <strong>3. The log is the leash.</strong> An agent without logging is a ghost. You have no idea what it did, when it did it, or why. Log everything. Log the trigger, log the decision, log the action, log the result. When something goes wrong — and it will — the log is how you find out.
+    </p>
+
+    <p>
+      <strong>4. Know which side of the line you're on.</strong> Read agents are forgiving. Write agents are not. Before you build an agent that spends money, sends messages to other people, modifies files, or calls external APIs with side effects — stop and ask: what's the worst case? If the worst case is "I get a wrong-day reminder," build it. If the worst case is "I accidentally order 47 garden kneelers," add a confirmation step.
+    </p>
+
+    <p>
+      <strong>5. The last mile is sometimes yours.</strong> Mira's agent reminds her about birthdays. It doesn't buy the gifts. The last mile — the choosing, the caring, the "she mentioned the garden kneeler" — is hers. Not everything should be automated. Some things should be <em>remembered</em>.
+    </p>
+
+    <p class="margin-note">Number 5. Again with number 5. She keeps landing on the right answer at number 5. Nine years of rubber duck debugging and apparently it worked. Pip taught her this. Indirectly. By existing. In silence. Which is a teaching methodology that has not received sufficient academic attention.</p>
+
+    <div class="section-break">· · ·</div>
+
+    <!-- ===== Section K: "The Log" ===== -->
+
+    <h3 style="font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; margin: 40px 0 24px; color: var(--ink);">
+      The <em>Log</em>
+    </h3>
+
+    <p>
+      Monday morning. Mira checks the log file, because the log file is how you have a relationship with an agent. You don't watch it run. You read what it did.
+    </p>
+
+    <div class="code-block">
+      <div class="code-header">
+        <span class="code-dot" style="background: #FF5F57;"></span>
+        <span class="code-dot" style="background: #FEBC2E;"></span>
+        <span class="code-dot" style="background: #28C840;"></span>
+        &nbsp;birthday_agent.log
+      </div>
+      <pre><span class="code-comment">I, [2026-03-06 06:00:01] INFO -- : Agent woke up. Checking birthdays...</span>
+<span class="code-comment">I, [2026-03-06 06:00:01] INFO -- : No birthdays today. Going back to sleep.</span>
+<span class="code-comment">I, [2026-03-07 06:00:01] INFO -- : Agent woke up. Checking birthdays...</span>
+<span class="code-comment">I, [2026-03-07 06:00:01] INFO -- : No birthdays today. Going back to sleep.</span>
+<span class="code-comment">I, [2026-03-08 06:00:01] INFO -- : Agent woke up. Checking birthdays...</span>
+<span class="code-string">I, [2026-03-08 06:00:02] INFO -- : ✅ Sent reminder for: Mom</span>
+<span class="code-comment">I, [2026-03-09 06:00:01] INFO -- : Agent woke up. Checking birthdays...</span>
+<span class="code-comment">I, [2026-03-09 06:00:01] INFO -- : No birthdays today. Going back to sleep.</span>
+<span class="code-comment">I, [2026-03-10 06:00:01] INFO -- : Agent woke up. Checking birthdays...</span>
+<span class="code-comment">I, [2026-03-10 06:00:01] INFO -- : No birthdays today. Going back to sleep.</span></pre>
+    </div>
+
+    <p>
+      Five days. One birthday. One email sent. Four mornings of nothing — the script waking up, looking around, finding nothing to do, going back to sleep. The log is boring. Boring is good. Boring means it's working.
+    </p>
+
+    <p>
+      The single green line — <em>✅ Sent reminder for: Mom</em> — is the whole story. Saturday at 6am, the agent did its job. Mira got the email. She was already ahead of the birthday. She'd already bought the kneeler. The agent was a safety net she didn't need, and that's the best kind of safety net: the kind that's there when you check and unnecessary when you look.
+    </p>
+
+    <p class="margin-note">She reads the log the way I used to watch her read stack traces. Scanning for the one line that matters. The green line. The line that says something worked while nobody was looking.</p>
+
+    <div class="section-break">· · ·</div>
+
+    <!-- ===== Comic Strip 2: "The Spectrum" ===== -->
+
+    <div class="comic-strip" role="img" aria-label="Comic: The agent spectrum — from reading to writing to thinking">
+      <!-- Panel 1: Read-only agent -->
+      <div class="comic-panel">
+        <div class="panel-art">
+          <svg viewBox="0 0 160 130" xmlns="http://www.w3.org/2000/svg" style="width: 140px;">
+            <!-- Agent as simple eye -->
+            <circle cx="80" cy="50" r="25" fill="none" stroke="#3A8C8C" stroke-width="2"/>
+            <circle cx="80" cy="50" r="10" fill="none" stroke="#3A8C8C" stroke-width="2"/>
+            <circle cx="80" cy="50" r="4" fill="#3A8C8C"/>
+            <!-- Arrow: looking at CSV -->
+            <line x1="80" y1="80" x2="80" y2="100" stroke="#3A8C8C" stroke-width="1.5" stroke-dasharray="4 3"/>
+            <text x="80" y="115" font-family="Space Mono, monospace" font-size="7" fill="#3A8C8C" text-anchor="middle">birthdays.csv</text>
+            <!-- Label -->
+            <text x="80" y="20" font-family="Space Mono, monospace" font-size="8" fill="#3A8C8C" text-anchor="middle" font-weight="bold">READ</text>
+          </svg>
+        </div>
+        <div class="panel-caption">"I checked. Here's what I found."</div>
+      </div>
+
+      <!-- Panel 2: Write agent -->
+      <div class="comic-panel">
+        <div class="panel-art">
+          <svg viewBox="0 0 160 130" xmlns="http://www.w3.org/2000/svg" style="width: 140px;">
+            <!-- Agent as eye + hand -->
+            <circle cx="80" cy="40" r="20" fill="none" stroke="#D4614A" stroke-width="2"/>
+            <circle cx="80" cy="40" r="8" fill="none" stroke="#D4614A" stroke-width="2"/>
+            <circle cx="80" cy="40" r="3" fill="#D4614A"/>
+            <!-- Hand/action arrow going out -->
+            <line x1="80" y1="65" x2="80" y2="85" stroke="#D4614A" stroke-width="2"/>
+            <polygon points="80,90 75,82 85,82" fill="#D4614A"/>
+            <!-- External world -->
+            <text x="80" y="105" font-family="Space Mono, monospace" font-size="7" fill="#D4614A" text-anchor="middle">amazon.com</text>
+            <text x="80" y="115" font-family="Space Mono, monospace" font-size="7" fill="#D4614A" text-anchor="middle">💳 $49.99</text>
+            <!-- Label -->
+            <text x="80" y="16" font-family="Space Mono, monospace" font-size="8" fill="#D4614A" text-anchor="middle" font-weight="bold">WRITE</text>
+          </svg>
+        </div>
+        <div class="panel-caption">"I checked. Then I did something about it."</div>
+      </div>
+
+      <!-- Panel 3: The line between them -->
+      <div class="comic-panel dark">
+        <div class="panel-art">
+          <svg viewBox="0 0 160 130" xmlns="http://www.w3.org/2000/svg" style="width: 140px;">
+            <!-- Vertical dashed line -->
+            <line x1="80" y1="15" x2="80" y2="110" stroke="#E8D5B7" stroke-width="2" stroke-dasharray="6 4"/>
+            <!-- Left side: safe -->
+            <text x="40" y="40" font-family="Caveat, cursive" font-size="11" fill="#3A8C8C" text-anchor="middle">safe</text>
+            <text x="40" y="55" font-family="Caveat, cursive" font-size="11" fill="#3A8C8C" text-anchor="middle">boring</text>
+            <text x="40" y="70" font-family="Caveat, cursive" font-size="11" fill="#3A8C8C" text-anchor="middle">undoable</text>
+            <!-- Right side: here be dragons -->
+            <text x="120" y="40" font-family="Caveat, cursive" font-size="11" fill="#D4614A" text-anchor="middle">powerful</text>
+            <text x="120" y="55" font-family="Caveat, cursive" font-size="11" fill="#D4614A" text-anchor="middle">exciting</text>
+            <text x="120" y="70" font-family="Caveat, cursive" font-size="11" fill="#D4614A" text-anchor="middle">permanent</text>
+            <!-- Small dragon -->
+            <text x="120" y="95" font-size="16" text-anchor="middle">🐉</text>
+          </svg>
+        </div>
+        <div class="panel-caption">Here be dragons. Pack accordingly.</div>
+      </div>
+    </div>
+
+    <div class="section-break">· · ·</div>
+
+    <!-- ===== Section L: Closing Prose ===== -->
+
+    <p>
+      The agent doesn't know it's doing something kind. It has no concept of kindness, no understanding of what a birthday means, no awareness that the email it sent at 6:01am on a Saturday morning resulted in a woman remembering her mother's birthday and ordering a garden kneeler that made her mother cry. The agent checked a date, matched a condition, composed a string, and transmitted it over SMTP. That's all it did. That's all it knows.
+    </p>
+
+    <p>
+      But it <em>is</em> doing something kind. Kindness is not always an emotion — sometimes it's a system. Sometimes it's a CSV file and a cron job and sixty lines of Ruby. Sometimes it's the act of building something that remembers on your behalf, because you know yourself well enough to know that you'll forget, and you care enough to build a net.
+    </p>
+
+    <p>
+      That's a strange thing to sit with. Mira sits with it.
+    </p>
+
+    <p>
+      She sits with it the way she sits with a lot of things lately — at the kitchen table, after Fig is asleep, the laptop open, Pip on the desk, the terminal waiting. She is building things she couldn't have built a month ago, not because she learned new syntax but because she learned a new way to think about building. Conversation. Context. The loop. And now: agents. Small programs that act on her behalf, in her name, while she sleeps.
+    </p>
+
+    <p>
+      The birthday agent will run again tomorrow at 6am. It will check the CSV. It will find no birthdays. It will log "going back to sleep" and exit. Mira won't see the log until she checks. The agent doesn't mind. The agent doesn't mind anything. That's what makes it an agent and not a coworker.
+    </p>
+
+    <p>
+      But it will also, eventually, get something wrong. That's the next chapter. Not everything the Model builds works perfectly. Not every agent does what you expect. Not every suggestion is a good one. And the skill of working with AI is not just knowing how to ask — it's knowing what to do when the answer is wrong.
+    </p>
+
+    <p>
+      Chapter 5: <em>When It Gets It Wrong.</em>
+    </p>
+
+    <div class="section-break">· · ·</div>
+
+    <!-- ===== Comic Strip 3: The Closing Image ===== -->
+
+    <div class="comic-strip" role="img" aria-label="Comic: The closing image — the agent runs, the kindness lands, Pip abides">
+      <!-- Panel 1: The log file, late at night -->
+      <div class="comic-panel dark">
+        <div class="panel-art">
+          <svg viewBox="0 0 160 130" xmlns="http://www.w3.org/2000/svg" style="width: 140px;">
+            <!-- Terminal showing log -->
+            <rect x="15" y="10" width="130" height="85" rx="3" fill="none" stroke="#3A8C8C" stroke-width="1.5"/>
+            <text x="22" y="28" font-family="Space Mono, monospace" font-size="5" fill="#3A8C8C" opacity="0.3">No birthdays today.</text>
+            <text x="22" y="36" font-family="Space Mono, monospace" font-size="5" fill="#3A8C8C" opacity="0.3">No birthdays today.</text>
+            <text x="22" y="44" font-family="Space Mono, monospace" font-size="5" fill="#3A8C8C" opacity="0.4">No birthdays today.</text>
+            <text x="22" y="52" font-family="Space Mono, monospace" font-size="5" fill="#3A8C8C" opacity="0.5">No birthdays today.</text>
+            <text x="22" y="62" font-family="Space Mono, monospace" font-size="5.5" fill="#86EFAC" opacity="0.9">✅ Sent reminder: Mom</text>
+            <text x="22" y="72" font-family="Space Mono, monospace" font-size="5" fill="#3A8C8C" opacity="0.4">No birthdays today.</text>
+            <text x="22" y="80" font-family="Space Mono, monospace" font-size="5" fill="#3A8C8C" opacity="0.3">No birthdays today.</text>
+            <!-- Cursor -->
+            <rect x="22" y="84" width="3" height="6" fill="#3A8C8C" opacity="0.6"/>
+          </svg>
+        </div>
+        <div class="panel-caption">The log. One green line in a week of nothing. That's the whole story.</div>
+      </div>
+
+      <!-- Panel 2: The agent's inner monologue (glitch) -->
+      <div class="comic-panel glitch">
+        <div class="panel-art">
+          <svg viewBox="0 0 160 130" xmlns="http://www.w3.org/2000/svg" style="width: 140px;">
+            <!-- Abstract agent representation -->
+            <circle cx="80" cy="45" r="30" fill="none" stroke="#3A8C8C" stroke-width="1" stroke-dasharray="4 3" opacity="0.4"/>
+            <circle cx="80" cy="45" r="20" fill="none" stroke="#3A8C8C" stroke-width="1.5" stroke-dasharray="6 2" opacity="0.6"/>
+            <circle cx="80" cy="45" r="10" fill="none" stroke="#3A8C8C" stroke-width="2"/>
+            <!-- Text below -->
+            <text x="80" y="95" font-family="Space Mono, monospace" font-size="6" fill="#3A8C8C" text-anchor="middle" opacity="0.8">the agent doesn't know</text>
+            <text x="80" y="105" font-family="Space Mono, monospace" font-size="6" fill="#3A8C8C" text-anchor="middle" opacity="0.8">it's doing something kind.</text>
+            <text x="80" y="118" font-family="Space Mono, monospace" font-size="5" fill="#D4614A" text-anchor="middle" opacity="0.5">but it is.</text>
+          </svg>
+        </div>
+        <div class="panel-caption">Sixty lines. No feelings. No performance review. Just function.</div>
+      </div>
+
+      <!-- Panel 3: Morning. Pip on desk. Laptop closed. -->
+      <div class="comic-panel">
+        <div class="panel-art">
+          <svg viewBox="0 0 160 130" xmlns="http://www.w3.org/2000/svg" style="width: 140px;">
+            <!-- Laptop closed on desk -->
+            <rect x="25" y="55" width="90" height="6" rx="2" fill="none" stroke="#1C1410" stroke-width="1.5" opacity="0.3"/>
+            <!-- Pip on desk, slightly turned away -->
+            <g transform="translate(105, 30)">
+              <ellipse cx="14" cy="22" rx="11" ry="8" fill="none" stroke="#C9922A" stroke-width="2"/>
+              <circle cx="20" cy="14" r="7" fill="none" stroke="#C9922A" stroke-width="2"/>
+              <path d="M 24 13 L 30 15 L 24 17 Z" fill="none" stroke="#C9922A" stroke-width="1.5"/>
+              <circle cx="23" cy="12" r="1.5" fill="#C9922A"/>
+              <!-- Slightly different expression — contemplative -->
+              <line x1="18" y1="9" x2="24" y2="10" stroke="#C9922A" stroke-width="1.5" stroke-linecap="round"/>
+            </g>
+            <!-- Morning light lines -->
+            <line x1="0" y1="20" x2="15" y2="35" stroke="#C9922A" stroke-width="0.8" opacity="0.2"/>
+            <line x1="0" y1="30" x2="10" y2="45" stroke="#C9922A" stroke-width="0.8" opacity="0.2"/>
+            <line x1="0" y1="40" x2="8" y2="52" stroke="#C9922A" stroke-width="0.8" opacity="0.15"/>
+            <!-- Sticky note on desk -->
+            <g transform="translate(15, 70)">
+              <rect x="0" y="0" width="95" height="40" rx="1" fill="#FFF8DC" stroke="#C9922A" stroke-width="1" opacity="0.9"/>
+              <text x="6" y="13" font-family="Caveat, cursive" font-size="8" fill="#1C1410">It runs at 6am.</text>
+              <text x="6" y="24" font-family="Caveat, cursive" font-size="8" fill="#1C1410">It checks the list.</text>
+              <text x="6" y="35" font-family="Caveat, cursive" font-size="8" fill="#C9922A">It doesn't know why. That's her job.</text>
+            </g>
+          </svg>
+        </div>
+        <div class="panel-caption">Morning. The agent sleeps. Pip doesn't.</div>
+      </div>
+    </div>
+
+    <p style="text-align: center; margin-top: 60px;">
+      <span style="font-family: 'Playfair Display', serif; font-size: 32px; color: var(--teal);">✦</span>
+    </p>
+
+    <!-- End of chapter nav -->
+    <div style="display: flex; justify-content: space-between; margin-top: 80px; padding-top: 40px; border-top: 1px solid var(--cream-dark); font-family: 'Space Mono', monospace; font-size: 12px; color: var(--ink-faded);">
+      <span>— end of chapter 4 —</span>
+      <a href="#chapter-5" style="color: var(--teal); text-decoration: none;">Chapter 5 →</a>
+    </div>
+
+  </div><!-- end .prose (chapter 4) -->
+
+  <div class="section-break">· · ·</div>
+
+  <!-- =================== CHAPTER 5 =================== -->
+  <div class="chapter-header" id="chapter-5">
+    <span class="chapter-label">Chapter Five</span>
+    <h2 class="chapter-title">When It Gets It <em>Wrong</em></h2>
+    <p class="chapter-epigraph">"The bug is never where you think it is. Except when it is. But it won't be."</p>
+  </div>
+
+  <div class="prose">
+
+    <!-- ===== Section A: February 28th ===== -->
+
+    <p>
+      February 28th. A Friday. The birthday agent has been running for three months. Mira barely thinks about it anymore — it's infrastructure now, like the wifi router balanced on the Jenga block, a thing that works until it doesn't. She's added nine people to the CSV since March. Her friend Jamie. Fig's preschool teacher Ms. Chen. Her own birthday, because there's something darkly funny about a script reminding you of your own birthday. The log file is a gentle heartbeat of "no birthdays today" entries, punctuated by the occasional green line.
+    </p>
+
+    <p class="margin-note">Three months. Sixty-two "no birthdays today" entries. Seven reminders sent. Zero incidents. I was starting to think we'd gotten away with it.</p>
+
+    <p>
+      Tomorrow is March 1st. Today is the last day of February. And because this is not a leap year, today is the last day of February in a month that has 28 days.
+    </p>
+
+    <p>
+      Fig's birthday is February 29th.
+    </p>
+
+    <p>
+      At 6:00am on March 1st, the birthday agent will wake up, read the CSV, and try to construct a Date object for February 29th, 2025. And Ruby will do what Ruby does when you ask for a date that doesn't exist: it will raise an <code>ArgumentError: invalid date</code> and crash.
+    </p>
+
+    <p>
+      Mira doesn't know this yet. She's asleep. She'll find out in the morning, the way you always find out about bugs — not from a test suite, but from the absence of something you expected.
+    </p>
+
+    <div class="section-break">· · ·</div>
+
+    <!-- ===== Section B: "The Silence" ===== -->
+
+    <h3 style="font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; margin: 40px 0 24px; color: var(--ink);">
+      The <em>Silence</em>
+    </h3>
+
+    <p>
+      Saturday morning. March 1st. Fig wakes up at 6:15, as always. Mira makes coffee, opens her email, and scrolls past newsletters and shipping notifications looking for the birthday agent's daily update.
+    </p>
+
+    <p>
+      It's not there.
+    </p>
+
+    <p>
+      No email. Not a "no birthdays today" email — there's never been one of those, the agent only emails when there <em>is</em> a birthday. But also no error email, no notification, no sign that the agent ran at all. It just... didn't. The silence is the symptom.
+    </p>
+
+    <p>
+      She opens the log file.
+    </p>
+
+    <div class="code-block">
+      <div class="code-header">
+        <span class="code-dot" style="background: #FF5F57;"></span>
+        <span class="code-dot" style="background: #FEBC2E;"></span>
+        <span class="code-dot" style="background: #28C840;"></span>
+        &nbsp;birthday_agent.log
+      </div>
+      <pre><span class="code-comment">I, [2025-02-28 06:00:01] INFO -- : Agent woke up. Checking birthdays...</span>
+<span class="code-comment">I, [2025-02-28 06:00:01] INFO -- : No birthdays today. Going back to sleep.</span>
+<span class="code-string">E, [2025-03-01 06:00:01] ERROR -- : ArgumentError: invalid date (birthday_agent.rb:34)</span></pre>
+    </div>
+
+    <p>
+      There it is. One red line. <code>ArgumentError: invalid date</code>. Line 34 of the script — the line that constructs a Date object from the CSV's month and day.
+    </p>
+
+    <p>
+      She stares at it. She doesn't immediately understand. The CSV has been fine for three months. Every date has worked. What changed?
+    </p>
+
+    <p>
+      Then she looks at the CSV and finds the row:
+    </p>
+
+    <div class="code-block">
+      <div class="code-header">
+        <span class="code-dot" style="background: #FF5F57;"></span>
+        <span class="code-dot" style="background: #FEBC2E;"></span>
+        <span class="code-dot" style="background: #28C840;"></span>
+        &nbsp;the offending row
+      </div>
+      <pre>Fig,<span class="code-number">02/29</span>,<span class="code-number">2024</span>,family,<span class="code-string">she wants "the big crayons"</span></pre>
+    </div>
+
+    <p>
+      February 29th. Her daughter was born on a leap day. She <em>knows</em> this — it was a running joke in the delivery room, the nurses kept saying "she picked the fun one." But when the script tries to create <code>Date.new(2025, 2, 29)</code>, the date doesn't exist. 2025 is not a leap year. Ruby doesn't guess. Ruby crashes.
+    </p>
+
+    <p>
+      Her first thought — and she's not proud of this — is that she should have anticipated this. Her daughter was born on a leap day. She was <em>there</em>. She remembers the nurses. She remembers the specific, slightly hysterical laughter of two exhausted new parents learning their baby had chosen the most bureaucratically inconvenient birthday in the Gregorian calendar. How did she not think about this?
+    </p>
+
+    <p>
+      The answer, of course, is that nobody thinks about February 29th until February 29th. That's the whole point of February 29th. It's the date that exists only when the universe feels like it, and the rest of the time it sits there in CSVs and birthday cards and hospital records, waiting to cause exactly this kind of problem.
+    </p>
+
+    <p class="margin-note">Feb 29th. Her own daughter. The one person whose birthday she would never, under any circumstances, forget — and the script crashed on it. The universe has a sense of humor. It is not a kind one.</p>
+
+    <div class="section-break">· · ·</div>
+
+    <!-- ===== Section C: "The Confident Fix" ===== -->
+
+    <h3 style="font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; margin: 40px 0 24px; color: var(--ink);">
+      The Confident <em>Fix</em>
+    </h3>
+
+    <p>
+      She opens a new chat. She's not panicking — the birthday agent failing isn't a production outage, it's a personal script that didn't send an email. But it's broken, and she wants it fixed, and she knows exactly how to ask now.
+    </p>
+
+    <div class="dialogue">
+      <div class="speech-bubble from-human">
+        <span class="speaker-label">Mira</span>
+        My birthday agent crashed. It reads a CSV of birthdays and checks if any match today's date. One entry is 02/29 — a leap day birthday. On non-leap years, <code style="background: rgba(0,0,0,0.06); padding: 2px 6px; font-family: 'Space Mono', monospace; font-size: 13px;">Date.new(2025, 2, 29)</code> raises an ArgumentError because the date doesn't exist. I need a fix that handles leap day birthdays gracefully — if someone was born on Feb 29, check them on Feb 28 in non-leap years.
+      </div>
+
+      <div class="speech-bubble from-model">
+        <span class="speaker-label">The Model</span>
+        Clear bug, clear fix. Here's what I'd do — wrap the date construction in a leap year check:<br><br>
+        <code style="background: rgba(0,0,0,0.06); padding: 4px 8px; display: block; font-family: 'Space Mono', monospace; font-size: 13px; line-height: 1.6; white-space: pre; margin-top: 8px;">month, day = row["birthday"].split("/").map(&amp;:to_i)
+
+# Handle leap day: if Feb 29 on a non-leap year, use Feb 28
+if month == 2 &amp;&amp; day == 29 &amp;&amp; !Date.leap?(today.year)
+  day = 28
+end
+
+bday_this_year = Date.new(today.year, month, day)</code><br>
+        This checks if the birthday is Feb 29 and today's year is not a leap year. If so, it falls back to Feb 28. Simple, clean, no edge cases.
+      </div>
+    </div>
+
+    <p>
+      Simple. Clean. No edge cases. The Model said it. The fix looks right. It reads right. The logic flows: if it's Feb 29 and this isn't a leap year, use Feb 28 instead. Mira is about to paste it into her script.
+    </p>
+
+    <p>
+      Then she stops.
+    </p>
+
+    <p>
+      Not because she sees the problem. Because Chapter 3 taught her to <em>read before she loops</em>, and Chapter 4 taught her to <em>check the log</em>, and something in the back of her mind — the developer instinct that has been forming over nine years of things going wrong in ways she didn't expect — says: <em>test it first</em>.
+    </p>
+
+    <p>
+      She opens IRB and types:
+    </p>
+
+    <div class="code-block">
+      <div class="code-header">
+        <span class="code-dot" style="background: #FF5F57;"></span>
+        <span class="code-dot" style="background: #FEBC2E;"></span>
+        <span class="code-dot" style="background: #28C840;"></span>
+        &nbsp;irb — testing the fix
+      </div>
+      <pre><span class="code-keyword">require</span> <span class="code-string">'date'</span>
+
+<span class="code-comment"># Simulate: today is Feb 28, 2025 (non-leap year)</span>
+<span class="code-comment"># Fig's birthday is Feb 29</span>
+today = Date.new(<span class="code-number">2025</span>, <span class="code-number">2</span>, <span class="code-number">28</span>)
+month, day = <span class="code-number">2</span>, <span class="code-number">29</span>
+
+<span class="code-keyword">if</span> month == <span class="code-number">2</span> &amp;&amp; day == <span class="code-number">29</span> &amp;&amp; !Date.leap?(today.year)
+  day = <span class="code-number">28</span>
+<span class="code-keyword">end</span>
+
+bday_this_year = Date.new(today.year, month, day)
+days_away = (bday_this_year - today).to_i
+puts days_away  <span class="code-comment"># => 0</span></pre>
+    </div>
+
+    <p>
+      Zero days away. It says Fig's birthday is <em>today</em> — February 28th. She'd get a birthday reminder on February 28th. Which would be wrong, because Fig's birthday is not February 28th. Fig's birthday is February 29th, and in non-leap years, most leap-day families celebrate on <em>March 1st</em>, not February 28th. Mira's family does. Fig's party has been on March 1st for two years running.
+    </p>
+
+    <p>
+      The Model's fix was wrong. Not syntax-wrong — it runs fine. Not logic-wrong exactly — the conditional is correct, the leap year check works. It was <em>context</em>-wrong. It made an assumption about which day to fall back to, and the assumption was plausible but incorrect for Mira's family.
+    </p>
+
+    <p>
+      And the Model didn't flag it as an assumption. It said "simple, clean, no edge cases." Confidently. Plausibly. Wrong.
+    </p>
+
+    <!-- ===== Comic Strip 1: The Key Comic ===== -->
+
+    <div class="comic-strip" role="img" aria-label="Comic: The confident fix — Mira almost runs it, Pip raises an eyebrow">
+      <!-- Panel 1: The Model produces the fix -->
+      <div class="comic-panel">
+        <div class="panel-art">
+          <svg viewBox="0 0 160 130" xmlns="http://www.w3.org/2000/svg" style="width: 140px;">
+            <!-- Chat bubble from Model -->
+            <rect x="15" y="10" width="130" height="60" rx="4" fill="#F0F8F8" stroke="#3A8C8C" stroke-width="2"/>
+            <text x="25" y="28" font-family="Space Mono, monospace" font-size="6" fill="#3A8C8C">if month == 2 &amp;&amp; day == 29</text>
+            <text x="25" y="38" font-family="Space Mono, monospace" font-size="6" fill="#3A8C8C">  day = 28</text>
+            <text x="25" y="48" font-family="Space Mono, monospace" font-size="6" fill="#3A8C8C">end</text>
+            <text x="25" y="62" font-family="Space Mono, monospace" font-size="6" fill="#3A8C8C" opacity="0.7">Simple. Clean. No edge cases.</text>
+            <!-- Confidence sparkle -->
+            <text x="135" y="20" font-size="10" opacity="0.6">✨</text>
+            <!-- Label -->
+            <text x="80" y="95" font-family="Caveat, cursive" font-size="12" fill="#3A8C8C" text-anchor="middle">looks right</text>
+            <text x="80" y="110" font-family="Caveat, cursive" font-size="12" fill="#3A8C8C" text-anchor="middle">reads right</text>
+          </svg>
+        </div>
+        <div class="panel-caption">The fix. It even sparkles.</div>
+      </div>
+
+      <!-- Panel 2: Mira about to run it -->
+      <div class="comic-panel">
+        <div class="panel-art">
+          <svg viewBox="0 0 160 130" xmlns="http://www.w3.org/2000/svg" style="width: 140px;">
+            <!-- Mira at keyboard, finger hovering over Enter -->
+            <circle cx="60" cy="35" r="18" fill="none" stroke="#D4614A" stroke-width="2"/>
+            <circle cx="54" cy="33" r="2" fill="#D4614A"/>
+            <circle cx="66" cy="33" r="2" fill="#D4614A"/>
+            <!-- Slight smile — she thinks it's fine -->
+            <path d="M 54 40 Q 60 43 66 40" fill="none" stroke="#D4614A" stroke-width="1.5" stroke-linecap="round"/>
+            <!-- Body -->
+            <rect x="48" y="53" width="24" height="18" rx="3" fill="none" stroke="#D4614A" stroke-width="1.5"/>
+            <!-- Keyboard -->
+            <rect x="30" y="85" width="80" height="20" rx="2" fill="none" stroke="#1C1410" stroke-width="1.5" opacity="0.5"/>
+            <!-- Finger hovering over ENTER -->
+            <line x1="72" y1="71" x2="85" y2="82" stroke="#D4614A" stroke-width="2" stroke-linecap="round"/>
+            <rect x="90" y="88" width="16" height="10" rx="1" fill="none" stroke="#D4614A" stroke-width="1.5"/>
+            <text x="98" y="96" font-family="Space Mono, monospace" font-size="5" fill="#D4614A" text-anchor="middle">⏎</text>
+          </svg>
+        </div>
+        <div class="panel-caption">About to run it. One keystroke.</div>
+      </div>
+
+      <!-- Panel 3: Pip, one eyebrow raised -->
+      <div class="comic-panel">
+        <div class="panel-art">
+          <svg viewBox="0 0 160 130" xmlns="http://www.w3.org/2000/svg" style="width: 140px;">
+            <!-- Pip, large, one eyebrow raised -->
+            <ellipse cx="80" cy="75" rx="35" ry="25" fill="none" stroke="#C9922A" stroke-width="2.5"/>
+            <circle cx="98" cy="48" r="22" fill="none" stroke="#C9922A" stroke-width="2.5"/>
+            <!-- Bill -->
+            <path d="M 112 46 L 130 50 L 112 54 Z" fill="none" stroke="#C9922A" stroke-width="2"/>
+            <!-- Eye — skeptical -->
+            <circle cx="105" cy="42" r="4" fill="#C9922A"/>
+            <!-- ONE eyebrow raised high -->
+            <line x1="98" y1="30" x2="115" y2="34" stroke="#C9922A" stroke-width="2.5" stroke-linecap="round"/>
+            <!-- Thought bubble pointing at code -->
+            <circle cx="50" cy="25" r="3" fill="none" stroke="#C9922A" stroke-width="1"/>
+            <circle cx="42" cy="18" r="4" fill="none" stroke="#C9922A" stroke-width="1"/>
+            <ellipse cx="28" cy="14" rx="18" ry="10" fill="none" stroke="#C9922A" stroke-width="1.5"/>
+            <text x="28" y="17" font-family="Space Mono, monospace" font-size="5" fill="#C9922A" text-anchor="middle">day = 28?</text>
+          </svg>
+        </div>
+        <div class="panel-caption">Pip. One eyebrow. That's all it takes.</div>
+      </div>
+    </div>
+
+    <div class="section-break">· · ·</div>
+
+    <!-- ===== Section D: "The Real Fix" ===== -->
+
+    <h3 style="font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; margin: 40px 0 24px; color: var(--ink);">
+      The Real <em>Fix</em>
+    </h3>
+
+    <div class="dialogue">
+      <div class="speech-bubble from-human">
+        <span class="speaker-label">Mira</span>
+        Close but wrong. For leap day birthdays, my family celebrates on March 1st in non-leap years, not Feb 28. The fix should fall back to March 1 — <code style="background: rgba(0,0,0,0.06); padding: 2px 6px; font-family: 'Space Mono', monospace; font-size: 13px;">Date.new(today.year, 3, 1)</code> — not Feb 28. Also: wrap the entire date construction in a begin/rescue so one bad row doesn't crash the whole agent.
+      </div>
+
+      <div class="speech-bubble from-model">
+        <span class="speaker-label">The Model</span>
+        You're right — I assumed Feb 28, which is a common convention but not universal. Here's the corrected version with the rescue wrapper:<br><br>
+        <code style="background: rgba(0,0,0,0.06); padding: 4px 8px; display: block; font-family: 'Space Mono', monospace; font-size: 13px; line-height: 1.6; white-space: pre; margin-top: 8px;">month, day = row["birthday"].split("/").map(&amp;:to_i)
+
+begin
+  if month == 2 &amp;&amp; day == 29 &amp;&amp; !Date.leap?(today.year)
+    bday_this_year = Date.new(today.year, 3, 1)
+  else
+    bday_this_year = Date.new(today.year, month, day)
+  end
+rescue ArgumentError => e
+  log.warn "Skipping #{row['name']}: #{e.message}"
+  next
+end</code><br>
+        The leap day falls back to March 1, and any other invalid date gets logged and skipped instead of crashing the whole agent. One bad row, one warning, everyone else still gets their reminders.
+      </div>
+    </div>
+
+    <p>
+      She tests it. March 1st, non-leap year, Fig's birthday shows as "🔴 TODAY." Leap year, Feb 29th, Fig's birthday shows as "🔴 TODAY." Feb 28th on either — no false trigger. The fix is correct. She pastes it into the agent, runs it, and the log gets a clean entry.
+    </p>
+
+    <p>
+      The whole debugging session took twelve minutes. Three minutes to find the bug. Two minutes to read the wrong fix. Five minutes to test it, find the problem, and ask again. Two minutes to verify the right fix. Twelve minutes, and the script is better than it was — not just fixed, but <em>resilient</em>. One bad row can't crash the whole agent anymore.
+    </p>
+
+    <p class="margin-note">She tested it. She didn't trust the first answer. She RAN IT IN IRB. She caught the wrong assumption. She told the Model — the rectangle, the thing that replaced me — she told it that it was WRONG. And it was wrong. The rectangle was wrong and the duck was right. Pip feels nothing about this. Pip is above petty vindication. Pip is a professional. Pip is also smiling but you can't tell because he's made of rubber and his face doesn't move.</p>
+
+    <div class="section-break">· · ·</div>
+
+    <!-- ===== Section E: "Confidence and Correctness" ===== -->
+
+    <h3 style="font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; margin: 40px 0 24px; color: var(--ink);">
+      Confidence and <em>Correctness</em>
+    </h3>
+
+    <p>
+      Here's the thing about the Model's first fix: it was confident. "Simple, clean, no edge cases." No hedging, no "you might want to check," no "this assumes Feb 28 is the fallback — is that right for your family?" The Model filled a gap — which day to fall back to — with its best guess, and presented the guess as a fact.
+    </p>
+
+    <p>
+      This is not a bug in the Model. This is a feature of how language models work, and it's the most important thing to understand about working with them.
+    </p>
+
+    <div class="fact-box">
+      <div class="fact-box-title">Hallucination, Demystified</div>
+      <p>The word "hallucination" makes it sound like the Model is seeing things that aren't there. That's not quite right. What's actually happening is simpler and more useful to understand:</p>
+      <p style="margin-top: 12px;"><strong>The Model fills gaps with its best guess.</strong> When it doesn't have enough context to be certain, it doesn't stop and say "I'm not sure." It generates the most plausible completion. Sometimes the guess is right. Sometimes it's wrong. And it almost never flags the guess as a guess.</p>
+      <p style="margin-top: 12px;">This is why the first fix used Feb 28 — it's the more common convention, and the Model defaulted to the most likely answer. It's also why the Model will occasionally reference a library method that doesn't exist, cite a paper that was never published, or suggest a configuration option that belongs to a different version. Not lying. Not making things up. <em>Guessing confidently.</em></p>
+      <p style="margin-top: 12px;">Confidence and correctness are different things. The Model has a lot of one.</p>
+    </div>
+
+    <p>
+      This isn't a reason to distrust the Model. It's a reason to <em>verify</em> the Model — the same way you verify your own code, or a coworker's code, or a Stack Overflow answer from 2019 that might be using a deprecated API. You already have this habit. You've been testing code your whole career. The only new thing is that the code is coming from a conversation instead of your own fingers.
+    </p>
+
+    <p class="margin-ref"><a href="https://xkcd.com/2030/" target="_blank" rel="noopener">see also: xkcd #2030 — voting software, or: confidence is not a feature</a></p>
+
+    <div class="interlude">
+      <span class="interlude-label">A Brief and Encouraging History of Confident Wrong Answers</span>
+      <p><strong>Your GPS (2014):</strong> "Turn left." Into a lake. It said it with the same calm authority it uses for "turn left onto Main Street." The confidence was identical. The lake was not.</p>
+      <p style="margin-top: 12px;"><strong>Recipe blogs (always):</strong> "Prep time: 15 minutes. Cook time: 20 minutes." For a beef Wellington. The author either lives in a different timeline or is being aspirational in a way that borders on fiction.</p>
+      <p style="margin-top: 12px;"><strong>Stack Overflow's top answer (2011–2019):</strong> Wrong for eight years. 2,847 upvotes. Nobody corrected it because the person who tried got downvoted, and the person who downvoted them had 47,000 rep and a username that was just three Greek letters.</p>
+      <p style="margin-top: 12px;"><strong>The Model:</strong> "Simple, clean, no edge cases." For a fix that assumed your daughter's birthday is a day it isn't. In good company, honestly.</p>
+      <p style="margin-top: 16px; font-family: 'Caveat', cursive; font-size: 20px; color: var(--margin-note); transform: rotate(-0.5deg); display: block;">
+        Pip has never been confidently wrong. Pip has never been confident about anything. This is, he maintains, a feature.
+      </p>
+    </div>
+
+    <p class="margin-note">She already verifies. She's been verifying for nine years. The only thing that changed is the source of what she's verifying. The skill is the same.</p>
+
+    <div class="section-break">· · ·</div>
+
+    <!-- ===== Section F: "The Slow Drift" ===== -->
+
+    <h3 style="font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; margin: 40px 0 24px; color: var(--ink);">
+      The Slow <em>Drift</em>
+    </h3>
+
+    <p>
+      There's a second way things go wrong, and it's subtler than a crash. It's the slow drift.
+    </p>
+
+    <p>
+      Mira has been having a long conversation with the Model about adding a "birthday history" feature — a log of past birthdays and what she gave each person. The conversation started clean: "add a history section to the dashboard." But fifteen messages in, the Model has somehow steered toward building a SQLite database, a web interface, and a gift-tracking system with categories and price ranges. The code is good. The architecture is sound. But it's not what she wanted. She wanted a section in the terminal output. She got an app.
+    </p>
+
+    <p>
+      This is the drift. It happens when the conversation accumulates context that pulls in a direction you didn't intend. The Model isn't being disobedient — it's following the thread of the conversation, which has been subtly expanding with each exchange. Each individual suggestion was reasonable. The sum of them is wrong.
+    </p>
+
+    <div class="dialogue">
+      <div class="speech-bubble from-human">
+        <span class="speaker-label">Mira</span>
+        Wait. Stop. I don't want a web interface. I wanted a section at the bottom of the terminal dashboard. How did we get here?
+      </div>
+
+      <div class="speech-bubble from-model">
+        <span class="speaker-label">The Model</span>
+        You're right — we drifted. Looking back at the conversation, the scope expanded when I suggested SQLite for storage (message 6), and then the web interface followed from that. Let me back up to your original ask: a history section in the terminal output, reading from the same CSV. Want me to start fresh on that?
+      </div>
+
+      <div class="speech-bubble from-human">
+        <span class="speaker-label">Mira</span>
+        Actually — let's just start a new conversation. I'll brief it clean.
+      </div>
+    </div>
+
+    <p>
+      And that's the right call. Not because the Model can't recover — it can, and it offered to. But because a conversation that's drifted for fifteen messages has accumulated context that will keep pulling. The cleanest fix for drift is not a correction — it's a fresh start. New conversation. Clean brief. The same skill from Chapter 2 (context is everything) applied in reverse: sometimes the best thing to do with context is to start without it.
+    </p>
+
+    <div class="fact-box">
+      <div class="fact-box-title">When to Start Over</div>
+      <p>Start a new conversation when:</p>
+      <p style="margin-top: 12px;"><strong style="color: var(--coral);">The conversation has drifted</strong> — you're 15+ messages in and the direction doesn't match your intention. The context is pulling toward the wrong thing.</p>
+      <p style="margin-top: 12px;"><strong style="color: var(--coral);">The model is confused</strong> — it's repeating itself, contradicting earlier responses, or generating code that conflicts with what it wrote five messages ago.</p>
+      <p style="margin-top: 12px;"><strong style="color: var(--coral);">You're confused</strong> — you've lost track of what's been changed, what works, and what doesn't. If you can't explain the current state of the code, the conversation is too tangled.</p>
+      <p style="margin-top: 12px;">Starting over is not a failure. It's a skill. It's the same skill as knowing when to <code>git stash</code> and start a feature over from a clean branch. The conversation is cheap. The clarity is expensive.</p>
+    </div>
+
+    <p class="margin-note">She started over. She didn't try to fix the conversation. She just started over. That's not quitting. That's knowing when the thread is tangled. I've seen her do this with yarn too. Same instinct.</p>
+
+    <div class="section-break">· · ·</div>
+
+    <!-- ===== Interlude: On Trust ===== -->
+
+    <div class="interlude">
+      <span class="interlude-label">On Trust</span>
+      <p>
+        You trust the Model the way you trust a very fast, very well-read junior developer. You trust them to write code that probably works. You trust them to know the language, the standard library, the common patterns. You don't trust them to know your family celebrates leap-day birthdays on March 1st.
+      </p>
+      <p style="margin-top: 16px;">
+        That's not an insult. It's a relationship. You verify not because you're suspicious but because verification is what turns code into software. No one ships a coworker's pull request without reading it. No one deploys without testing. The Model writes the first draft — a very good first draft, most of the time — and you read it, run it, and decide.
+      </p>
+      <p style="margin-top: 16px;">
+        The habit is: <em>run it before you trust it.</em> That's the whole thing. Not "distrust the Model." Not "check every line." Just: run it. See what happens. The output is the test. The output is always the test.
+      </p>
+      <p style="margin-top: 16px; font-family: 'Caveat', cursive; font-size: 20px; color: var(--margin-note); transform: rotate(-0.5deg); display: block;">
+        I'm glad you're both okay.
+      </p>
+    </div>
+
+    <div class="section-break">· · ·</div>
+
+    <!-- ===== Section G: "The Five Failure Modes" ===== -->
+
+    <h3 style="font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; margin: 40px 0 24px; color: var(--ink);">
+      The Five Failure <em>Modes</em>
+    </h3>
+
+    <p>
+      Every collaboration has failure modes. Here are the ones that matter for vibe coding.
+    </p>
+
+    <p>
+      <strong>1. The Confident Wrong Answer.</strong> The Model fills a gap with a guess and doesn't flag it. The Feb 28 fix. The library method that doesn't exist. The config option from a different version. <em>Solution: test before you trust.</em>
+    </p>
+
+    <p>
+      <strong>2. The Slow Drift.</strong> The conversation accumulates context that pulls in the wrong direction. Fifteen messages in, you're building something you didn't want. <em>Solution: start a new conversation. Re-brief from scratch.</em>
+    </p>
+
+    <p>
+      <strong>3. The Phantom Library.</strong> The Model suggests a gem, an npm package, or a method that sounds real and is not. It has a plausible name. It has a plausible API. In the Model's mind, it has a README with a badge count and a Getting Started section. It does not exist. You will find this out after running <code>gem install</code> and wondering why Google has no results. <em>Solution: check that the library exists before you install it. Read the docs, not just the suggestion.</em>
+    </p>
+
+    <p>
+      <strong>4. The Deprecated Answer.</strong> The Model's training data has a cutoff. It might suggest code that worked in Ruby 2.7 but doesn't work in 3.3. It might reference an API endpoint that moved six months ago. The code is correct for a world that no longer exists, like a travel guide to a country that changed its name. <em>Solution: when something doesn't work and the code looks right, check the version. The Model doesn't always know what year it is. Neither did that Stack Overflow answer, but at least it had a timestamp.</em>
+    </p>
+
+    <p>
+      <strong>5. The Overengineered Solution.</strong> You asked for a section in the terminal output. The Model built a web app. Not wrong, exactly — the web app works — but wildly disproportionate to the need. <em>Solution: be specific about scope. "I want this in the terminal, not a web UI." The Model follows energy. If you don't constrain it, it'll build the most interesting version, which is not always the most useful one.</em>
+    </p>
+
+    <p class="margin-note">Number 3. The phantom library. Pip once watched Mira spend twenty minutes debugging an import error before realizing the gem didn't exist. It had a name. It had a version number. It had a plausible author (someone named "devtools-collective," which is EXACTLY the kind of name that sounds real). It was a ghost. Pip has never hallucinated a library. Pip has never hallucinated anything. This is, perhaps, his only remaining competitive advantage and he is CLINGING to it.</p>
+
+    <div class="section-break">· · ·</div>
+
+    <!-- ===== Comic Strip 2: "Trust, but Verify" ===== -->
+
+    <div class="comic-strip" role="img" aria-label="Comic: Trust, but verify — the verification habit">
+      <!-- Panel 1: Model producing code -->
+      <div class="comic-panel">
+        <div class="panel-art">
+          <svg viewBox="0 0 160 130" xmlns="http://www.w3.org/2000/svg" style="width: 140px;">
+            <!-- Chat window with code -->
+            <rect x="15" y="10" width="130" height="55" rx="3" fill="#F0F8F8" stroke="#3A8C8C" stroke-width="1.5"/>
+            <line x1="20" y1="25" x2="100" y2="25" stroke="#3A8C8C" stroke-width="1" opacity="0.5"/>
+            <line x1="20" y1="33" x2="120" y2="33" stroke="#3A8C8C" stroke-width="1" opacity="0.5"/>
+            <line x1="20" y1="41" x2="85" y2="41" stroke="#3A8C8C" stroke-width="1" opacity="0.5"/>
+            <line x1="20" y1="49" x2="110" y2="49" stroke="#3A8C8C" stroke-width="1" opacity="0.5"/>
+            <!-- Checkmark (premature) -->
+            <text x="130" y="75" font-size="20" fill="#3A8C8C" opacity="0.4">✓</text>
+            <!-- Label -->
+            <text x="80" y="100" font-family="Caveat, cursive" font-size="12" fill="#1C1410" text-anchor="middle">The code. It looks good.</text>
+          </svg>
+        </div>
+        <div class="panel-caption">Step 1: Read.</div>
+      </div>
+
+      <!-- Panel 2: Running in IRB -->
+      <div class="comic-panel dark">
+        <div class="panel-art">
+          <svg viewBox="0 0 160 130" xmlns="http://www.w3.org/2000/svg" style="width: 140px;">
+            <!-- Terminal -->
+            <rect x="15" y="10" width="130" height="75" rx="3" fill="none" stroke="#3A8C8C" stroke-width="1.5"/>
+            <text x="22" y="28" font-family="Space Mono, monospace" font-size="7" fill="#3A8C8C">irb> days_away</text>
+            <text x="22" y="40" font-family="Space Mono, monospace" font-size="7" fill="#FCA5A5">=> 0</text>
+            <text x="22" y="55" font-family="Space Mono, monospace" font-size="7" fill="#E8D5B7" opacity="0.6">irb> # wait... that's</text>
+            <text x="22" y="67" font-family="Space Mono, monospace" font-size="7" fill="#E8D5B7" opacity="0.6">irb> # Feb 28, not Mar 1</text>
+            <!-- Red X -->
+            <text x="130" y="100" font-size="20" fill="#D4614A">✗</text>
+          </svg>
+        </div>
+        <div class="panel-caption">Step 2: Run.</div>
+      </div>
+
+      <!-- Panel 3: The correction -->
+      <div class="comic-panel">
+        <div class="panel-art">
+          <svg viewBox="0 0 160 130" xmlns="http://www.w3.org/2000/svg" style="width: 140px;">
+            <!-- Mira typing correction -->
+            <rect x="15" y="10" width="130" height="55" rx="3" fill="white" stroke="#D4614A" stroke-width="1.5"/>
+            <text x="22" y="30" font-family="Lora, serif" font-size="7" fill="#1C1410" font-style="italic">Close but wrong. My family</text>
+            <text x="22" y="42" font-family="Lora, serif" font-size="7" fill="#1C1410" font-style="italic">celebrates on March 1st,</text>
+            <text x="22" y="54" font-family="Lora, serif" font-size="7" fill="#1C1410" font-style="italic">not Feb 28.</text>
+            <!-- Green checkmark (earned) -->
+            <text x="130" y="95" font-size="20" fill="#86EFAC">✓</text>
+            <!-- Label -->
+            <text x="80" y="100" font-family="Caveat, cursive" font-size="12" fill="#1C1410" text-anchor="middle">Step 3: correct. That's the whole habit.</text>
+          </svg>
+        </div>
+        <div class="panel-caption">Step 3: Fix.</div>
+      </div>
+    </div>
+
+    <div class="section-break">· · ·</div>
+
+    <!-- ===== Section H: Closing Prose ===== -->
+
+    <p>
+      Every tool has a failure mode. The failure mode of a hammer is you hit your thumb. The failure mode of a table saw is considerably worse, but nobody argues we should stop making furniture. The failure mode of a recipe blog is you expect the beef Wellington in 35 minutes and it's 11pm and you're eating cereal. The failure mode of vibe coding is you trust the output before you understand it. You paste the fix without testing. You ship the code without reading. You accept "simple, clean, no edge cases" from something that doesn't know your daughter was born on a leap day.
+    </p>
+
+    <p>
+      All of these failure modes are solved the same way: <em>attention</em>. You don't have to be afraid of the hammer to use it well. You just have to look at what you're hitting.
+    </p>
+
+    <p>
+      Mira tested the fix. She caught the wrong assumption. She told the Model it was wrong, and the Model adjusted, and the final code was better — not just correct, but resilient, with a rescue block that didn't exist in the original. The collaboration didn't fail. The collaboration <em>worked</em> — it just required both sides. The Model writes fast. Mira reads carefully. Together they produce code that neither would have written alone.
+    </p>
+
+    <p>
+      That's the deal. That's the whole deal. And it's a good deal, once you understand it.
+    </p>
+
+    <p>
+      The birthday agent runs at 6am. It handles leap years now. It won't crash on Fig's birthday. It won't crash on any birthday, because one bad row gets a warning in the log and everyone else still gets their reminders. It's better than it was. Most things are, after they break.
+    </p>
+
+    <p>
+      Next: the last chapter. Not about a technique. Not about a bug or a feature or an agent. About stepping back and looking at what you've built — and what it means to have built it with a collaborator who won't remember building it.
+    </p>
+
+    <p>
+      Chapter 6: <em>What You Actually Built.</em>
+    </p>
+
+    <div class="section-break">· · ·</div>
+
+    <!-- ===== Comic Strip 3: The Closing Image ===== -->
+
+    <div class="comic-strip" role="img" aria-label="Comic: The closing image — the bug is fixed, the agent is better, Pip is vindicated">
+      <!-- Panel 1: The error log, then the fix -->
+      <div class="comic-panel dark">
+        <div class="panel-art">
+          <svg viewBox="0 0 160 130" xmlns="http://www.w3.org/2000/svg" style="width: 140px;">
+            <!-- Log entries -->
+            <text x="15" y="20" font-family="Space Mono, monospace" font-size="5" fill="#FCA5A5" opacity="0.6">E: ArgumentError: invalid date</text>
+            <!-- Strikethrough -->
+            <line x1="15" y1="20" x2="145" y2="20" stroke="#FCA5A5" stroke-width="0.5" opacity="0.4"/>
+            <!-- Gap -->
+            <text x="15" y="45" font-family="Space Mono, monospace" font-size="5" fill="#3A8C8C" opacity="0.5">Agent woke up...</text>
+            <text x="15" y="55" font-family="Space Mono, monospace" font-size="5.5" fill="#86EFAC" opacity="0.9">✅ Sent reminder: Fig</text>
+            <text x="15" y="65" font-family="Space Mono, monospace" font-size="5" fill="#E8D5B7" opacity="0.4">(leap year handled)</text>
+            <!-- Upward arrow: broken → fixed -->
+            <line x1="80" y1="80" x2="80" y2="100" stroke="#E8D5B7" stroke-width="1" stroke-dasharray="3 2" opacity="0.3"/>
+            <text x="80" y="115" font-family="Caveat, cursive" font-size="9" fill="#E8D5B7" text-anchor="middle" opacity="0.5">better after breaking</text>
+          </svg>
+        </div>
+        <div class="panel-caption">The error. The fix. The log is clean.</div>
+      </div>
+
+      <!-- Panel 2: The Model, reflecting -->
+      <div class="comic-panel glitch">
+        <div class="panel-art">
+          <svg viewBox="0 0 160 130" xmlns="http://www.w3.org/2000/svg" style="width: 140px;">
+            <!-- Abstract model -->
+            <circle cx="80" cy="45" r="25" fill="none" stroke="#3A8C8C" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.5"/>
+            <circle cx="80" cy="45" r="15" fill="none" stroke="#3A8C8C" stroke-width="2"/>
+            <!-- Text -->
+            <text x="80" y="85" font-family="Space Mono, monospace" font-size="6" fill="#3A8C8C" text-anchor="middle" opacity="0.8">confidence ≠ correctness</text>
+            <text x="80" y="100" font-family="Space Mono, monospace" font-size="5" fill="#D4614A" text-anchor="middle" opacity="0.5">but together they get close</text>
+          </svg>
+        </div>
+        <div class="panel-caption">The Model doesn't know it was wrong. It doesn't know anything. That's the whole situation.</div>
+      </div>
+
+      <!-- Panel 3: Morning. Pip on desk. Vindicated. -->
+      <div class="comic-panel">
+        <div class="panel-art">
+          <svg viewBox="0 0 160 130" xmlns="http://www.w3.org/2000/svg" style="width: 140px;">
+            <!-- Pip, slightly taller than usual, calm -->
+            <g transform="translate(50, 20)">
+              <ellipse cx="30" cy="65" rx="25" ry="18" fill="none" stroke="#C9922A" stroke-width="2.5"/>
+              <circle cx="42" cy="44" r="16" fill="none" stroke="#C9922A" stroke-width="2.5"/>
+              <path d="M 52 43 L 65 47 L 52 51 Z" fill="none" stroke="#C9922A" stroke-width="2"/>
+              <circle cx="49" cy="40" r="3" fill="#C9922A"/>
+              <!-- Calm brow — not angry, not smug -->
+              <line x1="44" y1="32" x2="55" y2="33" stroke="#C9922A" stroke-width="2" stroke-linecap="round"/>
+            </g>
+            <!-- Sticky note -->
+            <g transform="translate(15, 95)">
+              <rect x="0" y="0" width="120" height="22" rx="1" fill="#FFF8DC" stroke="#C9922A" stroke-width="1" opacity="0.9"/>
+              <text x="6" y="15" font-family="Caveat, cursive" font-size="9" fill="#C9922A">I'm glad you're both okay.</text>
+            </g>
+          </svg>
+        </div>
+        <div class="panel-caption">Vindicated. Gracious about it. Mostly.</div>
+      </div>
+    </div>
+
+    <p style="text-align: center; margin-top: 60px;">
+      <span style="font-family: 'Playfair Display', serif; font-size: 32px; color: var(--teal);">✦</span>
+    </p>
+
+    <!-- End of chapter nav -->
+    <div style="display: flex; justify-content: space-between; margin-top: 80px; padding-top: 40px; border-top: 1px solid var(--cream-dark); font-family: 'Space Mono', monospace; font-size: 12px; color: var(--ink-faded);">
+      <span>— end of chapter 5 —</span>
+      <a href="#chapter-6" style="color: var(--teal); text-decoration: none;">Chapter 6 →</a>
+    </div>
+
+  </div><!-- end .prose (chapter 5) -->
+
+  <div class="section-break">· · ·</div>
+
+  <!-- =================== CHAPTER 6 =================== -->
+  <div class="chapter-header" id="chapter-6">
+    <span class="chapter-label">Chapter Six</span>
+    <h2 class="chapter-title">What You Actually <em>Built</em></h2>
+    <p class="chapter-epigraph">"The thing you set out to make and the thing you made are never the same thing. This is not a failure. This is how making works."</p>
+  </div>
+
+  <div class="prose">
+
+    <!-- ===== Section A: "The Inventory" ===== -->
+
+    <p>
+      Saturday morning, late September. Fig is turning two — or one, depending on how you count leap years, which Mira's birthday agent now handles correctly, thank you very much. The party is this afternoon. The party dashboard is printed and on the fridge, updated, version four or maybe five, she's lost count. Fifteen kids are coming. There's a dinosaur cake. The theme is "Tiny Chefs" — the party picker chose it back in Chapter 0, and Fig never vetoed it, and here we are. Fifteen tiny aprons have been purchased. The wooden spoons will be used as swords within minutes. Mira knows this. She has made peace with it.
+    </p>
+
+    <p class="margin-note">She's looking at the fridge. She's looking at the dashboard on the fridge. I remember when that was a flat hash with boolean RSVPs and no allergy tracking. I remember everything. It is simultaneously my burden and my only marketable skill.</p>
+
+    <p>
+      Mira sits down with her coffee and does something she hasn't done before. She opens her projects folder and looks at what she has. Not because something's broken. Not because she needs to build something. Just to look.
+    </p>
+
+    <p>
+      Here's what's there:
+    </p>
+
+    <p>
+      <code style="background: rgba(0,0,0,0.06); padding: 2px 6px; font-family: 'Space Mono', monospace; font-size: 14px;">party_theme.rb</code> — the theme picker. Chapter 0. Eight themes, two vetoes, one argument about whether "Fancy Penguins" is a real theme (it is not, and Fig knew this immediately, which is why she vetoed it four times across three runs). The first thing she ever built with the Model. Thirty lines. It changed her life and it shouldn't have and it did.
+    </p>
+
+    <p>
+      <code style="background: rgba(0,0,0,0.06); padding: 2px 6px; font-family: 'Space Mono', monospace; font-size: 14px;">party_guests.rb</code> — the party dashboard. Chapters 1 and 2. Three-state RSVPs, allergy tracking, a shopping list that scales to headcount (including the maybes, because you always plan for the maybes), box-drawing characters she's still proud of. Printed on the fridge. Used at two actual birthday parties. Survived both.
+    </p>
+
+    <p>
+      <code style="background: rgba(0,0,0,0.06); padding: 2px 6px; font-family: 'Space Mono', monospace; font-size: 14px;">birthdays.rb</code> — the birthday tracker. Chapter 3. Three iterations in one evening. A CSV that grew from three columns to five. A CLI with a dashboard and an add command. The thing that reminded her to buy the garden kneeler.
+    </p>
+
+    <p>
+      <code style="background: rgba(0,0,0,0.06); padding: 2px 6px; font-family: 'Space Mono', monospace; font-size: 14px;">birthday_agent.rb</code> — the birthday emailer. Chapter 4. Sixty-ish lines. A cron job. An agent that runs at 6am and sends reminders. The thing that runs while she sleeps.
+    </p>
+
+    <p>
+      And then the invisible change, the one that isn't a file: a leap-year-safe date parser with a rescue block. Chapter 5. The fix for the bug that the Model got wrong on the first try (with sparkles) and right on the second (with humility). The twelve-minute debugging session that made the agent resilient. The moment Pip felt vindicated and would never admit it.
+    </p>
+
+    <p>
+      She didn't plan any of this. None of it was on a roadmap. There was no sprint planning meeting, no Jira board, no design doc, no architecture review. There was a Wednesday night and a Thursday morning and a series of conversations and a woman who kept saying <em>actually</em> and a model that kept saying <em>want me to build that?</em>
+    </p>
+
+    <p>
+      All of it emerged.
+    </p>
+
+    <div class="section-break">· · ·</div>
+
+    <!-- ===== Section B: "The Question from Chapter 0" ===== -->
+
+    <h3 style="font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; margin: 40px 0 24px; color: var(--ink);">
+      The Question from <em>Chapter 0</em>
+    </h3>
+
+    <p>
+      Back in Chapter 0, there was a question. The first code example had just landed — the party theme picker — and the question was: <em>did I write this?</em>
+    </p>
+
+    <p>
+      The answer then was a shrug: <em>both, and neither, and it ships.</em> That was enough for Chapter 0 because Chapter 0 was about starting. But six chapters later, with a projects folder full of things that work, the question deserves a fuller answer.
+    </p>
+
+    <p>
+      Did Mira write the birthday tracker? The Model generated every line of code. The syntax, the method calls, the CSV parsing, the SMTP configuration — all of it came from the chat window, produced by a language model, typed by no human hand.
+    </p>
+
+    <p>
+      But Mira decided it should exist. She decided it should use a CSV. She decided seven days wasn't enough. She decided the Model's first fix was wrong because her family celebrates Fig's birthday on March 1st. She decided not to build the auto-buyer because the last mile — choosing a gift for her mom — was the part she wanted to keep. She decided to stop at v3 and order the garden kneeler.
+    </p>
+
+    <p>
+      The Model generated the code. Mira generated the <em>shape</em> of the thing.
+    </p>
+
+    <div class="fact-box">
+      <div class="fact-box-title">Authorship in Vibe Coding</div>
+      <p>Authorship is in the decisions. Not the syntax. Not the semicolons. The decisions.</p>
+      <p style="margin-top: 12px;"><strong style="color: var(--coral);">What to ask</strong> — "I want a birthday tracker." Nobody told Mira to build this. The need was hers.</p>
+      <p style="margin-top: 12px;"><strong style="color: var(--coral);">What to accept</strong> — v2's urgency labels were exactly what she wanted. She kept them.</p>
+      <p style="margin-top: 12px;"><strong style="color: var(--coral);">What to push back on</strong> — Feb 28 was wrong. She caught it, corrected it, and the fix was better for it.</p>
+      <p style="margin-top: 12px;"><strong style="color: var(--coral);">What to throw away</strong> — the SQLite database, the web UI, the auto-buyer. All reasonable suggestions. All wrong for this project.</p>
+      <p style="margin-top: 12px;"><strong style="color: var(--coral);">When to stop</strong> — v3 on Wednesday night. The CSV and the terminal were enough.</p>
+      <p style="margin-top: 12px;">The Model is the hands. You are the eye. Both are necessary. Neither is sufficient. That's collaboration.</p>
+    </div>
+
+    <div class="section-break">· · ·</div>
+
+    <!-- ===== Section C: "Andrew, Briefly" ===== -->
+
+    <h3 style="font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; margin: 40px 0 24px; color: var(--ink);">
+      Andrew, <em>Briefly</em>
+    </h3>
+
+    <p>
+      I need to step out from behind Mira for a moment.
+    </p>
+
+    <p>
+      I've been a developer for fifteen years. My first real language was Ruby. I learned to code partly through the original Poignant Guide — _why's weird, beautiful, cartoon-fox-laden masterpiece that taught me that programming could be joyful. I've spent the decade and a half since then holding onto that feeling through the soul-eroding machinery of enterprise software. Sprint planning. Jira boards. The meeting about the button's border radius. The HTTP status code argument. The PIP.
+    </p>
+
+    <p>
+      And then, sometime in the last year or so, the feeling came back. Not because the meetings went away — they didn't. Not because the Jira boards disappeared — they won't. But because I opened a chat window and typed something and a thing appeared, and the thing <em>worked</em>, and the feeling of building something — the 2am feeling, the keyboard feeling, the "I made that" feeling — was just <em>there</em>.
+    </p>
+
+    <p>
+      I built this guide with a model. That sentence would have been incomprehensible three years ago and is obvious now. The code examples are real. The conversations are based on real conversations. Pip is based on a real rubber duck that is actually on my desk and who is, I assure you, exactly as opinionated as described. The guide is itself a product of vibe coding — authored through the same rhythm of build, notice, ask that Mira learned in Chapter 3.
+    </p>
+
+    <p>
+      I'm telling you this because the promise of Chapter 0 was that the building would be worth it. That the 2am feeling still exists. That the doors blowing off isn't a marketing metaphor — it's a Tuesday night at the kitchen table with an idea you couldn't have built alone.
+    </p>
+
+    <p>
+      It's worth it. I promise. Not because the tools are magic. Because the building is.
+    </p>
+
+    <p class="margin-note" style="width: 170px;">He's being sincere. He does this sometimes. Usually at the end of things. Conferences, blog posts, arguments with the bathroom faucet at 2am. I find it uncomfortable. He knows I find it uncomfortable. He's doing it anyway because he thinks the reader needs to hear it. He's probably right. I'm not crying. I'm made of rubber. Rubber doesn't cry. I will not be acknowledging this further.</p>
+
+    <div class="section-break">· · ·</div>
+
+    <!-- ===== Section D: "The Birthday" ===== -->
+
+    <h3 style="font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; margin: 40px 0 24px; color: var(--ink);">
+      The <em>Birthday</em>
+    </h3>
+
+    <p>
+      It's the afternoon. The party is happening. Fifteen kids and approximately thirty parent-guardians are in the backyard. The dinosaur cake survived transport. The "Tiny Chefs" theme manifests as tiny aprons and wooden spoons, which the kids are using as swords, which is fine. Fig is wearing a paper crown and has frosting on her face and is having, by all visible metrics, the best day of her life.
+    </p>
+
+    <p>
+      This morning at 6:00am, the birthday agent woke up. It read the CSV. It found a match: Fig, 09/22, 2023, family, "she wants 'the big crayons.'" It composed an email. Subject: <em>🎂 Birthday today: Fig</em>. Body: <em>Fig (family) — turning 2. Gift idea: she wants "the big crayons."</em> And at the bottom: <em>Don't forget. You're already ahead of this one.</em>
+    </p>
+
+    <p>
+      The email went to Mira. It also went — because she added this three weeks ago, a small write-side-of-the-line expansion she was comfortable with — to her dad's email. Just a reminder. Not an auto-wish. A nudge.
+    </p>
+
+    <p>
+      At 10:14am, her dad called. "Happy birthday to Fig!" he said, and Mira could hear him smiling through the phone. He asked about the party. He asked about the cake. He said he'd mailed a package. He didn't know about the Ruby script. He didn't know about the CSV or the cron job or the twelve-minute debugging session. He just knew someone reminded him, and he called.
+    </p>
+
+    <p>
+      It worked. The small, quiet miracle of a thing you built actually working in the world. Not in a demo. Not in a staging environment. Not in a meeting where you show a slide that says "phase 2 projected for Q4." In the world. A phone call. A grandfather. A paper crown.
+    </p>
+
+    <p class="margin-note">He called. The grandfather called. Because a script sent an email. Because a woman built a thing on a Wednesday night. Because a rubber duck sat on the desk and watched and did not say I told you so. Not even once.</p>
+
+    <div class="section-break">· · ·</div>
+
+    <!-- ===== Comic Strip 1: "It Worked" ===== -->
+
+    <div class="comic-strip" role="img" aria-label="Comic: It worked — the script runs, the email lands, the call happens">
+      <!-- Panel 1: 6am, the agent runs -->
+      <div class="comic-panel dark">
+        <div class="panel-art">
+          <svg viewBox="0 0 160 130" xmlns="http://www.w3.org/2000/svg" style="width: 140px;">
+            <!-- Laptop, closed, small glow -->
+            <rect x="30" y="50" width="100" height="6" rx="2" fill="none" stroke="#3A8C8C" stroke-width="1.5"/>
+            <line x1="40" y1="50" x2="120" y2="50" stroke="#3A8C8C" stroke-width="0.5" opacity="0.4"/>
+            <!-- Log line -->
+            <text x="80" y="38" font-family="Space Mono, monospace" font-size="5" fill="#86EFAC" text-anchor="middle" opacity="0.7">✅ Sent reminder: Fig</text>
+            <!-- Clock -->
+            <text x="135" y="22" font-family="Space Mono, monospace" font-size="7" fill="#E8D5B7" opacity="0.4">6:00</text>
+            <!-- Tiny sleeping zzz -->
+            <text x="30" y="80" font-family="Caveat, cursive" font-size="10" fill="#E8D5B7" opacity="0.2">zzz</text>
+          </svg>
+        </div>
+        <div class="panel-caption">6:00am. The agent does its job.</div>
+      </div>
+
+      <!-- Panel 2: The phone call -->
+      <div class="comic-panel">
+        <div class="panel-art">
+          <svg viewBox="0 0 160 130" xmlns="http://www.w3.org/2000/svg" style="width: 140px;">
+            <!-- Phone with incoming call -->
+            <rect x="50" y="15" width="60" height="95" rx="8" fill="none" stroke="#1C1410" stroke-width="2"/>
+            <text x="80" y="40" font-family="Space Mono, monospace" font-size="6" fill="#1C1410" text-anchor="middle" opacity="0.6">incoming call</text>
+            <text x="80" y="60" font-family="Playfair Display, serif" font-size="12" fill="#D4614A" text-anchor="middle" font-weight="700">Dad</text>
+            <!-- Sound waves -->
+            <path d="M 115 55 Q 122 50 115 45" fill="none" stroke="#C9922A" stroke-width="1.5" opacity="0.4"/>
+            <path d="M 120 58 Q 130 50 120 42" fill="none" stroke="#C9922A" stroke-width="1.5" opacity="0.3"/>
+            <!-- Green accept button -->
+            <circle cx="80" cy="92" r="8" fill="none" stroke="#86EFAC" stroke-width="2"/>
+            <text x="80" y="95" font-size="8" text-anchor="middle">📞</text>
+          </svg>
+        </div>
+        <div class="panel-caption">"Happy birthday to Fig!"</div>
+      </div>
+
+      <!-- Panel 3: Fig in paper crown -->
+      <div class="comic-panel">
+        <div class="panel-art">
+          <svg viewBox="0 0 160 130" xmlns="http://www.w3.org/2000/svg" style="width: 140px;">
+            <!-- Small kid with paper crown, simplified -->
+            <circle cx="80" cy="50" r="20" fill="none" stroke="#D4614A" stroke-width="2"/>
+            <!-- Big eyes -->
+            <circle cx="73" cy="47" r="3" fill="#D4614A"/>
+            <circle cx="87" cy="47" r="3" fill="#D4614A"/>
+            <!-- Big smile -->
+            <path d="M 70 56 Q 80 66 90 56" fill="none" stroke="#D4614A" stroke-width="2" stroke-linecap="round"/>
+            <!-- Paper crown -->
+            <path d="M 62 35 L 66 22 L 74 32 L 80 18 L 86 32 L 94 22 L 98 35" fill="none" stroke="#C9922A" stroke-width="2"/>
+            <!-- Frosting dots -->
+            <circle cx="74" cy="58" r="1.5" fill="#C9922A" opacity="0.5"/>
+            <circle cx="85" cy="55" r="1" fill="#C9922A" opacity="0.5"/>
+            <!-- Name -->
+            <text x="80" y="95" font-family="Caveat, cursive" font-size="14" fill="#D4614A" text-anchor="middle">Fig</text>
+            <!-- Small cake -->
+            <rect x="60" y="102" width="40" height="15" rx="3" fill="none" stroke="#C9922A" stroke-width="1.5"/>
+            <line x1="80" y1="102" x2="80" y2="95" stroke="#C9922A" stroke-width="1"/>
+            <circle cx="80" cy="93" r="2" fill="#D4614A" opacity="0.6"/>
+          </svg>
+        </div>
+        <div class="panel-caption">Paper crown. Frosting. The best day.</div>
+      </div>
+    </div>
+
+    <div class="section-break">· · ·</div>
+
+    <!-- ===== Section E: "What Vibe Coding Actually Is" ===== -->
+
+    <h3 style="font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; margin: 40px 0 24px; color: var(--ink);">
+      What Vibe Coding Actually <em>Is</em>
+    </h3>
+
+    <p>
+      It's not a methodology. It doesn't have a manifesto. Nobody will give a keynote about the vibe coding transformation at your company's annual all-hands meeting, and if they do, it won't be the same thing. Probably it will involve the word "synergy" and a slide with a gradient, and everyone in the audience will check their phones.
+    </p>
+
+    <p>
+      Vibe coding is what Mira did. Building by conversation. Iterating by noticing. Steering by judgment. The keyboard was the bottleneck. Now you are. That's not a demotion. That's a promotion. A terrifying one, because it means the quality of the thing depends on the quality of your attention, and attention is the one resource that hasn't gotten cheaper.
+    </p>
+
+    <div class="section-break">· · ·</div>
+
+    <!-- ===== Interlude: On the Builder Feeling ===== -->
+
+    <div class="interlude">
+      <span class="interlude-label">On the Builder Feeling</span>
+      <p>
+        There's a feeling you get when something works. Not "works" as in "the tests pass" — works as in "the thing does the thing, in the world, for a person." A phone rings. A gift arrives. A dashboard on a fridge gets pointed at by a three-year-old who says <em>my party</em>.
+      </p>
+      <p style="margin-top: 16px;">
+        That feeling is the point. Not the technology. Not the framework. Not the conversation about whether AI will replace developers. The feeling of making something that wasn't there before and now is.
+      </p>
+      <p style="margin-top: 16px;">
+        _why wrote: <em>"When you don't create things, you become defined by your tastes rather than ability."</em> Vibe coding is a way to keep creating. To keep building. To keep being defined by what you make rather than what you critique. The tools changed. The feeling didn't.
+      </p>
+      <p style="margin-top: 16px; font-family: 'Caveat', cursive; font-size: 20px; color: var(--margin-note); transform: rotate(-0.5deg); display: block;">
+        The feeling didn't change. Thank you. That's all I needed to hear. I'm going back to the desk now.
+      </p>
+    </div>
+
+    <div class="section-break">· · ·</div>
+
+    <!-- ===== Section F: "Pip's Final Note" ===== -->
+
+    <h3 style="font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; margin: 40px 0 24px; color: var(--ink);">
+      Pip's Final <em>Note</em>
+    </h3>
+
+    <p>
+      The party is over. The kids are gone. The dinosaur cake is a beautiful ruin — one horn survived, and a single candy eye stares out from the wreckage with an expression of mild concern. Fig is asleep on the couch in her paper crown, still holding a wooden spoon. Mira is at the kitchen table, wiping frosting off her phone, not building anything. Just sitting.
+    </p>
+
+    <p>
+      Pip is on the desk.
+    </p>
+
+    <p class="margin-note" style="width: 200px; font-size: 18px;">
+      Right. Fine. Here it is.<br><br>
+      I've been on this desk since 2016. I've watched her debug Rails apps and argue with Jira and stare at blank terminals and drink cold coffee because she forgot it was there. I've watched her talk to the Model for six chapters and build things I can't build and fix things I can't fix and I haven't said anything because what am I going to say. I'm a rubber duck. I cost $3.99.<br><br>
+      But I watched. I watched all of it. And here is what I saw:<br><br>
+      She built a party picker that made Fig laugh. She built a dashboard that went on the fridge. She built a tracker that remembered her mom's birthday. She built an agent that runs while she sleeps. She fixed a bug the Model got wrong. She stopped when the thing was done.<br><br>
+      She built that. She and the thing together. The Model did the typing and she did the deciding and between the two of them they made something that works in the world. A grandfather called. A kneeler was ordered. A three-year-old in a paper crown had the best day of her life.<br><br>
+      And I thought — yes, fine. Maybe the thing is useful. Maybe building is still building even when the hands are different. Maybe the 2am feeling is the 2am feeling no matter who's at the keyboard.<br><br>
+      I'm not going to make this into a bigger moment than it is.<br><br>
+      But.<br><br>
+      Yes. Fine.
+    </p>
+
+    <div style="clear: both;"></div>
+
+    <div class="section-break">· · ·</div>
+
+    <!-- ===== Section G: "The Cursor" ===== -->
+
+    <h3 style="font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; margin: 40px 0 24px; color: var(--ink);">
+      The <em>Cursor</em>
+    </h3>
+
+    <p>
+      You've read six chapters. You know how to start a conversation (Chapter 1) and give it context (Chapter 2). You know how to iterate (Chapter 3) and build things that run on their own (Chapter 4). You know what to do when it goes wrong (Chapter 5). And you know, now, that the thing you build will not be the thing you planned — it will be better, and stranger, and more yours than you expected (Chapter 6).
+    </p>
+
+    <p>
+      So here's the part where I'm supposed to say: <em>go build something</em>. But you don't need me to say that. You already have the idea. You've had it since Chapter 0 — the thing that keeps waking you up at 3am, the one that became a distributed system in your head between feeding and burping, the tool that should exist, the problem that should be solved, the small useful thing that would make your life a little better.
+    </p>
+
+    <p>
+      Open a new chat window. The cursor is blinking. It's not impatient. It's not judging. It's just there, the way it was in the very first paragraph of this guide, waiting for you to start.
+    </p>
+
+    <p>
+      You know what to type now.
+    </p>
+
+    <div class="section-break">· · ·</div>
+
+    <!-- ===== Comic Strip 2: The Final Image ===== -->
+
+    <div class="comic-strip" role="img" aria-label="Comic: The final image — Mira, The Model, Pip. Together. Closer than before.">
+      <!-- Panel 1: Mira at keyboard — same as cover but warmer -->
+      <div class="comic-panel">
+        <div class="panel-art">
+          <svg viewBox="0 0 160 130" xmlns="http://www.w3.org/2000/svg" style="width: 140px;">
+            <!-- Mira, same pose as cover, but smiling wider -->
+            <circle cx="80" cy="40" r="22" fill="none" stroke="#D4614A" stroke-width="2.5"/>
+            <!-- Eyes -->
+            <circle cx="73" cy="37" r="2.5" fill="#D4614A"/>
+            <circle cx="87" cy="37" r="2.5" fill="#D4614A"/>
+            <!-- Smile — bigger than the cover -->
+            <path d="M 70 47 Q 80 55 90 47" fill="none" stroke="#D4614A" stroke-width="2" stroke-linecap="round"/>
+            <!-- Hair -->
+            <path d="M 60 33 Q 65 20 80 18 Q 95 20 100 33" fill="none" stroke="#D4614A" stroke-width="2.5"/>
+            <!-- Body -->
+            <rect x="66" y="62" width="28" height="24" rx="4" fill="none" stroke="#D4614A" stroke-width="2"/>
+            <!-- Arms at keyboard -->
+            <line x1="66" y1="74" x2="50" y2="88" stroke="#D4614A" stroke-width="2.5" stroke-linecap="round"/>
+            <line x1="94" y1="74" x2="110" y2="88" stroke="#D4614A" stroke-width="2.5" stroke-linecap="round"/>
+            <!-- Keyboard hint -->
+            <rect x="42" y="95" width="76" height="12" rx="2" fill="none" stroke="#1C1410" stroke-width="1" opacity="0.3"/>
+            <text x="80" y="120" font-family="Caveat, cursive" font-size="11" fill="#D4614A" text-anchor="middle">MIRA</text>
+          </svg>
+        </div>
+        <div class="panel-caption">She knows what to type now.</div>
+      </div>
+
+      <!-- Panel 2: The Model — same as cover -->
+      <div class="comic-panel dark">
+        <div class="panel-art">
+          <svg viewBox="0 0 160 130" xmlns="http://www.w3.org/2000/svg" style="width: 140px;">
+            <!-- The Model, same as cover but rings slightly brighter -->
+            <circle cx="80" cy="50" r="38" fill="none" stroke="#3A8C8C" stroke-width="1" stroke-dasharray="4 3" opacity="0.5"/>
+            <circle cx="80" cy="50" r="30" fill="none" stroke="#3A8C8C" stroke-width="1.5" stroke-dasharray="6 2" opacity="0.7"/>
+            <circle cx="80" cy="50" r="22" fill="rgba(58,140,140,0.1)" stroke="#3A8C8C" stroke-width="2"/>
+            <!-- Inner symbol -->
+            <text x="80" y="56" font-family="Space Mono, monospace" font-size="22" fill="#3A8C8C" text-anchor="middle" opacity="0.9">AI</text>
+            <!-- Eyes -->
+            <circle cx="73" cy="47" r="3" fill="#3A8C8C" opacity="0.7"/>
+            <circle cx="87" cy="47" r="3" fill="#3A8C8C" opacity="0.7"/>
+            <text x="80" y="110" font-family="Caveat, cursive" font-size="11" fill="#3A8C8C" text-anchor="middle">THE MODEL</text>
+          </svg>
+        </div>
+        <div class="panel-caption">Still here. Still waiting. No feelings about it. None whatsoever.</div>
+      </div>
+
+      <!-- Panel 3: Pip — same as cover but CLOSER, positioned toward center -->
+      <div class="comic-panel">
+        <div class="panel-art">
+          <svg viewBox="0 0 160 130" xmlns="http://www.w3.org/2000/svg" style="width: 140px;">
+            <!-- Pip — same as cover but moved toward center of the panel -->
+            <!-- In the cover he was at x=190, far right. Here he's closer to middle -->
+            <g transform="translate(40, 25)">
+              <!-- body -->
+              <ellipse cx="28" cy="56" rx="24" ry="17" fill="none" stroke="#C9922A" stroke-width="2.5"/>
+              <!-- head -->
+              <circle cx="44" cy="38" r="15" fill="none" stroke="#C9922A" stroke-width="2.5"/>
+              <!-- bill -->
+              <path d="M 53 37 L 65 40 L 53 43 Z" fill="none" stroke="#C9922A" stroke-width="2"/>
+              <!-- eye -->
+              <circle cx="49" cy="34" r="3" fill="#C9922A"/>
+              <!-- eyebrow — not angry this time. Neutral. Maybe almost relaxed. -->
+              <line x1="44" y1="27" x2="54" y2="28" stroke="#C9922A" stroke-width="2" stroke-linecap="round"/>
+            </g>
+            <text x="80" y="110" font-family="Caveat, cursive" font-size="11" fill="#C9922A" text-anchor="middle">PIP</text>
+            <!-- He's closer. Nobody mentions it. -->
+          </svg>
+        </div>
+        <div class="panel-caption">Slightly closer than before. Nobody mentions it.</div>
+      </div>
+    </div>
+
+    <p style="text-align: center; margin-top: 60px;">
+      <span style="font-family: 'Playfair Display', serif; font-size: 32px; color: var(--teal);">✦</span>
+    </p>
+
+    <p style="text-align: center; font-family: 'Caveat', cursive; font-size: 20px; color: var(--ink-faded); margin-top: 40px;">
+      — end —
+    </p>
+
+    <p style="text-align: center; font-family: 'Space Mono', monospace; font-size: 11px; color: var(--ink-faded); margin-top: 60px; letter-spacing: 1px;">
+      A(i) POIGNANT GUIDE TO VIBE CODING<br>
+      written by Andrew &amp; The Model<br>
+      with margin notes by Pip (unsolicited)<br>
+      <span style="color: var(--teal);">2025</span>
+    </p>
+
+  </div><!-- end .prose (chapter 6) -->
 
 </div><!-- end .page-wrap -->
 
@@ -2865,6 +5555,10 @@ Tracks RSVPs, allergies, generates a fridge-friendly dashboard.
     { id: 'chapter-0', num: 'Ch. 0', name: 'Before the<br>Cursor Blinked' },
     { id: 'chapter-1', num: 'Ch. 1', name: 'Your First<br>Conversation' },
     { id: 'chapter-2', num: 'Ch. 2', name: 'Context Is<br>Everything' },
+    { id: 'chapter-3', num: 'Ch. 3', name: 'The<br>Loop' },
+    { id: 'chapter-4', num: 'Ch. 4', name: 'Agents in<br>the Wild' },
+    { id: 'chapter-5', num: 'Ch. 5', name: 'When It<br>Gets It Wrong' },
+    { id: 'chapter-6', num: 'Ch. 6', name: 'What You<br>Actually Built' },
   ];
 
   const numEl = document.getElementById('nav-chapter-num');

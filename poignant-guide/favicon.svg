@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- body -->
+  <ellipse cx="14" cy="22" rx="12" ry="8" fill="#F5D77A" stroke="#C9922A" stroke-width="1.5"/>
+  <!-- head -->
+  <circle cx="22" cy="13" r="8" fill="#F5D77A" stroke="#C9922A" stroke-width="1.5"/>
+  <!-- bill -->
+  <path d="M 27 12 L 32 14 L 27 16 Z" fill="#E8A830" stroke="#C9922A" stroke-width="1"/>
+  <!-- eye -->
+  <circle cx="24" cy="11" r="1.8" fill="#C9922A"/>
+  <!-- eyebrow — slightly raised, classic Pip -->
+  <line x1="21" y1="7" x2="27" y2="8" stroke="#C9922A" stroke-width="1.5" stroke-linecap="round"/>
+</svg>
