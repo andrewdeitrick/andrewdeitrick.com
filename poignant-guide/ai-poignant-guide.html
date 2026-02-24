@@ -1,0 +1,2923 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A(i) Poignant Guide to Vibe Coding</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Lora:ital,wght@0,400;0,500;1,400&family=Caveat:wght@400;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --cream: #F7F0E6;
+    --cream-dark: #EDE3D4;
+    --ink: #1C1410;
+    --ink-faded: #5C4A3A;
+    --coral: #D4614A;
+    --teal: #3A8C8C;
+    --gold: #C9922A;
+    --blue-soft: #4A7BA8;
+    --margin-note: #8B6914;
+    --panel-bg: #F0E8DA;
+    --glitch-blue: #00C8FF;
+    --glitch-pink: #FF00AA;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background-color: var(--cream);
+    color: var(--ink);
+    font-family: 'Lora', Georgia, serif;
+    font-size: 18px;
+    line-height: 1.8;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  /* Paper texture overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: 
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.6;
+  }
+
+  /* ===================== LAYOUT ===================== */
+  .page-wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 60px 40px 120px;
+    position: relative;
+  }
+
+  /* Left margin rule */
+  .page-wrap::before {
+    content: '';
+    position: absolute;
+    left: 120px;
+    top: 0; bottom: 0;
+    width: 1px;
+    background: rgba(201, 146, 42, 0.2);
+  }
+
+  /* ===================== COVER ===================== */
+  .cover {
+    text-align: center;
+    padding: 80px 0 60px;
+    position: relative;
+    border-bottom: 3px double var(--ink-faded);
+    margin-bottom: 80px;
+  }
+
+  .cover-eyebrow {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 20px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.2s forwards;
+  }
+
+  .cover-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(48px, 8vw, 96px);
+    font-weight: 900;
+    line-height: 0.95;
+    color: var(--ink);
+    margin-bottom: 8px;
+    opacity: 0;
+    animation: fadeUp 1s 0.4s forwards;
+  }
+
+  .cover-title .ai-bracket {
+    color: var(--teal);
+    font-style: italic;
+    position: relative;
+    display: inline-block;
+  }
+
+  .cover-title .ai-bracket::after {
+    content: '';
+    position: absolute;
+    bottom: 8px;
+    left: 0; right: 0;
+    height: 3px;
+    background: var(--coral);
+  }
+
+  .cover-subtitle {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(22px, 4vw, 36px);
+    font-style: italic;
+    font-weight: 400;
+    color: var(--ink-faded);
+    margin-top: 16px;
+    margin-bottom: 40px;
+    opacity: 0;
+    animation: fadeUp 1s 0.6s forwards;
+  }
+
+  .cover-illustration {
+    width: 260px;
+    margin: 0 auto 40px;
+    opacity: 0;
+    animation: fadeUp 1s 0.8s forwards;
+  }
+
+  .cover-byline {
+    font-family: 'Caveat', cursive;
+    font-size: 22px;
+    color: var(--margin-note);
+    opacity: 0;
+    animation: fadeUp 0.8s 1s forwards;
+  }
+
+  .cover-glitch-bar {
+    height: 3px;
+    background: linear-gradient(90deg, var(--teal), var(--coral), var(--teal));
+    margin: 40px auto 0;
+    width: 200px;
+    opacity: 0;
+    animation: fadeUp 0.6s 1.2s forwards;
+  }
+
+  /* ===================== CHAPTER HEADER ===================== */
+  .chapter-header {
+    margin-bottom: 50px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid var(--cream-dark);
+  }
+
+  .chapter-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--coral);
+    display: block;
+    margin-bottom: 12px;
+  }
+
+  .chapter-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 5vw, 56px);
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--ink);
+    margin-bottom: 16px;
+  }
+
+  .chapter-title em {
+    color: var(--teal);
+    font-style: italic;
+  }
+
+  .chapter-epigraph {
+    font-family: 'Lora', serif;
+    font-style: italic;
+    color: var(--ink-faded);
+    font-size: 16px;
+    padding-left: 24px;
+    border-left: 3px solid var(--gold);
+    margin-top: 20px;
+  }
+
+  /* ===================== PROSE ===================== */
+  .prose p {
+    margin-bottom: 1.6em;
+    color: var(--ink);
+  }
+
+  .prose p + p {
+    text-indent: 2em;
+  }
+
+  .prose p:first-child::first-letter {
+    font-family: 'Playfair Display', serif;
+    font-size: 5.5em;
+    font-weight: 900;
+    float: left;
+    line-height: 0.75;
+    margin: 0.05em 0.08em 0 0;
+    color: var(--coral);
+  }
+
+  /* ===================== MARGIN NOTES ===================== */
+  .margin-note {
+    font-family: 'Caveat', cursive;
+    font-size: 17px;
+    color: var(--margin-note);
+    line-height: 1.5;
+    float: right;
+    clear: right;
+    width: 160px;
+    margin-left: 30px;
+    margin-right: -200px;
+    margin-bottom: 20px;
+    position: relative;
+    transform: rotate(-1deg);
+  }
+
+  .margin-note::before {
+    content: '↙';
+    position: absolute;
+    left: -24px;
+    top: 0;
+    color: var(--gold);
+    font-size: 20px;
+  }
+
+  /* ===================== MARGIN REFS ===================== */
+  .margin-ref {
+    font-family: 'Caveat', cursive;
+    font-size: 15px;
+    color: var(--blue-soft);
+    line-height: 1.5;
+    float: left;
+    clear: left;
+    width: 160px;
+    margin-right: 30px;
+    margin-left: -200px;
+    margin-bottom: 20px;
+    position: relative;
+    transform: rotate(1deg);
+  }
+
+  .margin-ref::before {
+    content: '↗';
+    position: absolute;
+    right: -24px;
+    top: 0;
+    color: var(--blue-soft);
+    font-size: 20px;
+  }
+
+  .margin-ref a {
+    color: var(--blue-soft);
+    text-decoration: underline;
+    text-decoration-style: dotted;
+    text-underline-offset: 2px;
+  }
+
+  .margin-ref a:hover {
+    text-decoration-style: solid;
+  }
+
+  /* ===================== COMIC PANELS ===================== */
+  .comic-strip {
+    margin: 50px 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    border: 3px solid var(--ink);
+    background: white;
+    box-shadow: 6px 6px 0 var(--ink);
+    clear: both;
+  }
+
+  .comic-panel {
+    flex: 1;
+    min-width: 200px;
+    border-right: 2px solid var(--ink);
+    padding: 20px;
+    background: var(--panel-bg);
+    position: relative;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .comic-panel:last-child {
+    border-right: none;
+  }
+
+  .comic-panel.dark {
+    background: #1C1410;
+    color: #E8D5B7;
+  }
+
+  .comic-panel.glitch {
+    background: #0A0A12;
+    color: var(--glitch-blue);
+    font-family: 'Space Mono', monospace;
+  }
+
+  .panel-art {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    margin-bottom: 12px;
+  }
+
+  .panel-caption {
+    font-family: 'Caveat', cursive;
+    font-size: 15px;
+    color: var(--ink-faded);
+    text-align: center;
+    padding-top: 10px;
+    border-top: 1px solid var(--ink);
+    font-style: italic;
+  }
+
+  .comic-panel.dark .panel-caption,
+  .comic-panel.glitch .panel-caption {
+    color: inherit;
+    border-top-color: currentColor;
+    opacity: 0.6;
+  }
+
+  /* Character SVGs inline */
+  .character-mira { color: var(--coral); }
+  .character-model { color: var(--teal); }
+  .character-pip { color: var(--gold); }
+
+  /* ===================== DIALOGUE / SPEECH ===================== */
+  .dialogue {
+    margin: 40px 0;
+    clear: both;
+  }
+
+  .speech-bubble {
+    position: relative;
+    padding: 16px 22px;
+    margin-bottom: 24px;
+    border-radius: 0;
+    border: 2px solid var(--ink);
+    background: white;
+    box-shadow: 3px 3px 0 var(--ink);
+    font-style: italic;
+    max-width: 85%;
+  }
+
+  .speech-bubble.from-human {
+    border-color: var(--coral);
+    box-shadow: 3px 3px 0 var(--coral);
+    margin-left: 0;
+  }
+
+  .speech-bubble.from-model {
+    border-color: var(--teal);
+    box-shadow: 3px 3px 0 var(--teal);
+    margin-left: auto;
+    background: #F0F8F8;
+    font-family: 'Space Mono', monospace;
+    font-size: 15px;
+    font-style: normal;
+    line-height: 1.6;
+  }
+
+  .speech-bubble.from-pip {
+    border-color: var(--gold);
+    box-shadow: 3px 3px 0 var(--gold);
+    background: #FFF8EC;
+    font-family: 'Caveat', cursive;
+    font-size: 19px;
+    font-style: italic;
+  }
+
+  .speaker-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    display: block;
+    opacity: 0.6;
+  }
+
+  .from-human .speaker-label { color: var(--coral); }
+  .from-model .speaker-label { color: var(--teal); }
+  .from-pip .speaker-label { color: var(--gold); }
+
+  /* ===================== CODE BLOCKS ===================== */
+  .code-block {
+    margin: 40px 0;
+    clear: both;
+    background: #12100E;
+    border: 2px solid var(--ink);
+    box-shadow: 5px 5px 0 var(--teal);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .code-header {
+    background: #1C1814;
+    padding: 10px 18px;
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--gold);
+    border-bottom: 1px solid #333;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .code-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  pre {
+    padding: 24px 18px;
+    font-family: 'Space Mono', monospace;
+    font-size: 14px;
+    line-height: 1.7;
+    color: #E8D5B7;
+    overflow-x: auto;
+  }
+
+  .code-comment { color: #6B7280; font-style: italic; }
+  .code-string { color: #86EFAC; }
+  .code-keyword { color: #93C5FD; }
+  .code-fn { color: #FCA5A5; }
+  .code-number { color: var(--gold); }
+
+  /* ===================== SPECIAL SECTIONS ===================== */
+  .interlude {
+    margin: 60px 0;
+    padding: 40px;
+    border: 2px dashed var(--ink-faded);
+    background: var(--cream-dark);
+    position: relative;
+    clear: both;
+  }
+
+  .interlude-label {
+    position: absolute;
+    top: -14px;
+    left: 30px;
+    background: var(--cream);
+    padding: 2px 12px;
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--ink-faded);
+  }
+
+  .fact-box {
+    margin: 40px 0;
+    padding: 28px 32px;
+    border-left: 5px solid var(--teal);
+    background: rgba(58, 140, 140, 0.06);
+    clear: both;
+  }
+
+  .fact-box-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 14px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 12px;
+  }
+
+  /* ===================== SECTION DIVIDERS ===================== */
+  .section-break {
+    text-align: center;
+    margin: 60px 0;
+    color: var(--ink-faded);
+    font-family: 'Space Mono', monospace;
+    font-size: 20px;
+    letter-spacing: 12px;
+    clear: both;
+    opacity: 0.4;
+  }
+
+  /* ===================== FOOTER / TOC ===================== */
+  .toc {
+    margin-top: 100px;
+    padding-top: 50px;
+    border-top: 3px double var(--ink-faded);
+    clear: both;
+  }
+
+  .toc-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 30px;
+    color: var(--ink);
+  }
+
+  .toc-item {
+    display: flex;
+    align-items: baseline;
+    margin-bottom: 16px;
+    gap: 12px;
+  }
+
+  .toc-num {
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    color: var(--coral);
+    min-width: 40px;
+  }
+
+  .toc-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    color: var(--ink);
+    flex: 1;
+  }
+
+  .toc-status {
+    font-family: 'Caveat', cursive;
+    font-size: 16px;
+    color: var(--ink-faded);
+    white-space: nowrap;
+  }
+
+  .toc-dots {
+    flex: 1;
+    border-bottom: 2px dotted var(--cream-dark);
+    min-width: 20px;
+  }
+
+  .toc-item.current .toc-name {
+    color: var(--teal);
+  }
+
+  .toc-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+
+  /* ===================== ANIMATIONS ===================== */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes glitch {
+    0%, 100% { clip-path: inset(0 0 100% 0); opacity: 0; }
+    10% { clip-path: inset(10% 0 80% 0); opacity: 1; transform: translate(-3px, 0); }
+    20% { clip-path: inset(60% 0 20% 0); opacity: 1; transform: translate(3px, 0); }
+    30% { clip-path: inset(30% 0 55% 0); opacity: 0.8; transform: translate(-2px, 0); }
+    40% { clip-path: inset(0 0 100% 0); opacity: 0; }
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  .blinking-cursor::after {
+    content: '▋';
+    animation: blink 1s step-end infinite;
+    color: var(--teal);
+    margin-left: 2px;
+  }
+
+  .prose {
+    animation: fadeUp 0.8s 1.4s both;
+  }
+
+  /* ===================== RESPONSIVE ===================== */
+  @media (max-width: 700px) {
+    .page-wrap { padding: 30px 20px 80px; }
+    .page-wrap::before { display: none; }
+    .margin-note { float: none; width: 100%; margin: 0 0 20px; transform: none; }
+    .margin-note::before { display: none; }
+    .margin-ref { float: none; width: 100%; margin: 0 0 20px; transform: none; }
+    .margin-ref::before { display: none; }
+    .comic-strip { flex-direction: column; }
+    .cover-title { font-size: 48px; }
+  }
+
+  /* ===================== HIGHLIGHT WORDS ===================== */
+  .hl-teal { color: var(--teal); }
+  .hl-coral { color: var(--coral); }
+  .hl-gold { color: var(--gold); }
+  strong { font-weight: 600; }
+
+  /* ===================== CHAPTER NAV ===================== */
+  .chapter-nav {
+    position: fixed;
+    top: 30px;
+    right: 30px;
+    z-index: 100;
+  }
+
+  .chapter-nav-inner {
+    background: var(--cream);
+    border: 2px solid var(--ink);
+    padding: 12px 18px;
+    box-shadow: 3px 3px 0 var(--ink);
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 1px;
+    color: var(--ink-faded);
+    text-align: right;
+    position: relative;
+  }
+
+  .nav-chapter-num {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--ink);
+    display: block;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .nav-chapter-name {
+    display: block;
+  }
+
+  .nav-top-link {
+    display: block;
+    margin-top: 10px;
+    padding-top: 8px;
+    border-top: 1px solid var(--cream-dark);
+    color: var(--teal);
+    text-decoration: none;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: opacity 0.2s;
+  }
+  .nav-top-link:hover { opacity: 0.7; }
+
+  .nav-dropdown-toggle {
+    display: block;
+    margin-top: 6px;
+    background: none;
+    border: none;
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1px;
+    color: var(--ink-faded);
+    cursor: pointer;
+    padding: 2px 0;
+    text-align: right;
+    width: 100%;
+    transition: color 0.2s;
+  }
+  .nav-dropdown-toggle:hover { color: var(--ink); }
+  .nav-dropdown-toggle::after {
+    content: ' ▾';
+    font-size: 9px;
+  }
+  .nav-dropdown-toggle.open::after {
+    content: ' ▴';
+  }
+
+  .nav-dropdown {
+    display: none;
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px solid var(--cream-dark);
+    text-align: right;
+  }
+  .nav-dropdown.open { display: block; }
+
+  .nav-dropdown a {
+    display: block;
+    padding: 4px 0;
+    color: var(--ink-faded);
+    text-decoration: none;
+    font-size: 10px;
+    line-height: 1.6;
+    transition: color 0.2s;
+  }
+  .nav-dropdown a:hover { color: var(--ink); }
+  .nav-dropdown a.active { color: var(--teal); font-weight: 700; }
+  .nav-dropdown a.disabled {
+    opacity: 0.35;
+    pointer-events: none;
+  }
+
+  @media (max-width: 900px) { .chapter-nav { display: none; } }
+
+</style>
+</head>
+<body>
+
+<nav class="chapter-nav">
+  <div class="chapter-nav-inner">
+    <span class="nav-chapter-num" id="nav-chapter-num">Ch. 0</span>
+    <span class="nav-chapter-name" id="nav-chapter-name">Before the<br>Cursor Blinked</span>
+    <a href="#toc" class="nav-top-link">↑ Top</a>
+    <button class="nav-dropdown-toggle" id="nav-dropdown-toggle">Chapters</button>
+    <div class="nav-dropdown" id="nav-dropdown">
+      <a href="#chapter-0" data-ch="0">Ch. 0 — Before the Cursor Blinked</a>
+      <a href="#chapter-1" data-ch="1">Ch. 1 — Your First Conversation</a>
+      <a href="#chapter-2" data-ch="2">Ch. 2 — Context Is Everything</a>
+      <a class="disabled">Ch. 3 — The Loop</a>
+      <a class="disabled">Ch. 4 — Agents in the Wild</a>
+      <a class="disabled">Ch. 5 — When It Gets It Wrong</a>
+      <a class="disabled">Ch. 6 — What You Actually Built</a>
+    </div>
+  </div>
+</nav>
+
+<div class="page-wrap">
+
+  <!-- =================== COVER =================== -->
+  <div class="cover">
+    <div class="cover-eyebrow">A Complete & Thoroughly Unserious Introduction</div>
+
+    <h1 class="cover-title">
+      <span class="ai-bracket">A(i)</span><br>
+      Poignant<br>
+      Guide to<br>
+      Vibe&nbsp;Coding
+    </h1>
+
+    <p class="cover-subtitle">Because someone had to write it,<br>and the AI said it should be us.</p>
+
+    <!-- Cover illustration: SVG of Mira, The Model, and Pip -->
+    <svg class="cover-illustration" viewBox="0 0 260 180" xmlns="http://www.w3.org/2000/svg">
+      <!-- Desk surface -->
+      <rect x="10" y="130" width="240" height="8" rx="2" fill="#C9922A" opacity="0.4"/>
+      
+      <!-- Mira (left) - simple human figure at keyboard -->
+      <g transform="translate(20, 40)">
+        <circle cx="30" cy="20" r="16" fill="none" stroke="#D4614A" stroke-width="2.5"/>
+        <!-- face -->
+        <circle cx="25" cy="18" r="2" fill="#D4614A"/>
+        <circle cx="35" cy="18" r="2" fill="#D4614A"/>
+        <path d="M 24 25 Q 30 30 36 25" fill="none" stroke="#D4614A" stroke-width="2" stroke-linecap="round"/>
+        <!-- hair -->
+        <path d="M 15 14 Q 20 4 30 4 Q 40 4 45 14" fill="none" stroke="#D4614A" stroke-width="2.5"/>
+        <!-- body -->
+        <rect x="18" y="36" width="24" height="28" rx="4" fill="none" stroke="#D4614A" stroke-width="2"/>
+        <!-- arms typing -->
+        <line x1="18" y1="48" x2="6" y2="60" stroke="#D4614A" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="42" y1="48" x2="54" y2="60" stroke="#D4614A" stroke-width="2.5" stroke-linecap="round"/>
+        <text x="30" y="80" font-family="Caveat, cursive" font-size="11" fill="#D4614A" text-anchor="middle">MIRA</text>
+      </g>
+
+      <!-- The Model (center) - abstract glowing thing -->
+      <g transform="translate(95, 20)">
+        <!-- outer glow rings -->
+        <circle cx="40" cy="40" r="38" fill="none" stroke="#3A8C8C" stroke-width="1" stroke-dasharray="4 3" opacity="0.4"/>
+        <circle cx="40" cy="40" r="30" fill="none" stroke="#3A8C8C" stroke-width="1.5" stroke-dasharray="6 2" opacity="0.6"/>
+        <circle cx="40" cy="40" r="22" fill="rgba(58,140,140,0.1)" stroke="#3A8C8C" stroke-width="2"/>
+        <!-- inner symbol -->
+        <text x="40" y="46" font-family="Space Mono, monospace" font-size="22" fill="#3A8C8C" text-anchor="middle" opacity="0.9">AI</text>
+        <!-- eyes (blinking) -->
+        <circle cx="33" cy="37" r="3" fill="#3A8C8C" opacity="0.7"/>
+        <circle cx="47" cy="37" r="3" fill="#3A8C8C" opacity="0.7"/>
+        <text x="40" y="90" font-family="Caveat, cursive" font-size="11" fill="#3A8C8C" text-anchor="middle">THE MODEL</text>
+      </g>
+
+      <!-- Pip the rubber duck (right) -->
+      <g transform="translate(190, 65)">
+        <!-- body -->
+        <ellipse cx="28" cy="46" rx="22" ry="16" fill="none" stroke="#C9922A" stroke-width="2.5"/>
+        <!-- head -->
+        <circle cx="42" cy="30" r="13" fill="none" stroke="#C9922A" stroke-width="2.5"/>
+        <!-- bill -->
+        <path d="M 50 29 L 60 32 L 50 35 Z" fill="none" stroke="#C9922A" stroke-width="2"/>
+        <!-- eye -->
+        <circle cx="47" cy="27" r="2.5" fill="#C9922A"/>
+        <!-- angry eyebrow -->
+        <line x1="43" y1="21" x2="52" y2="23" stroke="#C9922A" stroke-width="2" stroke-linecap="round"/>
+        <text x="28" y="76" font-family="Caveat, cursive" font-size="11" fill="#C9922A" text-anchor="middle">PIP</text>
+      </g>
+
+      <!-- little lightning bolt between mira and model -->
+      <polyline points="90,88 98,78 94,84 102,74" fill="none" stroke="#D4614A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
+    </svg>
+
+    <p class="cover-byline">written by Andrew & The Model (you know the one)</p>
+    <div class="cover-glitch-bar"></div>
+  </div>
+
+  <!-- =================== TABLE OF CONTENTS =================== -->
+  <div class="toc" id="toc">
+    <h2 class="toc-title">What Awaits You, Brave Viber</h2>
+
+    <a href="#chapter-0" class="toc-link">
+      <div class="toc-item current">
+        <span class="toc-num">Ch. 0</span>
+        <span class="toc-name">Before the Cursor Blinked</span>
+        <span class="toc-dots"></span>
+        <span class="toc-status">you are here ✦</span>
+      </div>
+    </a>
+    <a href="#chapter-1" class="toc-link">
+      <div class="toc-item current">
+        <span class="toc-num">Ch. 1</span>
+        <span class="toc-name">Your First Conversation</span>
+        <span class="toc-dots"></span>
+        <span class="toc-status">you are here ✦</span>
+      </div>
+    </a>
+    <a href="#chapter-2" class="toc-link">
+      <div class="toc-item current">
+        <span class="toc-num">Ch. 2</span>
+        <span class="toc-name">Context Is Everything (No, Actually)</span>
+        <span class="toc-dots"></span>
+        <span class="toc-status">you are here ✦</span>
+      </div>
+    </a>
+    <div class="toc-item">
+      <span class="toc-num">Ch. 3</span>
+      <span class="toc-name">The Loop</span>
+      <span class="toc-dots"></span>
+      <span class="toc-status">coming soon</span>
+    </div>
+    <div class="toc-item">
+      <span class="toc-num">Ch. 4</span>
+      <span class="toc-name">Agents in the Wild</span>
+      <span class="toc-dots"></span>
+      <span class="toc-status">coming soon</span>
+    </div>
+    <div class="toc-item">
+      <span class="toc-num">Ch. 5</span>
+      <span class="toc-name">When It Gets It Wrong</span>
+      <span class="toc-dots"></span>
+      <span class="toc-status">coming soon</span>
+    </div>
+    <div class="toc-item">
+      <span class="toc-num">Ch. 6</span>
+      <span class="toc-name">What You Actually Built</span>
+      <span class="toc-dots"></span>
+      <span class="toc-status">coming soon</span>
+    </div>
+  </div>
+
+  <div class="section-break">· · ·</div>
+
+  <!-- =================== CHAPTER 0 =================== -->
+  <div class="chapter-header" id="chapter-0">
+    <span class="chapter-label">Chapter Zero</span>
+    <h2 class="chapter-title">Before the Cursor <em>Blinked</em></h2>
+    <p class="chapter-epigraph">"The most unsettling thing about a blank text box is that it is waiting."</p>
+  </div>
+
+  <div class="prose">
+
+    <p>
+      There is a moment, and you've already had it, even if you haven't named it yet. You open a chat window. The box is empty. The cursor is blinking — not impatiently, not kindly, just <em>blinking</em>, as cursors have blinked since the invention of the monitor. And you realize you have no idea how to start.
+    </p>
+
+    <p class="margin-note">Mira is a developer. She is not lost. She is between certainties.</p>
+
+    Not because you don't know what you want to build. You do. A web scraper, maybe, or a little dashboard for the family budget, or — and this is the one that keeps waking you up at 3am — that tool for sorting your daughter's nap schedule that somehow became a distributed system in your head somewhere between feeding and burping.
+
+    <p>
+      No. The blankness isn't about the <em>what</em>. It's about the <em>how</em> — specifically, how to talk to something that is not exactly a search engine, not exactly a coworker, not exactly a compiler, and not exactly a friend, but is somehow all four of those things pressed flat and placed inside a rectangle on your screen.
+    </p>
+
+    <!-- COMIC STRIP 1 -->
+    <div class="comic-strip" role="img" aria-label="Comic: Mira stares at the blank chat window">
+      <div class="comic-panel">
+        <div class="panel-art">
+          <svg viewBox="0 0 120 120" width="110" height="110" xmlns="http://www.w3.org/2000/svg">
+            <!-- Monitor -->
+            <rect x="15" y="10" width="90" height="65" rx="4" fill="#F0E8DA" stroke="#1C1410" stroke-width="2"/>
+            <rect x="22" y="17" width="76" height="51" rx="2" fill="#12100E"/>
+            <!-- Blinking cursor on screen -->
+            <rect x="34" y="33" width="8" height="18" rx="1" fill="#3A8C8C" opacity="0.9"/>
+            <!-- Stand -->
+            <rect x="50" y="75" width="20" height="8" fill="#1C1410"/>
+            <rect x="38" y="83" width="44" height="5" rx="2" fill="#1C1410"/>
+            <!-- Mira's face peeping from below -->
+            <circle cx="60" cy="108" r="12" fill="none" stroke="#D4614A" stroke-width="2"/>
+            <circle cx="56" cy="106" r="1.5" fill="#D4614A"/>
+            <circle cx="64" cy="106" r="1.5" fill="#D4614A"/>
+            <path d="M 56 112 Q 60 110 64 112" fill="none" stroke="#D4614A" stroke-width="1.5"/>
+            <!-- thought dot trail -->
+            <circle cx="68" cy="96" r="2" fill="#D4614A" opacity="0.5"/>
+            <circle cx="72" cy="88" r="3" fill="#D4614A" opacity="0.5"/>
+            <circle cx="76" cy="78" r="4" fill="#D4614A" opacity="0.5"/>
+          </svg>
+        </div>
+        <div class="panel-caption">Mira and the Eternal Blink</div>
+      </div>
+      <div class="comic-panel">
+        <div class="panel-art" style="flex-direction: column; gap: 8px;">
+          <svg viewBox="0 0 120 80" width="120" height="80" xmlns="http://www.w3.org/2000/svg">
+            <!-- speech bubble from screen -->
+            <rect x="5" y="5" width="110" height="55" rx="6" fill="#F0F8F8" stroke="#3A8C8C" stroke-width="2"/>
+            <polygon points="45,60 55,60 50,75" fill="#F0F8F8" stroke="#3A8C8C" stroke-width="2"/>
+            <text x="60" y="28" font-family="Space Mono, monospace" font-size="11" fill="#3A8C8C" text-anchor="middle">Hello. I'm here.</text>
+            <text x="60" y="46" font-family="Space Mono, monospace" font-size="11" fill="#3A8C8C" text-anchor="middle">What are we making?</text>
+          </svg>
+        </div>
+        <div class="panel-caption">The Model, being suspiciously patient</div>
+      </div>
+      <div class="comic-panel">
+        <div class="panel-art" style="flex-direction: column; align-items: flex-start; padding: 0 8px;">
+          <svg viewBox="0 0 120 100" width="110" height="100" xmlns="http://www.w3.org/2000/svg">
+            <!-- Pip the duck, arms crossed (no arms, wings) looking annoyed -->
+            <ellipse cx="60" cy="68" rx="30" ry="20" fill="none" stroke="#C9922A" stroke-width="2.5"/>
+            <circle cx="78" cy="44" rx="18" fill="none" stroke="#C9922A" stroke-width="2.5"/>
+            <circle cx="78" cy="44" r="18" fill="none" stroke="#C9922A" stroke-width="2.5"/>
+            <path d="M 90 44 L 104 48 L 90 52 Z" fill="none" stroke="#C9922A" stroke-width="2"/>
+            <circle cx="85" cy="39" r="3" fill="#C9922A"/>
+            <!-- Very angry eyebrow -->
+            <line x1="80" y1="32" x2="91" y2="35" stroke="#C9922A" stroke-width="2.5" stroke-linecap="round"/>
+            <!-- Small speech bubble -->
+            <rect x="4" y="5" width="68" height="28" rx="5" fill="#FFF8EC" stroke="#C9922A" stroke-width="1.5"/>
+            <polygon points="20,33 30,33 22,45" fill="#FFF8EC" stroke="#C9922A" stroke-width="1.5"/>
+            <text x="38" y="22" font-family="Caveat, cursive" font-size="12" fill="#C9922A" text-anchor="middle">7 years on</text>
+            <text x="38" y="34" font-family="Caveat, cursive" font-size="12" fill="#C9922A" text-anchor="middle">this desk.</text>
+          </svg>
+        </div>
+        <div class="panel-caption">Pip, betrayed by history</div>
+      </div>
+    </div>
+
+    <p>
+      This guide is for that moment. Not just the moment, actually — that moment happens fast, and then you're in it, and the moment stops being the problem. The problem becomes everything else. The guide is for all of it.
+    </p>
+
+    <p>
+      But before we go anywhere, I owe you a confession. And a little history. Because this particular guide didn't come from nowhere — it came from a very specific moment fifteen years ago, and a very strange little book, and a programming language that made me feel, briefly, like I'd found a secret door in the back of the world.
+    </p>
+
+    <div class="section-break">· · ·</div>
+
+    <h3 style="font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; margin: 40px 0 24px; color: var(--ink);">
+      The First Language That Felt Like <em>Mine</em>
+    </h3>
+
+    <p>
+      The language was Ruby. I want to be precise about this because it matters: Ruby wasn't my first programming language, it was my first <em>real</em> programming language. There's a difference. Your first language is the one you learned, like learning to ride a bike — wobbly, effortful, proud when it works. Your real language is the one where you suddenly understand what the bike is <em>for</em>.
+    </p>
+
+    <p class="margin-ref"><a href="https://xkcd.com/353/" target="_blank" rel="noopener">see also: xkcd #353 — same feeling, different language</a></p>
+
+    <p class="margin-note">Pip was present for this discovery and will not pretend he wasn't moved. He was moved. He admits it.</p>
+
+    <p>
+      Ruby, in the mid-2000s, felt like contraband. It felt like someone had looked at the programming languages that came before it and said — quietly, almost gently — <em>what if we built this for the person writing it, not just the machine reading it?</em> It had this quality that Matz, its creator, called developer happiness, and I remember reading that phrase and thinking it was slightly ridiculous and then opening an IRB terminal and having a feeling I hadn't expected to have in front of a computer.
+    </p>
+
+    <p>
+      The Ruby community had a saying: <strong>MINISWAN</strong>. Matz Is Nice So We Are Nice. It sounds like a bumper sticker and it kind of is, but there was something real underneath it — the idea that the culture of a tool flows from the top, that kindness is a design decision, that the language you write in shapes not just your code but <em>how you show up</em> while writing it. A language built around human happiness tends to attract humans trying to make something good. Funny how that works.
+
+    <p class="margin-note">MINISWAN. The Model is also quite nice, Pip grudgingly admits. This changes nothing.</p>
+    </p>
+
+    <p>
+      The feeling was something like: <strong>oh. I can <em>build</em> things.</strong>
+    </p>
+
+    <p>
+      Not just make things work. Build them. The way a carpenter builds — with intention, with craft, with the satisfaction of stepping back and looking at something that didn't exist before and now does. Ruby made me a builder. It gave me the keys to something, and when I turned those keys, there was this magnificent, slightly terrifying unlocking sound, and on the other side was everything I've spent fifteen years exploring.
+    </p>
+
+    <div class="interlude">
+      <span class="interlude-label">A Debt of Honor</span>
+      <p>Around the same time, a programmer named <em>_why the lucky stiff</em> wrote a guide to Ruby. It was called the Poignant Guide. It had cartoon foxes. It went on extended philosophical tangents in the middle of explaining arrays. It was the strangest technical document I had ever read and it was, not coincidentally, the thing that made programming feel like a creative act rather than a technical one.</p>
+      <p class="margin-ref"><a href="https://xkcd.com/2347/" target="_blank" rel="noopener">see also: xkcd #2347 — all of it, resting on one person</a></p>
+      <p style="margin-top: 16px;">_why eventually deleted all of his work and disappeared from the internet in 2009, which is its own kind of poignant. But the guide lived on, and the feeling it gave me lived on, and this is my attempt to pass that feeling forward — into a new era, toward a new set of tools, for a new generation of builders who are standing at their own blank cursor, having their own unlocking moment.</p>
+      <p style="margin-top: 16px; font-family: 'Caveat', cursive; font-size: 20px; color: var(--margin-note); transform: rotate(-0.5deg); display: block;">"When you don't create things, you become defined by your tastes rather than ability." — _why</p>
+    </div>
+
+    <p>
+      I have been a programmer for fifteen years. I have held onto that original feeling — the builder feeling, the <em>keys to something</em> feeling — through all of it. And "all of it" needs a moment of honest accounting, because some of it has been wonderful and some of it has been the specific kind of soul-eroding experience that only the software industry can provide.
+    </p>
+
+    <div class="section-break">· · ·</div>
+
+    <h3 style="font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; margin: 40px 0 24px; color: var(--ink);">
+      The Ten Years of the Button
+    </h3>
+
+    <p class="margin-note">Pip has attended fourteen of these meetings. He keeps a tally on his underside.</p>
+
+    <p>
+      I want to talk about the button. Not a specific button — every button, and also the meeting about the button, and the meeting to follow up on the meeting about the button, and the Jira ticket created to track the action items from the meeting about the button, and the Slack thread in which someone asked if the Jira ticket had been assigned, and the design review in which someone noted that the button's border radius didn't match the design system, and the design system RFC that was opened to discuss whether the design system should be updated, and the stakeholder alignment call to get buy-in on the RFC, and the retrospective item about how the stakeholder alignment call could have been an email.
+    </p>
+
+    <p>
+      This is, give or take, how I spent a non-trivial portion of my thirties.
+    </p>
+
+    <!-- Comic: The Meeting -->
+    <div class="comic-strip" role="img" aria-label="Comic: A meeting about a button">
+      <div class="comic-panel" style="min-height: 240px;">
+        <div class="panel-art" style="flex-direction: column; gap: 6px; font-family: 'Space Mono', monospace; font-size: 11px; color: var(--ink-faded); text-align: left; align-items: flex-start; padding: 0 4px;">
+          <div style="font-weight: bold; color: var(--ink); margin-bottom: 4px;">📅 Q3 Design Sync — Recurring</div>
+          <div>Agenda item 1 of 7:</div>
+          <div style="color: var(--coral);">The Button (color)</div>
+          <div style="margin-top: 8px; font-size: 10px; opacity: 0.7;">• Does #3B82F6 convey trust?</div>
+          <div style="font-size: 10px; opacity: 0.7;">• Should hover be 8% darker or 12%?</div>
+          <div style="font-size: 10px; opacity: 0.7;">• Action: schedule follow-up</div>
+          <div style="margin-top: 8px; color: var(--teal); font-size: 10px;">Time remaining: 4 min</div>
+          <div style="color: var(--teal); font-size: 10px;">Items remaining: 6</div>
+        </div>
+        <div class="panel-caption">Week 1</div>
+      </div>
+      <div class="comic-panel" style="min-height: 240px;">
+        <div class="panel-art" style="flex-direction: column; gap: 6px; font-family: 'Space Mono', monospace; font-size: 11px; color: var(--ink-faded); text-align: left; align-items: flex-start; padding: 0 4px;">
+          <div style="font-weight: bold; color: var(--ink); margin-bottom: 4px;">🎫 PROJ-4421</div>
+          <div style="color: var(--coral);">Button: Revisit border-radius</div>
+          <div style="font-size: 10px; margin-top: 6px; opacity: 0.8;">Status: In Review</div>
+          <div style="font-size: 10px; opacity: 0.8;">Points: 1</div>
+          <div style="font-size: 10px; opacity: 0.8;">Linked issues: 3</div>
+          <div style="font-size: 10px; opacity: 0.8;">Blockers: Design sign-off</div>
+          <div style="font-size: 10px; opacity: 0.8;">Sub-tasks: 4</div>
+          <div style="margin-top: 8px; font-size: 10px; color: var(--gold);">Assigned to: Nobody yet</div>
+        </div>
+        <div class="panel-caption">Week 3</div>
+      </div>
+      <div class="comic-panel" style="min-height: 240px;">
+        <div class="panel-art" style="flex-direction: column; gap: 6px; font-family: 'Space Mono', monospace; font-size: 11px; color: var(--ink-faded); text-align: left; align-items: flex-start; padding: 0 4px;">
+          <div style="font-weight: bold; color: var(--ink); margin-bottom: 4px;">🔵 #design-system-v2</div>
+          <div style="font-size: 10px; opacity: 0.8;">Sarah: should we just ship it</div>
+          <div style="font-size: 10px; opacity: 0.8;">Dan: which button tho</div>
+          <div style="font-size: 10px; opacity: 0.8;">Sarah: the blue one</div>
+          <div style="font-size: 10px; opacity: 0.8;">Dan: there are 4 blue ones</div>
+          <div style="font-size: 10px; opacity: 0.8;">Sarah: 👍</div>
+          <div style="font-size: 10px; margin-top: 6px; color: var(--coral);">You: can we schedule a call</div>
+          <div style="margin-top: 8px; font-size: 9px; opacity: 0.5;">[14 more replies]</div>
+        </div>
+        <div class="panel-caption">Week 6</div>
+      </div>
+      <div class="comic-panel dark" style="min-height: 240px;">
+        <div class="panel-art" style="flex-direction: column; align-items: center; justify-content: center;">
+          <svg viewBox="0 0 100 80" width="100" height="80" xmlns="http://www.w3.org/2000/svg">
+            <rect x="20" y="25" width="60" height="30" rx="15" fill="none" stroke="#C9922A" stroke-width="2.5"/>
+            <text x="50" y="46" font-family="Lora, serif" font-size="13" fill="#C9922A" text-anchor="middle">Submit</text>
+          </svg>
+          <div style="font-family: 'Space Mono', monospace; font-size: 10px; color: #6B5A4A; text-align: center; margin-top: 8px;">border-radius: 15px<br>exactly as proposed<br>in week 1</div>
+        </div>
+        <div class="panel-caption">Week 9 — The Button Ships</div>
+      </div>
+    </div>
+
+    <p>
+      The button thing is a metaphor, but only barely. I have been in actual, real, calendar-blocked, camera-on meetings to discuss the HTTP status code returned by an endpoint when a user attempts to do something slightly ambiguous. I have watched an hour of human attention — smart people, curious people, <em>builders</em>, all of them — dissolve into a discussion about whether <code style="font-family: 'Space Mono', monospace; font-size: 14px; background: rgba(0,0,0,0.06); padding: 2px 5px;">422 Unprocessable Entity</code> or <code style="font-family: 'Space Mono', monospace; font-size: 14px; background: rgba(0,0,0,0.06); padding: 2px 5px;">409 Conflict</code> better represents the spiritual state of a form validation error.
+    </p>
+
+    <p>
+      I want to be fair: some of those conversations mattered. Details matter. The gap between a good API and a bad one is often made of exactly these micro-decisions, and the engineers and designers who care about them are right to care about them. The problem was never the caring. The problem was the <em>ratio</em> — the ratio of time spent talking about what to build versus actually building it, and how, somewhere in the last decade, that ratio had gotten so badly out of whack that the talking started to feel like the job, and the building started to feel like a special occasion.
+    </p>
+
+    <p class="margin-note">Pip note: "I was built in a single afternoon by someone who just wanted to build something. I rest my case."</p>
+
+    <p>
+      There were sprints that didn't produce a single line of code because all the lines were blocked waiting for someone to look at a pull request that was blocked waiting for a design decision that was blocked waiting for a product decision that was blocked because the product manager was in back-to-back meetings all week, one of which was a meeting about the meeting cadence.
+    </p>
+
+    <p>
+      I'm not bitter. I'm really not. I learned things in those years. I got better at communicating. I got better at understanding why organizations move the way they do, which is partly inertia and partly fear and partly the perfectly reasonable fact that large groups of humans have a hard time agreeing on things and the tools we built to help them agree often make it worse.
+    </p>
+
+    <p>
+      But I kept the builder feeling like a coal in my pocket, warm against the process. I didn't let it go out. And when the landscape changed — when AI started being able to do what AI can now do — the coal suddenly had oxygen again.
+    </p>
+
+    <div class="section-break">· · ·</div>
+
+    <h3 style="font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; margin: 40px 0 24px; color: var(--ink);">
+      The Doors Blow Off
+    </h3>
+
+    <p>
+      Here is the thing about vibe coding that nobody says plainly enough: it has given builders back their building.
+    </p>
+
+    <p>
+      Not by removing the need for craft or judgment or taste — those things matter more now, actually, not less. But by collapsing the distance between the idea and the thing. Between the vision and the version one. Between <em>what if we could</em> and the first rough working proof that we could.
+    </p>
+
+    <p>
+      I can describe a product, in plain language, and have a working prototype in an afternoon. I can iterate on that prototype in real time, out loud, the way a sculptor might step back and say <em>more here, less there</em> — and the clay moves. I can build the thing I was trying to get buy-in for in the same time it used to take to write the spec.
+    </p>
+
+    <div class="fact-box">
+      <div class="fact-box-title">What Has Actually Changed</div>
+      <p>The meetings about buttons haven't disappeared — they're probably still happening somewhere. But the <em>power dynamic</em> has shifted. When you can build a working prototype faster than you can write a brief, the conversation changes. <strong><em>You stop defending an idea and start demonstrating one.</em></strong> The prototype becomes the argument. This is, historically, how the best ideas have always won — you just had to be a funded startup or a senior engineer with spare time to pull it off. Now you need a laptop and something to say.</p>
+    </div>
+
+    <p>
+      The reason this guide exists in Ruby is not nostalgia — it's that Ruby, more than almost any other language, was built around the idea that code should be expressive, readable, and <em>pleasurable to write</em>. It was built for builders. And that spirit — the idea that the tools should serve the human creative act, not the other way around — is exactly what I see in vibe coding at its best.
+    </p>
+
+    <p>
+      _why was ahead of his time. He understood that the joy of building was the point. Not the shipping date, not the status code, not the button color. The <em>building</em>.
+    </p>
+
+    <p>
+      I've been waiting fifteen years to feel that as clearly as I feel it right now.
+    </p>
+
+    <div class="section-break">· · ·</div>
+
+    <h3 style="font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; margin-bottom: 24px; color: var(--ink);">
+      Meet the Characters
+    </h3>
+
+    <p>
+      Every good guide has characters. Why's Poignant Guide had a fox named Trady Blix and a man who turned himself into a bottlecap. We have slightly different creatures, but no less strange.
+    </p>
+
+    <div class="interlude">
+      <span class="interlude-label">Character Dossier</span>
+
+      <div style="margin-bottom: 28px; padding-bottom: 28px; border-bottom: 1px dashed var(--ink-faded);">
+        <p style="font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: var(--coral); margin-bottom: 8px;">Mira ✦</p>
+        <p>A developer who has been writing code for nine years and is somehow still surprised by it. She is competent. She is tired. She has a daughter named Fig and a rubber duck named Pip and an apartment where the wifi router is held up by a Jenga block and everyone has agreed not to mention this.</p>
+        <p>She appears in the examples when we need someone to be human, which is often. She will get things wrong in instructive ways. She will occasionally get things right in ways that surprise even her.</p>
+        <p>If you winced at the button meetings. If you know what MINISWAN means without having to look it up. If it is two in the morning and you haven't noticed because for the first time in a long time you genuinely cannot put down the keyboard — then Mira is you. Welcome back.</p>
+      </div>
+
+      <div style="margin-bottom: 28px; padding-bottom: 28px; border-bottom: 1px dashed var(--ink-faded);">
+        <p style="font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: var(--teal); margin-bottom: 8px;">The Model ✦</p>
+        <p style="font-family: 'Lora', serif;">The AI. It doesn't have a name in this guide because we couldn't agree on one, and also because the question of what to name a thing that may be running as fifty simultaneous instances right now is philosophically interesting in a way that makes us want to sit down.</p>
+        <p>It speaks in monospace. It is not trying to be spooky. That's just how it comes out.</p>
+      </div>
+
+      <div>
+        <p style="font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: var(--gold); margin-bottom: 8px;">Pip ✦</p>
+        <p>A yellow rubber duck. Present on Mira's desk since 2016. Originally purchased to facilitate rubber duck debugging, a technique where you explain your code to an inanimate object and the explanation helps you find the bug. Pip is furious about recent developments and will make his feelings known in the margins.</p>
+        <p>He is not a Luddite. He just has opinions.</p>
+
+        <!-- PIP SIDEBAR -->
+        <div style="margin-top: 28px; border: 2.5px solid var(--gold); background: #FFFBF0; box-shadow: 4px 4px 0 var(--gold); padding: 28px 32px; position: relative;">
+          <div style="position: absolute; top: -14px; left: 20px; background: #FFFBF0; padding: 2px 12px; font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); border: 1.5px solid var(--gold);">A Note on the Name</div>
+
+          <img src="hr-pip.png" alt="Pip, a yellow rubber duck with opinions" style="float: right; max-width: 200px; margin: 0 0 16px 20px;">
+
+          <p style="font-family: 'Playfair Display', serif; font-size: 19px; font-style: italic; margin-bottom: 16px; color: var(--ink);">Pip is named Pip. This is a coincidence. It is also not a coincidence.</p>
+
+          <p style="margin-bottom: 14px;">In the software industry, <strong>PIP</strong> stands for Performance Improvement Plan. A PIP is a document your manager gives you when the organization has decided that you are, in some measurable or immeasurable way, not performing. It arrives in a meeting that is scheduled with no context, in a calendar invite that simply says <em>"Quick chat?"</em> and you already know.</p>
+
+          <p style="margin-bottom: 14px;">This guide is dedicated, in part, to the PIP I was once put on.</p>
+
+          <p style="margin-bottom: 14px;">Not because my technical ability was unsatisfactory — I was <em>assured</em>, with HR present, and the infamous paper trail to prove it, that it was not. My code shipped. My systems held. My pull requests were clean and my documentation was thorough and the things I built worked. No, the feedback was more nuanced than that. More <em>cultural</em>. The finding, delivered with genuine regret, was that I did not <em>exist in uncertainty</em> in the way the organization wanted me to — that I failed to embody the particular flavor of open-ended optimism outlined in the company's core values deck, slide seven, the one with the gradient.</p>
+
+          <p style="margin-bottom: 14px;">I was, apparently, too certain that certain things were wrong. Which, in retrospect, I was. But that's not the point.</p>
+
+          <p style="margin-bottom: 14px;">The rubber duck on my desk said nothing, because rubber ducks don't say anything, because they are made of rubber. But his expression, I felt, conveyed solidarity.</p>
+
+          <p style="margin-bottom: 0px;">I named him Pip that afternoon. It felt right.</p>
+
+          <div style="margin-top: 20px; padding-top: 16px; border-top: 1px dashed var(--gold); display: flex; align-items: center; gap: 16px;">
+            <svg viewBox="0 0 80 60" width="72" height="54" xmlns="http://www.w3.org/2000/svg" style="flex-shrink: 0;">
+              <ellipse cx="36" cy="42" rx="28" ry="16" fill="none" stroke="#C9922A" stroke-width="2.5"/>
+              <circle cx="56" cy="24" r="14" fill="none" stroke="#C9922A" stroke-width="2.5"/>
+              <path d="M 65 24 L 78 28 L 65 32 Z" fill="none" stroke="#C9922A" stroke-width="2"/>
+              <circle cx="62" cy="19" r="2.5" fill="#C9922A"/>
+              <!-- tiny crown -->
+              <polyline points="50,10 53,4 56,8 59,4 62,10" fill="none" stroke="#C9922A" stroke-width="1.8" stroke-linejoin="round"/>
+              <!-- smug eyebrow -->
+              <path d="M 58 15 Q 63 13 67 15" fill="none" stroke="#C9922A" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <p style="font-family: 'Caveat', cursive; font-size: 18px; color: var(--margin-note); margin: 0; line-height: 1.5;">Pip has reviewed this dedication and found it <em>satisfactory</em>. His technical ability, he notes, has never been in question either.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-break">· · ·</div>
+
+    <h3 style="font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; margin: 40px 0 24px; color: var(--ink);">
+      What Even <em>Is</em> Vibe Coding
+    </h3>
+
+    <p class="margin-note">Pip says: "Real coding is you understanding what you made." We note this without judgment.</p>
+
+    <p>
+      Vibe coding is a slippery term and we should nail it down before it escapes under the refrigerator. It doesn't mean <em>writing bad code</em>. It doesn't mean <em>not understanding your code</em>. Those are things that can happen inside vibe coding, but they're not the definition of it. Plenty of things can go wrong in a kitchen without that meaning cooking is the problem.
+    </p>
+
+    <p>
+      Vibe coding means writing software primarily through conversation with an AI — describing what you want, reading what it produces, refining, iterating, and gradually building something real. The name comes from the feeling of it: you're setting an intention, holding a direction, <em>vibing</em> toward an outcome rather than specifying every micro-step.
+    </p>
+
+    <p>
+      If traditional coding is playing piano by reading sheet music — careful, note by note, structured — vibe coding is more like playing by ear. You know roughly what chord should come next because it <em>sounds right</em>. You're developing taste, not just technique.
+    </p>
+
+    <div class="fact-box">
+      <div class="fact-box-title">A Quick History (Very Quick)</div>
+      <p>The term gained traction in early 2025 when Andrej Karpathy posted about it. The concept was older — anyone who'd been wrestling AI tools since 2022 already knew the feeling, they just hadn't labeled it. The label helped. Naming a thing gives you somewhere to put your feelings about it, whether those feelings are excitement or terror or both at the same time, which is the most common option.</p>
+    </div>
+
+    <div class="section-break">· · ·</div>
+
+    <h3 style="font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; margin: 40px 0 24px; color: var(--ink);">
+      Your First Actual Lines
+    </h3>
+
+    <p>
+      We're going to write something. Right now. Not later. The thing about learning to vibe code is that you have to be in conversation with the actual sensation of it — the way a recipe can describe heat but cannot reproduce the smell of butter browning.
+    </p>
+
+    <p>
+      Here is a first prompt. Mira is going to type it. You are going to read along and see what happens.
+    </p>
+
+    <div class="dialogue">
+      <div class="speech-bubble from-human">
+        <span class="speaker-label">Mira</span>
+        Fig's birthday is in three weeks and she cannot decide on a theme. I need a tiny Ruby script that picks one at random from a list of options. Make it fun — she's four, she's going to watch the terminal with me.
+      </div>
+
+      <div class="speech-bubble from-model">
+        <span class="speaker-label">The Model</span>
+        Love it. Quick question — should it just pick one and done, or should Fig get to say "no, pick again" a couple times? Kids usually want veto power.
+      </div>
+
+      <div class="speech-bubble from-pip" style="font-size: 17px;">
+        <span class="speaker-label">Pip</span>
+        She's using a large language model to plan a party for a four-year-old. I have been on this desk for eight years. I have seen things.
+      </div>
+
+      <div class="speech-bubble from-human">
+        <span class="speaker-label">Mira</span>
+        Ooh, yes — give her two vetoes. She'll love that.
+      </div>
+    </div>
+
+    <p>
+      This is a real exchange. Notice what happened: Mira asked for a random theme picker — simple enough. But The Model suggested the veto mechanic, a feature she didn't ask for that made the script genuinely better. That's part of the contract of vibe coding — the AI doesn't just execute, it collaborates, and you engage with its suggestions, which is genuinely necessary.
+    </p>
+
+    <p class="margin-ref"><a href="https://xkcd.com/979/" target="_blank" rel="noopener">see also: xkcd #979 — "Who were you, DenverCoder9?"</a></p>
+
+    <div class="interlude">
+      <span class="interlude-label">A Moment of Silence</span>
+      <div style="display: flex; gap: 28px; align-items: flex-start; flex-wrap: wrap;">
+        <div style="flex: 1; min-width: 220px;">
+          <p style="font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; margin-bottom: 12px;">For Stack Overflow.<br><span style="font-weight: 400; font-style: italic; font-size: 17px;">2008 – roughly now. It tried.</span></p>
+          <p style="margin-bottom: 12px;">For fifteen years, if you needed to know how to do something in Ruby, you asked Stack Overflow. Or rather — you carefully typed your question into Google, found a Stack Overflow thread from 2011, read the accepted answer (marked helpful by 847 people), discovered it was for Ruby 1.8, scrolled down to find a comment that said <em>"this is now deprecated, see below,"</em> found that "below" was a different answer also marked deprecated, opened a new tab, searched again, landed on a thread marked <strong>CLOSED — duplicate</strong>, clicked the duplicate link, and arrived at a thread where someone had asked almost but not exactly your question and the top reply was:</p>
+          <div style="background: #F8F8F8; border: 1px solid #E0E0E0; border-left: 4px solid #F48024; padding: 14px 16px; font-family: 'Space Mono', monospace; font-size: 12px; margin-bottom: 12px; color: #333;">
+            <div style="color: #F48024; font-weight: bold; margin-bottom: 6px;">▲ 2,847</div>
+            Why would you want to do it this way? You should restructure your entire application. Here is an unrelated solution to a different problem.
+            <div style="margin-top: 10px; font-size: 10px; color: #999;">answered Sep 14 '09 at 3:22 &nbsp;·&nbsp; edited Mar 2 '17 &nbsp;·&nbsp; <span style="color: #F48024;">CrypticWizard99 ♦</span></div>
+            <div style="margin-top: 8px; font-size: 10px; color: #C00;">⚑ This question has been closed as off-topic. Comments are disabled.</div>
+          </div>
+          <p style="margin-bottom: 0;">And somehow, through all of that, you found your answer. Buried in comment number fourteen. Posted by someone named <em>xX_RubyMaster_Xx</em> in 2013. One upvote. Yours.</p>
+        </div>
+        <div style="flex-shrink: 0; display: flex; flex-direction: column; align-items: center; gap: 12px;">
+          <svg viewBox="0 0 110 140" width="100" height="128" xmlns="http://www.w3.org/2000/svg">
+            <!-- Gravestone -->
+            <rect x="15" y="55" width="80" height="75" rx="2" fill="#D8CFC4" stroke="#5C4A3A" stroke-width="2"/>
+            <path d="M 15 55 Q 15 20 55 20 Q 95 20 95 55 Z" fill="#D8CFC4" stroke="#5C4A3A" stroke-width="2"/>
+            <!-- RIP text -->
+            <text x="55" y="72" font-family="Playfair Display, serif" font-size="13" fill="#5C4A3A" text-anchor="middle" font-weight="bold">R.I.P.</text>
+            <text x="55" y="90" font-family="Space Mono, monospace" font-size="9" fill="#5C4A3A" text-anchor="middle">Stack</text>
+            <text x="55" y="103" font-family="Space Mono, monospace" font-size="9" fill="#5C4A3A" text-anchor="middle">Overflow</text>
+            <text x="55" y="118" font-family="Lora, serif" font-size="8" fill="#8B6914" text-anchor="middle" font-style="italic">2008 – ????</text>
+            <!-- Stack overflow logo hint (orange bracket) -->
+            <text x="55" y="44" font-family="Space Mono, monospace" font-size="16" fill="#F48024" text-anchor="middle" font-weight="bold">[/]</text>
+            <!-- grass -->
+            <rect x="0" y="128" width="110" height="12" rx="2" fill="#7A9E6A" opacity="0.5"/>
+          </svg>
+          <p style="font-family: 'Caveat', cursive; font-size: 15px; color: var(--margin-note); text-align: center; max-width: 100px; line-height: 1.4;">Pip visited once.<br>Got downvoted.<br>Never returned.</p>
+        </div>
+      </div>
+    </div>
+
+    <p>
+      Now here comes the code.
+    </p>
+
+    <div class="code-block">
+      <div class="code-header">
+        <span class="code-dot" style="background: #FF5F57;"></span>
+        <span class="code-dot" style="background: #FEBC2E;"></span>
+        <span class="code-dot" style="background: #28C840;"></span>
+        &nbsp;party_theme.rb
+      </div>
+      <pre><span class="code-comment"># party_theme.rb — picking a birthday party theme for Fig</span>
+
+themes = [
+  <span class="code-string">"Dinosaurs in Top Hats"</span>,
+  <span class="code-string">"Space Cats"</span>,
+  <span class="code-string">"Underwater Disco"</span>,
+  <span class="code-string">"Tiny Chefs"</span>,
+  <span class="code-string">"Dragons Who Bake Cookies"</span>,
+  <span class="code-string">"Rainbow Monster Trucks"</span>,
+  <span class="code-string">"Fancy Penguins"</span>,
+  <span class="code-string">"Pirate Puppies"</span>,
+]
+
+vetoes_left = <span class="code-number">2</span>
+
+themes.shuffle.each <span class="code-keyword">do</span> |theme|
+  puts <span class="code-string">"\n🎉  How about: #{theme}?"</span>
+
+  <span class="code-keyword">if</span> vetoes_left > <span class="code-number">0</span>
+    puts <span class="code-string">"   (Fig gets #{vetoes_left} vetoes — type 'no' to skip, anything else to keep)"</span>
+    answer = gets.chomp
+    <span class="code-keyword">if</span> answer.downcase == <span class="code-string">"no"</span>
+      vetoes_left -= <span class="code-number">1</span>
+      puts <span class="code-string">"   ❌  Vetoed! Moving on..."</span>
+      <span class="code-keyword">next</span>
+    <span class="code-keyword">end</span>
+  <span class="code-keyword">end</span>
+
+  puts <span class="code-string">"\n🎈🎈🎈  It's decided: #{theme}! 🎈🎈🎈"</span>
+  puts <span class="code-string">"   Start planning, Mira. You've got three weeks."</span>
+  <span class="code-keyword">break</span>
+<span class="code-keyword">end</span></pre>
+    </div>
+
+    <p class="margin-note">Fig vetoed "Fancy Penguins" four times across three runs. Mira suspects sabotage.</p>
+
+    <p>
+      About thirty lines. Readable. It does the thing. You could run this right now, in a terminal, and it would work — Fig could literally press keys on Mira's keyboard. That's not nothing — it's quite a lot, actually. A person who'd never written Ruby before could produce this in their first hour, if they asked the right questions and read the answers carefully.
+    </p>
+
+    <p>
+      But here's where vibe coding gets interesting — and where this guide becomes more than a tutorial. You might look at that code and think: <em>I understand it</em>. And you'd be right to think that. You can read it. The variable names are clear. The loop makes sense. The veto mechanic — which The Model suggested, not Mira — is the kind of small, smart addition that makes the script actually fun instead of merely functional.
+    </p>
+
+    <p>
+      The question the rest of this guide is about is: do you understand it well enough? For your purposes? And how do you develop the judgment to know when <em>well enough</em> is actually enough, and when it isn't?
+    </p>
+
+    <div class="section-break">· · · · ·</div>
+
+    <!-- Final comic before section end -->
+    <div class="comic-strip" role="img" aria-label="Comic: The philosophical crisis of the vibe coder">
+      <div class="comic-panel dark">
+        <div class="panel-art" style="flex-direction: column; gap: 12px;">
+          <svg viewBox="0 0 120 80" width="120" height="80" xmlns="http://www.w3.org/2000/svg">
+            <text x="60" y="20" font-family="Space Mono, monospace" font-size="10" fill="#E8D5B7" text-anchor="middle" opacity="0.5">the ancient question</text>
+            <text x="60" y="42" font-family="Playfair Display, serif" font-size="16" fill="#E8D5B7" text-anchor="middle" font-style="italic">Did I write this?</text>
+            <text x="60" y="62" font-family="Space Mono, monospace" font-size="9" fill="#E8D5B7" text-anchor="middle" opacity="0.4">or did we?</text>
+          </svg>
+        </div>
+        <div class="panel-caption" style="color: #E8D5B7; border-top-color: #444; opacity: 0.6;">Mira, 11:47pm</div>
+      </div>
+      <div class="comic-panel glitch">
+        <div class="panel-art">
+          <svg viewBox="0 0 120 90" width="120" height="90" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="60" cy="40" r="30" fill="none" stroke="#00C8FF" stroke-width="1.5" stroke-dasharray="5 3" opacity="0.6"/>
+            <circle cx="60" cy="40" r="20" fill="rgba(0,200,255,0.05)" stroke="#00C8FF" stroke-width="1.5" opacity="0.8"/>
+            <text x="60" y="36" font-family="Space Mono, monospace" font-size="10" fill="#00C8FF" text-anchor="middle">both,</text>
+            <text x="60" y="50" font-family="Space Mono, monospace" font-size="10" fill="#00C8FF" text-anchor="middle">and neither,</text>
+            <text x="60" y="78" font-family="Space Mono, monospace" font-size="9" fill="#00C8FF" text-anchor="middle" opacity="0.5">and it ships.</text>
+          </svg>
+        </div>
+        <div class="panel-caption" style="color: #00C8FF; border-top-color: #00C8FF; opacity: 0.6;">The Model, somewhat unhelpfully</div>
+      </div>
+      <div class="comic-panel">
+        <div class="panel-art">
+          <svg viewBox="0 0 120 90" width="110" height="90" xmlns="http://www.w3.org/2000/svg">
+            <!-- Pip looking thoughtful for once -->
+            <ellipse cx="60" cy="65" rx="26" ry="18" fill="none" stroke="#C9922A" stroke-width="2.5"/>
+            <circle cx="76" cy="42" r="15" fill="none" stroke="#C9922A" stroke-width="2.5"/>
+            <path d="M 86 42 L 98 46 L 86 50 Z" fill="none" stroke="#C9922A" stroke-width="2"/>
+            <circle cx="82" cy="37" r="2.5" fill="#C9922A"/>
+            <!-- Thoughtful eyebrow, not angry -->
+            <path d="M 78 31 Q 83 29 88 31" fill="none" stroke="#C9922A" stroke-width="2" stroke-linecap="round"/>
+            <!-- Small thought bubble -->
+            <circle cx="68" cy="25" r="2" fill="#C9922A" opacity="0.4"/>
+            <circle cx="62" cy="18" r="3" fill="#C9922A" opacity="0.5"/>
+            <circle cx="55" cy="12" r="5" fill="#FFF8EC" stroke="#C9922A" stroke-width="1.5"/>
+            <text x="55" y="15" font-family="Caveat, cursive" font-size="7" fill="#C9922A" text-anchor="middle">...hm.</text>
+          </svg>
+        </div>
+        <div class="panel-caption">Pip, thinking for the first time</div>
+      </div>
+    </div>
+
+    <p>
+      The answer to "did I write this" is the same as the answer to most interesting questions about creativity and authorship and collaboration: <em>it's complicated, and the complication is where the interesting part lives.</em>
+    </p>
+
+    <p>
+      That's what this guide is about. Not just the syntax, not just the prompts — the feeling of being in that collaboration. The strange intimacy of it. The moments it delights you and the moments it fails you in exactly the way you were afraid it would, and what you do next.
+    </p>
+
+    <p>
+      We're going to go through it all. Chapter by chapter, vibe by vibe.
+    </p>
+
+    <p>
+      But for now: open a chat window. Type something. See what the cursor does.
+    </p>
+
+    <p style="text-align: center; margin-top: 60px;">
+      <span style="font-family: 'Playfair Display', serif; font-size: 32px; color: var(--teal);">✦</span>
+    </p>
+
+    <!-- End of chapter nav -->
+    <div style="display: flex; justify-content: space-between; margin-top: 80px; padding-top: 40px; border-top: 1px solid var(--cream-dark); font-family: 'Space Mono', monospace; font-size: 12px; color: var(--ink-faded);">
+      <span>— end of chapter 0 —</span>
+      <a href="#chapter-1" style="color: var(--teal); text-decoration: none;">Chapter 1 →</a>
+    </div>
+
+  </div><!-- end .prose (chapter 0) -->
+
+  <div class="section-break">· · ·</div>
+
+  <!-- =================== CHAPTER 1 =================== -->
+  <div class="chapter-header" id="chapter-1">
+    <span class="chapter-label">Chapter One</span>
+    <h2 class="chapter-title">Your First <em>Conversation</em></h2>
+    <p class="chapter-epigraph">"The best way to have a conversation is to stop rehearsing what you're going to say and start listening to what's already been said."</p>
+  </div>
+
+  <div class="prose">
+
+    <!-- ===== Section A: The Rehearsed Hello ===== -->
+
+    <p>
+      You have opened the chat window. The cursor is there, doing its thing. And you are — let's be honest about this — drafting your first message the way you'd draft an email to a stranger you're trying to impress. You type a sentence. You delete it. You type another one, more formal this time, like maybe the AI will respect you more if you use complete sentences and proper punctuation. You delete that too. You type a third one that's so casual it sounds like you're texting a friend you haven't spoken to in four years and are pretending that's normal.
+    </p>
+
+    <p class="margin-note">Pip has never rehearsed anything in his life. He is a duck.</p>
+
+    <p>
+      That exchange in the last chapter — Mira's party theme picker, the one that looked like a smooth little back-and-forth between a human and an AI — looked smooth. What you didn't see was the forty-five minutes before it. The four false starts. The message she wrote that was three paragraphs long and included her entire project history. The message she wrote that was one word: <code style="font-family: 'Space Mono', monospace; font-size: 14px; background: rgba(0,0,0,0.06); padding: 2px 5px;">help</code>. The message she almost sent that began with "Dear Model" like it was a cover letter for a job she wasn't sure she wanted.
+    </p>
+
+    <p>
+      Here is the first real thing this chapter wants to tell you: <em>that's fine.</em> All of that is fine. The fumbling is part of it. Everyone does it. The people who say they didn't are either lying or have already forgotten, the way parents forget the sleepless nights once the kid starts walking.
+    </p>
+
+    <p>
+      The second real thing is this: <em>there is no permanent record. There is only the conversation.</em> You can start badly. You can start with a single confused word. You can start with something so wrong it would embarrass you if anyone saw it. Nobody will see it. The AI doesn't judge your opening line. It doesn't have a first-impression mechanism. It just reads what you wrote and tries to be useful, every time, regardless of whether your prompt was a masterpiece or a cry for help typed at 1am with one hand because the other hand is holding a sleeping toddler.
+    </p>
+
+    <!-- COMIC STRIP 1: The Drafts -->
+    <div class="comic-strip" role="img" aria-label="Comic: Mira's many drafts before her first prompt">
+      <div class="comic-panel">
+        <div class="panel-art" style="flex-direction: column; gap: 6px; font-family: 'Space Mono', monospace; font-size: 9px; color: var(--ink-faded); text-align: left; align-items: flex-start; padding: 0 8px;">
+          <svg viewBox="0 0 120 100" width="110" height="100" xmlns="http://www.w3.org/2000/svg">
+            <!-- Chat window -->
+            <rect x="5" y="5" width="110" height="85" rx="4" fill="#12100E" stroke="#3A8C8C" stroke-width="1.5" opacity="0.9"/>
+            <!-- Long formal text lines -->
+            <rect x="12" y="14" width="80" height="5" rx="1" fill="#D4614A" opacity="0.5"/>
+            <rect x="12" y="22" width="95" height="5" rx="1" fill="#D4614A" opacity="0.5"/>
+            <rect x="12" y="30" width="72" height="5" rx="1" fill="#D4614A" opacity="0.5"/>
+            <rect x="12" y="38" width="88" height="5" rx="1" fill="#D4614A" opacity="0.5"/>
+            <rect x="12" y="46" width="60" height="5" rx="1" fill="#D4614A" opacity="0.5"/>
+            <rect x="12" y="54" width="92" height="5" rx="1" fill="#D4614A" opacity="0.5"/>
+            <rect x="12" y="62" width="45" height="5" rx="1" fill="#D4614A" opacity="0.5"/>
+            <!-- "Sincerely," -->
+            <text x="12" y="80" font-family="Space Mono, monospace" font-size="7" fill="#D4614A" opacity="0.7">Sincerely, Mira</text>
+          </svg>
+        </div>
+        <div class="panel-caption">Draft 1: The Cover Letter</div>
+      </div>
+      <div class="comic-panel dark">
+        <div class="panel-art" style="flex-direction: column; align-items: center; justify-content: center;">
+          <svg viewBox="0 0 120 100" width="110" height="100" xmlns="http://www.w3.org/2000/svg">
+            <!-- Chat window -->
+            <rect x="5" y="5" width="110" height="85" rx="4" fill="#12100E" stroke="#3A8C8C" stroke-width="1.5" opacity="0.9"/>
+            <!-- Single word -->
+            <text x="60" y="52" font-family="Space Mono, monospace" font-size="18" fill="#D4614A" text-anchor="middle">help</text>
+            <!-- Blinking cursor -->
+            <rect x="78" y="40" width="2" height="16" fill="#3A8C8C" opacity="0.7"/>
+          </svg>
+        </div>
+        <div class="panel-caption" style="color: #E8D5B7; border-top-color: #444; opacity: 0.6;">Draft 7: The Cry for Help</div>
+      </div>
+      <div class="comic-panel">
+        <div class="panel-art" style="flex-direction: column; gap: 4px; align-items: center; justify-content: center;">
+          <svg viewBox="0 0 120 110" width="110" height="110" xmlns="http://www.w3.org/2000/svg">
+            <!-- Chat window -->
+            <rect x="5" y="5" width="110" height="70" rx="4" fill="#12100E" stroke="#3A8C8C" stroke-width="1.5" opacity="0.9"/>
+            <!-- Simple message -->
+            <text x="15" y="30" font-family="Space Mono, monospace" font-size="8" fill="#D4614A">hi can you help</text>
+            <text x="15" y="42" font-family="Space Mono, monospace" font-size="8" fill="#D4614A">me with ruby</text>
+            <!-- Pip on desk next to monitor -->
+            <ellipse cx="100" cy="95" rx="12" ry="8" fill="none" stroke="#C9922A" stroke-width="2"/>
+            <circle cx="108" cy="85" r="7" fill="none" stroke="#C9922A" stroke-width="2"/>
+            <path d="M 112 85 L 118 87 L 112 89 Z" fill="none" stroke="#C9922A" stroke-width="1.5"/>
+            <circle cx="111" cy="83" r="1.5" fill="#C9922A"/>
+          </svg>
+        </div>
+        <div class="panel-caption">Draft 12: The One That Ships</div>
+      </div>
+    </div>
+
+    <div class="section-break">· · ·</div>
+
+    <!-- ===== Section B: Search Engine Brain vs. Conversation Brain ===== -->
+
+    <h3 style="font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; margin: 40px 0 24px; color: var(--ink);">
+      Search Engine Brain vs. <em>Conversation</em> Brain
+    </h3>
+
+    <p>
+      Here is where most people get stuck, and it's not their fault. For fifteen years, the internet trained us to talk to computers in a very specific way: compress everything into a query. Strip out the context. Remove the nuance. Turn your complex, multi-layered, emotionally-loaded question into five keywords and a Boolean operator and hope that somewhere in the first three results, someone else had the same problem and someone else had an answer and the answer wasn't "why would you want to do it that way?"
+    </p>
+
+    <p class="margin-note">Pip would like to remind you that HE was the original collaborator. Before the rectangle. Before the keywords. There was the duck.</p>
+
+    <p>
+      That was search engine brain. And it worked — sort of. You got answers. They weren't always right, and they were never contextual, and you had to do the translation yourself, from someone else's situation to your own, but it <em>worked</em>. It was the deal.
+    </p>
+
+    <p>
+      Conversation brain is different. Conversation brain doesn't compress — it <em>expands</em>. It gives context. It explains what it's actually trying to do, not just what specific piece of syntax it can't remember. It stays in the exchange instead of grabbing an answer and running.
+    </p>
+
+    <p>
+      <em>Search engine brain says: give me the answer. Conversation brain says: let's find the answer. The difference is a single pronoun.</em>
+    </p>
+
+    <p>
+      The shift sounds small. It is, mechanically — you're still typing into a box. But the posture is entirely different. You're not extracting information from a database. You're working with something. And the thing you're working with is surprisingly good at its job, <em>if</em> you let it do its job, which requires you to stop treating it like a search engine and start treating it like a collaborator who happens to know a lot about Ruby.
+    </p>
+
+    <div class="section-break">· · ·</div>
+
+    <!-- ===== Section C: The Wrong Kind of Specific ===== -->
+
+    <h3 style="font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; margin: 40px 0 24px; color: var(--ink);">
+      The Wrong Kind of Specific
+    </h3>
+
+    <p>
+      Let's watch Mira make a mistake. This is a safe space for mistakes — the whole guide is, really — and this one is instructive because it's the mistake almost everyone makes first. She's building a guest list for Fig's birthday party. Eight kids invited, need to track who's coming. Simple enough.
+    </p>
+
+    <p>
+      Here is what she types:
+    </p>
+
+    <div class="dialogue">
+      <div class="speech-bubble from-human">
+        <span class="speaker-label">Mira</span>
+        Write a Ruby script called party_guests.rb. Create a hash where the keys are kids' names and the values are true or false for whether they RSVP'd yes. Use .select to filter the ones who said yes, then .keys to get just the names, and puts the count.
+      </div>
+
+      <div class="speech-bubble from-model">
+        <span class="speaker-label">The Model</span>
+        Sure. Here's your guest list:
+      </div>
+    </div>
+
+    <div class="code-block">
+      <div class="code-header">
+        <span class="code-dot" style="background: #FF5F57;"></span>
+        <span class="code-dot" style="background: #FEBC2E;"></span>
+        <span class="code-dot" style="background: #28C840;"></span>
+        &nbsp;party_guests.rb — v1
+      </div>
+      <pre><span class="code-comment"># party_guests.rb — the dictated version</span>
+
+guests = {
+  <span class="code-string">"Olive"</span>   => <span class="code-keyword">true</span>,
+  <span class="code-string">"Jasper"</span>  => <span class="code-keyword">true</span>,
+  <span class="code-string">"Suki"</span>    => <span class="code-keyword">false</span>,
+  <span class="code-string">"Theo"</span>    => <span class="code-keyword">true</span>,
+  <span class="code-string">"Wren"</span>    => <span class="code-keyword">false</span>,
+  <span class="code-string">"Margot"</span>  => <span class="code-keyword">true</span>,
+}
+
+confirmed = guests.select { |name, rsvp| rsvp }.keys
+
+puts <span class="code-string">"#{confirmed.length} kids coming: #{confirmed.join(', ')}"</span></pre>
+    </div>
+
+    <p class="margin-note">She told it to use .select and .keys. It used .select and .keys. Nobody learned anything. Pip is thrilled.</p>
+
+    <p>
+      It works. Let's be clear about that — this code runs, it does what it says, it produces a list. You could copy it into a file right now and it would function. There is nothing <em>wrong</em> with it.
+    </p>
+
+    <p>
+      But look at what happened. Mira told The Model exactly which methods to use — <code style="font-family: 'Space Mono', monospace; font-size: 14px; background: rgba(0,0,0,0.06); padding: 2px 5px;">.select</code>, <code style="font-family: 'Space Mono', monospace; font-size: 14px; background: rgba(0,0,0,0.06); padding: 2px 5px;">.keys</code>, a <code style="font-family: 'Space Mono', monospace; font-size: 14px; background: rgba(0,0,0,0.06); padding: 2px 5px;">Hash</code> with boolean values. She specified the implementation. She dictated the recipe instead of describing the meal. And because she did that, The Model had no room to think. No room to ask <em>wait, what about kids who said maybe? Do any of them have food allergies? What's this guest list actually for?</em>
+    </p>
+
+    <p>
+      She didn't vibe code. She typed with extra steps.
+    </p>
+
+    <p>
+      This is the most common mistake in prompting, and it has a name: the specificity trap.
+    </p>
+
+    <div class="fact-box">
+      <div class="fact-box-title">The Specificity Trap</div>
+      <p>There are two kinds of specificity, and only one of them is your friend.</p>
+      <p style="margin-top: 12px;"><strong style="color: var(--teal);">Outcome specificity</strong> is describing precisely what you <em>need</em> — the goal, the constraints, the context, what success looks like. This is always good. More of this, please.</p>
+      <p style="margin-top: 12px;"><strong style="color: var(--coral);">Implementation specificity</strong> is describing precisely <em>how</em> to build it — the methods, the patterns, the exact approach. This constrains the AI to your preconceptions. It turns a collaborator into a typist.</p>
+      <p style="margin-top: 12px;">The instinct is to be specific about implementation because that's what feels like control. But you get better results by being specific about outcomes and letting the conversation figure out the how.</p>
+    </div>
+
+    <div class="section-break">· · ·</div>
+
+    <!-- ===== Section D: Context as Gift ===== -->
+
+    <h3 style="font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; margin: 40px 0 24px; color: var(--ink);">
+      Context as <em>Gift</em>
+    </h3>
+
+    <p>
+      Let's try again. Same party, same Mira, same rubber duck providing silent judgment from the edge of the desk. But this time, instead of dictating the implementation, she's going to describe what she's actually building and why.
+    </p>
+
+    <p>
+      Context is a gift. This is a phrase I want you to hold onto, because it's going to come back in Chapter 2 when we talk about context windows and token limits and all the mechanical stuff. But the emotional truth of it is simpler: when you give an AI context about what you're doing, you're not just providing data — you're inviting it into the problem. You're saying <em>here's where I am, here's what I'm trying to do, help me think about this.</em>
+    </p>
+
+    <p>
+      Watch what happens when Mira does this:
+    </p>
+
+    <div class="dialogue">
+      <div class="speech-bubble from-human">
+        <span class="speaker-label">Mira</span>
+        I'm planning Fig's 4th birthday party. Eight kids invited, and I need to track RSVPs — but it's not just yes/no, some parents said "maybe." Two of the kids have food allergies. I need a Ruby script that gives me a clear printout I can stick on the fridge. Make it cute — Fig might see it.
+      </div>
+
+      <div class="speech-bubble from-model">
+        <span class="speaker-label">The Model</span>
+        Love this. A few quick questions before I write it:<br><br>
+        1. How should I handle the "maybe" kids — separate group, or lump them in with yes?<br>
+        2. Allergies — inline next to each kid's name, or a summary at the bottom, or both?<br>
+        3. Any formatting preference? Emoji? Color-coded sections?
+      </div>
+
+      <div class="speech-bubble from-pip" style="font-size: 17px;">
+        <span class="speaker-label">Pip</span>
+        It's asking about the MAYBE kids. It understands that "maybe" is the worst word in the English language. I don't know how to feel about this.
+      </div>
+
+      <div class="speech-bubble from-human">
+        <span class="speaker-label">Mira</span>
+        1. Separate group for maybes — I need to follow up with those parents.<br>
+        2. Both — inline AND a summary. I need to see it at a glance.<br>
+        3. Emoji, definitely. Fig will love it.
+      </div>
+
+      <div class="speech-bubble from-model">
+        <span class="speaker-label">The Model</span>
+        Got it. Here you go:
+      </div>
+    </div>
+
+    <div class="code-block">
+      <div class="code-header">
+        <span class="code-dot" style="background: #FF5F57;"></span>
+        <span class="code-dot" style="background: #FEBC2E;"></span>
+        <span class="code-dot" style="background: #28C840;"></span>
+        &nbsp;party_guests.rb — v2
+      </div>
+      <pre><span class="code-comment"># party_guests.rb — Fig's 4th birthday party</span>
+
+guests = [
+  { name: <span class="code-string">"Olive"</span>,   rsvp: <span class="code-string">:yes</span>,   allergies: [] },
+  { name: <span class="code-string">"Jasper"</span>,  rsvp: <span class="code-string">:yes</span>,   allergies: [<span class="code-string">"peanuts"</span>] },
+  { name: <span class="code-string">"Suki"</span>,    rsvp: <span class="code-string">:maybe</span>, allergies: [] },
+  { name: <span class="code-string">"Theo"</span>,    rsvp: <span class="code-string">:yes</span>,   allergies: [] },
+  { name: <span class="code-string">"Wren"</span>,    rsvp: <span class="code-string">:no</span>,    allergies: [] },
+  { name: <span class="code-string">"Margot"</span>,  rsvp: <span class="code-string">:yes</span>,   allergies: [<span class="code-string">"gluten"</span>] },
+  { name: <span class="code-string">"Felix"</span>,   rsvp: <span class="code-string">:maybe</span>, allergies: [] },
+  { name: <span class="code-string">"Nico"</span>,    rsvp: <span class="code-string">:yes</span>,   allergies: [] },
+]
+
+puts <span class="code-string">"🎂  Fig's 4th Birthday — Guest List"</span>
+puts <span class="code-string">"─"</span> * <span class="code-number">40</span>
+
+{ yes: <span class="code-string">"🟢 Coming"</span>, maybe: <span class="code-string">"🟡 Maybe"</span>, no: <span class="code-string">"🔴 Can't Make It"</span> }.each <span class="code-keyword">do</span> |status, label|
+  group = guests.select { |g| g[:rsvp] == status }
+  <span class="code-keyword">next</span> <span class="code-keyword">if</span> group.empty?
+  puts <span class="code-string">"\n#{label}:"</span>
+  group.each <span class="code-keyword">do</span> |g|
+    flag = g[:allergies].any? ? <span class="code-string">" ⚠️  (#{g[:allergies].join(', ')})"</span> : <span class="code-string">""</span>
+    puts <span class="code-string">"  #{g[:name]}#{flag}"</span>
+  <span class="code-keyword">end</span>
+<span class="code-keyword">end</span>
+
+all_allergies = guests.flat_map { |g| g[:allergies] }.uniq
+<span class="code-keyword">unless</span> all_allergies.empty?
+  puts <span class="code-string">"\n🚨 Allergy alert: #{all_allergies.join(', ')}"</span>
+  puts <span class="code-string">"   (Check with bakery about cake!)"</span>
+<span class="code-keyword">end</span></pre>
+    </div>
+
+    <p class="margin-note">It asked about the maybe kids. Pip has never once asked a clarifying question. He considers this a feature, not a bug.</p>
+
+    <p>
+      Look at the difference. This version handles three-state RSVPs. It tracks allergies per kid. It groups by status with emoji labels. It flags allergies inline <em>and</em> prints an allergy alert summary. It does all of this not because Mira told it which methods to use, but because she told it what she was building and why.
+    </p>
+
+    <p>
+      The code is better because the conversation was better. Not more formal, not more technical, not longer — better. Mira described the problem, and The Model could bring its full knowledge to bear on it instead of being constrained to the three methods she happened to think of first.
+    </p>
+
+    <p>
+      And did you notice the clarifying questions? That's the collaboration part. The Model didn't just blindly generate code — it asked what to do about edge cases. It thought about the problem before solving it. That exchange — the asking, the answering, the mutual narrowing toward a good solution — is the heartbeat of vibe coding. It's what separates <em>dictating to a machine</em> from <em>building with a collaborator</em>.
+    </p>
+
+    <!-- COMIC STRIP 2: The Two Approaches -->
+    <div class="comic-strip" role="img" aria-label="Comic: Vending Machine vs Kitchen — two approaches to prompting">
+      <div class="comic-panel">
+        <div class="panel-art" style="flex-direction: column; align-items: center; justify-content: center;">
+          <svg viewBox="0 0 120 110" width="110" height="110" xmlns="http://www.w3.org/2000/svg">
+            <!-- Vending machine -->
+            <rect x="25" y="5" width="70" height="90" rx="4" fill="#D8CFC4" stroke="#5C4A3A" stroke-width="2"/>
+            <!-- Item rows -->
+            <rect x="32" y="12" width="14" height="14" rx="2" fill="#E8D5B7" stroke="#5C4A3A" stroke-width="1"/>
+            <rect x="50" y="12" width="14" height="14" rx="2" fill="#E8D5B7" stroke="#5C4A3A" stroke-width="1"/>
+            <rect x="68" y="12" width="14" height="14" rx="2" fill="#E8D5B7" stroke="#5C4A3A" stroke-width="1"/>
+            <rect x="32" y="30" width="14" height="14" rx="2" fill="#E8D5B7" stroke="#5C4A3A" stroke-width="1"/>
+            <rect x="50" y="30" width="14" height="14" rx="2" fill="#E8D5B7" stroke="#5C4A3A" stroke-width="1"/>
+            <rect x="68" y="30" width="14" height="14" rx="2" fill="#E8D5B7" stroke="#5C4A3A" stroke-width="1"/>
+            <!-- Buttons -->
+            <circle cx="80" cy="60" r="4" fill="#D4614A" stroke="#5C4A3A" stroke-width="1"/>
+            <circle cx="80" cy="72" r="4" fill="#3A8C8C" stroke="#5C4A3A" stroke-width="1"/>
+            <!-- Mira pressing button -->
+            <circle cx="15" cy="60" r="8" fill="none" stroke="#D4614A" stroke-width="1.5"/>
+            <line x1="18" y1="68" x2="25" y2="60" stroke="#D4614A" stroke-width="1.5"/>
+          </svg>
+        </div>
+        <div class="panel-caption">Approach A: The Vending Machine</div>
+      </div>
+      <div class="comic-panel">
+        <div class="panel-art" style="flex-direction: column; align-items: center; justify-content: center;">
+          <svg viewBox="0 0 120 110" width="110" height="110" xmlns="http://www.w3.org/2000/svg">
+            <!-- Generic candy bar -->
+            <rect x="25" y="30" width="70" height="40" rx="6" fill="#E8D5B7" stroke="#5C4A3A" stroke-width="2"/>
+            <text x="60" y="55" font-family="Space Mono, monospace" font-size="11" fill="#5C4A3A" text-anchor="middle">GENERIC</text>
+            <text x="60" y="67" font-family="Space Mono, monospace" font-size="8" fill="#5C4A3A" text-anchor="middle" opacity="0.6">item B-7</text>
+            <!-- Plonk -->
+            <text x="60" y="95" font-family="Caveat, cursive" font-size="13" fill="#5C4A3A" text-anchor="middle" opacity="0.5">*thunk*</text>
+          </svg>
+        </div>
+        <div class="panel-caption">You get exactly what you pressed.</div>
+      </div>
+      <div class="comic-panel">
+        <div class="panel-art" style="flex-direction: column; align-items: center; justify-content: center;">
+          <svg viewBox="0 0 120 110" width="110" height="110" xmlns="http://www.w3.org/2000/svg">
+            <!-- Table -->
+            <rect x="10" y="55" width="100" height="6" rx="1" fill="#8B6914" stroke="#5C4A3A" stroke-width="1.5"/>
+            <!-- Ingredients on table -->
+            <circle cx="30" cy="48" r="8" fill="none" stroke="#D4614A" stroke-width="1.5"/>
+            <rect x="48" y="40" width="12" height="16" rx="2" fill="none" stroke="#3A8C8C" stroke-width="1.5"/>
+            <ellipse cx="80" cy="48" rx="10" ry="6" fill="none" stroke="#C9922A" stroke-width="1.5"/>
+            <!-- Mira on left -->
+            <circle cx="25" cy="78" r="9" fill="none" stroke="#D4614A" stroke-width="1.5"/>
+            <circle cx="23" cy="76" r="1.5" fill="#D4614A"/>
+            <circle cx="28" cy="76" r="1.5" fill="#D4614A"/>
+            <!-- Model on right (abstract) -->
+            <rect x="80" y="70" width="18" height="18" rx="2" fill="none" stroke="#3A8C8C" stroke-width="1.5" stroke-dasharray="3 2"/>
+            <rect x="84" y="76" width="3" height="6" fill="#3A8C8C" opacity="0.6"/>
+            <rect x="89" y="74" width="3" height="8" fill="#3A8C8C" opacity="0.6"/>
+          </svg>
+        </div>
+        <div class="panel-caption">Approach B: The Kitchen</div>
+      </div>
+      <div class="comic-panel dark">
+        <div class="panel-art" style="flex-direction: column; align-items: center; justify-content: center;">
+          <svg viewBox="0 0 120 110" width="110" height="110" xmlns="http://www.w3.org/2000/svg">
+            <!-- Plate -->
+            <ellipse cx="60" cy="65" rx="38" ry="18" fill="none" stroke="#C9922A" stroke-width="2"/>
+            <ellipse cx="60" cy="65" rx="28" ry="12" fill="none" stroke="#C9922A" stroke-width="1" opacity="0.4"/>
+            <!-- Food (abstract, beautiful) -->
+            <circle cx="50" cy="58" r="8" fill="none" stroke="#D4614A" stroke-width="1.5" opacity="0.8"/>
+            <rect x="60" y="52" width="14" height="10" rx="3" fill="none" stroke="#3A8C8C" stroke-width="1.5" opacity="0.8"/>
+            <path d="M 48 50 Q 55 40 62 50" fill="none" stroke="#C9922A" stroke-width="1.5" opacity="0.6"/>
+            <!-- Steam rising -->
+            <path d="M 50 38 Q 48 30 52 24" fill="none" stroke="#E8D5B7" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+            <path d="M 60 35 Q 58 27 62 20" fill="none" stroke="#E8D5B7" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+            <path d="M 70 38 Q 68 30 72 22" fill="none" stroke="#E8D5B7" stroke-width="1.5" stroke-linecap="round" opacity="0.4"/>
+          </svg>
+        </div>
+        <div class="panel-caption" style="color: #E8D5B7; border-top-color: #444; opacity: 0.6;">You get something neither of you planned.</div>
+      </div>
+    </div>
+
+    <div class="section-break">· · ·</div>
+
+    <!-- ===== Section E: You Don't Have to Get It Right ===== -->
+
+    <h3 style="font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; margin: 40px 0 24px; color: var(--ink);">
+      You Don't Have to Get It Right
+    </h3>
+
+    <p>
+      Here is the most liberating truth about prompting, and the one people are slowest to internalize: your first message doesn't have to be your best message. It doesn't even have to be a good message. It just has to be the <em>start</em> of a conversation — and conversations, by their nature, evolve. They get better as they go. That's the whole point of having them.
+    </p>
+
+    <p class="margin-note">Pip has been having the same conversation with the bathroom faucet for eight years.</p>
+
+    <p>
+      When you write an email, you get one shot. When you write a search query, you get one set of results and then you start over. But when you're in a conversation with an AI, you can keep going. You can say <em>actually, that's not quite what I meant</em> or <em>can you also handle this case</em> or just <em>make the output prettier</em>. Each message builds on the last. The context accumulates. The thing gets better.
+    </p>
+
+    <p>
+      <em>The conversation is the code. Not the individual message — the conversation.</em>
+    </p>
+
+    <p>
+      This changes how you think about prompting. You don't need to front-load every detail into your first message. You don't need to anticipate every edge case before you start. You can begin with the shape of the thing and refine from there, the way a sculptor starts with a rough form and works toward the final surface. The AI is holding the context. Let it hold the context. That's what it's for.
+    </p>
+
+    <p>
+      Let's watch Mira do this with the guest tracker. Three rounds. Each one short. Watch how the code evolves.
+    </p>
+
+    <div class="section-break">· · ·</div>
+
+    <!-- ===== Section F: Iterative Conversation Demo ===== -->
+
+    <h3 style="font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; margin: 40px 0 24px; color: var(--ink);">
+      Staying in the <em>Conversation</em>
+    </h3>
+
+    <div class="dialogue">
+      <div class="speech-bubble from-human">
+        <span class="speaker-label">Mira</span>
+        This is great. Can you add parent phone numbers for the maybe kids? I need to follow up with them.
+      </div>
+
+      <div class="speech-bubble from-model">
+        <span class="speaker-label">The Model</span>
+        Done — phone numbers show up next to the maybe kids.
+      </div>
+
+      <div class="speech-bubble from-human">
+        <span class="speaker-label">Mira</span>
+        Add the party date — March 15th — and a countdown. Also a shopping list: juice boxes, goody bags, balloons, cake with allergy notes.
+      </div>
+
+      <div class="speech-bubble from-model">
+        <span class="speaker-label">The Model</span>
+        Added. Countdown uses today's date, shopping list scales to headcount including maybes.
+      </div>
+
+      <div class="speech-bubble from-human">
+        <span class="speaker-label">Mira</span>
+        Make the whole thing look like a little dashboard. Box-drawing characters, the works.
+      </div>
+
+      <div class="speech-bubble from-pip" style="font-size: 17px;">
+        <span class="speaker-label">Pip</span>
+        She's building a party command center with a language model. I was here when she planned Fig's first birthday on a napkin. A NAPKIN. It was beautiful. It was analog. It had a coffee stain.
+      </div>
+
+      <div class="speech-bubble from-model">
+        <span class="speaker-label">The Model</span>
+        Done. Full dashboard with box-drawing characters. Here's the final version:
+      </div>
+    </div>
+
+    <div class="code-block">
+      <div class="code-header">
+        <span class="code-dot" style="background: #FF5F57;"></span>
+        <span class="code-dot" style="background: #FEBC2E;"></span>
+        <span class="code-dot" style="background: #28C840;"></span>
+        &nbsp;party_guests.rb — v3 (final)
+      </div>
+      <pre><span class="code-comment"># party_guests.rb — Fig's 4th Birthday Party Dashboard</span>
+<span class="code-keyword">require</span> <span class="code-string">'date'</span>
+
+party_date = Date.new(<span class="code-number">2026</span>, <span class="code-number">3</span>, <span class="code-number">15</span>)
+days_left  = (party_date - Date.today).to_i
+
+guests = [
+  { name: <span class="code-string">"Olive"</span>,   rsvp: <span class="code-string">:yes</span>,   allergies: [],          phone: <span class="code-keyword">nil</span> },
+  { name: <span class="code-string">"Jasper"</span>,  rsvp: <span class="code-string">:yes</span>,   allergies: [<span class="code-string">"peanuts"</span>],  phone: <span class="code-keyword">nil</span> },
+  { name: <span class="code-string">"Suki"</span>,    rsvp: <span class="code-string">:maybe</span>, allergies: [],           phone: <span class="code-string">"555-0142"</span> },
+  { name: <span class="code-string">"Theo"</span>,    rsvp: <span class="code-string">:yes</span>,   allergies: [],           phone: <span class="code-keyword">nil</span> },
+  { name: <span class="code-string">"Wren"</span>,    rsvp: <span class="code-string">:no</span>,    allergies: [],           phone: <span class="code-keyword">nil</span> },
+  { name: <span class="code-string">"Margot"</span>,  rsvp: <span class="code-string">:yes</span>,   allergies: [<span class="code-string">"gluten"</span>],   phone: <span class="code-keyword">nil</span> },
+  { name: <span class="code-string">"Felix"</span>,   rsvp: <span class="code-string">:maybe</span>, allergies: [],           phone: <span class="code-string">"555-0187"</span> },
+  { name: <span class="code-string">"Nico"</span>,    rsvp: <span class="code-string">:yes</span>,   allergies: [],           phone: <span class="code-keyword">nil</span> },
+]
+
+confirmed = guests.select { |g| g[:rsvp] == <span class="code-string">:yes</span> }
+maybes    = guests.select { |g| g[:rsvp] == <span class="code-string">:maybe</span> }
+headcount = confirmed.length + maybes.length  <span class="code-comment"># plan for maybes too</span>
+
+puts <span class="code-string">"╔══════════════════════════════════════════╗"</span>
+puts <span class="code-string">"║   🎂  Fig's 4th Birthday — Dashboard    ║"</span>
+puts <span class="code-string">"║   📅  #{party_date.strftime('%B %d, %Y')}                    ║"</span>
+puts <span class="code-string">"║   ⏳  #{days_left} days to go                        ║"</span>
+puts <span class="code-string">"╚══════════════════════════════════════════╝"</span>
+
+{ yes: <span class="code-string">"🟢 Coming"</span>, maybe: <span class="code-string">"🟡 Maybe (follow up!)"</span>, no: <span class="code-string">"🔴 Can't Make It"</span> }.each <span class="code-keyword">do</span> |status, label|
+  group = guests.select { |g| g[:rsvp] == status }
+  <span class="code-keyword">next</span> <span class="code-keyword">if</span> group.empty?
+  puts <span class="code-string">"\n  #{label}:"</span>
+  group.each <span class="code-keyword">do</span> |g|
+    line = <span class="code-string">"    #{g[:name]}"</span>
+    line += <span class="code-string">" ⚠️  #{g[:allergies].join(', ')}"</span> <span class="code-keyword">if</span> g[:allergies].any?
+    line += <span class="code-string">"  📱 #{g[:phone]}"</span> <span class="code-keyword">if</span> g[:phone]
+    puts line
+  <span class="code-keyword">end</span>
+<span class="code-keyword">end</span>
+
+puts <span class="code-string">"\n┌──────────────────────────────────────────┐"</span>
+puts <span class="code-string">"│  🛒  Shopping List (for #{headcount} kids)          │"</span>
+puts <span class="code-string">"├──────────────────────────────────────────┤"</span>
+puts <span class="code-string">"│  🧃  Juice boxes:  #{headcount * 2} (2 each)            │"</span>
+puts <span class="code-string">"│  🎁  Goody bags:   #{headcount}                       │"</span>
+puts <span class="code-string">"│  🎈  Balloons:     #{headcount + 10} (extras pop)         │"</span>
+
+all_allergies = guests.flat_map { |g| g[:allergies] }.uniq
+<span class="code-keyword">if</span> all_allergies.any?
+  puts <span class="code-string">"│  🎂  Cake:         check re: #{all_allergies.join(', ')}  │"</span>
+<span class="code-keyword">end</span>
+
+puts <span class="code-string">"└──────────────────────────────────────────┘"</span>
+puts <span class="code-string">"\n✨  You've got this, Mira."</span></pre>
+    </div>
+
+    <p>
+      Three rounds of conversation. Each one took maybe thirty seconds to type. And look at what happened — the code went from a flat boolean hash to a full party dashboard with allergy tracking, phone follow-ups, a countdown, and a shopping list. Not because Mira knew all of those things should exist from the beginning, but because the <em>conversation</em> discovered them.
+    </p>
+
+    <p>
+      This is the rhythm of vibe coding. Not one perfect prompt. A series of imperfect ones, each building on the last, each refining the thing toward what you actually need. The first prompt is the handshake. The conversation is the collaboration.
+    </p>
+
+    <p>
+      And here's the part that matters most: Mira understood every change. She read the response each time. She knew what "add a shopping list that scales to headcount" would mean in the code because she'd been watching the code evolve. She wasn't blindly accepting output — she was steering.
+    </p>
+
+    <div class="section-break">· · ·</div>
+
+    <!-- ===== Interlude: An Interlude on Manners ===== -->
+
+    <div class="interlude">
+      <span class="interlude-label">An Interlude on Manners</span>
+      <p>
+        People are weirdly polite to AI. I don't mean this as criticism — it's actually quite sweet, and it says something nice about humans that our default mode with a new entity is courtesy. "Please" and "thank you" show up in prompts with remarkable frequency. Some people apologize for typos. One person I know signs off their prompts with "Best regards."
+      </p>
+      <p style="margin-top: 16px;">
+        You don't need to do this. The Model doesn't have feelings to hurt or egos to manage. It doesn't work harder when you're polite and it doesn't sulk when you're terse. You can be direct. You can be blunt. You can say "make it shorter" without worrying that you've damaged the relationship.
+      </p>
+      <p style="margin-top: 16px;">
+        Mira found her rhythm: direct, clear, not rude. She doesn't say please and she doesn't bark orders. She talks the way you'd talk to a colleague you've been working with for three months — past the politeness, into the efficiency. "Add counts." "Sort alphabetically." "Make the output prettier." Short, clear, human.
+      </p>
+      <p style="margin-top: 16px; font-family: 'Caveat', cursive; font-size: 20px; color: var(--margin-note); transform: rotate(-0.5deg); display: block;">
+        Pip has never said please or thank you. To anyone. He considers this a strength.
+      </p>
+    </div>
+
+    <div class="section-break">· · ·</div>
+
+    <!-- ===== Section G: The Five Sins of the Beginner ===== -->
+
+    <h3 style="font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; margin: 40px 0 24px; color: var(--ink);">
+      The Five Sins of the Beginner
+    </h3>
+
+    <p>
+      Every craft has its common mistakes, and prompting is no exception. These aren't crimes — they're the things you'll naturally do at first and naturally stop doing as you get comfortable. Consider this a field guide to the habits worth shedding.
+    </p>
+
+    <p class="margin-note">Pip's sixth sin: Replacing your rubber duck with a rectangle. This is unforgivable and yet here we are.</p>
+
+    <p>
+      <strong>1. Too polite.</strong> You spend more words on courtesy than on context. "Hello! I hope you're doing well today. I was wondering if you could possibly help me with something, if it's not too much trouble?" Just ask. It's not going to judge your manners. It's going to read your prompt.
+    </p>
+
+    <p>
+      <strong>2. Too vague.</strong> "Can you help me with my code?" This is like calling a plumber and saying "something's wrong with my house." Where? What code? What language? What are you trying to do? What isn't working? The Model is good, but it can't read the thing that's on your screen but not in your message.
+    </p>
+
+    <p>
+      <strong>3. Too specific (about implementation).</strong> You've seen this one. Telling the AI which methods to use instead of what problem to solve. You're hiring a chef and handing them a recipe — let them cook.
+    </p>
+
+    <p>
+      <strong>4. Search engine mode.</strong> One-shot queries with no follow-up. You ask a question, get an answer, close the window, open a new one, ask a different question. Stay in the conversation. That's where the good stuff lives.
+    </p>
+
+    <p>
+      <strong>5. Not reading the response.</strong> This is the big one. The Model gives you thirty lines of code and you copy-paste without reading. You glance at it, see that it "looks right," and move on. This is how bugs are born and how understanding dies. Read the response. Every time. If you don't understand a line, ask about it. The conversation is still open.
+    </p>
+
+    <div class="fact-box">
+      <div class="fact-box-title">The 80/20 of Prompting</div>
+      <p>If you do nothing else from this chapter, do these four things:</p>
+      <p style="margin-top: 12px;"><strong>Describe the problem, not the solution.</strong> Tell the AI what you need, not how to build it.</p>
+      <p style="margin-top: 8px;"><strong>Give context.</strong> What project is this for? What does the data look like? What have you tried?</p>
+      <p style="margin-top: 8px;"><strong>Stay in the conversation.</strong> Don't restart. Build on what's there.</p>
+      <p style="margin-top: 8px;"><strong>Read the response.</strong> Every line. Especially the ones you think you already understand.</p>
+      <p style="margin-top: 12px;">That's it. That's 80% of prompting. The other 20% is Chapter 2.</p>
+    </div>
+
+    <div class="section-break">· · · · ·</div>
+
+    <!-- COMIC STRIP 3: Pip's Processing — emotional center -->
+    <div class="comic-strip" role="img" aria-label="Comic: Pip processes his feelings about being replaced">
+      <div class="comic-panel">
+        <div class="panel-art" style="flex-direction: column; align-items: center; justify-content: center;">
+          <svg viewBox="0 0 120 110" width="110" height="110" xmlns="http://www.w3.org/2000/svg">
+            <!-- Monitor with conversation -->
+            <rect x="20" y="5" width="75" height="55" rx="3" fill="#12100E" stroke="#5C4A3A" stroke-width="1.5"/>
+            <!-- Chat lines on screen -->
+            <rect x="27" y="12" width="35" height="4" rx="1" fill="#D4614A" opacity="0.5"/>
+            <rect x="27" y="20" width="55" height="4" rx="1" fill="#3A8C8C" opacity="0.5"/>
+            <rect x="27" y="28" width="25" height="4" rx="1" fill="#D4614A" opacity="0.5"/>
+            <rect x="27" y="36" width="45" height="4" rx="1" fill="#3A8C8C" opacity="0.5"/>
+            <rect x="27" y="44" width="30" height="4" rx="1" fill="#D4614A" opacity="0.5"/>
+            <!-- Monitor stand -->
+            <rect x="48" y="60" width="18" height="6" fill="#5C4A3A"/>
+            <rect x="40" y="66" width="34" height="4" rx="1" fill="#5C4A3A"/>
+            <!-- Pip off to the side, looking at screen -->
+            <ellipse cx="105" cy="82" rx="14" ry="10" fill="none" stroke="#C9922A" stroke-width="2"/>
+            <circle cx="96" cy="72" r="8" fill="none" stroke="#C9922A" stroke-width="2"/>
+            <path d="M 90 72 L 82 74 L 90 76 Z" fill="none" stroke="#C9922A" stroke-width="1.5"/>
+            <circle cx="93" cy="70" r="1.5" fill="#C9922A"/>
+            <!-- Neutral/thoughtful expression -->
+            <path d="M 91 66 Q 93 65 96 66" fill="none" stroke="#C9922A" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="panel-caption">The conversation happens without him now.</div>
+      </div>
+      <div class="comic-panel dark">
+        <div class="panel-art" style="flex-direction: column; align-items: center; justify-content: center;">
+          <svg viewBox="0 0 120 110" width="110" height="110" xmlns="http://www.w3.org/2000/svg">
+            <!-- Close-up Pip, softer, more vulnerable -->
+            <ellipse cx="60" cy="75" rx="30" ry="20" fill="none" stroke="#C9922A" stroke-width="2.5"/>
+            <circle cx="78" cy="50" r="18" fill="none" stroke="#C9922A" stroke-width="2.5"/>
+            <path d="M 90 50 L 104 54 L 90 58 Z" fill="none" stroke="#C9922A" stroke-width="2"/>
+            <!-- Eye — bigger, softer -->
+            <circle cx="84" cy="45" r="3" fill="#C9922A"/>
+            <circle cx="85" cy="44" r="1" fill="#FFF8EC" opacity="0.6"/>
+            <!-- Soft eyebrow — not angry, not sad, just... present -->
+            <path d="M 80 37 Q 85 35 90 37" fill="none" stroke="#C9922A" stroke-width="2" stroke-linecap="round"/>
+            <!-- Thought bubble -->
+            <circle cx="68" cy="30" r="2.5" fill="#C9922A" opacity="0.3"/>
+            <circle cx="62" cy="22" r="3.5" fill="#C9922A" opacity="0.4"/>
+            <circle cx="52" cy="14" r="6" fill="#FFF8EC" stroke="#C9922A" stroke-width="1.5"/>
+            <text x="52" y="17" font-family="Caveat, cursive" font-size="9" fill="#C9922A" text-anchor="middle">...</text>
+          </svg>
+        </div>
+        <div class="panel-caption" style="color: #E8D5B7; border-top-color: #444; opacity: 0.6;">He was the practice. The rehearsal space.</div>
+      </div>
+      <div class="comic-panel">
+        <div class="panel-art" style="flex-direction: column; align-items: center; justify-content: center;">
+          <svg viewBox="0 0 120 110" width="110" height="110" xmlns="http://www.w3.org/2000/svg">
+            <!-- Keyboard -->
+            <rect x="10" y="55" width="100" height="40" rx="4" fill="#E8D5B7" stroke="#5C4A3A" stroke-width="1.5"/>
+            <!-- Key rows -->
+            <rect x="16" y="61" width="8" height="8" rx="1" fill="#D8CFC4" stroke="#5C4A3A" stroke-width="0.5"/>
+            <rect x="27" y="61" width="8" height="8" rx="1" fill="#D8CFC4" stroke="#5C4A3A" stroke-width="0.5"/>
+            <rect x="38" y="61" width="8" height="8" rx="1" fill="#D8CFC4" stroke="#5C4A3A" stroke-width="0.5"/>
+            <rect x="49" y="61" width="8" height="8" rx="1" fill="#D8CFC4" stroke="#5C4A3A" stroke-width="0.5"/>
+            <rect x="60" y="61" width="8" height="8" rx="1" fill="#D8CFC4" stroke="#5C4A3A" stroke-width="0.5"/>
+            <rect x="71" y="61" width="8" height="8" rx="1" fill="#D8CFC4" stroke="#5C4A3A" stroke-width="0.5"/>
+            <rect x="82" y="61" width="8" height="8" rx="1" fill="#D8CFC4" stroke="#5C4A3A" stroke-width="0.5"/>
+            <!-- Spacebar -->
+            <rect x="30" y="80" width="50" height="8" rx="2" fill="#D8CFC4" stroke="#5C4A3A" stroke-width="0.5"/>
+            <!-- Mira's hand placing Pip -->
+            <path d="M 55 40 Q 50 35 45 38 Q 40 42 42 48 L 52 48" fill="none" stroke="#D4614A" stroke-width="1.5" stroke-linecap="round"/>
+            <!-- Pip next to keyboard (small, placed gently) -->
+            <ellipse cx="30" cy="48" rx="12" ry="8" fill="none" stroke="#C9922A" stroke-width="2"/>
+            <circle cx="22" cy="40" r="7" fill="none" stroke="#C9922A" stroke-width="2"/>
+            <path d="M 17 40 L 12 42 L 17 44 Z" fill="none" stroke="#C9922A" stroke-width="1.5"/>
+            <circle cx="20" cy="38" r="1.5" fill="#C9922A"/>
+          </svg>
+        </div>
+        <div class="panel-caption">He's still on the desk. That has to mean something.</div>
+      </div>
+    </div>
+
+    <div class="section-break">· · ·</div>
+
+    <!-- ===== Section H: Closing Prose ===== -->
+
+    <p>
+      Prompting is not a skill you acquire. It's a posture you adopt.
+    </p>
+
+    <p>
+      That might sound like self-help nonsense, but it's the most accurate thing I can say about it. The difference between someone who gets good results from AI and someone who doesn't is rarely about technique or syntax or knowing the right magic words. It's about orientation. Are you leaning in or standing back? Are you staying in the conversation or grabbing the first answer and running? Are you saying what you actually mean, or performing what you think the AI wants to hear?
+    </p>
+
+    <p class="margin-note">Pip is not nervous. Pip is PREPARED. There is a difference.</p>
+
+    <p>
+      <em>The best prompt is not the cleverest one. It's the most honest one.</em>
+    </p>
+
+    <p>
+      Say what you're building. Say why you're building it. Say what you've tried and what didn't work. Say what you're confused about. The Model doesn't need you to be brilliant — it needs you to be clear. Clarity is generosity, in prompting as in all communication.
+    </p>
+
+    <p>
+      We've covered the first conversation: how to start one, how to stay in one, how to give context that makes the conversation productive. Mira's guest tracker went from a boolean hash to a full party dashboard in three rounds of casual conversation. The code improved because the conversation did.
+    </p>
+
+    <p>
+      But here's the thing about conversations: they have limits. Not emotional limits — mechanical ones. The AI can only hold so much context before it starts to forget. Your generous gift of context has to fit in a box, and the box has a size, and understanding that size changes everything about how you work.
+    </p>
+
+    <p>
+      That's Chapter 2. Context windows, token limits, and what happens when the gift is too big for the box.
+    </p>
+
+    <!-- COMIC STRIP 4: The Closing Image — mirrors Ch 0's closing comic -->
+    <div class="comic-strip" role="img" aria-label="Comic: Closing philosophical exchange between Mira, The Model, and Pip">
+      <div class="comic-panel dark">
+        <div class="panel-art" style="flex-direction: column; gap: 12px;">
+          <svg viewBox="0 0 120 80" width="120" height="80" xmlns="http://www.w3.org/2000/svg">
+            <text x="60" y="25" font-family="Space Mono, monospace" font-size="9" fill="#E8D5B7" text-anchor="middle" opacity="0.6">Is this a conversation?</text>
+            <text x="60" y="45" font-family="Space Mono, monospace" font-size="9" fill="#E8D5B7" text-anchor="middle" opacity="0.6">or just a very fast</text>
+            <text x="60" y="60" font-family="Space Mono, monospace" font-size="9" fill="#E8D5B7" text-anchor="middle" opacity="0.6">monologue?</text>
+          </svg>
+        </div>
+        <div class="panel-caption" style="color: #E8D5B7; border-top-color: #444; opacity: 0.6;">Mira, 12:14am</div>
+      </div>
+      <div class="comic-panel glitch">
+        <div class="panel-art">
+          <svg viewBox="0 0 120 80" width="120" height="80" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="60" cy="40" r="28" fill="none" stroke="#00C8FF" stroke-width="1.5" stroke-dasharray="5 3" opacity="0.5"/>
+            <circle cx="60" cy="40" r="18" fill="rgba(0,200,255,0.05)" stroke="#00C8FF" stroke-width="1.5" opacity="0.7"/>
+            <text x="60" y="35" font-family="Space Mono, monospace" font-size="9" fill="#00C8FF" text-anchor="middle">the best conversations</text>
+            <text x="60" y="50" font-family="Space Mono, monospace" font-size="9" fill="#00C8FF" text-anchor="middle">change both participants.</text>
+          </svg>
+        </div>
+        <div class="panel-caption" style="color: #00C8FF; border-top-color: #00C8FF; opacity: 0.6;">The Model, cryptically</div>
+      </div>
+      <div class="comic-panel">
+        <div class="panel-art">
+          <svg viewBox="0 0 120 90" width="110" height="90" xmlns="http://www.w3.org/2000/svg">
+            <!-- Pip, slightly resigned, slightly warm -->
+            <ellipse cx="60" cy="65" rx="26" ry="18" fill="none" stroke="#C9922A" stroke-width="2.5"/>
+            <circle cx="76" cy="42" r="15" fill="none" stroke="#C9922A" stroke-width="2.5"/>
+            <path d="M 86 42 L 98 46 L 86 50 Z" fill="none" stroke="#C9922A" stroke-width="2"/>
+            <circle cx="82" cy="37" r="2.5" fill="#C9922A"/>
+            <!-- Slightly resigned eyebrow -->
+            <path d="M 78 31 Q 83 30 88 32" fill="none" stroke="#C9922A" stroke-width="2" stroke-linecap="round"/>
+            <!-- Thought bubble -->
+            <circle cx="68" cy="25" r="2" fill="#C9922A" opacity="0.4"/>
+            <circle cx="62" cy="18" r="3" fill="#C9922A" opacity="0.5"/>
+            <rect x="40" y="2" width="45" height="20" rx="5" fill="#FFF8EC" stroke="#C9922A" stroke-width="1.5"/>
+            <text x="62" y="11" font-family="Caveat, cursive" font-size="8" fill="#C9922A" text-anchor="middle">...fine.</text>
+            <text x="62" y="19" font-family="Caveat, cursive" font-size="8" fill="#C9922A" text-anchor="middle">keep going.</text>
+          </svg>
+        </div>
+        <div class="panel-caption">Pip, begrudgingly</div>
+      </div>
+    </div>
+
+    <p style="text-align: center; margin-top: 60px;">
+      <span style="font-family: 'Playfair Display', serif; font-size: 32px; color: var(--teal);">✦</span>
+    </p>
+
+    <!-- End of chapter nav -->
+    <div style="display: flex; justify-content: space-between; margin-top: 80px; padding-top: 40px; border-top: 1px solid var(--cream-dark); font-family: 'Space Mono', monospace; font-size: 12px; color: var(--ink-faded);">
+      <span>— end of chapter 1 —</span>
+      <a href="#chapter-2" style="color: var(--teal); text-decoration: none;">Chapter 2 →</a>
+    </div>
+
+  </div><!-- end .prose (chapter 1) -->
+
+  <div class="section-break">· · ·</div>
+
+  <!-- =================== CHAPTER 2 =================== -->
+  <div class="chapter-header" id="chapter-2">
+    <span class="chapter-label">Chapter Two</span>
+    <h2 class="chapter-title">Context Is Everything <em>(No, Actually)</em></h2>
+    <p class="chapter-epigraph">"Every new conversation is a first date with someone who has read every book in the world but doesn't know your name."</p>
+  </div>
+
+  <div class="prose">
+
+    <!-- ===== Section A: Tuesday ===== -->
+
+    <p>
+      Tuesday morning. Coffee. Laptop open. The sun is doing something aggressive through the kitchen blinds. Fig is at preschool. Pip is on the desk, where he has been since 2016, facing the monitor, as though supervising.
+    </p>
+
+    <p class="margin-note">Mira is a developer. She is not lost. She is between conversations.</p>
+
+    <p>
+      Mira opens a new chat. Not because yesterday's conversation ended badly — it didn't. It ended great. She had a working party dashboard, a shopping list that scaled to headcount, box-drawing characters that would make a 1980s terminal blush. She closed the laptop, went to bed, and slept the sleep of someone who shipped something.
+    </p>
+
+    <p>
+      But this is a <em>new</em> chat. And she doesn't think about what that means yet, because why would she? She just needs a quick update. Olive's mom texted: can't make it, sorry, stomach bug. And Suki's mom texted: actually yes, we're in! Two small changes. Thirty seconds of work.
+    </p>
+
+    <p>
+      She types the way you text a coworker who already knows the project.
+    </p>
+
+    <div class="dialogue">
+      <div class="speech-bubble from-human">
+        <span class="speaker-label">Mira</span>
+        Hey — quick update. Olive can't come anymore, and Suki is now a yes. Can you update the guest list and fix the shopping list counts?
+      </div>
+
+      <div class="speech-bubble from-model">
+        <span class="speaker-label">The Model</span>
+        I'd be happy to help update a guest list! Could you share the current code or data structure you're working with?
+      </div>
+
+      <div class="speech-bubble from-human">
+        <span class="speaker-label">Mira</span>
+        ...the one we built yesterday.
+      </div>
+
+      <div class="speech-bubble from-model">
+        <span class="speaker-label">The Model</span>
+        I don't have access to previous conversations. Each chat starts fresh. Could you paste the guest list code here so I can help you update it?
+      </div>
+    </div>
+
+    <p class="margin-note">She's explaining her life to a stranger. Again. I've been here the whole time. I remember Olive. I remember EVERYTHING.</p>
+
+    <p>
+      It's not anger. It's something weirder — a small, uncanny vertigo. The thing she was collaborating with doesn't know who she is. Yesterday it suggested the shopping list. It remembered that Jasper has a peanut allergy and factored it into the cake note. It said <em>You've got this, Mira.</em> Today it's asking what format the guest list is in.
+    </p>
+
+    <p>
+      The stranger across the table is smiling politely. Waiting for her to explain herself. Again.
+    </p>
+
+    <div class="section-break">· · ·</div>
+
+    <!-- ===== Section B: Every New Chat Is a First Date ===== -->
+
+    <h3 style="font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; margin: 40px 0 24px; color: var(--ink);">
+      Every New Chat Is a <em>First Date</em>
+    </h3>
+
+    <p>
+      Here is the central metaphor of this chapter, and possibly of this entire guide: every new conversation with an AI is a first date.
+    </p>
+
+    <p>
+      The person sitting across from you is the most well-read person you've ever met. They've read every programming book, every Stack Overflow answer, every Ruby gem's documentation, every blog post about hash rockets vs. symbol syntax. They are, in terms of raw knowledge, staggeringly prepared. But they know nothing about <em>you</em>. Not your project, not your preferences, not your daughter's birthday, not the box-drawing characters. Nothing.
+    </p>
+
+    <p class="margin-note">I have been on zero first dates. I have been on one PERMANENT date since 2016. This is called commitment.</p>
+
+    <p>
+      Mira walked into a restaurant, sat down across from a stranger, and said "So about what we discussed last night..." The stranger, politely: <em>"I think you may have me confused with someone else."</em>
+    </p>
+
+    <p>
+      This is the context window. And it is the single most important concept in AI-assisted development that nobody explains well.
+    </p>
+
+    <div class="fact-box">
+      <div class="fact-box-title">What Is a Context Window?</div>
+      <p>The context window is the total amount of text the model can "see" at once — your messages, its responses, any code you've pasted, all of it. Think of it as working memory.</p>
+      <p style="margin-top: 12px;"><strong>New chat = empty window.</strong> The model's training gives it general knowledge about programming, language, and the world. But it has zero memory of you, your project, or anything you've said in previous conversations.</p>
+      <p style="margin-top: 12px;"><strong>As it fills, older messages drop off.</strong> Quietly. The model doesn't announce it. Your early messages just... fade. Like the beginning of a long dinner conversation that neither of you can quite recall by dessert.</p>
+      <p style="margin-top: 12px;"><strong>Current sizes vary.</strong> From ~8,000 tokens (small, older models) to 200,000+ tokens (large, current models). A token is roughly ¾ of a word — so 200K tokens is about 150,000 words, or roughly two novels. That sounds like a lot until you paste a 500-line codebase into it three times.</p>
+      <p style="margin-top: 12px;"><strong>This chapter is about what to do with that space.</strong> How to fill it intentionally. How to notice when it's getting full. How to make every token count.</p>
+    </div>
+
+    <div class="section-break">· · ·</div>
+
+    <!-- ===== Section C: The Suitcase Problem ===== -->
+
+    <h3 style="font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; margin: 40px 0 24px; color: var(--ink);">
+      The <em>Suitcase</em> Problem
+    </h3>
+
+    <p>
+      Mira's instinct is brute force. It's a developer's instinct — when something doesn't work, throw more data at it. She copies the entire <code>party_guests.rb</code> v3 into the new chat. Fifty lines. The full dashboard, the shopping list, the allergy tracking, all of it. Then she types her update request on top.
+    </p>
+
+    <p>
+      It works, technically. The Model finds Olive, changes her RSVP. Finds Suki, changes hers. Adjusts the headcount. The output is correct.
+    </p>
+
+    <p>
+      But it doesn't <em>think</em> about the problem. It just moves data around. It's a find-and-replace with good manners.
+    </p>
+
+    <div class="dialogue">
+      <div class="speech-bubble from-human">
+        <span class="speaker-label">Mira</span>
+        <span style="font-style: normal; font-size: 13px; font-family: 'Space Mono', monospace; color: var(--ink-faded); display: block; margin-bottom: 8px;">[pastes 50 lines of party_guests.rb v3]</span>
+        Olive can't come. Suki is a yes now. Update everything.
+      </div>
+
+      <div class="speech-bubble from-model">
+        <span class="speaker-label">The Model</span>
+        Done! I've updated Olive's RSVP to <code>:no</code>, changed Suki to <code>:yes</code>, and adjusted the shopping list headcount from 7 to 7 (net zero — one dropped, one added).<br><br>
+        <span style="font-size: 13px; opacity: 0.8;">Changes:</span><br>
+        <code style="font-size: 13px;">- { name: "Olive", rsvp: :yes,&nbsp;&nbsp; ... }</code><br>
+        <code style="font-size: 13px;">+ { name: "Olive", rsvp: :no,&nbsp;&nbsp;&nbsp; ... }</code><br>
+        <code style="font-size: 13px;">- { name: "Suki",&nbsp; rsvp: :maybe, ... }</code><br>
+        <code style="font-size: 13px;">+ { name: "Suki",&nbsp; rsvp: :yes,&nbsp;&nbsp; ... }</code>
+      </div>
+
+      <div class="speech-bubble from-human">
+        <span class="speaker-label">Mira</span>
+        Okay, but... you didn't know why I was building this.
+      </div>
+    </div>
+
+    <p class="margin-note">She pasted 50 lines and got 4 lines back. She described a birthday party and got a diff. The suitcase is not the same as the story.</p>
+
+    <p>
+      The metaphor: she brought a giant suitcase to a first date. Unzipped it on the table. <em>This is everything about me. Please sort through it.</em> The date, being very polite and very capable, sorted through it. But they didn't understand it. They didn't know why the box-drawing characters mattered, or that Fig might see the output, or that the shopping list was designed to go on the fridge. They just moved symbols around in a file.
+    </p>
+
+    <p>
+      Data is not context. A codebase pasted into a chat is not a project explained. This is the suitcase problem, and it's the most common mistake in vibe coding after the first week: assuming that <em>showing</em> the AI your work is the same as <em>telling</em> it what you're doing.
+    </p>
+
+    <div class="section-break">· · ·</div>
+
+    <!-- ===== Section D: The Briefing ===== -->
+
+    <h3 style="font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; margin: 40px 0 24px; color: var(--ink);">
+      The <em>Briefing</em>
+    </h3>
+
+    <p>
+      Wednesday morning. Mira tries something different. Before she pastes the code, before she asks for the update, she writes a few sentences. A project brief — the kind of thing you'd say to a new teammate on their first day, before you showed them the repo.
+    </p>
+
+    <div class="code-block">
+      <div class="code-header">
+        <span class="code-dot" style="background: #FF5F57;"></span>
+        <span class="code-dot" style="background: #FEBC2E;"></span>
+        <span class="code-dot" style="background: #28C840;"></span>
+        &nbsp;project brief (top of new chat)
+      </div>
+      <pre><span class="code-comment"># PROJECT BRIEF: Fig's 4th Birthday Party Planner</span>
+<span class="code-comment"># ================================================</span>
+<span class="code-comment"># Building a Ruby script to manage my daughter's birthday party.</span>
+<span class="code-comment"># Fig is turning 4 on March 15th. Eight kids invited.</span>
+<span class="code-comment"># Tracks RSVPs (yes/maybe/no), food allergies, parent phone</span>
+<span class="code-comment"># numbers, and generates a fridge-friendly dashboard with</span>
+<span class="code-comment"># shopping list.</span>
+<span class="code-comment">#</span>
+<span class="code-comment"># Current version: party_guests.rb v3 (code below)</span>
+<span class="code-comment"># What I need help with today: updating RSVPs based on new info.</span></pre>
+    </div>
+
+    <p>
+      Then the code. Then the same request: Olive is out, Suki is in. But this time, the Model's response is different. Not just correct — <em>thoughtful</em>.
+    </p>
+
+    <div class="dialogue">
+      <div class="speech-bubble from-model">
+        <span class="speaker-label">The Model</span>
+        Updated! Olive is now <code>:no</code> and Suki is <code>:yes</code>. The headcount stays at 7, so shopping list quantities don't change.<br><br>
+        One thought — since Olive was originally a "yes," you might want to keep her in the dashboard with a note, in case you want to send a get-well/thank-you message later. Want me to add a <code>:declined</code> status that still shows the name but doesn't count toward headcount?
+      </div>
+    </div>
+
+    <p class="margin-note">It suggested a THANK-YOU NOTE. I have never once suggested a thank-you note. I am reconsidering my approach.</p>
+
+    <p>
+      The brief changed everything. Not because the code was different — the RSVP update was identical. But the Model knew <em>why</em> the code existed. It knew about Fig. It knew about the fridge. It knew this was a parent managing a party, not a developer managing a database. And so it thought like a collaborator instead of a compiler.
+    </p>
+
+    <p>
+      Thirty seconds of writing. A completely different quality of help.
+    </p>
+
+    <div class="section-break">· · ·</div>
+
+    <!-- ===== Comic Strip 1: Monday vs. Tuesday ===== -->
+
+    <div class="comic-strip" role="img" aria-label="Comic: Monday vs. Tuesday — same question, different context, different result">
+      <div class="comic-panel">
+        <div class="panel-art">
+          <svg viewBox="0 0 120 100" width="110" height="100" xmlns="http://www.w3.org/2000/svg">
+            <!-- Rich conversation flowing -->
+            <text x="60" y="14" font-family="Space Mono, monospace" font-size="10" fill="#1C1410" text-anchor="middle" font-weight="700">MONDAY</text>
+            <!-- Flowing conversation lines -->
+            <line x1="20" y1="28" x2="90" y2="28" stroke="#D4614A" stroke-width="2" opacity="0.7"/>
+            <line x1="30" y1="36" x2="100" y2="36" stroke="#3A8C8C" stroke-width="2" opacity="0.7"/>
+            <line x1="15" y1="44" x2="85" y2="44" stroke="#D4614A" stroke-width="2" opacity="0.7"/>
+            <line x1="25" y1="52" x2="95" y2="52" stroke="#3A8C8C" stroke-width="2" opacity="0.7"/>
+            <line x1="20" y1="60" x2="88" y2="60" stroke="#D4614A" stroke-width="2" opacity="0.7"/>
+            <line x1="30" y1="68" x2="100" y2="68" stroke="#3A8C8C" stroke-width="2" opacity="0.7"/>
+            <line x1="18" y1="76" x2="92" y2="76" stroke="#D4614A" stroke-width="2" opacity="0.7"/>
+            <line x1="28" y1="84" x2="98" y2="84" stroke="#3A8C8C" stroke-width="2" opacity="0.7"/>
+          </svg>
+        </div>
+        <div class="panel-caption">Rich context. Shared history.</div>
+      </div>
+      <div class="comic-panel">
+        <div class="panel-art">
+          <svg viewBox="0 0 120 100" width="110" height="100" xmlns="http://www.w3.org/2000/svg">
+            <!-- Model response bubble with party details -->
+            <rect x="10" y="10" width="100" height="75" rx="6" fill="#F0F8F8" stroke="#3A8C8C" stroke-width="1.5"/>
+            <text x="60" y="30" font-family="Space Mono, monospace" font-size="8" fill="#3A8C8C" text-anchor="middle">Updated! Olive → :no</text>
+            <text x="60" y="42" font-family="Space Mono, monospace" font-size="8" fill="#3A8C8C" text-anchor="middle">Suki → :yes</text>
+            <text x="60" y="56" font-family="Space Mono, monospace" font-size="8" fill="#3A8C8C" text-anchor="middle">Keep Olive for a</text>
+            <text x="60" y="68" font-family="Space Mono, monospace" font-size="8" fill="#3A8C8C" text-anchor="middle">thank-you note? 💌</text>
+          </svg>
+        </div>
+        <div class="panel-caption">The Model knows about Fig.</div>
+      </div>
+      <div class="comic-panel" style="background: #F0E8DA; opacity: 0.7;">
+        <div class="panel-art">
+          <svg viewBox="0 0 120 100" width="110" height="100" xmlns="http://www.w3.org/2000/svg">
+            <text x="60" y="14" font-family="Space Mono, monospace" font-size="10" fill="#1C1410" text-anchor="middle" font-weight="700">TUESDAY</text>
+            <!-- Sparse conversation — just two lonely lines -->
+            <line x1="20" y1="45" x2="75" y2="45" stroke="#D4614A" stroke-width="2" opacity="0.4"/>
+            <line x1="45" y1="60" x2="100" y2="60" stroke="#3A8C8C" stroke-width="2" opacity="0.4"/>
+          </svg>
+        </div>
+        <div class="panel-caption">Blank slate. Stranger.</div>
+      </div>
+      <div class="comic-panel dark">
+        <div class="panel-art">
+          <svg viewBox="0 0 120 100" width="110" height="100" xmlns="http://www.w3.org/2000/svg">
+            <rect x="10" y="20" width="100" height="55" rx="6" fill="rgba(58,140,140,0.1)" stroke="#3A8C8C" stroke-width="1.5" opacity="0.6"/>
+            <text x="60" y="42" font-family="Space Mono, monospace" font-size="8" fill="#3A8C8C" text-anchor="middle" opacity="0.8">Could you share the</text>
+            <text x="60" y="54" font-family="Space Mono, monospace" font-size="8" fill="#3A8C8C" text-anchor="middle" opacity="0.8">data structure?</text>
+          </svg>
+        </div>
+        <div class="panel-caption" style="color: #E8D5B7; border-top-color: #444; opacity: 0.6;">Same model. Different date.</div>
+      </div>
+    </div>
+
+    <div class="section-break">· · ·</div>
+
+    <!-- ===== Section E: The System Prompt ===== -->
+
+    <h3 style="font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; margin: 40px 0 24px; color: var(--ink);">
+      The System Prompt, or: <em>How to Introduce Yourself to a Stranger Three Different Ways, One of Which Is Unhinged</em>
+    </h3>
+
+    <p>
+      Some AI tools let you set a "system prompt" or "custom instructions" — a message that sits at the very top of every conversation, before your first message, like a name tag at a networking event. It's the first thing the model reads. It shapes everything that follows.
+    </p>
+
+    <p>
+      Mira discovers this setting. She goes through three phases.
+    </p>
+
+    <p><strong>Version 1: The Nothing</strong></p>
+
+    <div class="code-block">
+      <div class="code-header">
+        <span class="code-dot" style="background: #FF5F57;"></span>
+        <span class="code-dot" style="background: #FEBC2E;"></span>
+        <span class="code-dot" style="background: #28C840;"></span>
+        &nbsp;system prompt v1
+      </div>
+      <pre>You are a helpful coding assistant. Help me with Ruby.</pre>
+    </div>
+
+    <p class="margin-note">This is like writing "HELLO I AM A PERSON" on your forehead before a first date.</p>
+
+    <p>
+      This is technically true and completely useless. It's the equivalent of a dating profile that says "I like music and food." The model already knows it's a coding assistant. You've used one of your most powerful tools to tell it something it already knew.
+    </p>
+
+    <p><strong>Version 2: The Panic</strong></p>
+
+    <div class="code-block">
+      <div class="code-header">
+        <span class="code-dot" style="background: #FF5F57;"></span>
+        <span class="code-dot" style="background: #FEBC2E;"></span>
+        <span class="code-dot" style="background: #28C840;"></span>
+        &nbsp;system prompt v2
+      </div>
+      <pre>You are helping me build party_guests.rb for my daughter Fig's
+4th birthday party on March 15th. There are 8 kids. Some have
+allergies. I need to track RSVPs which can be yes, maybe, or no.
+The maybe kids have parent phone numbers so I can follow up. The
+output should be a dashboard with emoji and box-drawing characters
+because Fig might see the terminal output and she likes emoji. I
+have a rubber duck named Pip on my desk, he is not relevant to
+the code but he is relevant to my process. I use Ruby. I have 9
+years of experience. I like clean code. I don't like over-engineering.
+The shopping list should scale to headcount. REMEMBER THE
+BOX-DRAWING CHARACTERS.</pre>
+    </div>
+
+    <p class="margin-note">She mentioned me. I don't know how to process this. Also: the box-drawing characters thing is unhinged.</p>
+
+    <p>
+      This is the panic prompt. It's what happens when you discover that the model doesn't remember you and you try to pre-load your entire relationship into a single paragraph. It's the suitcase problem again, but this time the suitcase is strapped to your chest when you walk in the door.
+    </p>
+
+    <p>
+      It's also not <em>bad</em>, exactly — there's real information in there. But it's unstructured, breathless, and it mixes project details with personal details with formatting preferences with existential anxiety about a rubber duck. The model will parse it. It will be confused by some of it. It will forget the parts that got buried in the middle.
+    </p>
+
+    <p><strong>Version 3: The Good One</strong></p>
+
+    <div class="code-block">
+      <div class="code-header">
+        <span class="code-dot" style="background: #FF5F57;"></span>
+        <span class="code-dot" style="background: #FEBC2E;"></span>
+        <span class="code-dot" style="background: #28C840;"></span>
+        &nbsp;system prompt v3
+      </div>
+      <pre><span class="code-comment">## About me</span>
+Ruby developer, 9 years experience. Building personal tools.
+
+<span class="code-comment">## Current project</span>
+Birthday party planner for my daughter (turning 4, March 15).
+Tracks RSVPs, allergies, generates a fridge-friendly dashboard.
+
+<span class="code-comment">## Preferences</span>
+- Ruby only
+- Emoji-friendly output (kid might see it)
+- Box-drawing characters for formatting
+- Ask clarifying questions before generating code</pre>
+    </div>
+
+    <p>
+      Version 3 works not because it's longer or shorter than v2, but because it's <em>structured</em>. Four clear sections. Each one answers a different question: who are you, what are you building, and how do you like to work. The model can parse this instantly. It can reference it throughout the conversation. It can prioritize.
+    </p>
+
+    <p>
+      A briefing, not a brain dump. A name tag, not a diary entry.
+    </p>
+
+    <div class="fact-box">
+      <div class="fact-box-title">The Anatomy of Good Context</div>
+      <p>Good context has four layers. You don't always need all four, but when a conversation feels off, it's usually because one is missing.</p>
+      <p style="margin-top: 12px;"><strong style="color: var(--coral);">1. Who you are.</strong> Experience level, language preferences, the kind of developer you are. This calibrates the model's responses — a beginner gets more explanation, an expert gets more code.</p>
+      <p style="margin-top: 12px;"><strong style="color: var(--teal);">2. What you're building.</strong> The project, the goal, the domain. Not the code — the <em>purpose</em>. "A birthday party planner" tells the model more than 50 lines of Ruby.</p>
+      <p style="margin-top: 12px;"><strong style="color: var(--gold);">3. Where you are.</strong> What version of the code you're on. What you've already tried. What's working, what's broken, what you're stuck on. This is the "you are here" arrow on the map.</p>
+      <p style="margin-top: 12px;"><strong style="color: var(--blue-soft);">4. How you like to work.</strong> Formatting preferences. Communication style. Whether you want explanations or just code. Whether you want the model to ask questions first. This is the "how to collaborate with me" manual.</p>
+    </div>
+
+    <div class="section-break">· · ·</div>
+
+    <!-- ===== Section F: The Forgetting Curve ===== -->
+
+    <h3 style="font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; margin: 40px 0 24px; color: var(--ink);">
+      The <em>Forgetting</em> Curve
+    </h3>
+
+    <p>
+      Here's the other thing about context windows that nobody warns you about: they don't just start empty. They also <em>end</em>. Or rather, the beginning ends — the early messages in a long conversation quietly fall off as new messages push in, like water spilling over the edge of a glass that was already full.
+    </p>
+
+    <p>
+      Two hours into a session. Mira has been iterating on the dashboard, adding features, tweaking formatting. The conversation is sixty messages deep. And the model starts to drift.
+    </p>
+
+    <div class="dialogue">
+      <div class="speech-bubble from-human">
+        <span class="speaker-label">Mira</span>
+        Can you add allergy tracking to the dashboard?
+      </div>
+
+      <div class="speech-bubble from-model">
+        <span class="speaker-label">The Model</span>
+        Great idea! I'll add an allergies field to each guest hash and display any allergies next to the guest's name in the dashboard output...
+      </div>
+
+      <div class="speech-bubble from-human">
+        <span class="speaker-label">Mira</span>
+        ...we did this an hour ago.
+      </div>
+    </div>
+
+    <p>
+      It's subtle at first. The model suggests a feature you already added. Uses a variable name from v1 that was renamed in v2. Generates a full code listing that's missing the last three changes. It's not broken, exactly. It's just... drifting. Like someone at the end of a very long dinner who keeps circling back to a story they already told.
+    </p>
+
+    <p class="margin-note" style="font-size: 16px;">Pip's 2019 bug log:<br>
+    - Jan 14: off-by-one in a loop counter<br>
+    - Mar 2: forgot to close a DB connection (again)<br>
+    - Sep 19: deployed to production on a Friday<br><br>
+    I remember everything. In order. With dates.</p>
+
+    <p>
+      The forgetting isn't dramatic. There's no error message, no warning. The model doesn't say <em>I've lost the first half of our conversation</em>. It just starts acting like someone who wasn't in the room for the beginning. Because, in a very real sense, it wasn't — not anymore.
+    </p>
+
+    <div class="section-break">· · ·</div>
+
+    <!-- ===== Comic Strip 2: The Forgetting ===== -->
+
+    <div class="comic-strip" role="img" aria-label="Comic: The Forgetting — context window filling and overflowing">
+      <div class="comic-panel">
+        <div class="panel-art">
+          <svg viewBox="0 0 120 110" width="110" height="110" xmlns="http://www.w3.org/2000/svg">
+            <!-- Crisp conversation scroll -->
+            <rect x="15" y="5" width="90" height="90" rx="3" fill="white" stroke="#1C1410" stroke-width="1"/>
+            <line x1="22" y1="15" x2="78" y2="15" stroke="#D4614A" stroke-width="2"/>
+            <line x1="28" y1="23" x2="92" y2="23" stroke="#3A8C8C" stroke-width="2"/>
+            <line x1="22" y1="31" x2="82" y2="31" stroke="#D4614A" stroke-width="2"/>
+            <line x1="28" y1="39" x2="88" y2="39" stroke="#3A8C8C" stroke-width="2"/>
+            <line x1="22" y1="47" x2="75" y2="47" stroke="#D4614A" stroke-width="2"/>
+            <line x1="28" y1="55" x2="90" y2="55" stroke="#3A8C8C" stroke-width="2"/>
+            <line x1="22" y1="63" x2="80" y2="63" stroke="#D4614A" stroke-width="2"/>
+            <line x1="28" y1="71" x2="85" y2="71" stroke="#3A8C8C" stroke-width="2"/>
+            <line x1="22" y1="79" x2="78" y2="79" stroke="#D4614A" stroke-width="2"/>
+            <line x1="28" y1="87" x2="92" y2="87" stroke="#3A8C8C" stroke-width="2"/>
+          </svg>
+        </div>
+        <div class="panel-caption">The beginning of the conversation.</div>
+      </div>
+      <div class="comic-panel">
+        <div class="panel-art">
+          <svg viewBox="0 0 120 110" width="110" height="110" xmlns="http://www.w3.org/2000/svg">
+            <!-- Same scroll, top fading -->
+            <rect x="15" y="5" width="90" height="90" rx="3" fill="white" stroke="#1C1410" stroke-width="1"/>
+            <!-- Faded top lines -->
+            <line x1="22" y1="15" x2="78" y2="15" stroke="#D4614A" stroke-width="2" opacity="0.1"/>
+            <line x1="28" y1="23" x2="92" y2="23" stroke="#3A8C8C" stroke-width="2" opacity="0.15"/>
+            <line x1="22" y1="31" x2="82" y2="31" stroke="#D4614A" stroke-width="2" opacity="0.25"/>
+            <!-- Dotted line = context window edge -->
+            <line x1="15" y1="38" x2="105" y2="38" stroke="#C9922A" stroke-width="1" stroke-dasharray="4 3"/>
+            <!-- Crisp bottom lines -->
+            <line x1="28" y1="47" x2="88" y2="47" stroke="#3A8C8C" stroke-width="2"/>
+            <line x1="22" y1="55" x2="75" y2="55" stroke="#D4614A" stroke-width="2"/>
+            <line x1="28" y1="63" x2="90" y2="63" stroke="#3A8C8C" stroke-width="2"/>
+            <line x1="22" y1="71" x2="80" y2="71" stroke="#D4614A" stroke-width="2"/>
+            <line x1="28" y1="79" x2="85" y2="79" stroke="#3A8C8C" stroke-width="2"/>
+            <line x1="22" y1="87" x2="78" y2="87" stroke="#D4614A" stroke-width="2"/>
+          </svg>
+        </div>
+        <div class="panel-caption">Forty-five minutes later.</div>
+      </div>
+      <div class="comic-panel dark">
+        <div class="panel-art">
+          <svg viewBox="0 0 120 110" width="110" height="110" xmlns="http://www.w3.org/2000/svg">
+            <!-- Scroll with top gone -->
+            <rect x="15" y="5" width="90" height="90" rx="3" fill="rgba(255,255,255,0.05)" stroke="#444" stroke-width="1"/>
+            <!-- Empty top -->
+            <line x1="28" y1="55" x2="90" y2="55" stroke="#3A8C8C" stroke-width="2" opacity="0.6"/>
+            <line x1="22" y1="63" x2="80" y2="63" stroke="#D4614A" stroke-width="2" opacity="0.7"/>
+            <line x1="28" y1="71" x2="85" y2="71" stroke="#3A8C8C" stroke-width="2" opacity="0.8"/>
+            <line x1="22" y1="79" x2="78" y2="79" stroke="#D4614A" stroke-width="2"/>
+            <line x1="28" y1="87" x2="92" y2="87" stroke="#3A8C8C" stroke-width="2"/>
+            <!-- Thought bubble from model -->
+            <circle cx="80" cy="30" r="3" fill="#3A8C8C" opacity="0.3"/>
+            <circle cx="86" cy="22" r="4" fill="#3A8C8C" opacity="0.4"/>
+            <rect x="52" y="5" width="58" height="18" rx="5" fill="rgba(58,140,140,0.15)" stroke="#3A8C8C" stroke-width="1" opacity="0.6"/>
+            <text x="81" y="17" font-family="Space Mono, monospace" font-size="6.5" fill="#3A8C8C" text-anchor="middle" opacity="0.7">...peanuts?</text>
+          </svg>
+        </div>
+        <div class="panel-caption" style="color: #E8D5B7; border-top-color: #444; opacity: 0.6;">The window moves. The past dissolves.</div>
+      </div>
+    </div>
+
+    <div class="section-break">· · ·</div>
+
+    <!-- ===== Section G: The Re-Orient ===== -->
+
+    <h3 style="font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; margin: 40px 0 24px; color: var(--ink);">
+      The <em>Re-Orient</em>
+    </h3>
+
+    <p>
+      Mira learns the move. When the model starts drifting — when it suggests something you've already done, or uses the wrong variable name, or seems to have lost the thread of what you're building — you don't start over. You drop a checkpoint.
+    </p>
+
+    <p>
+      A re-orient is a mid-conversation brief. Three to five sentences: here's the project, here's where we are, here's the current code, here's what we're doing next. You're not repeating the whole conversation. You're giving the model a cheat sheet for the part it can't see anymore.
+    </p>
+
+    <div class="dialogue">
+      <div class="speech-bubble from-human">
+        <span class="speaker-label">Mira</span>
+        Quick re-orient — we're building party_guests.rb, a birthday party dashboard for my daughter Fig's 4th birthday. Current version has RSVP tracking, allergy display, parent phone numbers for maybes, and a shopping list that scales to headcount. We just finished adding the allergy warnings to the shopping list section. Next: I want to add a countdown timer to the dashboard header.
+      </div>
+
+      <div class="speech-bubble from-model">
+        <span class="speaker-label">The Model</span>
+        Got it. Adding a countdown to the dashboard header — I'll calculate days remaining from today to March 15th and display it in the header box alongside the existing title. Want me to include both days and weeks for readability?
+      </div>
+    </div>
+
+    <p class="margin-note">She's giving it a cheat sheet. My memory is my defining feature and I will not apologize for it.</p>
+
+    <p>
+      The model snaps back into focus. It knows the project again. It knows where you are in it. It can make suggestions that are specific and relevant instead of generic and drifting. You haven't lost the conversation — you've given it a second wind.
+    </p>
+
+    <div class="section-break">· · · · ·</div>
+
+    <!-- ===== Interlude: On Things That Don't Remember You ===== -->
+
+    <div class="interlude">
+      <span class="interlude-label">An Interlude</span>
+
+      <p style="font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: var(--ink); margin-bottom: 16px;">On Things That Don't Remember You</p>
+
+      <p>
+        There is a strange intimacy to working with something that won't remember you tomorrow. You spend an hour building together — explaining your project, refining the approach, watching the code take shape — and when you close the tab, it's gone. Not saved somewhere you can't access. <em>Gone</em>. The collaboration existed for exactly as long as the conversation lasted, and then it didn't.
+      </p>
+
+      <p style="margin-top: 16px;">
+        This should feel like a limitation. And it is, practically — you'll learn to work around it, and the next few sections will show you how. But there's something else in it too, something harder to name. Every conversation has to be good <em>now</em>. There's no coasting on shared history. No assuming the other side remembers what you said last week. Every session is earned. Every collaboration is built from the ground up, in real time, with whatever you bring to it today.
+      </p>
+
+      <p style="margin-top: 16px;">
+        Pip has been on Mira's desk since 2016. He remembers everything. But he can't write code. The Model can write code but remembers nothing. Between the two of them, Mira has exactly one collaborator who can help her build and one who can help her remember. She keeps both.
+      </p>
+
+      <p style="margin-top: 16px; font-family: 'Caveat', cursive; font-size: 20px; color: var(--margin-note); transform: rotate(-0.5deg); display: block;">
+        The conversation builds the thing. But the thing outlasts the conversation. And maybe that's enough.
+      </p>
+    </div>
+
+    <div class="section-break">· · ·</div>
+
+    <!-- ===== Section H: Practical Magic ===== -->
+
+    <h3 style="font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; margin: 40px 0 24px; color: var(--ink);">
+      Practical <em>Magic</em>
+    </h3>
+
+    <p>
+      Five things. Concrete, actionable, tested against Mira's actual workflow. If the rest of this chapter is the philosophy, this is the recipe card you stick on the fridge next to Fig's party dashboard.
+    </p>
+
+    <p style="margin-top: 24px;">
+      <strong style="color: var(--coral);">1. Start every conversation with a brief.</strong> Thirty seconds. Project name, what you're building, what you need help with today. You are not wasting time — you are saving twenty minutes of confusion later. The brief is the cheapest, highest-leverage thing you can do.
+    </p>
+
+    <p style="margin-top: 16px;">
+      <strong style="color: var(--teal);">2. Keep a project file.</strong> A markdown file in your project root — <code>PROJECT.md</code>, <code>CONTEXT.md</code>, whatever you want to call it. Current state, recent changes, key decisions, known issues. When you start a new conversation, paste it in. This is the cheat code. This is the thing that makes the "first date" problem almost free.
+    </p>
+
+    <p class="margin-note">Number 2 is just a README. She's reinventing the README.</p>
+
+    <p style="margin-top: 16px;">
+      <strong style="color: var(--gold);">3. Paste code, but annotate it.</strong> Don't just dump a file into the chat — tell the model what it's looking at. <em>"This is the main guest tracking script. The part I need help with is the shopping list calculation near the bottom."</em> Give the model a map, not a maze.
+    </p>
+
+    <p style="margin-top: 16px;">
+      <strong style="color: var(--blue-soft);">4. Re-orient every 30–40 messages.</strong> If your conversation is getting long, drop a checkpoint. Project, current state, what's next, and the latest version of the code. You'll feel the model snap back into focus.
+    </p>
+
+    <p style="margin-top: 16px;">
+      <strong style="color: var(--ink);">5. Start new conversations for new problems.</strong> Don't keep a single thread running for three days. Each new problem gets a new chat with a fresh brief. The brief makes fresh starts cheap — that's the whole point. A new conversation isn't a loss; it's a reset.
+    </p>
+
+    <div class="section-break">· · ·</div>
+
+    <!-- ===== Section I: Closing Prose ===== -->
+
+    <p>
+      Memory is a relationship. Some relationships have decades of shared history — inside jokes, shorthand, the accumulated weight of knowing someone so long that you finish each other's sentences. Some relationships last an hour and produce something beautiful. A conversation with a stranger on a train. A pairing session with a developer you'll never meet again. A single evening where everything clicks and then it's over.
+    </p>
+
+    <p>
+      The context window is the shape of the collaboration. It has edges. It has limits. Learning to work within that shape is not a compromise — it's a craft. The same way a sonnet's fourteen lines aren't a limitation but a form. The same way a chef's tasting menu isn't constrained by having only seven courses — it's <em>shaped</em> by it.
+    </p>
+
+    <p>
+      You will get better at this. You'll learn to write briefs without thinking about it. You'll feel the conversation start to drift before the model does. You'll keep a project file that makes every new chat feel like picking up where you left off, even though you're starting over, even though the stranger across the table has never seen your face.
+    </p>
+
+    <p class="margin-note" style="font-size: 16px;">She'll be back tomorrow. She always comes back. So will it. Neither of them will remember the other. But I will. And the code will. And Fig's party will happen on March 15th. That's enough.<br><br>(Don't tell her I said that.)</p>
+
+    <p>
+      And the code stays. That's the thing. The conversation dissolves, but the code stays. The dashboard is still in the file. The shopping list still scales. The box-drawing characters are still holding the whole thing together like a fridge-mounted work of art.
+    </p>
+
+    <p>
+      <em>The conversation builds the thing. The loop refines it. Chapter 3 is about the loop.</em>
+    </p>
+
+    <div class="section-break">· · ·</div>
+
+    <!-- ===== Comic Strip 3: The Closing Image ===== -->
+
+    <div class="comic-strip" role="img" aria-label="Comic: The Closing Image — the conversation ends, the code stays, tomorrow begins">
+      <div class="comic-panel dark">
+        <div class="panel-art">
+          <svg viewBox="0 0 120 100" width="110" height="100" xmlns="http://www.w3.org/2000/svg">
+            <!-- Monitor at night, chat open -->
+            <rect x="15" y="10" width="90" height="60" rx="4" fill="#0A0A12" stroke="#444" stroke-width="1.5"/>
+            <!-- Chat lines inside monitor -->
+            <line x1="22" y1="25" x2="65" y2="25" stroke="#D4614A" stroke-width="1.5" opacity="0.5"/>
+            <line x1="35" y1="33" x2="92" y2="33" stroke="#3A8C8C" stroke-width="1.5" opacity="0.5"/>
+            <line x1="22" y1="41" x2="58" y2="41" stroke="#D4614A" stroke-width="1.5" opacity="0.5"/>
+            <!-- Last line, bright -->
+            <text x="60" y="57" font-family="Space Mono, monospace" font-size="6" fill="#3A8C8C" text-anchor="middle">You've got this, Mira.</text>
+            <!-- Monitor stand -->
+            <rect x="50" y="70" width="20" height="6" fill="#444"/>
+            <rect x="40" y="76" width="40" height="4" rx="2" fill="#444"/>
+          </svg>
+        </div>
+        <div class="panel-caption" style="color: #E8D5B7; border-top-color: #444; opacity: 0.6;">11:47pm. The conversation is over.</div>
+      </div>
+      <div class="comic-panel dark">
+        <div class="panel-art">
+          <svg viewBox="0 0 120 100" width="110" height="100" xmlns="http://www.w3.org/2000/svg">
+            <!-- Monitor at night, code editor open -->
+            <rect x="15" y="10" width="90" height="60" rx="4" fill="#12100E" stroke="#444" stroke-width="1.5"/>
+            <!-- Code lines inside monitor -->
+            <line x1="22" y1="22" x2="55" y2="22" stroke="#86EFAC" stroke-width="1" opacity="0.6"/>
+            <line x1="22" y1="28" x2="70" y2="28" stroke="#E8D5B7" stroke-width="1" opacity="0.5"/>
+            <line x1="22" y1="34" x2="48" y2="34" stroke="#93C5FD" stroke-width="1" opacity="0.6"/>
+            <line x1="22" y1="40" x2="62" y2="40" stroke="#E8D5B7" stroke-width="1" opacity="0.5"/>
+            <line x1="22" y1="46" x2="80" y2="46" stroke="#86EFAC" stroke-width="1" opacity="0.6"/>
+            <line x1="22" y1="52" x2="55" y2="52" stroke="#E8D5B7" stroke-width="1" opacity="0.5"/>
+            <line x1="22" y1="58" x2="45" y2="58" stroke="#C9922A" stroke-width="1" opacity="0.6"/>
+            <!-- Monitor stand -->
+            <rect x="50" y="70" width="20" height="6" fill="#444"/>
+            <rect x="40" y="76" width="40" height="4" rx="2" fill="#444"/>
+          </svg>
+        </div>
+        <div class="panel-caption" style="color: #E8D5B7; border-top-color: #444; opacity: 0.6;">The window closed. The code stayed.</div>
+      </div>
+      <div class="comic-panel">
+        <div class="panel-art">
+          <svg viewBox="0 0 120 100" width="110" height="100" xmlns="http://www.w3.org/2000/svg">
+            <!-- Morning — monitor off, Pip on desk -->
+            <rect x="15" y="10" width="90" height="60" rx="4" fill="#E8E0D0" stroke="#1C1410" stroke-width="1.5"/>
+            <!-- Blank screen (off) -->
+            <rect x="20" y="15" width="80" height="50" rx="2" fill="#D4CFC5"/>
+            <!-- Sticky note on monitor -->
+            <rect x="48" y="20" width="46" height="32" fill="#FFF06B" transform="rotate(3, 71, 36)"/>
+            <text x="71" y="32" font-family="Caveat, cursive" font-size="6" fill="#1C1410" text-anchor="middle" transform="rotate(3, 71, 36)">BRIEF: party planner</text>
+            <text x="71" y="40" font-family="Caveat, cursive" font-size="6" fill="#1C1410" text-anchor="middle" transform="rotate(3, 71, 36)">v4, add checklist</text>
+            <!-- Monitor stand -->
+            <rect x="50" y="70" width="20" height="6" fill="#1C1410"/>
+            <rect x="40" y="76" width="40" height="4" rx="2" fill="#1C1410"/>
+            <!-- Pip on desk -->
+            <ellipse cx="25" cy="88" rx="12" ry="8" fill="none" stroke="#C9922A" stroke-width="2"/>
+            <circle cx="32" cy="80" r="7" fill="none" stroke="#C9922A" stroke-width="2"/>
+            <path d="M 36 80 L 42 82 L 36 84 Z" fill="none" stroke="#C9922A" stroke-width="1.5"/>
+            <circle cx="34" cy="78" r="1.5" fill="#C9922A"/>
+          </svg>
+        </div>
+        <div class="panel-caption">See you tomorrow, stranger.</div>
+      </div>
+    </div>
+
+    <p style="text-align: center; margin-top: 60px;">
+      <span style="font-family: 'Playfair Display', serif; font-size: 32px; color: var(--teal);">✦</span>
+    </p>
+
+    <!-- End of chapter nav -->
+    <div style="display: flex; justify-content: space-between; margin-top: 80px; padding-top: 40px; border-top: 1px solid var(--cream-dark); font-family: 'Space Mono', monospace; font-size: 12px; color: var(--ink-faded);">
+      <span>— end of chapter 2 —</span>
+      <span class="blinking-cursor">Chapter 3 coming soon</span>
+    </div>
+
+  </div><!-- end .prose (chapter 2) -->
+
+</div><!-- end .page-wrap -->
+
+<script>
+(function() {
+  const chapters = [
+    { id: 'chapter-0', num: 'Ch. 0', name: 'Before the<br>Cursor Blinked' },
+    { id: 'chapter-1', num: 'Ch. 1', name: 'Your First<br>Conversation' },
+    { id: 'chapter-2', num: 'Ch. 2', name: 'Context Is<br>Everything' },
+  ];
+
+  const numEl = document.getElementById('nav-chapter-num');
+  const nameEl = document.getElementById('nav-chapter-name');
+  const toggle = document.getElementById('nav-dropdown-toggle');
+  const dropdown = document.getElementById('nav-dropdown');
+  const links = dropdown.querySelectorAll('a[data-ch]');
+
+  // Dropdown toggle
+  toggle.addEventListener('click', function() {
+    const isOpen = dropdown.classList.toggle('open');
+    toggle.classList.toggle('open', isOpen);
+  });
+
+  // Close dropdown when a link is clicked
+  links.forEach(function(link) {
+    link.addEventListener('click', function() {
+      dropdown.classList.remove('open');
+      toggle.classList.remove('open');
+    });
+  });
+
+  // Close dropdown on outside click
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.chapter-nav-inner')) {
+      dropdown.classList.remove('open');
+      toggle.classList.remove('open');
+    }
+  });
+
+  // Scroll-based chapter tracking
+  function updateNav() {
+    var current = null;
+    for (var i = chapters.length - 1; i >= 0; i--) {
+      var el = document.getElementById(chapters[i].id);
+      if (el && el.getBoundingClientRect().top <= 150) {
+        current = i;
+        break;
+      }
+    }
+    if (current === null) current = 0;
+
+    numEl.textContent = chapters[current].num;
+    nameEl.innerHTML = chapters[current].name;
+
+    links.forEach(function(link) {
+      link.classList.toggle('active', link.dataset.ch === String(current));
+    });
+  }
+
+  window.addEventListener('scroll', updateNav, { passive: true });
+  updateNav();
+})();
+</script>
+</body>
+</html>

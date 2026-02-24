@@ -1,0 +1,19 @@
+---
+layout: default
+title: Blog
+description: Thoughts on software engineering, AI implementation, and building technology that delivers results.
+---
+<div class="blog-list">
+  <p class="section-label">Blog</p>
+  <h2>Latest Posts</h2>
+  <p class="section-intro">Thoughts on software engineering, AI implementation, and building technology that delivers results.</p>
+  <div class="divider"></div>
+
+  {% for post in site.posts %}
+  <div class="post-preview">
+    <p class="post-date">{{ post.date | date: "%B %d, %Y" }}</p>
+    <h2><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
+    <p class="post-excerpt">{{ post.excerpt | strip_html | truncatewords: 40 }}</p>
+  </div>
+  {% endfor %}
+</div>

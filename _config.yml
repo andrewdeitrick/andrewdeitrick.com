@@ -1,0 +1,33 @@
+title: Andrew Deitrick
+description: >-
+  Andrew Deitrick delivers custom software engineering and AI implementation
+  solutions for businesses ready to operate at the next level.
+url: "https://andrewdeitrick.com"
+author:
+  name: Andrew Deitrick
+  email: andrew@andrewdeitrick.com
+
+port: 3333
+permalink: /blog/:year/:month/:day/:title/
+
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-feed
+
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: default
+      image: /andrew-black.png
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md

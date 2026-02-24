@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  {% if page.layout == 'post' or page.url contains '/blog' %}
+  <link rel="stylesheet" href="/assets/css/blog.css">
+  {% endif %}
+  {% seo %}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Andrew Deitrick",
+    "url": "https://andrewdeitrick.com",
+    "email": "andrew@andrewdeitrick.com",
+    "jobTitle": "Software Engineer & AI Implementation Consultant",
+    "description": "{{ site.description | strip_html | strip_newlines | escape }}"
+  }
+  </script>
+</head>
+<body>
+
+  {% include nav.html %}
+
+  <!-- Theme Toggle -->
+  <button class="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">💡</button>
+
+  {{ content }}
+
+  {% include footer.html %}
+
+  <script>
+    const toggle = document.querySelector('.theme-toggle');
+    const root = document.documentElement;
+    const heroPhoto = document.getElementById('hero-photo');
+
+    function updateHeroPhoto() {
+      if (!heroPhoto) return;
+      const isDark = root.getAttribute('data-theme') === 'dark';
+      heroPhoto.src = isDark ? '/andrew-white.png' : '/andrew-black.png';
+    }
+
+    // Check for saved preference
+    const saved = localStorage.getItem('theme');
+    if (saved) root.setAttribute('data-theme', saved);
+    updateHeroPhoto();
+
+    toggle.addEventListener('click', () => {
+      const isDark = root.getAttribute('data-theme') === 'dark';
+      const next = isDark ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+      updateHeroPhoto();
+    });
+  </script>
+</body>
+</html>
