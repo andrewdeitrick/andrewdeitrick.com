@@ -762,6 +762,196 @@
 
   @media (max-width: 900px) { .chapter-nav { display: none; } }
 
+  /* ===================== PIP COMPANION ===================== */
+  #pip-companion {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1001;
+    transition: right 0.8s ease;
+  }
+
+  #pip-companion img {
+    width: 100px;
+    height: auto;
+    animation: pip-bob 3s ease-in-out infinite;
+    transition: opacity 0.3s ease;
+    cursor: pointer;
+    filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.15));
+  }
+
+  @keyframes pip-bob {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+  }
+
+  #pip-companion .pip-tooltip {
+    position: absolute;
+    bottom: 110px;
+    right: 0;
+    background: #FFFBF0;
+    border: 2px solid var(--gold);
+    border-radius: 12px 12px 0 12px;
+    padding: 10px 14px;
+    font-family: 'Caveat', cursive;
+    font-size: 16px;
+    color: var(--margin-note);
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+    box-shadow: 2px 3px 0 var(--gold);
+  }
+
+  #pip-companion .pip-tooltip::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    right: 12px;
+    border-width: 10px 10px 0;
+    border-style: solid;
+    border-color: var(--gold) transparent transparent;
+  }
+
+  #pip-companion:hover .pip-tooltip {
+    opacity: 1;
+  }
+
+  #pip-companion .pip-typing-indicator {
+    position: absolute;
+    top: 40%;
+    right: 108px;
+    transform: translateY(-50%);
+    background: #FFFBF0;
+    border: 1.5px solid var(--gold);
+    border-radius: 10px 10px 0 10px;
+    padding: 5px 10px;
+    font-family: 'Caveat', cursive;
+    font-size: 14px;
+    color: var(--margin-note);
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    box-shadow: 1px 2px 0 var(--gold);
+  }
+
+  #pip-companion.is-typing .pip-typing-indicator {
+    opacity: 1;
+  }
+
+  .typing-dots span {
+    display: inline-block;
+    animation: dot-bounce 1.4s infinite;
+  }
+  .typing-dots span:nth-child(2) { animation-delay: 0.2s; }
+  .typing-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+  @keyframes dot-bounce {
+    0%, 60%, 100% { transform: translateY(0); }
+    30% { transform: translateY(-4px); }
+  }
+
+  /* ===================== TYPEWRITER MARGIN NOTES ===================== */
+  .margin-note {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .margin-note.typed {
+    opacity: 1;
+  }
+
+  .typing-cursor {
+    display: inline-block;
+    width: 2px;
+    height: 1em;
+    background: var(--margin-note);
+    margin-left: 2px;
+    animation: cursor-blink 0.7s step-end infinite;
+    vertical-align: text-bottom;
+  }
+
+  @keyframes cursor-blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  /* ===================== NARRATIVE DUCK IMAGES ===================== */
+  .narrative-duck {
+    display: block;
+    margin: 30px auto;
+    max-width: 200px;
+  }
+
+  .narrative-duck.behind-text {
+    float: right;
+    max-width: 200px;
+    opacity: 0.12;
+    margin: 0 -80px 20px 20px;
+  }
+
+  .narrative-duck.hanging {
+    display: block;
+    margin: -10px auto 10px;
+    max-width: 80px;
+    opacity: 0.7;
+  }
+
+  .narrative-duck.proud {
+    display: block;
+    margin: 20px auto 30px;
+    max-width: 160px;
+  }
+
+  .narrative-duck.warm {
+    display: block;
+    margin: 30px auto;
+    max-width: 250px;
+  }
+
+  /* ===================== HANGING DUCK ===================== */
+  #hanging-duck {
+    position: fixed;
+    top: 0;
+    left: 30px;
+    z-index: 1001;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    pointer-events: none;
+  }
+
+  #hanging-duck.visible {
+    opacity: 0.8;
+  }
+
+  #hanging-duck img {
+    width: 400px;
+    height: auto;
+    transform-origin: center top;
+    animation: duck-swing 4s ease-in-out infinite;
+  }
+
+  @keyframes duck-swing {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(3deg); }
+    75% { transform: rotate(-3deg); }
+  }
+
+  /* Responsive: hide companion on mobile */
+  @media (max-width: 600px) {
+    #pip-companion { display: none; }
+    #hanging-duck { display: none; }
+  }
+
+  /* Reduced motion: show notes immediately, no animations */
+  @media (prefers-reduced-motion: reduce) {
+    .margin-note { opacity: 1 !important; transition: none !important; }
+    .typing-cursor { display: none !important; }
+    #pip-companion img { animation: none; }
+    #pip-companion, .narrative-duck { transition: none !important; }
+  }
+
 </style>
 </head>
 <body>
@@ -892,7 +1082,7 @@
       There is a moment, and you've already had it, even if you haven't named it yet. You open a chat window. The box is empty. The cursor is blinking — not impatiently, not kindly, just <em>blinking</em>, as cursors have blinked since the invention of the monitor. And you realize you have no idea how to start.
     </p>
 
-    <p class="margin-note">Mira is a developer. She is not lost. She is between certainties.</p>
+    <p class="margin-note">She's not lost. She's between certainties. I've seen this look before.</p>
 
     Not because you don't know what you want to build. You do. A web scraper, maybe, or a little dashboard for the family budget, or — and this is the one that keeps waking you up at 3am — that tool for sorting your daughter's nap schedule that somehow became a distributed system in your head somewhere between feeding and burping.
 
@@ -980,7 +1170,7 @@
 
     <p class="margin-ref"><a href="https://xkcd.com/353/" target="_blank" rel="noopener">see also: xkcd #353 — same feeling, different language</a></p>
 
-    <p class="margin-note">Pip was present for this discovery and will not pretend he wasn't moved. He was moved. He admits it.</p>
+    <p class="margin-note">I was there for this discovery and I will not pretend I wasn't moved. I was moved. I admit it.</p>
 
     <p>
       Ruby, in the mid-2000s, felt like contraband. It felt like someone had looked at the programming languages that came before it and said — quietly, almost gently — <em>what if we built this for the person writing it, not just the machine reading it?</em> It had this quality that Matz, its creator, called developer happiness, and I remember reading that phrase and thinking it was slightly ridiculous and then opening an IRB terminal and having a feeling I hadn't expected to have in front of a computer.
@@ -989,7 +1179,7 @@
     <p>
       The Ruby community had a saying: <strong>MINISWAN</strong>. Matz Is Nice So We Are Nice. It sounds like a bumper sticker and it kind of is, but there was something real underneath it — the idea that the culture of a tool flows from the top, that kindness is a design decision, that the language you write in shapes not just your code but <em>how you show up</em> while writing it. A language built around human happiness tends to attract humans trying to make something good. Funny how that works.
 
-    <p class="margin-note">MINISWAN. The Model is also quite nice, Pip grudgingly admits. This changes nothing.</p>
+    <p class="margin-note">MINISWAN. The Model is also quite nice, I grudgingly admit. This changes nothing.</p>
     </p>
 
     <p>
@@ -1018,7 +1208,7 @@
       The Ten Years of the Button
     </h3>
 
-    <p class="margin-note">Pip has attended fourteen of these meetings. He keeps a tally on his underside.</p>
+    <p class="margin-note">I've attended fourteen of these meetings. I keep a tally on my underside.</p>
 
     <p>
       I want to talk about the button. Not a specific button — every button, and also the meeting about the button, and the meeting to follow up on the meeting about the button, and the Jira ticket created to track the action items from the meeting about the button, and the Slack thread in which someone asked if the Jira ticket had been assigned, and the design review in which someone noted that the button's border radius didn't match the design system, and the design system RFC that was opened to discuss whether the design system should be updated, and the stakeholder alignment call to get buy-in on the RFC, and the retrospective item about how the stakeholder alignment call could have been an email.
@@ -1089,7 +1279,7 @@
       I want to be fair: some of those conversations mattered. Details matter. The gap between a good API and a bad one is often made of exactly these micro-decisions, and the engineers and designers who care about them are right to care about them. The problem was never the caring. The problem was the <em>ratio</em> — the ratio of time spent talking about what to build versus actually building it, and how, somewhere in the last decade, that ratio had gotten so badly out of whack that the talking started to feel like the job, and the building started to feel like a special occasion.
     </p>
 
-    <p class="margin-note">Pip note: "I was built in a single afternoon by someone who just wanted to build something. I rest my case."</p>
+    <p class="margin-note">I was built in a single afternoon by someone who just wanted to build something. I rest my case.</p>
 
     <p>
       There were sprints that didn't produce a single line of code because all the lines were blocked waiting for someone to look at a pull request that was blocked waiting for a design decision that was blocked waiting for a product decision that was blocked because the product manager was in back-to-back meetings all week, one of which was a meeting about the meeting cadence.
@@ -1155,7 +1345,8 @@
         <p style="font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: var(--coral); margin-bottom: 8px;">Mira ✦</p>
         <p>A developer who has been writing code for nine years and is somehow still surprised by it. She is competent. She is tired. She has a daughter named Fig and a rubber duck named Pip and an apartment where the wifi router is held up by a Jenga block and everyone has agreed not to mention this.</p>
         <p>She appears in the examples when we need someone to be human, which is often. She will get things wrong in instructive ways. She will occasionally get things right in ways that surprise even her.</p>
-        <p>If you winced at the button meetings. If you know what MINISWAN means without having to look it up. If it is two in the morning and you haven't noticed because for the first time in a long time you genuinely cannot put down the keyboard — then Mira is you. Welcome back.</p>
+        <p>If you winced at the button meetings, if you still have dusty Stack Overflow bookmarks, if you know what MINISWAN means.
+        <p>If it is two in the morning and you haven't noticed because for the first time in a long time you genuinely cannot put down the keyboard — then <b>Mira is you.</b> Welcome back.</p>
       </div>
 
       <div style="margin-bottom: 28px; padding-bottom: 28px; border-bottom: 1px dashed var(--ink-faded);">
@@ -1173,7 +1364,7 @@
         <div style="margin-top: 28px; border: 2.5px solid var(--gold); background: #FFFBF0; box-shadow: 4px 4px 0 var(--gold); padding: 28px 32px; position: relative;">
           <div style="position: absolute; top: -14px; left: 20px; background: #FFFBF0; padding: 2px 12px; font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); border: 1.5px solid var(--gold);">A Note on the Name</div>
 
-          <img src="hr-pip.png" alt="Pip, a yellow rubber duck with opinions" style="float: right; max-width: 200px; margin: 0 0 16px 20px;">
+          <img src="hr-duck.png" alt="Pip, a yellow rubber duck with opinions" style="float: right; max-width: 200px; margin: 0 0 16px 20px;">
 
           <p style="font-family: 'Playfair Display', serif; font-size: 19px; font-style: italic; margin-bottom: 16px; color: var(--ink);">Pip is named Pip. This is a coincidence. It is also not a coincidence.</p>
 
@@ -1208,11 +1399,11 @@
 
     <div class="section-break">· · ·</div>
 
-    <h3 style="font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; margin: 40px 0 24px; color: var(--ink);">
+    <h3 id="what-is-vibe-coding" style="font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; margin: 40px 0 24px; color: var(--ink);">
       What Even <em>Is</em> Vibe Coding
     </h3>
 
-    <p class="margin-note">Pip says: "Real coding is you understanding what you made." We note this without judgment.</p>
+    <p class="margin-note">Real coding is you understanding what you made. I'm noting this without judgment.</p>
 
     <p>
       Vibe coding is a slippery term and we should nail it down before it escapes under the refrigerator. It doesn't mean <em>writing bad code</em>. It doesn't mean <em>not understanding your code</em>. Those are things that can happen inside vibe coding, but they're not the definition of it. Plenty of things can go wrong in a kitchen without that meaning cooking is the problem.
@@ -1307,6 +1498,8 @@
       </div>
     </div>
 
+    <p class="margin-ref"><a href="https://stackoverflow.com/questions/184618/what-is-the-best-comment-in-source-code-you-have-ever-encountered" target="_blank" rel="noopener">see also: SO #184618 — "// When I wrote this, only God and I understood what I was doing. Now, God only knows."</a></p>
+
     <p>
       Now here comes the code.
     </p>
@@ -1352,7 +1545,7 @@ themes.shuffle.each <span class="code-keyword">do</span> |theme|
 <span class="code-keyword">end</span></pre>
     </div>
 
-    <p class="margin-note">Fig vetoed "Fancy Penguins" four times across three runs. Mira suspects sabotage.</p>
+    <p class="margin-note">Fig vetoed "Fancy Penguins" four times across three runs. I don't suspect sabotage. I KNOW.</p>
 
     <p>
       About thirty lines. Readable. It does the thing. You could run this right now, in a terminal, and it would work — Fig could literally press keys on Mira's keyboard. That's not nothing — it's quite a lot, actually. A person who'd never written Ruby before could produce this in their first hour, if they asked the right questions and read the answers carefully.
@@ -1458,7 +1651,7 @@ themes.shuffle.each <span class="code-keyword">do</span> |theme|
       You have opened the chat window. The cursor is there, doing its thing. And you are — let's be honest about this — drafting your first message the way you'd draft an email to a stranger you're trying to impress. You type a sentence. You delete it. You type another one, more formal this time, like maybe the AI will respect you more if you use complete sentences and proper punctuation. You delete that too. You type a third one that's so casual it sounds like you're texting a friend you haven't spoken to in four years and are pretending that's normal.
     </p>
 
-    <p class="margin-note">Pip has never rehearsed anything in his life. He is a duck.</p>
+    <p class="margin-note">I have never rehearsed anything in my life. I am a duck.</p>
 
     <p>
       That exchange in the last chapter — Mira's party theme picker, the one that looked like a smooth little back-and-forth between a human and an AI — looked smooth. What you didn't see was the forty-five minutes before it. The four false starts. The message she wrote that was three paragraphs long and included her entire project history. The message she wrote that was one word: <code style="font-family: 'Space Mono', monospace; font-size: 14px; background: rgba(0,0,0,0.06); padding: 2px 5px;">help</code>. The message she almost sent that began with "Dear Model" like it was a cover letter for a job she wasn't sure she wanted.
@@ -1537,7 +1730,7 @@ themes.shuffle.each <span class="code-keyword">do</span> |theme|
       Here is where most people get stuck, and it's not their fault. For fifteen years, the internet trained us to talk to computers in a very specific way: compress everything into a query. Strip out the context. Remove the nuance. Turn your complex, multi-layered, emotionally-loaded question into five keywords and a Boolean operator and hope that somewhere in the first three results, someone else had the same problem and someone else had an answer and the answer wasn't "why would you want to do it that way?"
     </p>
 
-    <p class="margin-note">Pip would like to remind you that HE was the original collaborator. Before the rectangle. Before the keywords. There was the duck.</p>
+    <p class="margin-note">I would like to remind you that I was the original collaborator. Before the rectangle. Before the keywords. There was me.</p>
 
     <p>
       That was search engine brain. And it worked — sort of. You got answers. They weren't always right, and they were never contextual, and you had to do the translation yourself, from someone else's situation to your own, but it <em>worked</em>. It was the deal.
@@ -1606,7 +1799,7 @@ confirmed = guests.select { |name, rsvp| rsvp }.keys
 puts <span class="code-string">"#{confirmed.length} kids coming: #{confirmed.join(', ')}"</span></pre>
     </div>
 
-    <p class="margin-note">She told it to use .select and .keys. It used .select and .keys. Nobody learned anything. Pip is thrilled.</p>
+    <p class="margin-note">She told it to use .select and .keys. It used .select and .keys. Nobody learned anything. I'm thrilled.</p>
 
     <p>
       It works. Let's be clear about that — this code runs, it does what it says, it produces a list. You could copy it into a file right now and it would function. There is nothing <em>wrong</em> with it.
@@ -1724,7 +1917,7 @@ all_allergies = guests.flat_map { |g| g[:allergies] }.uniq
 <span class="code-keyword">end</span></pre>
     </div>
 
-    <p class="margin-note">It asked about the maybe kids. Pip has never once asked a clarifying question. He considers this a feature, not a bug.</p>
+    <p class="margin-note">It asked about the maybe kids. I have never once asked a clarifying question. I consider this a feature, not a bug.</p>
 
     <p>
       Look at the difference. This version handles three-state RSVPs. It tracks allergies per kid. It groups by status with emoji labels. It flags allergies inline <em>and</em> prints an allergy alert summary. It does all of this not because Mira told it which methods to use, but because she told it what she was building and why.
@@ -1828,7 +2021,7 @@ all_allergies = guests.flat_map { |g| g[:allergies] }.uniq
       Here is the most liberating truth about prompting, and the one people are slowest to internalize: your first message doesn't have to be your best message. It doesn't even have to be a good message. It just has to be the <em>start</em> of a conversation — and conversations, by their nature, evolve. They get better as they go. That's the whole point of having them.
     </p>
 
-    <p class="margin-note">Pip has been having the same conversation with the bathroom faucet for eight years.</p>
+    <p class="margin-note">I've been having the same conversation with the bathroom faucet for eight years.</p>
 
     <p>
       When you write an email, you get one shot. When you write a search query, you get one set of results and then you start over. But when you're in a conversation with an AI, you can keep going. You can say <em>actually, that's not quite what I meant</em> or <em>can you also handle this case</em> or just <em>make the output prettier</em>. Each message builds on the last. The context accumulates. The thing gets better.
@@ -1997,7 +2190,7 @@ puts <span class="code-string">"\n✨  You've got this, Mira."</span></pre>
       Every craft has its common mistakes, and prompting is no exception. These aren't crimes — they're the things you'll naturally do at first and naturally stop doing as you get comfortable. Consider this a field guide to the habits worth shedding.
     </p>
 
-    <p class="margin-note">Pip's sixth sin: Replacing your rubber duck with a rectangle. This is unforgivable and yet here we are.</p>
+    <p class="margin-note">Sixth sin: Replacing your rubber duck with a rectangle. This is unforgivable and yet here we are.</p>
 
     <p>
       <strong>1. Too polite.</strong> You spend more words on courtesy than on context. "Hello! I hope you're doing well today. I was wondering if you could possibly help me with something, if it's not too much trouble?" Just ask. It's not going to judge your manners. It's going to read your prompt.
@@ -2119,7 +2312,7 @@ puts <span class="code-string">"\n✨  You've got this, Mira."</span></pre>
       That might sound like self-help nonsense, but it's the most accurate thing I can say about it. The difference between someone who gets good results from AI and someone who doesn't is rarely about technique or syntax or knowing the right magic words. It's about orientation. Are you leaning in or standing back? Are you staying in the conversation or grabbing the first answer and running? Are you saying what you actually mean, or performing what you think the AI wants to hear?
     </p>
 
-    <p class="margin-note">Pip is not nervous. Pip is PREPARED. There is a difference.</p>
+    <p class="margin-note">I am not nervous. I am PREPARED. There is a difference.</p>
 
     <p>
       <em>The best prompt is not the cleverest one. It's the most honest one.</em>
@@ -2215,7 +2408,7 @@ puts <span class="code-string">"\n✨  You've got this, Mira."</span></pre>
       Tuesday morning. Coffee. Laptop open. The sun is doing something aggressive through the kitchen blinds. Fig is at preschool. Pip is on the desk, where he has been since 2016, facing the monitor, as though supervising.
     </p>
 
-    <p class="margin-note">Mira is a developer. She is not lost. She is between conversations.</p>
+    <p class="margin-note">She's not lost. She's between conversations. I can tell.</p>
 
     <p>
       Mira opens a new chat. Not because yesterday's conversation ended badly — it didn't. It ended great. She had a working party dashboard, a shopping list that scaled to headcount, box-drawing characters that would make a 1980s terminal blush. She closed the laptop, went to bed, and slept the sleep of someone who shipped something.
@@ -2604,7 +2797,7 @@ Tracks RSVPs, allergies, generates a fridge-friendly dashboard.
       It's subtle at first. The model suggests a feature you already added. Uses a variable name from v1 that was renamed in v2. Generates a full code listing that's missing the last three changes. It's not broken, exactly. It's just... drifting. Like someone at the end of a very long dinner who keeps circling back to a story they already told.
     </p>
 
-    <p class="margin-note" style="font-size: 16px;">Pip's 2019 bug log:<br>
+    <p class="margin-note" style="font-size: 16px;">My 2019 bug log:<br>
     - Jan 14: off-by-one in a loop counter<br>
     - Mar 2: forgot to close a DB connection (again)<br>
     - Sep 19: deployed to production on a Friday<br><br>
@@ -2947,7 +3140,7 @@ Tracks RSVPs, allergies, generates a fridge-friendly dashboard.
       </div>
     </div>
 
-    <p class="margin-note">A CSV. She's storing her emotional obligations in a file format older than most of the children at Fig's party. No schema migrations. No foreign keys. Just commas and hope. Pip finds this deeply validating.</p>
+    <p class="margin-note">A CSV. She's storing her emotional obligations in a file format older than most of the children at Fig's party. No schema migrations. No foreign keys. Just commas and hope. I find this deeply validating.</p>
 
     <div class="code-block">
       <div class="code-header">
@@ -3525,6 +3718,8 @@ puts <span class="code-string">"   Add someone: ruby birthdays.rb add"</span></p
       Pip at <em>11:47pm</em>
     </h3>
 
+    <img src="vulnerable-duck.png" alt="" class="narrative-duck behind-text" aria-hidden="true">
+
     <p>
       She saves the file. She runs it one last time. The dashboard prints: Mom's birthday in 6 days. Gift note: <em>she mentioned the garden kneeler.</em> She opens Amazon in a new tab and orders it. Two-day shipping. She closes the laptop.
     </p>
@@ -3571,7 +3766,7 @@ puts <span class="code-string">"   Add someone: ruby birthdays.rb add"</span></p
       <strong>5. Know when to stop.</strong> The loop is addictive. There's always one more "actually." Mira stopped at v3. She could have added notifications, a web UI, a sync-to-calendar feature. She didn't. The CSV and the terminal were enough, because the thing was built for her mom's birthday, not for Product Hunt. Knowing when to stop is knowing what the thing is for.
     </p>
 
-    <p class="margin-note" style="width: 180px;">Number 5. Number 5 is the one. She stopped. She had a working thing and she STOPPED and ORDERED A GARDEN KNEELER. Do you understand how rare this is? Every developer Pip has ever observed would have added a notification system, then a web interface, then a mobile app, then a startup. She just... bought the kneeler. Pip is experiencing an emotion he doesn't have a word for. It might be respect. He will deny this.</p>
+    <p class="margin-note" style="width: 180px;">Number 5. Number 5 is the one. She stopped. She had a working thing and she STOPPED and ORDERED A GARDEN KNEELER. Do you understand how rare this is? Every developer I've ever observed would have added a notification system, then a web interface, then a mobile app, then a startup. She just... bought the kneeler. I'm experiencing an emotion I don't have a word for. It might be respect. I will deny this.</p>
 
     <!-- Fact Box: The Loop vs. The Sprint -->
     <div class="fact-box">
@@ -3960,6 +4155,8 @@ MSG
 
     <div class="section-break">· · ·</div>
 
+    <img src="upside-down-duck.png" alt="" class="narrative-duck hanging" aria-hidden="true">
+
     <!-- ===== Section E: "Saturday, 6:01am" ===== -->
 
     <h3 style="font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; margin: 40px 0 24px; color: var(--ink);">
@@ -4235,7 +4432,7 @@ MSG
       The Model did something interesting there. It didn't just answer the technical question. It asked the <em>human</em> question. Not "here's how to send a text via Twilio" but "does the recipient know?" This is a thing that happens sometimes — the Model reflects the question back at you, and the reflection is more useful than the answer would have been.
     </p>
 
-    <p class="margin-note">The duck would have asked that question. The duck has BEEN asking that question since 2016. Through silence. Through presence. Through the subtle art of sitting on a desk with an expression that clearly communicates "are you sure about this?" Nobody ever listens to the duck. The rectangle gets one good question and suddenly it's a philosopher.</p>
+    <p class="margin-note">I would have asked that question. I have BEEN asking that question since 2016. Through silence. Through presence. Through the subtle art of sitting on a desk with an expression that clearly communicates "are you sure about this?" Nobody ever listens to me. The rectangle gets one good question and suddenly it's a philosopher.</p>
 
     <div class="section-break">· · ·</div>
 
@@ -4289,7 +4486,7 @@ MSG
       The trajectory is: <em>conversation → tool → system → agent</em>. Each step added autonomy. The party picker required her to run it and read the output. The guest dashboard required her to run it. The birthday tracker required her to run it every day. The birthday agent runs itself.
     </p>
 
-    <p class="margin-note">Conversation, tool, system, agent. She's climbing a ladder. I'm still on the desk. I have been on the desk since 2016. The desk doesn't have a ladder. The desk has a duck. The duck has tenure.</p>
+    <p class="margin-note">Conversation, tool, system, agent. She's climbing a ladder. I'm still on the desk. I have been on the desk since 2016. The desk doesn't have a ladder. The desk has me. I have tenure.</p>
 
     <div class="fact-box">
       <div class="fact-box-title">The Autonomy Ladder</div>
@@ -4349,7 +4546,7 @@ MSG
       <strong>5. The last mile is sometimes yours.</strong> Mira's agent reminds her about birthdays. It doesn't buy the gifts. The last mile — the choosing, the caring, the "she mentioned the garden kneeler" — is hers. Not everything should be automated. Some things should be <em>remembered</em>.
     </p>
 
-    <p class="margin-note">Number 5. Again with number 5. She keeps landing on the right answer at number 5. Nine years of rubber duck debugging and apparently it worked. Pip taught her this. Indirectly. By existing. In silence. Which is a teaching methodology that has not received sufficient academic attention.</p>
+    <p class="margin-note">Number 5. Again with number 5. She keeps landing on the right answer at number 5. Nine years of rubber duck debugging and apparently it worked. I taught her this. Indirectly. By existing. In silence. Which is a teaching methodology that has not received sufficient academic attention.</p>
 
     <div class="section-break">· · ·</div>
 
@@ -4878,9 +5075,11 @@ end</code><br>
       The whole debugging session took twelve minutes. Three minutes to find the bug. Two minutes to read the wrong fix. Five minutes to test it, find the problem, and ask again. Two minutes to verify the right fix. Twelve minutes, and the script is better than it was — not just fixed, but <em>resilient</em>. One bad row can't crash the whole agent anymore.
     </p>
 
-    <p class="margin-note">She tested it. She didn't trust the first answer. She RAN IT IN IRB. She caught the wrong assumption. She told the Model — the rectangle, the thing that replaced me — she told it that it was WRONG. And it was wrong. The rectangle was wrong and the duck was right. Pip feels nothing about this. Pip is above petty vindication. Pip is a professional. Pip is also smiling but you can't tell because he's made of rubber and his face doesn't move.</p>
+    <p class="margin-note">She tested it. She didn't trust the first answer. She RAN IT IN IRB. She caught the wrong assumption. She told the Model — the rectangle, the thing that replaced me — she told it that it was WRONG. And it was wrong. The rectangle was wrong and the duck was right. I feel nothing about this. I am above petty vindication. I am a professional. I am also smiling but you can't tell because I'm made of rubber and my face doesn't move.</p>
 
     <div class="section-break">· · ·</div>
+
+    <img src="vindicated-duck.png" alt="Pip, vindicated" class="narrative-duck proud">
 
     <!-- ===== Section E: "Confidence and Correctness" ===== -->
 
@@ -5027,7 +5226,7 @@ end</code><br>
       <strong>5. The Overengineered Solution.</strong> You asked for a section in the terminal output. The Model built a web app. Not wrong, exactly — the web app works — but wildly disproportionate to the need. <em>Solution: be specific about scope. "I want this in the terminal, not a web UI." The Model follows energy. If you don't constrain it, it'll build the most interesting version, which is not always the most useful one.</em>
     </p>
 
-    <p class="margin-note">Number 3. The phantom library. Pip once watched Mira spend twenty minutes debugging an import error before realizing the gem didn't exist. It had a name. It had a version number. It had a plausible author (someone named "devtools-collective," which is EXACTLY the kind of name that sounds real). It was a ghost. Pip has never hallucinated a library. Pip has never hallucinated anything. This is, perhaps, his only remaining competitive advantage and he is CLINGING to it.</p>
+    <p class="margin-note">Number 3. The phantom library. I once watched her spend twenty minutes debugging an import error before realizing the gem didn't exist. It had a name. It had a version number. It had a plausible author (someone named "devtools-collective," which is EXACTLY the kind of name that sounds real). It was a ghost. I have never hallucinated a library. I have never hallucinated anything. This is, perhaps, my only remaining competitive advantage and I am CLINGING to it.</p>
 
     <div class="section-break">· · ·</div>
 
@@ -5323,7 +5522,7 @@ end</code><br>
       It's worth it. I promise. Not because the tools are magic. Because the building is.
     </p>
 
-    <p class="margin-note" style="width: 170px;">He's being sincere. He does this sometimes. Usually at the end of things. Conferences, blog posts, arguments with the bathroom faucet at 2am. I find it uncomfortable. He knows I find it uncomfortable. He's doing it anyway because he thinks the reader needs to hear it. He's probably right. I'm not crying. I'm made of rubber. Rubber doesn't cry. I will not be acknowledging this further.</p>
+    <p class="margin-note" style="width: 170px;">He's being sincere. He does this sometimes. Usually at the end of things. Conferences, blog posts, arguments with the bathroom faucet at 2am. I find it uncomfortable. He knows I find it uncomfortable. He's doing it anyway because he thinks you need to hear it. He's probably right. I'm not crying. I'm made of rubber. Rubber doesn't cry. I will not be acknowledging this further.</p>
 
     <div class="section-break">· · ·</div>
 
@@ -5353,7 +5552,7 @@ end</code><br>
       It worked. The small, quiet miracle of a thing you built actually working in the world. Not in a demo. Not in a staging environment. Not in a meeting where you show a slide that says "phase 2 projected for Q4." In the world. A phone call. A grandfather. A paper crown.
     </p>
 
-    <p class="margin-note">He called. The grandfather called. Because a script sent an email. Because a woman built a thing on a Wednesday night. Because a rubber duck sat on the desk and watched and did not say I told you so. Not even once.</p>
+    <p class="margin-note">He called. The grandfather called. Because a script sent an email. Because a woman built a thing on a Wednesday night. Because I sat on the desk and watched and did not say I told you so. Not even once.</p>
 
     <div class="section-break">· · ·</div>
 
@@ -5464,6 +5663,8 @@ end</code><br>
     <div class="section-break">· · ·</div>
 
     <!-- ===== Section F: "Pip's Final Note" ===== -->
+
+    <img src="relaxed-duck.png" alt="Pip, relaxed and at peace" class="narrative-duck warm">
 
     <h3 style="font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; margin: 40px 0 24px; color: var(--ink);">
       Pip's Final <em>Note</em>
@@ -5610,6 +5811,16 @@ end</code><br>
 
 </div><!-- end .page-wrap -->
 
+<div id="hanging-duck" aria-hidden="true">
+  <img src="upside-down-duck.png" alt="">
+</div>
+
+<div id="pip-companion">
+  <span class="pip-tooltip">I was here first.</span>
+  <img src="bitter-duck.png" alt="Pip the rubber duck">
+  <span class="pip-typing-indicator">Pip is typing<span class="typing-dots"><span>.</span><span>.</span><span>.</span></span></span>
+</div>
+
 <script>
 (function() {
   const chapters = [
@@ -5672,6 +5883,184 @@ end</code><br>
 
   window.addEventListener('scroll', updateNav, { passive: true });
   updateNav();
+})();
+
+/* ===================== PIP COMPANION CONTROLLER ===================== */
+(function() {
+  var pipConfig = [
+    { id: 'chapter-0', src: 'bitter-duck.png', tooltip: 'I was here first.' },
+    { id: 'chapter-1', src: 'bitter-duck.png', tooltip: "She\u2019s talking to a rectangle." },
+    { id: 'chapter-2', src: 'refactor-duck.png', tooltip: 'I remember EVERYTHING.' },
+    { id: 'chapter-3', src: 'vulnerable-duck.png', tooltip: '...fine. It was good.' },
+    { id: 'chapter-4', src: 'upside-down-duck.png', tooltip: 'Replaced. By a cron job.' },
+    { id: 'chapter-5', src: 'vindicated-duck.png', tooltip: 'The duck was right.' },
+    { id: 'chapter-6', src: 'relaxed-duck.png', tooltip: 'Still on the desk.' }
+  ];
+
+  var companion = document.getElementById('pip-companion');
+  if (!companion) return;
+  var pipImg = companion.querySelector('img');
+  var pipTooltip = companion.querySelector('.pip-tooltip');
+  var currentChapter = -1;
+
+  function updatePip(idx) {
+    if (idx === currentChapter) return;
+    currentChapter = idx;
+    var config = pipConfig[idx];
+    // Crossfade image
+    pipImg.style.opacity = '0';
+    setTimeout(function() {
+      pipImg.src = config.src;
+      pipImg.style.opacity = '1';
+    }, 200);
+    pipTooltip.textContent = config.tooltip;
+  }
+
+  var pipObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        var idx = pipConfig.findIndex(function(c) { return c.id === entry.target.id; });
+        if (idx !== -1) updatePip(idx);
+      }
+    });
+  }, { threshold: 0, rootMargin: '0px 0px -80% 0px' });
+
+  document.querySelectorAll('.chapter-header').forEach(function(header) {
+    pipObserver.observe(header);
+  });
+
+  // Set initial state
+  updatePip(0);
+})();
+
+/* ===================== TYPEWRITER MARGIN NOTES ===================== */
+(function() {
+  var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var marginNotes = document.querySelectorAll('.margin-note');
+
+  if (prefersReducedMotion) {
+    marginNotes.forEach(function(note) {
+      note.classList.add('typed');
+    });
+    return;
+  }
+
+  // Store original content and reserve height
+  marginNotes.forEach(function(note) {
+    var height = note.offsetHeight;
+    note.setAttribute('data-original-html', note.innerHTML);
+    note.style.minHeight = height + 'px';
+    note.innerHTML = '';
+  });
+
+  function tokenizeHtml(html) {
+    var tokens = [];
+    var i = 0;
+    while (i < html.length) {
+      if (html[i] === '<') {
+        var end = html.indexOf('>', i);
+        if (end !== -1) {
+          tokens.push(html.substring(i, end + 1));
+          i = end + 1;
+        } else {
+          tokens.push(html[i]);
+          i++;
+        }
+      } else if (html[i] === '&') {
+        var semicolon = html.indexOf(';', i);
+        if (semicolon !== -1 && semicolon - i < 10) {
+          tokens.push(html.substring(i, semicolon + 1));
+          i = semicolon + 1;
+        } else {
+          tokens.push(html[i]);
+          i++;
+        }
+      } else {
+        tokens.push(html[i]);
+        i++;
+      }
+    }
+    return tokens;
+  }
+
+  var pipCompanion = document.getElementById('pip-companion');
+  var activeTyping = 0;
+
+  function typeIn(el) {
+    var html = el.getAttribute('data-original-html');
+    el.classList.add('typed');
+    el.innerHTML = '';
+
+    activeTyping++;
+    if (pipCompanion) pipCompanion.classList.add('is-typing');
+
+    var cursor = document.createElement('span');
+    cursor.className = 'typing-cursor';
+    el.appendChild(cursor);
+
+    var tokens = tokenizeHtml(html);
+    var tokenIndex = 0;
+    var currentHtml = '';
+
+    // Adaptive speed: cap total typing time to ~9s for long notes
+    var charsPerTick = Math.max(1, Math.ceil(tokens.length / 300));
+
+    var interval = setInterval(function() {
+      if (tokenIndex >= tokens.length) {
+        clearInterval(interval);
+        cursor.remove();
+        el.style.minHeight = '';
+        activeTyping--;
+        if (activeTyping <= 0 && pipCompanion) {
+          pipCompanion.classList.remove('is-typing');
+          activeTyping = 0;
+        }
+        return;
+      }
+
+      for (var j = 0; j < charsPerTick && tokenIndex < tokens.length; j++) {
+        currentHtml += tokens[tokenIndex];
+        tokenIndex++;
+      }
+      el.innerHTML = currentHtml;
+      el.appendChild(cursor);
+    }, 30);
+  }
+
+  var typewriterObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        typewriterObserver.unobserve(entry.target);
+        typeIn(entry.target);
+      }
+    });
+  }, { threshold: 0.2 });
+
+  marginNotes.forEach(function(note) {
+    typewriterObserver.observe(note);
+  });
+})();
+
+/* ===================== HANGING DUCK ===================== */
+(function() {
+  var hangingDuck = document.getElementById('hanging-duck');
+  var showTrigger = document.getElementById('what-is-vibe-coding');
+  var hideTrigger = document.getElementById('chapter-1');
+  if (!hangingDuck || !showTrigger || !hideTrigger) return;
+
+  var hangingObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.target === showTrigger && entry.isIntersecting) {
+        hangingDuck.classList.add('visible');
+      }
+      if (entry.target === hideTrigger && entry.isIntersecting) {
+        hangingDuck.classList.remove('visible');
+      }
+    });
+  }, { threshold: 0 });
+
+  hangingObserver.observe(showTrigger);
+  hangingObserver.observe(hideTrigger);
 })();
 </script>
 </body>
