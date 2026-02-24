@@ -506,58 +506,107 @@
     opacity: 0.4;
   }
 
-  /* ===================== FOOTER / TOC ===================== */
+  /* ===================== TOC — CLI STYLE ===================== */
   .toc {
     margin-top: 100px;
-    padding-top: 50px;
+    padding: 28px 32px 24px;
     border-top: 3px double var(--ink-faded);
     clear: both;
+    background: #12100E;
+    border-radius: 8px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.05);
+    position: relative;
+    overflow: hidden;
   }
 
-  .toc-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 28px;
-    font-weight: 700;
-    margin-bottom: 30px;
-    color: var(--ink);
+  /* Fake window dots */
+  .toc::before {
+    content: '';
+    display: block;
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: #D4614A;
+    box-shadow: 18px 0 0 #C9922A, 36px 0 0 #3A8C8C;
+    margin-bottom: 20px;
+  }
+
+  .toc-prompt {
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    color: var(--teal);
+    margin-bottom: 6px;
+  }
+
+  .toc-prompt .cursor {
+    display: inline-block;
+    width: 8px;
+    height: 15px;
+    background: var(--teal);
+    margin-left: 4px;
+    vertical-align: text-bottom;
+    animation: blink-cursor 1s step-end infinite;
+  }
+
+  @keyframes blink-cursor {
+    50% { opacity: 0; }
+  }
+
+  .toc-output {
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    color: #8B8677;
+    margin-bottom: 16px;
+    padding-left: 4px;
+  }
+
+  .toc-pip-comment {
+    font-family: 'Caveat', cursive;
+    font-size: 16px;
+    color: var(--gold);
+    margin-top: 16px;
+    padding-left: 4px;
+    opacity: 0.85;
   }
 
   .toc-item {
     display: flex;
     align-items: baseline;
-    margin-bottom: 16px;
-    gap: 12px;
+    margin-bottom: 8px;
+    gap: 10px;
+    padding: 4px 8px;
+    border-radius: 3px;
+    transition: background 0.15s;
+  }
+
+  .toc-item:hover {
+    background: rgba(255,255,255,0.05);
   }
 
   .toc-num {
     font-family: 'Space Mono', monospace;
     font-size: 12px;
     color: var(--coral);
-    min-width: 40px;
+    min-width: 32px;
   }
 
   .toc-name {
-    font-family: 'Playfair Display', serif;
-    font-size: 20px;
-    color: var(--ink);
+    font-family: 'Space Mono', monospace;
+    font-size: 14px;
+    color: #D4D0C8;
     flex: 1;
   }
 
   .toc-status {
-    font-family: 'Caveat', cursive;
-    font-size: 16px;
-    color: var(--ink-faded);
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--teal);
     white-space: nowrap;
   }
 
   .toc-dots {
     flex: 1;
-    border-bottom: 2px dotted var(--cream-dark);
+    border-bottom: 1px dotted rgba(255,255,255,0.1);
     min-width: 20px;
-  }
-
-  .toc-item.current .toc-name {
-    color: var(--teal);
   }
 
   .toc-link {
@@ -750,70 +799,77 @@
 
     <img class="cover-illustration" src="relaxed-duck.png" alt="Relaxed rubber duck">
 
-    <p class="cover-byline">written by Andrew & The Model (you know the one)</p>
+    <p class="cover-byline">Written by Andrew, Pip, & The Model (you know the one)</p>
     <div class="cover-glitch-bar"></div>
   </div>
 
+  <p style="font-family: 'Caveat', cursive; font-size: 20px; color: var(--ink-faded); line-height: 1.6; text-align: center; margin: 40px auto; max-width: 520px;">
+    You're going to meet three characters in this guide. <strong style="color: var(--coral);">Mira</strong>, a developer who is competent, tired and between certainties. She might be you. <strong style="color: var(--teal);">The Model</strong>, the AI in the rectangle, which speaks in monospace and is not trying to be spooky. And <strong style="color: var(--gold);">Pip</strong>, an all but forgotten rubber duck who has opinions about all of this.
+  </p>
+
   <!-- =================== TABLE OF CONTENTS =================== -->
   <div class="toc" id="toc">
-    <h2 class="toc-title">What Awaits You, Brave Viber</h2>
+    <div class="toc-prompt">$ pip list --chapters<span class="cursor"></span></div>
+    <div class="toc-output">Loading grievances... done.<br>Found 7 chapters. Pip has opinions about all of them.</div>
 
     <a href="#chapter-0" class="toc-link">
-      <div class="toc-item current">
-        <span class="toc-num">Ch. 0</span>
+      <div class="toc-item">
+        <span class="toc-num">[0]</span>
         <span class="toc-name">Before the Cursor Blinked</span>
         <span class="toc-dots"></span>
-        <span class="toc-status">you are here ✦</span>
+        <span class="toc-status">&#x2713; unlocked</span>
       </div>
     </a>
     <a href="#chapter-1" class="toc-link">
-      <div class="toc-item current">
-        <span class="toc-num">Ch. 1</span>
+      <div class="toc-item">
+        <span class="toc-num">[1]</span>
         <span class="toc-name">Your First Conversation</span>
         <span class="toc-dots"></span>
-        <span class="toc-status">you are here ✦</span>
+        <span class="toc-status">&#x2713; unlocked</span>
       </div>
     </a>
     <a href="#chapter-2" class="toc-link">
-      <div class="toc-item current">
-        <span class="toc-num">Ch. 2</span>
+      <div class="toc-item">
+        <span class="toc-num">[2]</span>
         <span class="toc-name">Context Is Everything (No, Actually)</span>
         <span class="toc-dots"></span>
-        <span class="toc-status">you are here ✦</span>
+        <span class="toc-status">&#x2713; unlocked</span>
       </div>
     </a>
     <a href="#chapter-3" class="toc-link">
-      <div class="toc-item current">
-        <span class="toc-num">Ch. 3</span>
+      <div class="toc-item">
+        <span class="toc-num">[3]</span>
         <span class="toc-name">The Loop</span>
         <span class="toc-dots"></span>
-        <span class="toc-status">you are here ✦</span>
+        <span class="toc-status">&#x2713; unlocked</span>
       </div>
     </a>
     <a href="#chapter-4" class="toc-link">
-      <div class="toc-item current">
-        <span class="toc-num">Ch. 4</span>
+      <div class="toc-item">
+        <span class="toc-num">[4]</span>
         <span class="toc-name">Agents in the Wild</span>
         <span class="toc-dots"></span>
-        <span class="toc-status">you are here ✦</span>
+        <span class="toc-status">&#x2713; unlocked</span>
       </div>
     </a>
     <a href="#chapter-5" class="toc-link">
-      <div class="toc-item current">
-        <span class="toc-num">Ch. 5</span>
+      <div class="toc-item">
+        <span class="toc-num">[5]</span>
         <span class="toc-name">When It Gets It Wrong</span>
         <span class="toc-dots"></span>
-        <span class="toc-status">you are here ✦</span>
+        <span class="toc-status">&#x2713; unlocked</span>
       </div>
     </a>
     <a href="#chapter-6" class="toc-link">
-      <div class="toc-item current">
-        <span class="toc-num">Ch. 6</span>
+      <div class="toc-item">
+        <span class="toc-num">[6]</span>
         <span class="toc-name">What You Actually Built</span>
         <span class="toc-dots"></span>
-        <span class="toc-status">you are here ✦</span>
+        <span class="toc-status">&#x2713; unlocked</span>
       </div>
     </a>
+
+    <div class="toc-pip-comment">// Pip: "I was not consulted on the ordering."</div>
   </div>
 
   <div class="section-break">· · ·</div>
@@ -836,7 +892,7 @@
     Not because you don't know what you want to build. You do. A web scraper, maybe, or a little dashboard for the family budget, or — and this is the one that keeps waking you up at 3am — that tool for sorting your daughter's nap schedule that somehow became a distributed system in your head somewhere between feeding and burping.
 
     <p>
-      No. The blankness isn't about the <em>what</em>. It's about the <em>how</em> — specifically, how to talk to something that is not exactly a search engine, not exactly a coworker, not exactly a compiler, and not exactly a friend, but is somehow all four of those things pressed flat and placed inside a rectangle on your screen.
+      No. The blankness isn't about the <em>what</em>. It's about the <em>how</em> — specifically, how to talk to something that is not exactly a search engine, not exactly a coworker, not exactly a compiler, and not exactly a friend, but is somehow all four of those things pressed flat and placed inside a rectangle on your screen. <em>Suddenly your rubber duck is alive.</em>
     </p>
 
     <!-- COMIC STRIP 1 -->
