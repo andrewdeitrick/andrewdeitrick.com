@@ -785,6 +785,20 @@
     50% { transform: translateY(-6px); }
   }
 
+  @keyframes pip-poke {
+    0% { transform: rotate(0deg); }
+    15% { transform: rotate(-12deg); }
+    30% { transform: rotate(10deg); }
+    45% { transform: rotate(-8deg); }
+    60% { transform: rotate(5deg); }
+    75% { transform: rotate(-2deg); }
+    100% { transform: rotate(0deg); }
+  }
+
+  #pip-companion img.poked {
+    animation: pip-poke 0.4s ease-in-out;
+  }
+
   #pip-companion .pip-tooltip {
     position: absolute;
     bottom: 110px;
@@ -923,6 +937,8 @@
 
   #hanging-duck.visible {
     opacity: 0.8;
+    pointer-events: auto;
+    cursor: pointer;
   }
 
   #hanging-duck img {
@@ -932,10 +948,54 @@
     animation: duck-swing 4s ease-in-out infinite;
   }
 
+  #hanging-duck.barrel-roll img {
+    animation: duck-barrel-roll 0.8s ease-in-out;
+  }
+
+  #hanging-duck .duck-speech {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 10px;
+    background: #FFFBF0;
+    border: 2px solid var(--gold);
+    border-radius: 0 12px 12px 12px;
+    padding: 8px 14px;
+    font-family: 'Caveat', cursive;
+    font-size: 18px;
+    color: var(--margin-note);
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    box-shadow: 2px 3px 0 var(--gold);
+  }
+
+  #hanging-duck .duck-speech::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 0 8px 10px;
+    border-style: solid;
+    border-color: transparent transparent var(--gold);
+  }
+
+  #hanging-duck .duck-speech.visible {
+    opacity: 1;
+  }
+
   @keyframes duck-swing {
     0%, 100% { transform: rotate(0deg); }
     25% { transform: rotate(3deg); }
     75% { transform: rotate(-3deg); }
+  }
+
+  @keyframes duck-barrel-roll {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
   }
 
   /* ===================== PIP DEBUGGING SESSION ===================== */
@@ -1172,6 +1232,11 @@
     <img class="cover-illustration" src="relaxed-duck.png" alt="Relaxed rubber duck">
 
     <p class="cover-byline">Written by Andrew, Pip, & The Model (you know the one)</p>
+
+    <p style="font-family: 'Caveat', cursive; font-size: 17px; color: var(--ink-faded); line-height: 1.6; text-align: center; margin: 32px auto 0; max-width: 520px; font-style: italic; opacity: 0.75;">
+      For my son Reign, gone too soon.<br>And for my daughter Renata, my reason to keep making things.
+    </p>
+
     <div class="cover-glitch-bar"></div>
   </div>
 
@@ -1247,6 +1312,7 @@
     </a>
 
     <div class="toc-pip-comment">// Pip: "I was not consulted on the ordering."</div>
+    <div class="toc-prompt" style="margin-top: 16px; opacity: 0.4; font-size: 11px;">$ pip install poignant-pip</div>
   </div>
 
   <div class="section-break">· · ·</div>
@@ -1358,6 +1424,8 @@
       Ruby, in the mid-2000s, felt like contraband. It felt like someone had looked at the programming languages that came before it and said — quietly, almost gently — <em>what if we built this for the person writing it, not just the machine reading it?</em> It had this quality that Matz, its creator, called developer happiness, and I remember reading that phrase and thinking it was slightly ridiculous and then opening an IRB terminal and having a feeling I hadn't expected to have in front of a computer.
     </p>
 
+    <p class="margin-ref"><a href="https://peps.python.org/pep-0020/" target="_blank" rel="noopener">see also: The Zen of Python — "Beautiful is better than ugly." Different language, same love.</a></p>
+
     <p>
       The Ruby community had a saying: <strong>MINISWAN</strong>. Matz Is Nice So We Are Nice. It sounds like a bumper sticker and it kind of is, but there was something real underneath it — the idea that the culture of a tool flows from the top, that kindness is a design decision, that the language you write in shapes not just your code but <em>how you show up</em> while writing it. A language built around human happiness tends to attract humans trying to make something good. Funny how that works.
 
@@ -1376,6 +1444,8 @@
       <span class="interlude-label">A Debt of Honor</span>
       <p>Around the same time, a programmer named <em>_why the lucky stiff</em> wrote a guide to Ruby. It was called the Poignant Guide. It had cartoon foxes. It went on extended philosophical tangents in the middle of explaining arrays. It was the strangest technical document I had ever read and it was, not coincidentally, the thing that made programming feel like a creative act rather than a technical one.</p>
       <p class="margin-ref"><a href="https://xkcd.com/2347/" target="_blank" rel="noopener">see also: xkcd #2347 — all of it, resting on one person</a></p>
+      <p class="margin-ref"><a href="https://en.wikipedia.org/wiki/Npm_left-pad_incident" target="_blank" rel="noopener">see also: the left-pad incident — 17 lines of JavaScript, mass infrastructure collapse</a></p>
+      <p class="margin-ref"><a href="https://poignant.guide/" target="_blank" rel="noopener">read: Why's (Poignant) Guide to Ruby — the original, preserved</a></p>
       <p style="margin-top: 16px;">_why eventually deleted all of his work and disappeared from the internet in 2009, which is its own kind of poignant. But the guide lived on, and the feeling it gave me lived on, and this is my attempt to pass that feeling forward — into a new era, toward a new set of tools, for a new generation of builders who are standing at their own blank cursor, having their own unlocking moment.</p>
       <p style="margin-top: 16px; font-family: 'Caveat', cursive; font-size: 20px; color: var(--margin-note); transform: rotate(-0.5deg); display: block;">"When you don't create things, you become defined by your tastes rather than ability." — _why</p>
     </div>
@@ -1456,6 +1526,8 @@
     <p>
       The button thing is a metaphor, but only barely. I have been in actual, real, calendar-blocked, camera-on meetings to discuss the HTTP status code returned by an endpoint when a user attempts to do something slightly ambiguous. I have watched an hour of human attention — smart people, curious people, <em>builders</em>, all of them — dissolve into a discussion about whether <code style="font-family: 'Space Mono', monospace; font-size: 14px; background: rgba(0,0,0,0.06); padding: 2px 5px;">422 Unprocessable Entity</code> or <code style="font-family: 'Space Mono', monospace; font-size: 14px; background: rgba(0,0,0,0.06); padding: 2px 5px;">409 Conflict</code> better represents the spiritual state of a form validation error.
     </p>
+
+    <p class="margin-ref"><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/418" target="_blank" rel="noopener">see also: HTTP 418 "I'm a teapot" — the joke status code that refused to die, because whimsy survives specification</a></p>
 
     <p>
       I want to be fair: some of those conversations mattered. Details matter. The gap between a good API and a bad one is often made of exactly these micro-decisions, and the engineers and designers who care about them are right to care about them. The problem was never the caring. The problem was the <em>ratio</em> — the ratio of time spent talking about what to build versus actually building it, and how, somewhere in the last decade, that ratio had gotten so badly out of whack that the talking started to feel like the job, and the building started to feel like a special occasion.
@@ -1540,6 +1612,7 @@
       <div>
         <p style="font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: var(--gold); margin-bottom: 8px;">Pip ✦</p>
         <p>A yellow rubber duck. Present on Mira's desk since 2016. Originally purchased to facilitate rubber duck debugging, a technique where you explain your code to an inanimate object and the explanation helps you find the bug. Pip is furious about recent developments and will make his feelings known in the margins.</p>
+        <p class="margin-ref"><a href="https://en.wikipedia.org/wiki/Rubber_duck_debugging" target="_blank" rel="noopener">see also: rubber duck debugging — a practice older than the rectangle, and more honest</a></p>
         <p>He is not a Luddite. He just has opinions.</p>
 
         <!-- PIP SIDEBAR -->
@@ -1998,6 +2071,8 @@ puts <span class="code-string">"#{confirmed.length} kids coming: #{confirmed.joi
     <p>
       This is the most common mistake in prompting, and it has a name: the specificity trap.
     </p>
+
+    <p class="margin-ref"><a href="https://en.wikiquote.org/wiki/Jamie_Zawinski" target="_blank" rel="noopener">see also: Zawinski's Law — "Some people, when confronted with a problem, think 'I know, I'll use regular expressions.' Now they have two problems."</a></p>
 
     <div class="fact-box">
       <div class="fact-box-title">The Specificity Trap</div>
@@ -2933,6 +3008,8 @@ Tracks RSVPs, allergies, generates a fridge-friendly dashboard.
       A briefing, not a brain dump. A name tag, not a diary entry.
     </p>
 
+    <p class="margin-ref"><a href="https://www.karlton.org/2017/12/naming-things-hard/" target="_blank" rel="noopener">see also: Phil Karlton — "There are only two hard things in CS: cache invalidation and naming things."</a></p>
+
     <div class="fact-box">
       <div class="fact-box-title">The Anatomy of Good Context</div>
       <p>Good context has four layers. You don't always need all four, but when a conversation feels off, it's usually because one is missing.</p>
@@ -3794,6 +3871,8 @@ puts <span class="code-string">"   Add someone: ruby birthdays.rb add"</span></p
       The loop is not a workflow. It is not a methodology. It does not have a name that ends in "ile" and it will never be the subject of a conference talk with a slide deck. It is a creative rhythm. Build, notice, ask. Build, notice, ask.
     </p>
 
+    <p class="margin-ref"><a href="https://www.mit.edu/~xela/tao.html" target="_blank" rel="noopener">see also: The Tao of Programming (1987) — koans about craft, patience, and the master programmer. _why-adjacent in spirit.</a></p>
+
     <p>
       The model builds fast. You notice slow. And the noticing — that's the part that's yours. That's the part that cannot be automated. No model, no matter how capable, can look at a list of six birthdays and feel the particular anxiety of not remembering your nephew's birthday. No model can notice that seven days isn't enough because <em>your mom's birthday is Saturday and you haven't bought the gift yet</em>. The noticing comes from living in the problem. From being the person who forgot Dani's birthday and felt bad about it.
     </p>
@@ -3827,6 +3906,7 @@ puts <span class="code-string">"   Add someone: ruby birthdays.rb add"</span></p
       <p style="margin-top: 16px;">
         The loop makes scope discovery cheap. Mira spent 40 minutes on 3 iterations. In the old world, the same trajectory would cost a sprint planning meeting, a Jira ticket, a design review, a two-week cycle, and a retrospective where everyone agrees the estimate was wrong. The "actually" moment still happens — it always happens — but now it costs 30 seconds instead of 30 days.
       </p>
+      <p class="margin-ref"><a href="https://en.wikiquote.org/wiki/Donald_Knuth#Computer_Programming_as_an_Art_(1974)" target="_blank" rel="noopener">see also: Knuth — "Premature optimization is the root of all evil." Mira optimized nothing. She built the thing.</a></p>
       <p style="margin-top: 16px; font-family: 'Caveat', cursive; font-size: 20px; color: var(--margin-note); transform: rotate(-0.5deg); display: block;">
         If you knew what you wanted before you started, you didn't want anything interesting.
       </p>
@@ -4375,6 +4455,7 @@ MSG
       <p style="margin-top: 12px;"><strong>The sprinklers.</strong> Your neighbor's, specifically. Every morning at 6:04am, rain or shine, drought advisory or not. They are committed.</p>
       <p style="margin-top: 12px;"><strong>Your retirement contributions.</strong> Hopefully. You set this up in 2019 and haven't checked it since. It's either working perfectly or hilariously misconfigured and you won't find out until you're 65. This is, coincidentally, the same trust model Mira has with her birthday agent.</p>
       <p style="margin-top: 12px;"><strong>A Ruby script on a closed laptop in a dark kitchen.</strong> Checking a CSV. Finding a birthday. Composing an email. Sending it. Logging what it did. Going back to sleep. Sixty lines. Two seconds. Nobody clapped.</p>
+      <p class="margin-ref"><a href="https://en.wikipedia.org/wiki/IP_over_Avian_Carriers" target="_blank" rel="noopener">see also: RFC 1149 — IP over Avian Carriers. Someone actually implemented internet-by-pigeon. The agent concept is older than you think.</a></p>
       <p style="margin-top: 16px; font-family: 'Caveat', cursive; font-size: 20px; color: var(--margin-note); transform: rotate(-0.5deg); display: block;">
         The dishwasher has never suggested a command interface. The dishwasher knows its lane.
       </p>
@@ -5371,6 +5452,7 @@ end</code><br>
       <p style="margin-top: 16px;">
         The habit is: <em>run it before you trust it.</em> That's the whole thing. Not "distrust the Model." Not "check every line." Just: run it. See what happens. The output is the test. The output is always the test.
       </p>
+      <p class="margin-ref"><a href="https://www.catb.org/jargon/html/story-of-mel.html" target="_blank" rel="noopener">see also: The Story of Mel — a legendary Usenet poem about a Real Programmer, craft, and trusting code you can read</a></p>
       <p style="margin-top: 16px; font-family: 'Caveat', cursive; font-size: 20px; color: var(--margin-note); transform: rotate(-0.5deg); display: block;">
         I'm glad you're both okay.
       </p>
@@ -5403,6 +5485,8 @@ end</code><br>
     <p>
       <strong>4. The Deprecated Answer.</strong> The Model's training data has a cutoff. It might suggest code that worked in Ruby 2.7 but doesn't work in 3.3. It might reference an API endpoint that moved six months ago. The code is correct for a world that no longer exists, like a travel guide to a country that changed its name. <em>Solution: when something doesn't work and the code looks right, check the version. The Model doesn't always know what year it is. Neither did that Stack Overflow answer, but at least it had a timestamp.</em>
     </p>
+
+    <p class="margin-ref"><a href="https://www.spacejam.com/1996/" target="_blank" rel="noopener">see also: the Space Jam website (1996) — still live, unchanged HTML, a monument to code from a world that no longer exists</a></p>
 
     <p>
       <strong>5. The Overengineered Solution.</strong> You asked for a section in the terminal output. The Model built a web app. Not wrong, exactly — the web app works — but wildly disproportionate to the need. <em>Solution: be specific about scope. "I want this in the terminal, not a web UI." The Model follows energy. If you don't constrain it, it'll build the most interesting version, which is not always the most useful one.</em>
@@ -5837,6 +5921,7 @@ end</code><br>
       <p style="margin-top: 16px;">
         _why wrote: <em>"When you don't create things, you become defined by your tastes rather than ability."</em> Vibe coding is a way to keep creating. To keep building. To keep being defined by what you make rather than what you critique. The tools changed. The feeling didn't.
       </p>
+      <p class="margin-ref"><a href="https://web.archive.org/web/2009*/geocities.com" target="_blank" rel="noopener">see also: GeoCities (1994–2009) — the original vibe coding. Under construction GIFs, visitor counters, people building things in public before they were finished.</a></p>
       <p style="margin-top: 16px; font-family: 'Caveat', cursive; font-size: 20px; color: var(--margin-note); transform: rotate(-0.5deg); display: block;">
         The feeling didn't change. Thank you. That's all I needed to hear. I'm going back to the desk now.
       </p>
@@ -5995,6 +6080,7 @@ end</code><br>
 
 <div id="hanging-duck" aria-hidden="true">
   <img src="upside-down-duck.png" alt="">
+  <span class="duck-speech"></span>
 </div>
 
 <div id="pip-companion">
@@ -6083,39 +6169,31 @@ end</code><br>
 
 /* ===================== PIP COMPANION CONTROLLER ===================== */
 (function() {
-  var pipConfig = [
-    { id: 'chapter-0', src: 'bitter-duck.png', tooltip: 'I was here first.' },
-    { id: 'chapter-1', src: 'bitter-duck.png', tooltip: "She\u2019s talking to a rectangle." },
-    { id: 'chapter-2', src: 'refactor-duck.png', tooltip: 'I remember EVERYTHING.' },
-    { id: 'chapter-3', src: 'vulnerable-duck.png', tooltip: '...fine. It was good.' },
-    { id: 'chapter-4', src: 'upside-down-duck.png', tooltip: 'Replaced. By a cron job.' },
-    { id: 'chapter-5', src: 'vindicated-duck.png', tooltip: 'The duck was right.' },
-    { id: 'chapter-6', src: 'relaxed-duck.png', tooltip: 'Still on the desk.' }
+  var pipTooltips = [
+    { id: 'chapter-0', tooltip: 'I was here first.' },
+    { id: 'chapter-1', tooltip: "She\u2019s talking to a rectangle." },
+    { id: 'chapter-2', tooltip: 'I remember EVERYTHING.' },
+    { id: 'chapter-3', tooltip: '...fine. It was good.' },
+    { id: 'chapter-4', tooltip: 'Replaced. By a cron job.' },
+    { id: 'chapter-5', tooltip: 'The duck was right.' },
+    { id: 'chapter-6', tooltip: 'Still on the desk.' }
   ];
 
   var companion = document.getElementById('pip-companion');
   if (!companion) return;
-  var pipImg = companion.querySelector('img');
   var pipTooltip = companion.querySelector('.pip-tooltip');
   var currentChapter = -1;
 
   function updatePip(idx) {
     if (idx === currentChapter) return;
     currentChapter = idx;
-    var config = pipConfig[idx];
-    // Crossfade image
-    pipImg.style.opacity = '0';
-    setTimeout(function() {
-      pipImg.src = config.src;
-      pipImg.style.opacity = '1';
-    }, 200);
-    pipTooltip.textContent = config.tooltip;
+    pipTooltip.textContent = pipTooltips[idx].tooltip;
   }
 
   var pipObserver = new IntersectionObserver(function(entries) {
     entries.forEach(function(entry) {
       if (entry.isIntersecting) {
-        var idx = pipConfig.findIndex(function(c) { return c.id === entry.target.id; });
+        var idx = pipTooltips.findIndex(function(c) { return c.id === entry.target.id; });
         if (idx !== -1) updatePip(idx);
       }
     });
@@ -6145,6 +6223,7 @@ end</code><br>
   marginNotes.forEach(function(note) {
     var height = note.offsetHeight;
     note.setAttribute('data-original-html', note.innerHTML);
+    note.setAttribute('data-original-height', height);
     note.style.minHeight = height + 'px';
     note.innerHTML = '';
   });
@@ -6181,6 +6260,7 @@ end</code><br>
 
   var pipCompanion = document.getElementById('pip-companion');
   var activeTyping = 0;
+  var activeIntervals = [];
 
   function typeIn(el) {
     var html = el.getAttribute('data-original-html');
@@ -6204,6 +6284,7 @@ end</code><br>
     var interval = setInterval(function() {
       if (tokenIndex >= tokens.length) {
         clearInterval(interval);
+        activeIntervals = activeIntervals.filter(function(id) { return id !== interval; });
         cursor.remove();
         el.style.minHeight = '';
         activeTyping--;
@@ -6221,6 +6302,8 @@ end</code><br>
       el.innerHTML = currentHtml;
       el.appendChild(cursor);
     }, 30);
+
+    activeIntervals.push(interval);
   }
 
   var typewriterObserver = new IntersectionObserver(function(entries) {
@@ -6235,6 +6318,27 @@ end</code><br>
   marginNotes.forEach(function(note) {
     typewriterObserver.observe(note);
   });
+
+  // Reset all notes when "Top" is clicked so they re-type on scroll down
+  var topLink = document.querySelector('.nav-top-link');
+  if (topLink) {
+    topLink.addEventListener('click', function() {
+      // Clear any in-progress typing
+      activeIntervals.forEach(function(id) { clearInterval(id); });
+      activeIntervals = [];
+      activeTyping = 0;
+      if (pipCompanion) pipCompanion.classList.remove('is-typing');
+
+      // Reset each note to its pre-typed state
+      marginNotes.forEach(function(note) {
+        note.classList.remove('typed');
+        note.innerHTML = '';
+        var height = parseInt(note.getAttribute('data-original-height') || '0', 10);
+        if (height) note.style.minHeight = height + 'px';
+        typewriterObserver.observe(note);
+      });
+    });
+  }
 })();
 
 /* ===================== HANGING DUCK ===================== */
@@ -6257,6 +6361,51 @@ end</code><br>
 
   hangingObserver.observe(showTrigger);
   hangingObserver.observe(hideTrigger);
+
+  var spinCount = 0;
+  var speechEl = hangingDuck.querySelector('.duck-speech');
+  var speechTimeout;
+
+  var spinLines = [
+    "quack.",
+    "QUACK.",
+    "i'm upside down and you're spinning me. who hurt you?",
+    "this is not in my job description.",
+    "i am a DEBUGGING companion, not a fidget spinner.",
+    "you know _why disappeared, right? this. this is why.",
+    "filing a mass resignation on behalf of all rubber ducks.",
+    "my therapist is going to hear about this.",
+    "400 Bad Request.",
+    "have you tried spinning your code instead?",
+    "i regret mass sentience.",
+    "do a barrel roll! oh wait.",
+    "the mass blood rushes to my head. joke. i am a rubber duck.",
+    "i'm mass going to mass be sick.",
+  ];
+
+  function showSpeech(text) {
+    clearTimeout(speechTimeout);
+    speechEl.textContent = text;
+    speechEl.classList.add('visible');
+    speechTimeout = setTimeout(function() {
+      speechEl.classList.remove('visible');
+    }, 3000);
+  }
+
+  hangingDuck.addEventListener('click', function() {
+    if (hangingDuck.classList.contains('barrel-roll')) return;
+    hangingDuck.classList.add('barrel-roll');
+    spinCount++;
+    var img = hangingDuck.querySelector('img');
+    img.addEventListener('animationend', function() {
+      hangingDuck.classList.remove('barrel-roll');
+    }, { once: true });
+
+    if (spinCount >= 3) {
+      var lineIndex = (spinCount - 3) % spinLines.length;
+      showSpeech(spinLines[lineIndex]);
+    }
+  });
 })();
 
 /* ===================== PIP RUBBER DUCK DEBUGGING SESSION ===================== */
@@ -6392,6 +6541,16 @@ end</code><br>
       if (exchangeCount >= maxExchanges) {
         // Final message — the closer
         addMessage(closingMessage, 'from-pip closing');
+
+        // Easter egg: delayed pip install hint
+        setTimeout(function() {
+          var hint = addMessage('pip install poignant-pip', 'from-pip');
+          hint.style.fontFamily = '"Space Mono", monospace';
+          hint.style.fontSize = '11px';
+          hint.style.opacity = '0.45';
+          hint.style.fontStyle = 'normal';
+        }, 3000);
+
         inputRow.classList.add('finished');
         sendBtn.textContent = 'Waddle away';
         sendBtn.disabled = false;
@@ -6411,14 +6570,20 @@ end</code><br>
   // Click counter on Pip's image
   pipImg.addEventListener('click', function(e) {
     if (isOpen) return;
+
+    // Angry wobble on each click
+    pipImg.classList.remove('poked');
+    void pipImg.offsetWidth; // force reflow to restart animation
+    pipImg.classList.add('poked');
+
     clickCount++;
     clearTimeout(clickTimer);
 
-    if (clickCount >= 5) {
+    if (clickCount >= 3) {
       clickCount = 0;
       openSession();
     } else {
-      clickTimer = setTimeout(function() { clickCount = 0; }, 2000);
+      clickTimer = setTimeout(function() { clickCount = 0; }, 3000);
     }
   });
 
@@ -6452,7 +6617,7 @@ end</code><br>
   // Prevent chapter-scroll tooltip from overriding our post-session tooltip
   var tooltipEl = companion.querySelector('.pip-tooltip');
   var origObserver = new MutationObserver(function() {
-    if (tooltipEl.getAttribute('data-debug-override') === 'true') {
+    if (tooltipEl.getAttribute('data-debug-override') === 'true' && tooltipEl.textContent !== "We don\u2019t talk about that.") {
       tooltipEl.textContent = "We don\u2019t talk about that.";
     }
   });
