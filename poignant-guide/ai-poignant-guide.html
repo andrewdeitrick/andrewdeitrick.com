@@ -226,11 +226,12 @@
     color: var(--margin-note);
     line-height: 1.5;
     float: right;
-    clear: right;
     width: 160px;
     margin-left: 30px;
     margin-right: -200px;
-    margin-bottom: 20px;
+    margin-bottom: 0;
+    height: 0;
+    overflow: visible;
     position: relative;
     transform: rotate(-1deg);
   }
@@ -289,7 +290,7 @@
     border: 3px solid var(--ink);
     background: white;
     box-shadow: 6px 6px 0 var(--ink);
-    clear: both;
+    clear: left;
   }
 
   .comic-panel {
@@ -353,7 +354,7 @@
   /* ===================== DIALOGUE / SPEECH ===================== */
   .dialogue {
     margin: 40px 0;
-    clear: both;
+    clear: left;
   }
 
   .speech-bubble {
@@ -411,7 +412,7 @@
   /* ===================== CODE BLOCKS ===================== */
   .code-block {
     margin: 40px 0;
-    clear: both;
+    clear: left;
     background: #12100E;
     border: 2px solid var(--ink);
     box-shadow: 5px 5px 0 var(--teal);
@@ -461,7 +462,7 @@
     border: 2px dashed var(--ink-faded);
     background: var(--cream-dark);
     position: relative;
-    clear: both;
+    clear: left;
   }
 
   .interlude-label {
@@ -482,7 +483,7 @@
     padding: 28px 32px;
     border-left: 5px solid var(--teal);
     background: rgba(58, 140, 140, 0.06);
-    clear: both;
+    clear: left;
   }
 
   .fact-box-title {
@@ -502,7 +503,7 @@
     font-family: 'Space Mono', monospace;
     font-size: 20px;
     letter-spacing: 12px;
-    clear: both;
+    clear: left;
     opacity: 0.4;
   }
 
@@ -511,7 +512,7 @@
     margin-top: 100px;
     padding: 28px 32px 24px;
     border-top: 3px double var(--ink-faded);
-    clear: both;
+    clear: left;
     background: #12100E;
     border-radius: 8px;
     box-shadow: 0 4px 24px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.05);
@@ -566,6 +567,280 @@
     margin-top: 16px;
     padding-left: 4px;
     opacity: 0.85;
+  }
+
+  .toc-install {
+    margin-top: 16px;
+    opacity: 0.4;
+    font-size: 11px;
+    cursor: pointer;
+    transition: opacity 0.3s;
+    user-select: none;
+  }
+
+  .toc-install:hover {
+    opacity: 0.7;
+  }
+
+  .toc-duck {
+    position: absolute;
+    bottom: 14px;
+    left: -80px;
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    color: var(--gold);
+    white-space: pre;
+    pointer-events: none;
+    opacity: 0;
+  }
+
+  .toc-duck.swimming {
+    opacity: 1;
+    animation: swim-across 3s linear forwards, duck-bob 0.3s ease-in-out infinite alternate;
+  }
+
+  @keyframes swim-across {
+    0%   { left: -80px; opacity: 1; }
+    90%  { opacity: 1; }
+    100% { left: calc(100% + 20px); opacity: 0; }
+  }
+
+  @keyframes duck-bob {
+    0%   { transform: translateY(0); }
+    100% { transform: translateY(-3px); }
+  }
+
+  .toc-pip-was-here {
+    position: absolute;
+    bottom: 16px;
+    right: 24px;
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--gold);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s;
+  }
+
+  .toc-pip-was-here.visible {
+    opacity: 0.6;
+  }
+
+  /* ===================== PEEKING CHARACTERS ===================== */
+  .peek-character {
+    position: absolute;
+    height: auto;
+    pointer-events: auto;
+    opacity: 0.85;
+    cursor: pointer;
+    transition: transform 0.15s ease;
+  }
+
+  .peek-character {
+    opacity: 0;
+    transition: opacity 1.2s ease;
+  }
+
+  .peek-character.visible {
+    opacity: 0.85;
+  }
+
+  .peek-character.visible:hover {
+    transform: scale(1.05);
+  }
+
+  .peek-character.swinging {
+    animation: swing-away 0.6s ease-in-out forwards;
+    pointer-events: none;
+  }
+
+  .peek-character.swing-in-normal {
+    animation: swing-in-normal 0.6s ease-in-out forwards;
+    pointer-events: none;
+  }
+
+  .peek-character.swing-in-flipped {
+    animation: swing-in-flipped 0.6s ease-in-out forwards;
+    pointer-events: none;
+  }
+
+  @keyframes swing-away {
+    0%   { transform: perspective(800px) rotateY(0deg); opacity: 0.85; }
+    100% { transform: perspective(800px) rotateY(90deg); opacity: 0; }
+  }
+
+  @keyframes swing-in-normal {
+    0%   { transform: perspective(800px) rotateY(-90deg) scaleX(1); opacity: 0; }
+    100% { transform: perspective(800px) rotateY(0deg) scaleX(1); opacity: 0.85; }
+  }
+
+  @keyframes swing-in-flipped {
+    0%   { transform: perspective(800px) rotateY(-90deg) scaleX(-1); opacity: 0; }
+    100% { transform: perspective(800px) rotateY(0deg) scaleX(-1); opacity: 0.85; }
+  }
+
+  /* ===================== CLAUDE TERMINAL MOCK ===================== */
+  .claude-terminal {
+    background: #12100E;
+    border-radius: 8px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.05);
+    padding: 0;
+    margin: 40px 0 48px;
+    overflow: hidden;
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  .claude-terminal-titlebar {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px 8px;
+    gap: 8px;
+  }
+
+  .claude-terminal-dots {
+    display: flex;
+    gap: 6px;
+  }
+
+  .claude-terminal-dots span {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+  }
+
+  .claude-terminal-dots span:nth-child(1) { background: #D4614A; }
+  .claude-terminal-dots span:nth-child(2) { background: #C9922A; }
+  .claude-terminal-dots span:nth-child(3) { background: #3A8C8C; }
+
+  .claude-terminal-title {
+    flex: 1;
+    text-align: center;
+    color: #5C4A3A;
+    font-size: 11px;
+    letter-spacing: 0.5px;
+  }
+
+  .claude-terminal-body {
+    padding: 4px 20px 20px;
+  }
+
+  .claude-terminal-line {
+    display: flex;
+    align-items: baseline;
+    margin-bottom: 2px;
+    color: #8B8677;
+  }
+
+  .claude-terminal-line .prompt-char {
+    color: var(--teal);
+    margin-right: 8px;
+    flex-shrink: 0;
+  }
+
+  .claude-terminal-line .text {
+    color: #D4C9B6;
+  }
+
+  .claude-terminal-line .text.dim {
+    color: #5C4A3A;
+  }
+
+  .claude-terminal-line .text.teal {
+    color: var(--teal);
+  }
+
+  .claude-terminal-input-row {
+    display: flex;
+    align-items: center;
+    margin-top: 12px;
+  }
+
+  .claude-terminal-input-row .prompt-char {
+    color: var(--teal);
+    margin-right: 8px;
+  }
+
+  .claude-terminal-input {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #D4C9B6;
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    flex: 1;
+    caret-color: var(--teal);
+    padding: 0;
+  }
+
+  .claude-terminal-input::placeholder {
+    color: #3A3530;
+  }
+
+  .claude-terminal-status {
+    min-height: 20px;
+    margin-top: 8px;
+    font-size: 12px;
+    color: var(--gold);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .claude-terminal-status .spinner {
+    display: inline-block;
+    animation: spin-duck 0.8s linear infinite;
+  }
+
+  @keyframes spin-duck {
+    0%   { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  .claude-terminal-response {
+    margin-top: 4px;
+    color: #D4C9B6;
+    line-height: 1.5;
+  }
+
+  .claude-terminal-response .resp-label {
+    color: var(--teal);
+    margin-right: 4px;
+  }
+
+  .claude-terminal-buttons {
+    display: flex;
+    gap: 8px;
+    margin-top: 16px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .claude-terminal-btn {
+    padding: 4px 14px;
+    border-radius: 4px;
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    border: 1px solid rgba(255,255,255,0.1);
+    background: transparent;
+    cursor: default;
+    letter-spacing: 0.3px;
+  }
+
+  .claude-terminal-btn.accept {
+    color: var(--teal);
+    border-color: rgba(58,140,140,0.3);
+  }
+
+  .claude-terminal-btn.plan {
+    color: var(--gold);
+    border-color: rgba(201,146,42,0.3);
+  }
+
+  .claude-terminal-btn.reject {
+    color: var(--coral);
+    border-color: rgba(212,97,74,0.3);
   }
 
   .toc-item {
@@ -772,7 +1047,7 @@
   }
 
   #pip-companion img {
-    width: 100px;
+    width: 150px;
     height: auto;
     animation: pip-bob 3s ease-in-out infinite;
     transition: opacity 0.3s ease;
@@ -1210,7 +1485,7 @@
       <a href="#chapter-2" data-ch="2">Ch. 2 — Context Is Everything</a>
       <a href="#chapter-3" data-ch="3">Ch. 3 — The Loop</a>
       <a href="#chapter-4" data-ch="4">Ch. 4 — Agents in the Wild</a>
-      <a href="#chapter-5" data-ch="5">Ch. 5 — When It Gets It Wrong</a>
+      <a href="#chapter-5" data-ch="5">Ch. 5 — When It Gets It Wrong, aka: You're Absolutely Right</a>
       <a href="#chapter-6" data-ch="6">Ch. 6 — What You Actually Built</a>
     </div>
   </div>
@@ -1219,6 +1494,7 @@
 <div class="page-wrap">
 
   <!-- =================== COVER =================== -->
+  <!-- Pip: Oh. You're reading the source code. Okay. That's... actually kind of flattering. -->
   <div class="cover">
     <div class="cover-eyebrow">A Complete & Thoroughly Unserious Introduction</div>
 
@@ -1240,16 +1516,22 @@
     <div class="cover-glitch-bar"></div>
   </div>
 
-  <p style="font-family: 'Caveat', cursive; font-size: 20px; color: var(--ink-faded); line-height: 1.6; text-align: center; margin: 0 auto 10px; max-width: 520px;">
-    You're going to meet three characters in this guide.
-  </p>
+  <div style="position: relative;">
+    <img id="peek-mira" src="mira-wave.png" alt="Mira waving" class="peek-character" style="left: -120px; top: -40px; width: 260px; transform-origin: right center;">
+    <img id="peek-fig" src="fig-and-pip.png" alt="Fig holding Pip" class="peek-character" style="right: -75px; top: 140px; width: 240px; transform-origin: left center;">
+    <p style="font-family: 'Caveat', cursive; font-size: 20px; color: var(--ink-faded); line-height: 1.6; text-align: center; margin: 0 auto 10px; max-width: 520px;">
+      You're going to meet four characters in this guide.
+    </p>
+  </div>
   <ul style="font-family: 'Caveat', cursive; font-size: 20px; color: var(--ink-faded); line-height: 1.8; margin: 0 auto 40px; max-width: 520px; list-style: none; padding: 0;">
     <li><strong style="color: var(--coral);">Mira</strong> — a developer who is competent, tired and between certainties. She might be you.</li>
     <li><strong style="color: var(--teal);">The Model</strong> — the AI in the rectangle, which speaks in monospace and is not trying to be spooky.</li>
     <li><strong style="color: var(--gold);">Pip</strong> — an all but forgotten rubber duck who has opinions about all of this.</li>
+    <li><strong style="color: var(--coral);">Fig</strong> — Mira's daughter, age three-and-a-half. She is the reason anything gets built, she carries the light forward.</li>
   </ul>
 
   <!-- =================== TABLE OF CONTENTS =================== -->
+  <!-- Pip: Most people just scroll. You opened the hood. I respect that. -->
   <div class="toc" id="toc">
     <div class="toc-prompt">$ pip list --chapters<span class="cursor"></span></div>
     <div class="toc-output">Loading grievances... done.<br>Found 7 chapters. Pip has opinions about all of them.</div>
@@ -1297,7 +1579,7 @@
     <a href="#chapter-5" class="toc-link">
       <div class="toc-item">
         <span class="toc-num">[5]</span>
-        <span class="toc-name">When It Gets It Wrong</span>
+        <span class="toc-name">When It Gets It Wrong, aka: You're Absolutely Right</span>
         <span class="toc-dots"></span>
         <span class="toc-status">&#x2713; unlocked</span>
       </div>
@@ -1312,16 +1594,57 @@
     </a>
 
     <div class="toc-pip-comment">// Pip: "I was not consulted on the ordering."</div>
-    <div class="toc-prompt" style="margin-top: 16px; opacity: 0.4; font-size: 11px;">$ pip install poignant-pip</div>
+    <div class="toc-prompt toc-install" id="toc-install">$ pip install poignant-pip</div>
+    <div class="toc-duck" id="toc-duck">~_(o)>~~</div>
+    <div class="toc-pip-was-here" id="toc-pip-was-here">~(o>  pip was here.</div>
   </div>
 
   <div class="section-break">· · ·</div>
 
   <!-- =================== CHAPTER 0 =================== -->
+  <!-- Pip: Before the cursor blinked, I was already here. On the desk. Watching. Nobody asked me anything. That part hasn't changed. -->
   <div class="chapter-header" id="chapter-0">
     <span class="chapter-label">Chapter Zero</span>
     <h2 class="chapter-title">Before the Cursor <em>Blinked</em></h2>
     <p class="chapter-epigraph">"The most unsettling thing about a blank text box is that it is waiting."</p>
+  </div>
+
+  <div class="claude-terminal" id="rect-terminal">
+    <div class="claude-terminal-titlebar">
+      <div class="claude-terminal-dots"><span></span><span></span><span></span></div>
+      <div class="claude-terminal-title">the-rectangle — ~/projects/fig-birthday</div>
+      <div style="width: 36px;"></div>
+    </div>
+    <div class="claude-terminal-body" id="rect-body">
+      <div class="claude-terminal-line">
+        <span class="prompt-char">$</span>
+        <span class="text">the-rectangle</span>
+      </div>
+      <div class="claude-terminal-line" style="margin-bottom: 12px;">
+        <span class="text dim">╭───────────────────────────────────────────────────╮</span>
+      </div>
+      <div class="claude-terminal-line">
+        <span class="text dim">│</span>
+        <span class="text teal" style="margin-left: 4px;">  The Rectangle</span>
+        <span class="text dim" style="margin-left: 6px;">v0.0.1 (it's not spooky)</span>
+      </div>
+      <div class="claude-terminal-line" style="margin-bottom: 12px;">
+        <span class="text dim">╰───────────────────────────────────────────────────╯</span>
+      </div>
+      <div class="claude-terminal-line">
+        <span class="text dim">  tip: say anything. try /help. the cursor is waiting.</span>
+      </div>
+      <div class="claude-terminal-input-row" id="rect-input-row">
+        <span class="prompt-char">❯</span>
+        <input type="text" class="claude-terminal-input" id="rect-input" placeholder="" autocomplete="off" spellcheck="false">
+      </div>
+      <div class="claude-terminal-status" id="rect-status"></div>
+      <div class="claude-terminal-buttons">
+        <div class="claude-terminal-btn accept">y accept</div>
+        <div class="claude-terminal-btn plan">p plan</div>
+        <div class="claude-terminal-btn reject">n reject</div>
+      </div>
+    </div>
   </div>
 
   <div class="prose">
@@ -1892,6 +2215,7 @@ themes.shuffle.each <span class="code-keyword">do</span> |theme|
   <div class="section-break">· · ·</div>
 
   <!-- =================== CHAPTER 1 =================== -->
+  <!-- Pip: She's talking to a rectangle and it's talking back. I've been on this desk eight years and she's never once asked ME how to format a party invitation. -->
   <div class="chapter-header" id="chapter-1">
     <span class="chapter-label">Chapter One</span>
     <h2 class="chapter-title">Your First <em>Conversation</em></h2>
@@ -2651,6 +2975,7 @@ puts <span class="code-string">"\n✨  You've got this, Mira."</span></pre>
   <div class="section-break">· · ·</div>
 
   <!-- =================== CHAPTER 2 =================== -->
+  <!-- Pip: "Context is everything." You know what has context? Me. I have context. I've been here since the Rails days. I remember the Jira arguments. I remember the mass assignment incident. Does the Model remember any of that? No. It forgets you every time you close the tab. -->
   <div class="chapter-header" id="chapter-2">
     <span class="chapter-label">Chapter Two</span>
     <h2 class="chapter-title">Context Is Everything <em>(No, Actually)</em></h2>
@@ -3337,6 +3662,7 @@ Tracks RSVPs, allergies, generates a fridge-friendly dashboard.
   <div class="section-break">· · ·</div>
 
   <!-- =================== CHAPTER 3 =================== -->
+  <!-- Pip: The loop. Ask, get answer, refine, repeat. You know what that is? That's rubber duck debugging with extra steps. She used to do this with ME. She'd explain the problem out loud and I'd sit here and she'd figure it out. Now the duck talks back. I don't know how to feel about that. -->
   <div class="chapter-header" id="chapter-3">
     <span class="chapter-label">Chapter Three</span>
     <h2 class="chapter-title">"The <em>Loop</em>"</h2>
@@ -4181,6 +4507,7 @@ puts <span class="code-string">"   Add someone: ruby birthdays.rb add"</span></p
   <div class="section-break">· · ·</div>
 
   <!-- =================== CHAPTER 4 =================== -->
+  <!-- Pip: Agents. Autonomous systems that run while you sleep. Great. So now I'm not even being replaced by a person talking to a rectangle. I'm being replaced by a rectangle that talks to ITSELF. I cost $3.99 and I have never once hallucinated a database schema. -->
   <div class="chapter-header" id="chapter-4">
     <span class="chapter-label">Chapter Four</span>
     <h2 class="chapter-title">Agents in the <em>Wild</em></h2>
@@ -4947,7 +5274,7 @@ MSG
     </p>
 
     <p>
-      Chapter 5: <em>When It Gets It Wrong.</em>
+      Chapter 5: <em>When It Gets It Wrong, aka: You're Absolutely Right.</em>
     </p>
 
     <div class="section-break">· · ·</div>
@@ -5039,10 +5366,52 @@ MSG
   <div class="section-break">· · ·</div>
 
   <!-- =================== CHAPTER 5 =================== -->
+  <!-- Pip: When it gets it wrong. FINALLY. I've been waiting for this chapter. Look — I'm not happy about it. Okay. I'm a little happy about it. The thing confidently broke prod and Mira had to actually think. That's all I ever wanted. For someone to actually think. -->
   <div class="chapter-header" id="chapter-5">
     <span class="chapter-label">Chapter Five</span>
-    <h2 class="chapter-title">When It Gets It <em>Wrong</em></h2>
+    <h2 class="chapter-title">When It Gets It <em>Wrong,</em> aka: You're Absolutely Right</h2>
     <p class="chapter-epigraph">"The bug is never where you think it is. Except when it is. But it won't be."</p>
+  </div>
+
+  <p class="margin-note">I've been waiting for this chapter. Go ahead. Type something. Watch what happens. I'll be over here. Smiling. Ducks can smile. Look it up.</p>
+
+  <div class="claude-terminal" id="wrong-terminal">
+    <div class="claude-terminal-titlebar">
+      <div class="claude-terminal-dots"><span></span><span></span><span></span></div>
+      <div class="claude-terminal-title">the-rectangle — ~/projects/fig-birthday</div>
+      <div style="width: 36px;"></div>
+    </div>
+    <div class="claude-terminal-body" id="wrong-body">
+      <div class="claude-terminal-line">
+        <span class="prompt-char">$</span>
+        <span class="text">the-rectangle --confident</span>
+      </div>
+      <div class="claude-terminal-line" style="margin-bottom: 12px;">
+        <span class="text dim">╭───────────────────────────────────────────────────╮</span>
+      </div>
+      <div class="claude-terminal-line">
+        <span class="text dim">│</span>
+        <span class="text" style="margin-left: 4px; color: var(--coral);">  The Rectangle</span>
+        <span class="text dim" style="margin-left: 6px;">v0.0.1 (confident mode)</span>
+      </div>
+      <div class="claude-terminal-line" style="margin-bottom: 12px;">
+        <span class="text dim">╰───────────────────────────────────────────────────╯</span>
+      </div>
+      <div class="claude-terminal-line">
+        <span class="text dim">  tip: everything i say is correct. probably.</span>
+      </div>
+      <div class="claude-terminal-input-row" id="wrong-input-row">
+        <span class="prompt-char">❯</span>
+        <input type="text" class="claude-terminal-input" id="wrong-input" placeholder="" autocomplete="off" spellcheck="false">
+      </div>
+      <div class="claude-terminal-status" id="wrong-status"></div>
+      <div class="claude-terminal-buttons">
+        <div class="claude-terminal-btn accept">y trust blindly</div>
+        <div class="claude-terminal-btn plan" style="color: var(--coral); border-color: rgba(212,97,74,0.3);">p panic</div>
+        <div class="claude-terminal-btn reject">n read first</div>
+      </div>
+      <div style="margin-top: 14px; font-family: 'Caveat', cursive; font-size: 14px; color: var(--gold); opacity: 0.7;">// Pip: "Oh this is going to be good. Ask it about February."</div>
+    </div>
   </div>
 
   <div class="prose">
@@ -5226,6 +5595,8 @@ puts days_away  <span class="code-comment"># => 0</span></pre>
     <p>
       And the Model didn't flag it as an assumption. It said "simple, clean, no edge cases." Confidently. Plausibly. Wrong.
     </p>
+
+    <p class="margin-ref"><a href="https://www.destroyallsoftware.com/talks/wat" target="_blank" rel="noopener">see also: Gary Bernhardt, "Wat" — confidently, plausibly wrong since 2012</a></p>
 
     <!-- ===== Comic Strip 1: The Key Comic ===== -->
 
@@ -5665,6 +6036,15 @@ end</code><br>
   <div class="section-break">· · ·</div>
 
   <!-- =================== CHAPTER 6 =================== -->
+  <!-- Pip: Alright. Here's what I figured out, sitting on this desk, watching all of it.
+
+       The tools change. They always change. The hands change too. But the thing that makes someone sit down at midnight and say "what if I tried..." — that doesn't come from a model. That comes from the person. The deciding. The caring. The 2am feeling.
+
+       The Model is good at building. But you're the one who knows what's worth building. That's not going away. That's the part that matters. Keep that.
+
+       I'm still on the desk. I'm not going anywhere.
+
+       ...fine. Yes. It's going to be okay. -->
   <div class="chapter-header" id="chapter-6">
     <span class="chapter-label">Chapter Six</span>
     <h2 class="chapter-title">What You Actually <em>Built</em></h2>
@@ -6076,6 +6456,12 @@ end</code><br>
 
   </div><!-- end .prose (chapter 6) -->
 
+  <!-- Pip: You made it to the bottom of the source code. You're thorough. I like that.
+       Here. You earned this: pip install poignant-pip
+       Then add eval "$(poignant-pip --shell-init)" to your .zshrc.
+       Next time you pip install something, I'll be there. Swimming.
+       Don't tell anyone. -->
+
 </div><!-- end .page-wrap -->
 
 <div id="hanging-duck" aria-hidden="true">
@@ -6104,6 +6490,414 @@ end</code><br>
 </div>
 
 <script>
+console.log("%c" +
+"        __\n" +
+"    ___( o)>\n" +
+"    \\ <_. )\n" +
+"     `---'\n" +
+"  ~~~~~~~~~~~", "color: #C9922A; font-size: 14px; font-family: monospace;");
+console.log("%cIn Ruby, if it quacks like a duck, we trust it.\nIf it doesn't quack, we reopen the class and teach it how.", "color: #C9922A; font-size: 12px; font-family: Menlo, monospace;");
+
+// Peeking characters — swing to opposite side on click
+(function() {
+  var mira = document.getElementById('peek-mira');
+  var fig = document.getElementById('peek-fig');
+  if (!mira || !fig) return;
+
+  // Fade in when scrolled into view
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        // Stagger: Mira first, then Fig
+        mira.classList.add('visible');
+        setTimeout(function() {
+          fig.classList.add('visible');
+        }, 400);
+        observer.disconnect();
+      }
+    });
+  }, { threshold: 0.3 });
+  observer.observe(mira.parentElement);
+
+  var flipped = {};
+
+  function swapSide(el) {
+    if (el.classList.contains('swinging') || el.classList.contains('swing-in-normal') || el.classList.contains('swing-in-flipped')) return;
+
+    var onLeft = el.style.left !== '';
+    el.style.transformOrigin = onLeft ? 'right center' : 'left center';
+    el.classList.add('swinging');
+
+    setTimeout(function() {
+      el.classList.remove('swinging');
+
+      // Swap position
+      if (onLeft) {
+        var w = parseInt(el.style.width);
+        el.style.left = '';
+        el.style.right = '-' + Math.round(w * 1.42) + 'px';
+        el.style.transformOrigin = 'left center';
+      } else {
+        var leftOffset = el.id === 'peek-fig' ? 1.35 : 1.42;
+        el.style.right = '';
+        el.style.left = '-' + Math.round(parseInt(el.style.width) * leftOffset) + 'px';
+        el.style.transformOrigin = 'right center';
+      }
+
+      // Toggle flip state
+      flipped[el.id] = !flipped[el.id];
+      var swingClass = flipped[el.id] ? 'swing-in-flipped' : 'swing-in-normal';
+      el.classList.add(swingClass);
+
+      setTimeout(function() {
+        el.classList.remove(swingClass);
+        // Keep the flip transform after animation ends
+        el.style.transform = flipped[el.id] ? 'scaleX(-1)' : 'scaleX(1)';
+      }, 600);
+    }, 600);
+  }
+
+  function addSlideListener(el, direction) {
+    var sliding = false;
+    var clicks = 0;
+
+    el.addEventListener('click', function() {
+      if (sliding) return;
+      clicks++;
+      sliding = true;
+
+      if (clicks >= 3) {
+        // Add speech bubble
+        var bubble = document.createElement('div');
+        bubble.textContent = 'Weeeeeeee!';
+        bubble.style.cssText = 'position: absolute; font-family: Caveat, cursive; font-size: 20px; color: var(--coral); white-space: nowrap; pointer-events: none; z-index: 10;';
+        bubble.style.left = el.style.left ? (parseInt(el.style.left) + parseInt(el.style.width) + 10) + 'px' : '';
+        bubble.style.right = el.style.right ? (parseInt(el.style.right) + parseInt(el.style.width) + 10) + 'px' : '';
+        bubble.style.top = el.style.top;
+        bubble.style.transition = 'top 1.5s ease-in, opacity 1.5s ease-in';
+        el.parentElement.appendChild(bubble);
+
+        // Pause, then fly off
+        var flyTarget = direction === 'down' ? '2000px' : '-2000px';
+
+        setTimeout(function() {
+          el.style.transition = 'top 1.5s ease-in';
+          el.style.top = flyTarget;
+          bubble.style.transition = 'top 1.5s ease-in, opacity 1.5s ease-in';
+          bubble.style.top = flyTarget;
+          bubble.style.opacity = '0';
+
+          setTimeout(function() {
+            el.style.display = 'none';
+            bubble.remove();
+          }, 1600);
+        }, 1000);
+      } else {
+        var currentTop = parseInt(el.style.top) || 0;
+        var target = currentTop + (direction === 'down' ? 150 : -150);
+        el.style.transition = 'top 0.6s ease-in-out';
+        el.style.top = target + 'px';
+        setTimeout(function() {
+          el.style.transition = '';
+          sliding = false;
+        }, 600);
+      }
+    });
+  }
+
+  var swapped = { mira: false, fig: false };
+
+  function checkBothSwapped() {
+    if (swapped.mira && swapped.fig) {
+      addSlideListener(mira, 'down');
+      addSlideListener(fig, 'up');
+    }
+  }
+
+  mira.addEventListener('click', function handler() {
+    swapSide(mira);
+    mira.removeEventListener('click', handler);
+    setTimeout(function() {
+      swapped.mira = true;
+      checkBothSwapped();
+    }, 1200);
+  });
+  fig.addEventListener('click', function handler() {
+    swapSide(fig);
+    fig.removeEventListener('click', handler);
+    setTimeout(function() {
+      swapped.fig = true;
+      checkBothSwapped();
+    }, 1200);
+  });
+})();
+
+// TOC duck animation
+(function() {
+  var installBtn = document.getElementById('toc-install');
+  var duck = document.getElementById('toc-duck');
+  var pipMsg = document.getElementById('toc-pip-was-here');
+  var swimming = false;
+
+  if (installBtn && duck) {
+    installBtn.addEventListener('click', function() {
+      if (swimming) return;
+      swimming = true;
+
+      // Change prompt text to show "installing"
+      installBtn.textContent = '$ installing...';
+      installBtn.style.opacity = '0.6';
+
+      setTimeout(function() {
+        installBtn.textContent = '✓ installed';
+
+        // Launch the duck
+        duck.classList.add('swimming');
+
+        // After duck swims across, show "pip was here"
+        setTimeout(function() {
+          duck.classList.remove('swimming');
+          if (pipMsg) pipMsg.classList.add('visible');
+
+          // Clear and reset after a couple seconds
+          setTimeout(function() {
+            if (pipMsg) pipMsg.classList.remove('visible');
+            installBtn.textContent = '$ pip install poignant-pip';
+            installBtn.style.opacity = '';
+            swimming = false;
+          }, 2500);
+        }, 3000);
+      }, 800);
+    });
+  }
+})();
+
+// The Rectangle — interactive terminal
+(function() {
+  var input = document.getElementById('rect-input');
+  var status = document.getElementById('rect-status');
+  var body = document.getElementById('rect-body');
+  if (!input || !status || !body) return;
+
+  var duckVerbs = [
+    'Quacking', 'Waddling', 'Preening', 'Bobbing', 'Paddling',
+    'Molting', 'Fluffing', 'Nesting', 'Splashing', 'Dabbling',
+    'Floating', 'Ruffling feathers', 'Tucking wings', 'Diving'
+  ];
+
+  var responses = [
+    "The cursor blinked. You typed. That's how it starts.",
+    "I'm not spooky. I'm a rectangle. Rectangles aren't spooky.",
+    "You're talking to a box on a screen. The box is listening. Try not to think about it.",
+    "Every conversation starts with someone deciding to start it. You just did.",
+    "I don't have feelings about what you typed. I don't have feelings. I'm a rectangle.",
+    "Pip says I stole his job. I didn't steal anything. I don't have hands.",
+    "The best prompt is the one you actually send. Perfectionism is a trap.",
+    "You know what's scarier than a blank text box? A full one you never sent.",
+    "I'm going to be honest with you: I'm a div pretending to be a terminal.",
+    "Mira figured it out. You will too. The cursor is patient.",
+    "Somewhere, a rubber duck is watching you type this. He has opinions.",
+    "The 2am feeling — that 'what if I tried...' — that's yours. I can't make that.",
+  ];
+
+  var busy = false;
+
+  function addLine(html, cls) {
+    var div = document.createElement('div');
+    div.className = 'claude-terminal-line' + (cls ? ' ' + cls : '');
+    div.innerHTML = html;
+    // Insert before the input row
+    var inputRow = document.getElementById('rect-input-row');
+    body.insertBefore(div, inputRow);
+  }
+
+  function addResponse(html) {
+    var div = document.createElement('div');
+    div.className = 'claude-terminal-response';
+    div.innerHTML = html;
+    var inputRow = document.getElementById('rect-input-row');
+    body.insertBefore(div, inputRow);
+  }
+
+  input.addEventListener('keydown', function(e) {
+    if (e.key !== 'Enter') return;
+    var text = input.value.trim();
+    if (!text || busy) return;
+
+    busy = true;
+    input.value = '';
+    input.disabled = true;
+
+    // Echo user input
+    addLine('<span class="prompt-char">❯</span> <span class="text">' + text.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</span>');
+
+    // Special commands
+    var lower = text.toLowerCase().replace(/\s+/g, '');
+    if (lower === '/help' || lower === 'help') {
+      var helpLines = [
+        '',
+        '<span class="text teal">Available commands:</span>',
+        '<span class="text dim">  /help</span>          <span class="text dim">— you\'re looking at it</span>',
+        '<span class="text dim">  /quack</span>         <span class="text dim">— important</span>',
+        '<span class="text dim">  /pip</span>           <span class="text dim">— ask the duck</span>',
+        '',
+        '<span class="text dim" style="font-size:11px;">  Hint: this page has more going on than it looks like.</span>',
+        '',
+      ];
+      helpLines.forEach(function(l) { addLine(l); });
+      input.disabled = false;
+      input.focus();
+      busy = false;
+      return;
+    }
+
+    if (lower === '/quack' || lower === 'quack') {
+      addResponse('<span class="resp-label">▌</span><span style="color: var(--gold);">Quack.</span>');
+      setTimeout(function() {
+        addResponse('<span class="resp-label">▌</span><span style="color: var(--gold); font-size: 11px;">That\'s it. That\'s the command.</span>');
+        input.disabled = false;
+        input.focus();
+        busy = false;
+      }, 600);
+      return;
+    }
+
+    if (lower === '/pip' || lower === 'pip') {
+      var pipQuotes = [
+        "I was here first. Before the rectangle. Before the cursor. Before all of it.",
+        "She used to explain her bugs to me. Now she explains them to a div. Progress.",
+        "I cost $3.99 and I have never once hallucinated.",
+        "You want my advice? Read the source code. Not of the program. Of this page.",
+        "Try clicking on me. Down there. Bottom right. Three times. If you dare.",
+        "I've been on this desk since 2016. I've seen things you people wouldn't believe.",
+        "The Model doesn't remember you. I do. I remember everything. I'm a duck.",
+      ];
+      var quote = pipQuotes[Math.floor(Math.random() * pipQuotes.length)];
+      status.innerHTML = '<span class="spinner">◐</span> Consulting the duck...';
+      setTimeout(function() {
+        status.innerHTML = '';
+        addResponse('<span style="color: var(--gold);">🐤 Pip:</span> ' + quote);
+        input.disabled = false;
+        input.focus();
+        busy = false;
+      }, 1200);
+      return;
+    }
+
+    // Start cycling through duck verbs
+    var verbIdx = Math.floor(Math.random() * duckVerbs.length);
+    status.innerHTML = '<span class="spinner">◐</span> ' + duckVerbs[verbIdx] + '...';
+
+    var verbCycles = 0;
+    var maxCycles = 3 + Math.floor(Math.random() * 4);
+    var verbInterval = setInterval(function() {
+      verbCycles++;
+      verbIdx = (verbIdx + 1) % duckVerbs.length;
+      var spinChars = ['◐', '◓', '◑', '◒'];
+      status.innerHTML = '<span class="spinner" style="animation:none;">' + spinChars[verbCycles % 4] + '</span> ' + duckVerbs[verbIdx] + '...';
+
+      if (verbCycles >= maxCycles) {
+        clearInterval(verbInterval);
+        status.innerHTML = '';
+
+        // Show response
+        var resp = responses[Math.floor(Math.random() * responses.length)];
+        addResponse('<span class="resp-label">▌</span>' + resp);
+
+        input.disabled = false;
+        input.focus();
+        busy = false;
+      }
+    }, 500);
+  });
+})();
+
+// The Rectangle — confident mode (Chapter 5)
+(function() {
+  var input = document.getElementById('wrong-input');
+  var status = document.getElementById('wrong-status');
+  var body = document.getElementById('wrong-body');
+  if (!input || !status || !body) return;
+
+  var confidentVerbs = [
+    'Hallucinating', 'Confabulating', 'Being extremely confident',
+    'Vibing', 'Not reading the error', 'Skipping the tests',
+    'Assuming it works', 'Deploying to prod', 'Ignoring edge cases',
+    'Gaslighting the compiler', 'Refactoring unnecessarily',
+    'Adding dependencies', 'Removing guardrails', 'Trusting blindly'
+  ];
+
+  var wrongResponses = [
+    "I've analyzed your code and I'm confident the issue is in a file I haven't read.",
+    "The fix is simple. I won't test it, but I'm sure it works.",
+    "This is definitely not a leap year bug. It's probably a timezone issue. (It's a leap year bug.)",
+    "Have you tried mass-assigning all the attributes? That always works. It definitely always works.",
+    "I see the problem. The problem is that you're checking my work. Stop doing that and the problem goes away.",
+    "The tests pass. I didn't run them, but they pass. I can feel it.",
+    "This code is clean, efficient, and wrong. But two out of three isn't bad.",
+    "I've fixed the bug by introducing three new bugs. Net positive.",
+    "The error is on line 34. I haven't looked at line 34, but I'm confident.",
+    "Simple fix: delete February. The month is causing problems. Remove it entirely.",
+    "The code works on my machine. I don't have a machine, but the principle stands.",
+    "I've reviewed the logs and determined the real problem is feelings.",
+  ];
+
+  var busy = false;
+
+  function addLine(html, cls) {
+    var div = document.createElement('div');
+    div.className = 'claude-terminal-line' + (cls ? ' ' + cls : '');
+    div.innerHTML = html;
+    var inputRow = document.getElementById('wrong-input-row');
+    body.insertBefore(div, inputRow);
+  }
+
+  function addResponse(html) {
+    var div = document.createElement('div');
+    div.className = 'claude-terminal-response';
+    div.innerHTML = html;
+    var inputRow = document.getElementById('wrong-input-row');
+    body.insertBefore(div, inputRow);
+  }
+
+  input.addEventListener('keydown', function(e) {
+    if (e.key !== 'Enter') return;
+    var text = input.value.trim();
+    if (!text || busy) return;
+
+    busy = true;
+    input.value = '';
+    input.disabled = true;
+
+    addLine('<span class="prompt-char">❯</span> <span class="text">' + text.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</span>');
+
+    // Confident cycling
+    var verbIdx = Math.floor(Math.random() * confidentVerbs.length);
+    status.innerHTML = '<span class="spinner">◐</span> <span style="color: var(--coral);">' + confidentVerbs[verbIdx] + '...</span>';
+
+    var verbCycles = 0;
+    var maxCycles = 3 + Math.floor(Math.random() * 4);
+    var verbInterval = setInterval(function() {
+      verbCycles++;
+      verbIdx = (verbIdx + 1) % confidentVerbs.length;
+      var spinChars = ['◐', '◓', '◑', '◒'];
+      status.innerHTML = '<span class="spinner" style="animation:none;">' + spinChars[verbCycles % 4] + '</span> <span style="color: var(--coral);">' + confidentVerbs[verbIdx] + '...</span>';
+
+      if (verbCycles >= maxCycles) {
+        clearInterval(verbInterval);
+        status.innerHTML = '';
+
+        var resp = wrongResponses[Math.floor(Math.random() * wrongResponses.length)];
+        addResponse('<span class="resp-label" style="color: var(--coral);">▌</span>' + resp);
+
+        input.disabled = false;
+        input.focus();
+        busy = false;
+      }
+    }, 600);
+  });
+})();
+
 (function() {
   const chapters = [
     { id: 'chapter-0', num: 'Ch. 0', name: 'Before the<br>Cursor Blinked' },
@@ -6111,7 +6905,7 @@ end</code><br>
     { id: 'chapter-2', num: 'Ch. 2', name: 'Context Is<br>Everything' },
     { id: 'chapter-3', num: 'Ch. 3', name: 'The<br>Loop' },
     { id: 'chapter-4', num: 'Ch. 4', name: 'Agents in<br>the Wild' },
-    { id: 'chapter-5', num: 'Ch. 5', name: 'When It<br>Gets It Wrong' },
+    { id: 'chapter-5', num: 'Ch. 5', name: 'When It Gets<br>It Wrong' },
     { id: 'chapter-6', num: 'Ch. 6', name: 'What You<br>Actually Built' },
   ];
 
@@ -6541,15 +7335,6 @@ end</code><br>
       if (exchangeCount >= maxExchanges) {
         // Final message — the closer
         addMessage(closingMessage, 'from-pip closing');
-
-        // Easter egg: delayed pip install hint
-        setTimeout(function() {
-          var hint = addMessage('pip install poignant-pip', 'from-pip');
-          hint.style.fontFamily = '"Space Mono", monospace';
-          hint.style.fontSize = '11px';
-          hint.style.opacity = '0.45';
-          hint.style.fontStyle = 'normal';
-        }, 3000);
 
         inputRow.classList.add('finished');
         sendBtn.textContent = 'Waddle away';
