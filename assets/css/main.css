@@ -375,6 +375,7 @@ h2 {
   color: rgba(255, 255, 255, 0.4);
   letter-spacing: 0.05em;
   text-transform: uppercase;
+  object-fit: cover;
 }
 
 .project-info {
