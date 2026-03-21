@@ -366,6 +366,12 @@ h2 {
   margin-top: 3rem;
 }
 
+a.project-card {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
 .project-card {
   border: 1px solid var(--border);
   overflow: hidden;
