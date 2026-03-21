@@ -242,6 +242,16 @@ h2 {
   flex-shrink: 0;
 }
 
+.tv-tagline {
+  text-align: center;
+  font-family: 'Courier New', monospace;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: 0.75rem;
+  letter-spacing: 0.03em;
+  font-style: italic;
+}
+
 .tv-container {
   position: relative;
   cursor: pointer;
