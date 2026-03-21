@@ -37,7 +37,6 @@
   <script>
     const toggle = document.querySelector('.theme-toggle');
     const root = document.documentElement;
-    // Check for saved preference
     const saved = localStorage.getItem('theme');
     if (saved) root.setAttribute('data-theme', saved);
 
@@ -47,6 +46,69 @@
       root.setAttribute('data-theme', next);
       localStorage.setItem('theme', next);
     });
+
+    // TV Channel Surf
+    (function() {
+      const tv = document.getElementById('tv-container');
+      if (!tv) return;
+
+      const photo = document.getElementById('hero-photo');
+      const staticEl = document.getElementById('tv-static');
+      const channelEl = document.getElementById('tv-channel');
+
+      const channels = [
+        { src: '/andrew-blue.png', label: 'Reality' },
+        { src: '/assets/characters/pixar.png', label: 'Pixar' },
+        { src: '/assets/characters/simpsons.png', label: 'Simpsons' },
+        { src: '/assets/characters/family-guy.png', label: 'Family Guy' },
+        { src: '/assets/characters/southpark.png', label: 'South Park' },
+        { src: '/assets/characters/adnime.png', label: 'Anime' },
+        { src: '/assets/characters/peanuts.png', label: 'Peanuts' },
+        { src: '/assets/characters/dilbert.png', label: 'Dilbert' },
+      ];
+
+      // Preload all images
+      channels.forEach(ch => { const img = new Image(); img.src = ch.src; });
+
+      let current = 0;
+      let autoTimer = null;
+      let channelTimeout = null;
+
+      function changeChannel(index) {
+        current = index % channels.length;
+        const ch = channels[current];
+
+        // Static flash
+        staticEl.classList.remove('active');
+        void staticEl.offsetWidth;
+        staticEl.classList.add('active');
+
+        // Swap image after brief delay for static effect
+        setTimeout(() => { photo.src = ch.src; }, 80);
+
+        // Show channel label
+        channelEl.textContent = 'CH ' + (current + 1) + ' \u2014 ' + ch.label;
+        channelEl.classList.add('visible');
+        clearTimeout(channelTimeout);
+        channelTimeout = setTimeout(() => channelEl.classList.remove('visible'), 2000);
+      }
+
+      function startAuto() {
+        autoTimer = setInterval(() => changeChannel(current + 1), 4000);
+      }
+
+      function resetAuto() {
+        clearInterval(autoTimer);
+        startAuto();
+      }
+
+      tv.addEventListener('click', () => {
+        changeChannel(current + 1);
+        resetAuto();
+      });
+
+      startAuto();
+    })();
   </script>
 </body>
 </html>
