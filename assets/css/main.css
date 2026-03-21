@@ -345,6 +345,19 @@ h2 {
   line-height: 1.7;
 }
 
+/* --- EXPERIENCE --- */
+.experience-content {
+  max-width: 720px;
+  margin-top: 2rem;
+}
+
+.experience-content p {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--text-muted);
+  margin-bottom: 1.25rem;
+}
+
 /* --- PORTFOLIO --- */
 .portfolio-grid {
   display: grid;
