@@ -238,7 +238,7 @@ h2 {
 }
 
 .hero-photo {
-  width: 500px;
+  width: 580px;
   flex-shrink: 0;
 }
 
@@ -259,7 +259,7 @@ h2 {
   position: absolute;
   z-index: 1;
   top: 26%;
-  left: 13%;
+  left: 15%;
   width: 43%;
   height: 52%;
   object-fit: cover;
@@ -270,7 +270,7 @@ h2 {
   position: absolute;
   z-index: 3;
   top: 26%;
-  left: 13%;
+  left: 15%;
   width: 43%;
   height: 52%;
   background: repeating-linear-gradient(
