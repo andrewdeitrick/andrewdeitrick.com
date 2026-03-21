@@ -238,7 +238,7 @@ h2 {
 }
 
 .hero-photo {
-  width: 380px;
+  width: 440px;
   flex-shrink: 0;
 }
 
@@ -258,10 +258,10 @@ h2 {
 .tv-screen {
   position: absolute;
   z-index: 1;
-  top: 17%;
-  left: 9%;
-  width: 54%;
-  height: 66%;
+  top: 22%;
+  left: 11%;
+  width: 48%;
+  height: 58%;
   object-fit: cover;
   border-radius: 4px;
 }
@@ -269,10 +269,10 @@ h2 {
 .tv-static {
   position: absolute;
   z-index: 3;
-  top: 17%;
-  left: 9%;
-  width: 54%;
-  height: 66%;
+  top: 22%;
+  left: 11%;
+  width: 48%;
+  height: 58%;
   background: repeating-linear-gradient(
     0deg,
     rgba(0, 0, 0, 0.15) 0px,
@@ -300,8 +300,8 @@ h2 {
 .tv-channel {
   position: absolute;
   z-index: 4;
-  top: 20%;
-  left: 12%;
+  top: 25%;
+  left: 14%;
   font-family: 'Courier New', monospace;
   font-size: 0.65rem;
   font-weight: 700;
