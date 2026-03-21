@@ -300,8 +300,10 @@ h2 {
 .tv-channel {
   position: absolute;
   z-index: 4;
-  top: 29%;
-  left: 16%;
+  top: 31%;
+  left: 22%;
+  width: 40%;
+  text-align: center;
   font-family: 'Courier New', monospace;
   font-size: 0.65rem;
   font-weight: 700;

@@ -57,14 +57,14 @@
       const channelEl = document.getElementById('tv-channel');
 
       const channels = [
-        { src: '/andrew-blue.png', label: 'Reality' },
-        { src: '/assets/characters/pixar.png', label: 'Pixar' },
-        { src: '/assets/characters/simpsons.png', label: 'Simpsons' },
-        { src: '/assets/characters/family-guy.png', label: 'Family Guy' },
-        { src: '/assets/characters/southpark.png', label: 'South Park' },
-        { src: '/assets/characters/adnime.png', label: 'Anime' },
-        { src: '/assets/characters/peanuts.png', label: 'Peanuts' },
-        { src: '/assets/characters/dilbert.png', label: 'Dilbert' },
+        { src: '/andrew-blue.png' },
+        { src: '/assets/characters/pixar.png' },
+        { src: '/assets/characters/simpsons.png' },
+        { src: '/assets/characters/family-guy.png' },
+        { src: '/assets/characters/southpark.png' },
+        { src: '/assets/characters/adnime.png' },
+        { src: '/assets/characters/peanuts.png' },
+        { src: '/assets/characters/dilbert.png' },
       ];
 
       // Preload all images
@@ -87,7 +87,7 @@
         setTimeout(() => { photo.src = ch.src; }, 80);
 
         // Show channel label
-        channelEl.textContent = 'CH ' + (current + 1) + ' \u2014 ' + ch.label;
+        channelEl.textContent = 'CH ' + (current + 1);
         channelEl.classList.add('visible');
         clearTimeout(channelTimeout);
         channelTimeout = setTimeout(() => channelEl.classList.remove('visible'), 2000);
