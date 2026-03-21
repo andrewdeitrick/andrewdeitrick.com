@@ -258,8 +258,8 @@ h2 {
 .tv-screen {
   position: absolute;
   z-index: 1;
-  top: 27%;
-  left: 17%;
+  top: 29%;
+  left: 22%;
   width: 40%;
   height: 49%;
   object-fit: cover;
@@ -269,8 +269,8 @@ h2 {
 .tv-static {
   position: absolute;
   z-index: 3;
-  top: 27%;
-  left: 17%;
+  top: 29%;
+  left: 22%;
   width: 40%;
   height: 49%;
   background: repeating-linear-gradient(
