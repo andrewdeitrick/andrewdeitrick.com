@@ -162,7 +162,9 @@
 
       if (!channels.length || !dial) return;
 
+      const dialImg = dial.querySelector('img');
       let current = 0;
+      let dialRotation = 0;
       let channelTimeout = null;
       let transitioning = false;
 
@@ -195,17 +197,20 @@
         }, 150);
       }
 
-      // Dial click: left half = prev, right half = next
+      // Dial click: left half = prev (CCW), right half = next (CW)
       dial.addEventListener('click', (e) => {
         const rect = dial.getBoundingClientRect();
         const clickX = e.clientX - rect.left;
         const midpoint = rect.width / 2;
 
         if (clickX < midpoint) {
+          dialRotation -= 30;
           showChannel(current - 1);
         } else {
+          dialRotation += 30;
           showChannel(current + 1);
         }
+        dialImg.style.transform = 'rotate(' + dialRotation + 'deg)';
       });
 
       // Cursor changes based on which half you hover

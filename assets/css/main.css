@@ -252,11 +252,7 @@ h1, h2, h3 {
   .tv-dial img {
     width: 100%;
     display: block;
-    transition: transform 0.15s;
-  }
-
-  .tv-dial:active img {
-    transform: scale(0.95);
+    transition: transform 0.3s ease-out;
   }
 
   /* TV Static Overlay - JS positions to match screen */
