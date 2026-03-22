@@ -150,6 +150,74 @@ h1, h2, h3 {
     border-radius: 3px;
   }
 
+  /* TV Power Off - curtain reveal */
+  .tv-power-off {
+    position: fixed;
+    z-index: 150;
+    overflow: hidden;
+  }
+
+  .tv-power-off-left,
+  .tv-power-off-right {
+    position: absolute;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    background: #111;
+    transition: transform 0.8s ease-in-out;
+  }
+
+  .tv-power-off-left {
+    left: 0;
+  }
+
+  .tv-power-off-right {
+    right: 0;
+  }
+
+  .tv-power-off.powering-on .tv-power-off-left {
+    transform: translateX(-100%);
+  }
+
+  .tv-power-off.powering-on .tv-power-off-right {
+    transform: translateX(100%);
+  }
+
+  .tv-power-off.off {
+    display: none;
+  }
+
+  .tv-power-btn {
+    position: absolute;
+    z-index: 10;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: none;
+    border: 2px solid #333;
+    color: #333;
+    font-size: 3rem;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .tv-power-btn:hover {
+    border-color: #d4aa3c;
+    color: #d4aa3c;
+    box-shadow: 0 0 30px rgba(212, 170, 60, 0.3);
+  }
+
+  .tv-power-off.powering-on .tv-power-btn {
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
   /* TV Dial - JS positions to match frame */
   .tv-dial {
     position: fixed;
@@ -228,24 +296,6 @@ h1, h2, h3 {
       transparent 3px
     );
   }
-
-  /* Theme toggle repositioned */
-  .theme-toggle {
-    position: fixed;
-    bottom: 2rem;
-    right: 2rem;
-    top: auto;
-    z-index: 200;
-    font-size: 1.5rem;
-    color: #666;
-    background: none;
-    border: none;
-    cursor: pointer;
-    transition: transform 0.2s;
-    padding: 0.3rem;
-  }
-
-  .theme-toggle:hover { transform: scale(1.15); }
 
   /* Hero channel layout */
   .hero-split {
@@ -342,7 +392,8 @@ h1, h2, h3 {
   .tv-frame-overlay,
   .tv-dial,
   .tv-static-overlay,
-  .tv-channel-label { display: none; }
+  .tv-channel-label,
+  .tv-power-off { display: none; }
 
   .crt-overlay {
     position: fixed;
@@ -474,22 +525,6 @@ nav .nav-links a.nav-poignant {
 nav .nav-links a.nav-poignant:hover {
   color: #b8503d;
 }
-
-.theme-toggle {
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 1.25rem;
-  line-height: 1;
-  padding: 0.3rem;
-  transition: transform 0.2s;
-  position: fixed;
-  top: 18px;
-  right: 1.5rem;
-  z-index: 101;
-}
-
-.theme-toggle:hover { transform: scale(1.15); }
 
 /* --- SECTIONS --- */
 section {

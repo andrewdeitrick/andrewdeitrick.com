@@ -32,6 +32,13 @@
     <img src="/assets/tv-frame.png" alt="">
   </div>
 
+  <!-- TV Power Off Screen (covers the screen opening) -->
+  <div class="tv-power-off" id="tv-power-off">
+    <div class="tv-power-off-left"></div>
+    <div class="tv-power-off-right"></div>
+    <button class="tv-power-btn" id="tv-power-btn" aria-label="Power on">&#x23FB;</button>
+  </div>
+
   <!-- TV Dial (desktop only) -->
   <div class="tv-dial" id="tv-dial">
     <img src="/assets/dial.png" alt="Channel dial">
@@ -42,9 +49,6 @@
 
   <!-- TV Channel Label -->
   <div class="tv-channel-label" id="tv-channel-label"></div>
-
-  <!-- Theme Toggle -->
-  <button class="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">&#x23FB;</button>
 
   <!-- CRT Scanlines -->
   <div class="crt-overlay"></div>
@@ -65,6 +69,7 @@
       const channelLabel = document.getElementById('tv-channel-label');
       const crtOverlay = document.querySelector('.crt-overlay');
       const dialEl = document.getElementById('tv-dial');
+      const powerOff = document.getElementById('tv-power-off');
 
       if (!frameImg || !screenContent) return;
 
@@ -84,13 +89,11 @@
         let renderW, renderH, offsetX, offsetY;
 
         if (vpRatio > imgRatio) {
-          // Letterboxed on sides (image height fills viewport)
           renderH = vh;
           renderW = vh * imgRatio;
           offsetX = (vw - renderW) / 2;
           offsetY = 0;
         } else {
-          // Letterboxed on top/bottom (image width fills viewport)
           renderW = vw;
           renderH = vw / imgRatio;
           offsetX = 0;
@@ -112,6 +115,7 @@
 
         style(screenContent);
         style(staticOverlay);
+        style(powerOff);
         if (crtOverlay) style(crtOverlay);
 
         if (channelLabel) {
@@ -132,22 +136,22 @@
 
       frameImg.addEventListener('load', updatePositions);
       window.addEventListener('resize', updatePositions);
-      // Run immediately if already loaded
       if (frameImg.naturalWidth) updatePositions();
     })();
 
-    // Theme toggle
-    const toggle = document.querySelector('.theme-toggle');
-    const root = document.documentElement;
-    const saved = localStorage.getItem('theme');
-    if (saved) root.setAttribute('data-theme', saved);
+    // TV Power On
+    (function() {
+      const powerOff = document.getElementById('tv-power-off');
+      const powerBtn = document.getElementById('tv-power-btn');
+      if (!powerOff || !powerBtn) return;
 
-    toggle.addEventListener('click', () => {
-      const isDark = root.getAttribute('data-theme') === 'dark';
-      const next = isDark ? 'light' : 'dark';
-      root.setAttribute('data-theme', next);
-      localStorage.setItem('theme', next);
-    });
+      powerBtn.addEventListener('click', () => {
+        powerOff.classList.add('powering-on');
+        powerOff.addEventListener('animationend', () => {
+          powerOff.classList.add('off');
+        }, { once: true });
+      });
+    })();
 
     // TV Channel Navigation
     (function() {
@@ -219,7 +223,6 @@
 
       // Keyboard navigation
       document.addEventListener('keydown', (e) => {
-        // Only in TV mode (desktop)
         if (window.innerWidth < 1024) return;
         if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
           e.preventDefault();
