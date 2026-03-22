@@ -27,11 +27,6 @@
 
   {% include nav.html %}
 
-  <!-- Power On Screen -->
-  <div class="power-screen" id="power-screen">
-    <button class="power-btn" id="power-btn" aria-label="Power on">&#x23FB;</button>
-  </div>
-
   <!-- Theme Toggle -->
   <button class="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">&#x23FB;</button>
 
@@ -55,20 +50,6 @@
       localStorage.setItem('theme', next);
     });
 
-    // Site Power On
-    (function() {
-      const powerScreen = document.getElementById('power-screen');
-      const powerBtn = document.getElementById('power-btn');
-      if (!powerScreen) return;
-
-      powerBtn.addEventListener('click', () => {
-        powerScreen.classList.add('powering-on');
-        powerScreen.addEventListener('animationend', () => {
-          powerScreen.classList.add('off');
-        }, { once: true });
-      });
-    })();
-
     // TV Channel Surf
     (function() {
       const tv = document.getElementById('tv-container');
@@ -77,6 +58,7 @@
       const photo = document.getElementById('hero-photo');
       const staticEl = document.getElementById('tv-static');
       const channelEl = document.getElementById('tv-channel');
+      const tvOff = document.getElementById('tv-off');
 
       const channels = [
         { src: '/andrew-blue.png' },
@@ -95,6 +77,20 @@
       let current = 0;
       let autoTimer = null;
       let channelTimeout = null;
+      let poweredOn = false;
+
+      // Start with screen hidden behind black overlay
+      photo.classList.add('hidden');
+
+      function powerOn() {
+        photo.classList.remove('hidden');
+        tvOff.classList.add('powering-on');
+        tvOff.addEventListener('animationend', () => {
+          tvOff.classList.add('off');
+          poweredOn = true;
+          startAuto();
+        }, { once: true });
+      }
 
       function changeChannel(index) {
         current = index % channels.length;
@@ -125,11 +121,16 @@
       }
 
       tv.addEventListener('click', () => {
+        if (!poweredOn) {
+          powerOn();
+          return;
+        }
         changeChannel(current + 1);
         resetAuto();
       });
 
-      startAuto();
+      // Power on after 10 seconds
+      setTimeout(powerOn, 10000);
     })();
   </script>
 </body>

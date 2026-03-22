@@ -85,65 +85,6 @@ h1, h2, h3 {
   font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
 }
 
-/* --- POWER ON SCREEN --- */
-.power-screen {
-  position: fixed;
-  inset: 0;
-  z-index: 10000;
-  background: #000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.power-screen.off {
-  display: none;
-}
-
-.power-screen.powering-on {
-  animation: sitePowerOn 0.8s ease-out forwards;
-}
-
-@keyframes sitePowerOn {
-  0% {
-    transform: scaleY(1) scaleX(1);
-    opacity: 1;
-  }
-  50% {
-    transform: scaleY(0.003) scaleX(1);
-    opacity: 1;
-  }
-  80% {
-    transform: scaleY(0.003) scaleX(0.8);
-    opacity: 0.8;
-  }
-  100% {
-    transform: scaleY(0) scaleX(0);
-    opacity: 0;
-  }
-}
-
-.power-btn {
-  background: none;
-  border: 2px solid #333;
-  color: #333;
-  font-size: 3rem;
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  cursor: pointer;
-  transition: all 0.3s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.power-btn:hover {
-  border-color: #d4aa3c;
-  color: #d4aa3c;
-  box-shadow: 0 0 30px rgba(212, 170, 60, 0.3);
-}
-
 /* --- CRT SCANLINE OVERLAY --- */
 .crt-overlay {
   position: fixed;
