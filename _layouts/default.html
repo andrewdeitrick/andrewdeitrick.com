@@ -27,17 +27,37 @@
 
   {% include nav.html %}
 
+  <!-- TV Frame Overlay (desktop only) -->
+  <div class="tv-frame-overlay" id="tv-frame-overlay">
+    <img src="/assets/tv-frame.png" alt="">
+  </div>
+
+  <!-- TV Dial (desktop only) -->
+  <div class="tv-dial" id="tv-dial">
+    <img src="/assets/dial.png" alt="Channel dial">
+  </div>
+
+  <!-- TV Static Overlay -->
+  <div class="tv-static-overlay" id="tv-static-overlay"></div>
+
+  <!-- TV Channel Label -->
+  <div class="tv-channel-label" id="tv-channel-label"></div>
+
   <!-- Theme Toggle -->
   <button class="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">&#x23FB;</button>
 
   <!-- CRT Scanlines -->
   <div class="crt-overlay"></div>
 
-  {{ content }}
+  <!-- Screen Content Area -->
+  <div class="tv-screen-content" id="tv-screen-content">
+    {{ content }}
+  </div>
 
   {% include footer.html %}
 
   <script>
+    // Theme toggle
     const toggle = document.querySelector('.theme-toggle');
     const root = document.documentElement;
     const saved = localStorage.getItem('theme');
@@ -50,87 +70,86 @@
       localStorage.setItem('theme', next);
     });
 
-    // TV Channel Surf
+    // TV Channel Navigation
     (function() {
-      const tv = document.getElementById('tv-container');
-      if (!tv) return;
+      const channels = document.querySelectorAll('.channel');
+      const dial = document.getElementById('tv-dial');
+      const staticOverlay = document.getElementById('tv-static-overlay');
+      const channelLabel = document.getElementById('tv-channel-label');
 
-      const photo = document.getElementById('hero-photo');
-      const staticEl = document.getElementById('tv-static');
-      const channelEl = document.getElementById('tv-channel');
-      const tvOff = document.getElementById('tv-off');
-
-      const channels = [
-        { src: '/andrew-blue.png' },
-        { src: '/assets/characters/pixar.png' },
-        { src: '/assets/characters/simpsons.png' },
-        { src: '/assets/characters/family-guy.png' },
-        { src: '/assets/characters/southpark.png' },
-        { src: '/assets/characters/adnime.png' },
-        { src: '/assets/characters/peanuts.png' },
-        { src: '/assets/characters/dilbert.png' },
-      ];
-
-      // Preload all images
-      channels.forEach(ch => { const img = new Image(); img.src = ch.src; });
+      if (!channels.length || !dial) return;
 
       let current = 0;
-      let autoTimer = null;
       let channelTimeout = null;
-      let poweredOn = false;
+      let transitioning = false;
 
-      // Start with screen hidden behind black overlay
-      photo.classList.add('hidden');
+      function showChannel(index) {
+        if (transitioning) return;
+        if (index < 0) index = channels.length - 1;
+        if (index >= channels.length) index = 0;
+        if (index === current) return;
 
-      function powerOn() {
-        photo.classList.remove('hidden');
-        tvOff.classList.add('powering-on');
-        tvOff.addEventListener('animationend', () => {
-          tvOff.classList.add('off');
-          poweredOn = true;
-          startAuto();
-        }, { once: true });
-      }
-
-      function changeChannel(index) {
-        current = index % channels.length;
-        const ch = channels[current];
+        transitioning = true;
 
         // Static flash
-        staticEl.classList.remove('active');
-        void staticEl.offsetWidth;
-        staticEl.classList.add('active');
+        staticOverlay.classList.remove('active');
+        void staticOverlay.offsetWidth;
+        staticOverlay.classList.add('active');
 
-        // Swap image after brief delay for static effect
-        setTimeout(() => { photo.src = ch.src; }, 80);
+        // Swap content after brief static
+        setTimeout(() => {
+          channels[current].classList.remove('active');
+          current = index;
+          channels[current].classList.add('active');
 
-        // Show channel label
-        channelEl.textContent = 'CH ' + (current + 1);
-        channelEl.classList.add('visible');
-        clearTimeout(channelTimeout);
-        channelTimeout = setTimeout(() => channelEl.classList.remove('visible'), 2000);
+          // Show channel label
+          channelLabel.textContent = 'CH ' + (current + 1);
+          channelLabel.classList.add('visible');
+          clearTimeout(channelTimeout);
+          channelTimeout = setTimeout(() => channelLabel.classList.remove('visible'), 2000);
+
+          transitioning = false;
+        }, 150);
       }
 
-      function startAuto() {
-        autoTimer = setInterval(() => changeChannel(current + 1), 4000);
-      }
+      // Dial click: left half = prev, right half = next
+      dial.addEventListener('click', (e) => {
+        const rect = dial.getBoundingClientRect();
+        const clickX = e.clientX - rect.left;
+        const midpoint = rect.width / 2;
 
-      function resetAuto() {
-        clearInterval(autoTimer);
-        startAuto();
-      }
-
-      tv.addEventListener('click', () => {
-        if (!poweredOn) {
-          powerOn();
-          return;
+        if (clickX < midpoint) {
+          showChannel(current - 1);
+        } else {
+          showChannel(current + 1);
         }
-        changeChannel(current + 1);
-        resetAuto();
       });
 
-      // Power on after 10 seconds
-      setTimeout(powerOn, 10000);
+      // Cursor changes based on which half you hover
+      dial.addEventListener('mousemove', (e) => {
+        const rect = dial.getBoundingClientRect();
+        const clickX = e.clientX - rect.left;
+        const midpoint = rect.width / 2;
+
+        if (clickX < midpoint) {
+          dial.style.cursor = 'w-resize';
+        } else {
+          dial.style.cursor = 'e-resize';
+        }
+      });
+
+      // Keyboard navigation
+      document.addEventListener('keydown', (e) => {
+        // Only in TV mode (desktop)
+        if (window.innerWidth < 1024) return;
+        if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+          e.preventDefault();
+          showChannel(current + 1);
+        } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+          e.preventDefault();
+          showChannel(current - 1);
+        }
+      });
     })();
   </script>
 </body>
