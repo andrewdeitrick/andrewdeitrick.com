@@ -322,6 +322,12 @@ h1, h2, h3 {
     );
   }
 
+  .hero-avatar {
+    width: 150px;
+    display: block;
+    margin-bottom: 1.5rem;
+  }
+
   /* Hero channel */
   .hero-text h1,
   #ch-hero h1 {
