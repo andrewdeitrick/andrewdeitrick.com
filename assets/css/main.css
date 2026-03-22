@@ -304,10 +304,10 @@ h2 {
 .tv-screen {
   position: absolute;
   z-index: 1;
-  top: 29%;
-  left: 22%;
-  width: 40%;
-  height: 49%;
+  top: 30%;
+  left: 9%;
+  width: 58%;
+  height: 56%;
   object-fit: cover;
   border-radius: 4px;
 }
@@ -315,10 +315,10 @@ h2 {
 .tv-static {
   position: absolute;
   z-index: 3;
-  top: 29%;
-  left: 22%;
-  width: 40%;
-  height: 49%;
+  top: 30%;
+  left: 9%;
+  width: 58%;
+  height: 56%;
   background: repeating-linear-gradient(
     0deg,
     rgba(0, 0, 0, 0.15) 0px,
