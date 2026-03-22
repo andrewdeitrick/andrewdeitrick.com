@@ -315,7 +315,7 @@ h2 {
 /* TV power-on effect */
 .tv-off {
   position: absolute;
-  z-index: 5;
+  z-index: 1;
   top: 30%;
   left: 9%;
   width: 58%;
