@@ -68,15 +68,12 @@
       const staticOverlay = document.getElementById('tv-static-overlay');
       const channelLabel = document.getElementById('tv-channel-label');
       const crtOverlay = document.querySelector('.crt-overlay');
-      const dialEl = document.getElementById('tv-dial');
       const powerOff = document.getElementById('tv-power-off');
 
       if (!frameImg || !screenContent) return;
 
       // Screen opening position as % of the TV image's natural dimensions
-      const SCREEN = { top: 5, left: 4, width: 69, height: 90 };
-      // Dial position as % of the TV image
-      const DIAL = { top: 4.5, left: 78.8, width: 7 };
+      const SCREEN = { top: 8, left: 8, width: 84, height: 72 };
 
       function updatePositions() {
         if (window.innerWidth < 1024) return;
@@ -121,16 +118,6 @@
         if (channelLabel) {
           channelLabel.style.left = (screenLeft + 10) + 'px';
           channelLabel.style.top = (screenTop + 10) + 'px';
-        }
-
-        if (dialEl) {
-          const dialLeft = offsetX + (DIAL.left / 100) * renderW;
-          const dialTop = offsetY + (DIAL.top / 100) * renderH;
-          const dialWidth = (DIAL.width / 100) * renderW;
-          dialEl.style.left = dialLeft + 'px';
-          dialEl.style.top = dialTop + 'px';
-          dialEl.style.width = dialWidth + 'px';
-          dialEl.style.right = 'auto';
         }
       }
 

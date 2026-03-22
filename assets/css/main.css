@@ -243,10 +243,14 @@ h1, h2, h3 {
     transition: opacity 0.2s;
   }
 
-  /* TV Dial - JS positions to match frame */
+  /* TV Dial - centered at bottom */
   .tv-dial {
     position: fixed;
     z-index: 200;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70px;
   }
 
   .tv-dial img {
