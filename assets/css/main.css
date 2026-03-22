@@ -153,7 +153,7 @@ h1, h2, h3 {
   /* TV Power Off - curtain reveal */
   .tv-power-off {
     position: fixed;
-    z-index: 150;
+    z-index: 2;
     overflow: hidden;
   }
 
