@@ -171,11 +171,21 @@
 
       // Dial click: if TV is off, power on. Otherwise left = prev, right = next.
       const powerOff = document.getElementById('tv-power-off');
+      let tvOn = false;
+
       dial.addEventListener('click', (e) => {
-        // If TV is still off, power it on and rotate dial
-        if (powerOff && !powerOff.classList.contains('off')) {
-          dialRotation += 30;
-          dialImg.style.transform = 'rotate(' + dialRotation + 'deg)';
+        const rect = dial.getBoundingClientRect();
+        const clickX = e.clientX - rect.left;
+        const midpoint = rect.width / 2;
+        const goRight = clickX >= midpoint;
+
+        // Always rotate the dial
+        dialRotation += goRight ? 30 : -30;
+        dialImg.style.transform = 'rotate(' + dialRotation + 'deg)';
+
+        // If TV is still off, power it on
+        if (!tvOn) {
+          tvOn = true;
           powerOff.classList.add('powering-on');
           powerOff.addEventListener('animationend', () => {
             powerOff.classList.add('off');
@@ -183,16 +193,11 @@
           return;
         }
 
-        const rect = dial.getBoundingClientRect();
-        const clickX = e.clientX - rect.left;
-        const midpoint = rect.width / 2;
-
-        if (clickX < midpoint) {
-          dialRotation -= 30;
-          showChannel(current - 1);
-        } else {
-          dialRotation += 30;
+        // Change channel
+        if (goRight) {
           showChannel(current + 1);
+        } else {
+          showChannel(current - 1);
         }
         dialImg.style.transform = 'rotate(' + dialRotation + 'deg)';
       });
