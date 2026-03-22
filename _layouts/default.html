@@ -184,8 +184,18 @@
         }, 150);
       }
 
-      // Dial click: left half = prev (CCW), right half = next (CW)
+      // Dial click: if TV is off, power on. Otherwise left = prev, right = next.
+      const powerOff = document.getElementById('tv-power-off');
       dial.addEventListener('click', (e) => {
+        // If TV is still off, power it on instead
+        if (powerOff && !powerOff.classList.contains('off')) {
+          powerOff.classList.add('powering-on');
+          powerOff.addEventListener('animationend', () => {
+            powerOff.classList.add('off');
+          }, { once: true });
+          return;
+        }
+
         const rect = dial.getBoundingClientRect();
         const clickX = e.clientX - rect.left;
         const midpoint = rect.width / 2;
