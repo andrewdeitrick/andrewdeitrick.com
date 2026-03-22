@@ -107,6 +107,7 @@ h1, h2, h3 {
     inset: 0;
     z-index: 100;
     pointer-events: none;
+    background: #000;
   }
 
   .tv-frame-overlay img {
@@ -114,7 +115,6 @@ h1, h2, h3 {
     height: 100vh;
     display: block;
     object-fit: contain;
-    background: #000;
   }
 
   /* Screen content area - JS positions to match frame opening */
