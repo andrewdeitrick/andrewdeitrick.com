@@ -36,7 +36,6 @@
   <div class="tv-power-off" id="tv-power-off">
     <div class="tv-power-off-left"></div>
     <div class="tv-power-off-right"></div>
-    <button class="tv-power-btn" id="tv-power-btn" aria-label="Power on">&#x23FB;</button>
   </div>
 
   <!-- TV Dial (desktop only) -->
@@ -126,20 +125,6 @@
       if (frameImg.naturalWidth) updatePositions();
     })();
 
-    // TV Power On
-    (function() {
-      const powerOff = document.getElementById('tv-power-off');
-      const powerBtn = document.getElementById('tv-power-btn');
-      if (!powerOff || !powerBtn) return;
-
-      powerBtn.addEventListener('click', () => {
-        powerOff.classList.add('powering-on');
-        powerOff.addEventListener('animationend', () => {
-          powerOff.classList.add('off');
-        }, { once: true });
-      });
-    })();
-
     // TV Channel Navigation
     (function() {
       const channels = document.querySelectorAll('.channel');
@@ -187,8 +172,10 @@
       // Dial click: if TV is off, power on. Otherwise left = prev, right = next.
       const powerOff = document.getElementById('tv-power-off');
       dial.addEventListener('click', (e) => {
-        // If TV is still off, power it on instead
+        // If TV is still off, power it on and rotate dial
         if (powerOff && !powerOff.classList.contains('off')) {
+          dialRotation += 30;
+          dialImg.style.transform = 'rotate(' + dialRotation + 'deg)';
           powerOff.classList.add('powering-on');
           powerOff.addEventListener('animationend', () => {
             powerOff.classList.add('off');
