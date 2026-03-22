@@ -312,6 +312,49 @@ h2 {
   border-radius: 4px;
 }
 
+/* TV power-on effect */
+.tv-off {
+  position: absolute;
+  z-index: 5;
+  top: 30%;
+  left: 9%;
+  width: 58%;
+  height: 56%;
+  background: #000;
+  border-radius: 4px;
+}
+
+.tv-off.powering-on {
+  animation: tvPowerOn 0.6s ease-out forwards;
+}
+
+@keyframes tvPowerOn {
+  0% {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+  40% {
+    transform: scaleY(0.005);
+    opacity: 1;
+  }
+  70% {
+    transform: scaleY(0.005) scaleX(1);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scaleY(0) scaleX(0);
+    opacity: 0;
+  }
+}
+
+.tv-off.off {
+  display: none;
+}
+
+.tv-screen.hidden {
+  visibility: hidden;
+}
+
 .tv-static {
   position: absolute;
   z-index: 3;
