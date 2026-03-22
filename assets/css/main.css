@@ -95,19 +95,18 @@ h1, h2, h3 {
 @media (min-width: 1024px) {
   body {
     overflow: hidden;
-    background: #1a1a1a;
+    background: #000;
   }
 
   nav { display: none; }
   footer { display: none; }
 
-  /* TV Frame - covers entire viewport */
+  /* TV Frame - covers entire viewport, transparent opening shows content */
   .tv-frame-overlay {
     position: fixed;
     inset: 0;
     z-index: 100;
     pointer-events: none;
-    background: #000;
   }
 
   .tv-frame-overlay img {
