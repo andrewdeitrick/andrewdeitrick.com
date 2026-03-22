@@ -247,10 +247,10 @@ h1, h2, h3 {
   .tv-dial {
     position: fixed;
     z-index: 200;
-    bottom: 3.5rem;
+    bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 70px;
+    width: 100px;
   }
 
   .tv-dial img {
