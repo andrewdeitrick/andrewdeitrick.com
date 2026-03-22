@@ -247,7 +247,7 @@ h1, h2, h3 {
   .tv-dial {
     position: fixed;
     z-index: 200;
-    bottom: 1.5rem;
+    bottom: 3.5rem;
     left: 50%;
     transform: translateX(-50%);
     width: 70px;
