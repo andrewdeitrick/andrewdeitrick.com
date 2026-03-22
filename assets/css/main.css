@@ -322,10 +322,36 @@ h1, h2, h3 {
     );
   }
 
+  .hero-layout-tv {
+    display: flex;
+    align-items: center;
+    min-height: 100%;
+    gap: 2rem;
+  }
+
+  .hero-left {
+    flex: 3;
+  }
+
+  .hero-left h1 {
+    text-align: left;
+  }
+
+  .hero-left p {
+    text-align: left;
+  }
+
+  .hero-right {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
   .hero-avatar {
-    width: 150px;
+    width: 100%;
+    max-width: 220px;
     display: block;
-    margin-bottom: 1.5rem;
   }
 
   /* Hero channel */
