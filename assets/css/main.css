@@ -113,16 +113,13 @@ h1, h2, h3 {
     width: 100vw;
     height: 100vh;
     display: block;
-    object-fit: fill;
+    object-fit: contain;
+    background: #000;
   }
 
-  /* Screen content area - positioned behind the frame's transparent opening */
+  /* Screen content area - JS positions to match frame opening */
   .tv-screen-content {
     position: fixed;
-    top: var(--screen-top);
-    left: var(--screen-left);
-    width: var(--screen-width);
-    height: var(--screen-height);
     z-index: 1;
     overflow: hidden;
   }
@@ -154,13 +151,10 @@ h1, h2, h3 {
     border-radius: 3px;
   }
 
-  /* TV Dial */
+  /* TV Dial - JS positions to match frame */
   .tv-dial {
     position: fixed;
     z-index: 200;
-    top: 22%;
-    right: 10%;
-    width: 9%;
   }
 
   .tv-dial img {
@@ -173,13 +167,9 @@ h1, h2, h3 {
     transform: scale(0.95);
   }
 
-  /* TV Static Overlay */
+  /* TV Static Overlay - JS positions to match screen */
   .tv-static-overlay {
     position: fixed;
-    top: var(--screen-top);
-    left: var(--screen-left);
-    width: var(--screen-width);
-    height: var(--screen-height);
     z-index: 50;
     pointer-events: none;
     opacity: 0;
@@ -204,12 +194,10 @@ h1, h2, h3 {
     100% { opacity: 0; }
   }
 
-  /* TV Channel Label */
+  /* TV Channel Label - JS positions */
   .tv-channel-label {
     position: fixed;
     z-index: 60;
-    top: calc(var(--screen-top) + 2%);
-    left: calc(var(--screen-left) + 2%);
     font-family: 'Courier New', monospace;
     font-size: 1.2rem;
     font-weight: 700;
@@ -228,13 +216,9 @@ h1, h2, h3 {
     opacity: 1;
   }
 
-  /* CRT overlay scoped to screen */
+  /* CRT overlay scoped to screen - JS positions */
   .crt-overlay {
     position: fixed;
-    top: var(--screen-top);
-    left: var(--screen-left);
-    width: var(--screen-width);
-    height: var(--screen-height);
     z-index: 55;
     pointer-events: none;
     background: repeating-linear-gradient(

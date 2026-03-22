@@ -57,6 +57,85 @@
   {% include footer.html %}
 
   <script>
+    // Position screen content to match TV frame's transparent opening
+    (function() {
+      const frameImg = document.querySelector('.tv-frame-overlay img');
+      const screenContent = document.getElementById('tv-screen-content');
+      const staticOverlay = document.getElementById('tv-static-overlay');
+      const channelLabel = document.getElementById('tv-channel-label');
+      const crtOverlay = document.querySelector('.crt-overlay');
+      const dialEl = document.getElementById('tv-dial');
+
+      if (!frameImg || !screenContent) return;
+
+      // Screen opening position as % of the TV image's natural dimensions
+      const SCREEN = { top: 5, left: 4, width: 69, height: 90 };
+      // Dial position as % of the TV image
+      const DIAL = { top: 22, left: 78, width: 12 };
+
+      function updatePositions() {
+        if (window.innerWidth < 1024) return;
+
+        const vw = window.innerWidth;
+        const vh = window.innerHeight;
+        const imgRatio = frameImg.naturalWidth / frameImg.naturalHeight;
+        const vpRatio = vw / vh;
+
+        let renderW, renderH, offsetX, offsetY;
+
+        if (vpRatio > imgRatio) {
+          // Letterboxed on sides (image height fills viewport)
+          renderH = vh;
+          renderW = vh * imgRatio;
+          offsetX = (vw - renderW) / 2;
+          offsetY = 0;
+        } else {
+          // Letterboxed on top/bottom (image width fills viewport)
+          renderW = vw;
+          renderH = vw / imgRatio;
+          offsetX = 0;
+          offsetY = (vh - renderH) / 2;
+        }
+
+        const screenLeft = offsetX + (SCREEN.left / 100) * renderW;
+        const screenTop = offsetY + (SCREEN.top / 100) * renderH;
+        const screenWidth = (SCREEN.width / 100) * renderW;
+        const screenHeight = (SCREEN.height / 100) * renderH;
+
+        const style = (el) => {
+          if (!el) return;
+          el.style.left = screenLeft + 'px';
+          el.style.top = screenTop + 'px';
+          el.style.width = screenWidth + 'px';
+          el.style.height = screenHeight + 'px';
+        };
+
+        style(screenContent);
+        style(staticOverlay);
+        if (crtOverlay) style(crtOverlay);
+
+        if (channelLabel) {
+          channelLabel.style.left = (screenLeft + 10) + 'px';
+          channelLabel.style.top = (screenTop + 10) + 'px';
+        }
+
+        if (dialEl) {
+          const dialLeft = offsetX + (DIAL.left / 100) * renderW;
+          const dialTop = offsetY + (DIAL.top / 100) * renderH;
+          const dialWidth = (DIAL.width / 100) * renderW;
+          dialEl.style.left = dialLeft + 'px';
+          dialEl.style.top = dialTop + 'px';
+          dialEl.style.width = dialWidth + 'px';
+          dialEl.style.right = 'auto';
+        }
+      }
+
+      frameImg.addEventListener('load', updatePositions);
+      window.addEventListener('resize', updatePositions);
+      // Run immediately if already loaded
+      if (frameImg.naturalWidth) updatePositions();
+    })();
+
     // Theme toggle
     const toggle = document.querySelector('.theme-toggle');
     const root = document.documentElement;
