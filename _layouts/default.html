@@ -173,14 +173,9 @@
       const powerOff = document.getElementById('tv-power-off');
       let tvOn = false;
 
-      dial.addEventListener('click', (e) => {
-        const rect = dial.getBoundingClientRect();
-        const clickX = e.clientX - rect.left;
-        const midpoint = rect.width / 2;
-        const goRight = clickX >= midpoint;
-
-        // Always rotate the dial
-        dialRotation += goRight ? 30 : -30;
+      dial.addEventListener('click', () => {
+        // Always rotate the dial clockwise
+        dialRotation += 30;
         dialImg.style.transform = 'rotate(' + dialRotation + 'deg)';
 
         // If TV is still off, power it on
@@ -193,27 +188,15 @@
           return;
         }
 
-        // Change channel
-        if (goRight) {
-          showChannel(current + 1);
-        } else {
-          showChannel(current - 1);
-        }
+        // Next channel
+        showChannel(current + 1);
         dialImg.style.transform = 'rotate(' + dialRotation + 'deg)';
       });
 
-      // Cursor changes based on which half you hover
-      dial.addEventListener('mousemove', (e) => {
-        const rect = dial.getBoundingClientRect();
-        const clickX = e.clientX - rect.left;
-        const midpoint = rect.width / 2;
+      dial.style.cursor = 'pointer';
 
-        if (clickX < midpoint) {
-          dial.style.cursor = 'w-resize';
-        } else {
-          dial.style.cursor = 'e-resize';
-        }
-      });
+      // Expose for back links
+      window.tvShowChannel = showChannel;
 
       // Keyboard navigation
       document.addEventListener('keydown', (e) => {

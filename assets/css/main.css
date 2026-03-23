@@ -420,6 +420,22 @@ h1, h2, h3 {
     100% { transform: translateX(-100%); }
   }
 
+  .back-link {
+    align-self: flex-start;
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 1rem;
+    transition: color 0.2s;
+  }
+
+  .back-link:hover {
+    color: var(--navy);
+  }
+
   /* Hero channel */
   .hero-text h1,
   #ch-hero h1 {
