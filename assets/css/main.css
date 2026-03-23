@@ -420,6 +420,12 @@ h1, h2, h3 {
     100% { transform: translateX(-100%); }
   }
 
+  .channel-mascot {
+    width: 100px;
+    display: block;
+    margin-bottom: 1rem;
+  }
+
   .back-link {
     align-self: flex-start;
     font-family: 'Courier New', monospace;
