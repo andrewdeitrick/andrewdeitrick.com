@@ -116,10 +116,10 @@ h1, h2, h3 {
     object-fit: contain;
   }
 
-  /* Screen content area - JS positions to match frame opening */
+  /* Screen content area - above frame so links are clickable */
   .tv-screen-content {
     position: fixed;
-    z-index: 1;
+    z-index: 101;
     overflow: hidden;
   }
 
