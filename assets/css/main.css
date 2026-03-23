@@ -116,10 +116,10 @@ h1, h2, h3 {
     object-fit: contain;
   }
 
-  /* Screen content area - above frame so links are clickable */
+  /* Screen content area - behind frame visually */
   .tv-screen-content {
     position: fixed;
-    z-index: 101;
+    z-index: 1;
     overflow: hidden;
   }
 
@@ -430,9 +430,8 @@ h1, h2, h3 {
     letter-spacing: 0.05em;
     margin-bottom: 1rem;
     transition: color 0.2s;
-    position: relative;
-    z-index: 200;
     cursor: pointer;
+    pointer-events: auto;
   }
 
   .back-link:hover {

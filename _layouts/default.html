@@ -182,7 +182,7 @@
         if (!tvOn) {
           tvOn = true;
           powerOff.classList.add('powering-on');
-          powerOff.addEventListener('animationend', () => {
+          powerOff.addEventListener('transitionend', () => {
             powerOff.classList.add('off');
           }, { once: true });
           return;
