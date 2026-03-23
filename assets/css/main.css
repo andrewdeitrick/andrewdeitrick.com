@@ -333,23 +333,26 @@ h1, h2, h3 {
   .news-main {
     flex: 1;
     display: flex;
-    align-items: flex-end;
+    flex-direction: row-reverse;
+    align-items: center;
     gap: 2rem;
-    padding: 2rem 3rem 0;
-    overflow: hidden;
-    min-height: 0;
+    padding: 2rem 3rem;
   }
 
   .news-anchor {
     flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
     min-width: 0;
-    align-self: flex-end;
   }
 
   .anchor-img {
-    width: 90%;
+    max-height: 100%;
+    max-width: 100%;
     display: block;
-    margin: 0 auto;
+    object-fit: contain;
   }
 
   .news-copy {
