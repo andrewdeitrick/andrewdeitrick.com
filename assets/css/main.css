@@ -430,6 +430,9 @@ h1, h2, h3 {
     letter-spacing: 0.05em;
     margin-bottom: 1rem;
     transition: color 0.2s;
+    position: relative;
+    z-index: 200;
+    cursor: pointer;
   }
 
   .back-link:hover {
