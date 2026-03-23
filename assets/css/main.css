@@ -182,30 +182,30 @@ h1, h2, h3 {
     overflow: hidden;
   }
 
-  .tv-power-off-left,
-  .tv-power-off-right {
+  .tv-power-off-top,
+  .tv-power-off-bottom {
     position: absolute;
-    top: 0;
-    width: 50%;
-    height: 100%;
+    left: 0;
+    width: 100%;
+    height: 50%;
     background: #111;
     transition: transform 0.8s ease-in-out;
   }
 
-  .tv-power-off-left {
-    left: 0;
+  .tv-power-off-top {
+    top: 0;
   }
 
-  .tv-power-off-right {
-    right: 0;
+  .tv-power-off-bottom {
+    bottom: 0;
   }
 
-  .tv-power-off.powering-on .tv-power-off-left {
-    transform: translateX(-100%);
+  .tv-power-off.powering-on .tv-power-off-top {
+    transform: translateY(-100%);
   }
 
-  .tv-power-off.powering-on .tv-power-off-right {
-    transform: translateX(100%);
+  .tv-power-off.powering-on .tv-power-off-bottom {
+    transform: translateY(100%);
   }
 
   .tv-power-off.off {
