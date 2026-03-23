@@ -196,7 +196,16 @@
       dial.style.cursor = 'pointer';
 
       // Expose for back links
-      window.tvShowChannel = showChannel;
+      window.tvShowChannel = function(idx) { showChannel(idx); };
+
+      // Back link clicks
+      document.querySelectorAll('.back-link').forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const target = parseInt(link.getAttribute('data-target'));
+          showChannel(target);
+        });
+      });
 
       // Keyboard navigation
       document.addEventListener('keydown', (e) => {
