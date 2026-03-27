@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/professional.css">
+  {% seo %}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Andrew Deitrick",
+    "url": "https://andrewdeitrick.com",
+    "email": "andrew@andrewdeitrick.com",
+    "jobTitle": "Software Engineer & AI Implementation Consultant",
+    "description": "{{ site.description | strip_html | strip_newlines | escape }}"
+  }
+  </script>
+</head>
+<body>
+
+  <nav class="pro-nav">
+    <div class="pro-nav-inner">
+      <a href="/" class="pro-nav-logo">Andrew Deitrick</a>
+      <ul class="pro-nav-links">
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="/creative/" class="pro-nav-creative">Right Brain &rarr;</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  {{ content }}
+
+  <footer class="pro-footer">
+    <p>&copy; {{ site.time | date: '%Y' }} Andrew Deitrick. All rights reserved.</p>
+    <a href="/creative/" class="pro-footer-link">Visit the right brain &rarr;</a>
+  </footer>
+
+</body>
+</html>

@@ -259,6 +259,24 @@ h1, h2, h3 {
     transition: transform 0.3s ease-out;
   }
 
+  .left-brain-link {
+    position: fixed;
+    z-index: 200;
+    bottom: 0.5rem;
+    right: 2rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.4);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: color 0.2s;
+  }
+
+  .left-brain-link:hover {
+    color: rgba(255, 255, 255, 0.8);
+  }
+
   /* TV Static Overlay - JS positions to match screen */
   .tv-static-overlay {
     position: fixed;
@@ -523,7 +541,8 @@ h1, h2, h3 {
   .tv-dial,
   .tv-static-overlay,
   .tv-channel-label,
-  .tv-power-off { display: none; }
+  .tv-power-off,
+  .left-brain-link { display: none; }
 
   .crt-overlay {
     position: fixed;
