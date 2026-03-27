@@ -136,6 +136,12 @@ body {
   opacity: 1;
 }
 
+.brain-icon {
+  width: 100px;
+  display: block;
+  margin: 0 auto 1.5rem;
+}
+
 /* --- DIVIDER --- */
 .brain-divider {
   position: absolute;
