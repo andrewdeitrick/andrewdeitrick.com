@@ -17,17 +17,9 @@ body {
 
 .landing-header {
   text-align: center;
-  padding: 2.5rem 2rem 1.5rem;
+  padding: 1.5rem 2rem;
   background: #111111;
   flex-shrink: 0;
-}
-
-.landing-header h1 {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 2rem;
-  font-weight: 700;
-  color: #ffffff;
-  letter-spacing: -0.02em;
 }
 
 .split-halves {
@@ -159,7 +151,8 @@ body {
 }
 
 .brain-icon {
-  width: 150px;
+  height: 150px;
+  width: auto;
   display: block;
   margin: 0 auto 1.5rem;
 }
@@ -211,9 +204,6 @@ body {
     height: 1px;
   }
 
-  .landing-header h1 {
-    font-size: 1.5rem;
-  }
 
   .left-brain h2,
   .right-brain h2 {
