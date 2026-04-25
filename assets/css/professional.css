@@ -277,48 +277,92 @@ h2 {
   line-height: 1.7;
 }
 
-/* --- PORTFOLIO --- */
-.pro-portfolio-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
-}
-
-.pro-project-card {
-  text-decoration: none;
-  color: inherit;
-  display: block;
-  border: 1px solid var(--pro-border);
-  overflow: hidden;
-  transition: box-shadow 0.3s;
-}
-
-.pro-project-card:hover {
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
-}
-
-.pro-project-img {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-  display: block;
-}
-
-.pro-project-info {
-  padding: 1.5rem;
-}
-
-.pro-project-info h3 {
-  font-size: 1.05rem;
+/* --- RESUME --- */
+.pro-resume-subhead {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.35rem;
   font-weight: 700;
   color: var(--pro-navy);
-  margin-bottom: 0.5rem;
+  margin-top: 3rem;
+  margin-bottom: 1.5rem;
 }
 
-.pro-project-info p {
-  font-size: 0.85rem;
+.pro-resume-subhead:first-of-type {
+  margin-top: 1rem;
+}
+
+.pro-resume-list {
+  list-style: none;
+  border-top: 1px solid var(--pro-border);
+}
+
+.pro-resume-entry {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 2.5rem;
+  padding: 2rem 0;
+  border-bottom: 1px solid var(--pro-border);
+}
+
+.pro-resume-industry {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--pro-navy);
+  letter-spacing: 0.01em;
+  margin-bottom: 0.25rem;
+}
+
+.pro-resume-duration {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
   color: var(--pro-muted);
-  line-height: 1.6;
+}
+
+.pro-resume-body h4 {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--pro-navy);
+  margin-bottom: 0.75rem;
+  line-height: 1.4;
+}
+
+.pro-resume-body p {
+  font-size: 0.92rem;
+  color: var(--pro-muted);
+  line-height: 1.7;
+}
+
+.pro-skills-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  border: 1px solid var(--pro-border);
+}
+
+.pro-skill-card {
+  padding: 1.75rem 1.5rem;
+  border-right: 1px solid var(--pro-border);
+}
+
+.pro-skill-card:last-child {
+  border-right: none;
+}
+
+.pro-skill-card h4 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--pro-navy);
+  margin-bottom: 0.85rem;
+  letter-spacing: 0.01em;
+}
+
+.pro-skill-card p {
+  font-size: 0.82rem;
+  color: var(--pro-muted);
+  line-height: 1.7;
 }
 
 /* --- CONTACT --- */
@@ -438,16 +482,23 @@ h2 {
 
   .pro-experience-grid,
   .pro-services-grid,
-  .pro-portfolio-grid {
+  .pro-skills-grid {
     grid-template-columns: 1fr;
   }
 
-  .pro-service-card {
+  .pro-service-card,
+  .pro-skill-card {
     border-right: none;
     border-bottom: 1px solid var(--pro-border);
   }
 
-  .pro-service-card:last-child { border-bottom: none; }
+  .pro-service-card:last-child,
+  .pro-skill-card:last-child { border-bottom: none; }
+
+  .pro-resume-entry {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
 
   .pro-contact-layout {
     grid-template-columns: 1fr;
