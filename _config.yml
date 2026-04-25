@@ -5,7 +5,6 @@ description: >-
 url: "https://andrewdeitrick.com"
 author:
   name: Andrew Deitrick
-  email: andrew@andrewdeitrick.com
 
 port: 3333
 permalink: /blog/:year/:month/:day/:title/
