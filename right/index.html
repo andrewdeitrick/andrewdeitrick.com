@@ -22,27 +22,64 @@ title: Andrew Deitrick — Software Engineering & AI Implementation
   </div>
 </section>
 
+{% comment %}
+  TODO: Channels 2 (Primetime / TV Guide cover), 3 (Previously On / Recap card),
+  and 4 (Now Showing / Movie marquee) are parked while only the hero and contact
+  channels ship. HTML + CSS are preserved below and in main.css. To re-enable:
+  delete this Liquid comment wrapper and reset channel 5's back-link
+  data-target back to "3".
+
 <!-- Channel 2: Services -->
 <section class="channel" data-channel="2" id="ch-services">
-  <div class="channel-content channel-centered">
+  <div class="channel-content primetime-stack">
     <a href="#" class="back-link" data-target="0">&larr; Back</a>
-    <img src="/assets/characters/v2/hello.png" alt="" class="channel-mascot">
-    <p class="section-label">Programming Schedule</p>
-    <h2>Primetime</h2>
-    <p class="section-intro">Focused expertise in software engineering and artificial intelligence, delivered with the rigor and reliability your business demands.</p>
-    <div class="divider"></div>
-    <div class="services-grid">
-      <div class="service-card">
-        <h3>Custom Software Development</h3>
-        <p>Full-stack applications engineered to your specifications. Web platforms, APIs, and internal tools architected for performance and scale.</p>
-      </div>
-      <div class="service-card">
-        <h3>AI Implementation</h3>
-        <p>Strategic integration of AI into your existing workflows. From LLM-powered features to intelligent automation pipelines that deliver ROI.</p>
-      </div>
-      <div class="service-card">
-        <h3>Technical Consulting</h3>
-        <p>Architecture reviews, technology assessments, and strategic advisory to ensure your engineering investments are sound and future-ready.</p>
+    <div class="tv-guide-magazine">
+      <div class="tv-guide-cover">
+        <div class="cover-listings">
+          <div class="cover-callout">
+            <span class="cover-callout-stars">&#9733; &#9733; &#9733;</span>
+            <span class="cover-callout-eyebrow">TONIGHT'S MUST-SEE LINEUP</span>
+          </div>
+          <div class="tv-guide">
+            <header class="tv-guide-header">
+              <span class="tv-guide-station">WAND-TV</span>
+              <span class="tv-guide-title">PRIMETIME</span>
+              <span class="tv-guide-date">TONIGHT</span>
+            </header>
+            <div class="tv-guide-row">
+              <div class="tv-guide-time">8:00<br><span class="ampm">PM</span></div>
+              <div class="tv-guide-channel"><span class="ch-label">CH</span><span class="ch-num">04</span></div>
+              <div class="tv-guide-show">
+                <div class="tv-guide-show-title">Custom Software Development</div>
+                <div class="tv-guide-show-desc">Full-stack applications engineered to your specifications. Web platforms, APIs, and internal tools architected for performance and scale.</div>
+              </div>
+              <div class="tv-guide-rating">TV-PG</div>
+            </div>
+            <div class="tv-guide-row">
+              <div class="tv-guide-time">9:00<br><span class="ampm">PM</span></div>
+              <div class="tv-guide-channel"><span class="ch-label">CH</span><span class="ch-num">07</span></div>
+              <div class="tv-guide-show">
+                <div class="tv-guide-show-title">AI Implementation</div>
+                <div class="tv-guide-show-desc">Strategic integration of AI into your existing workflows. From LLM-powered features to intelligent automation pipelines that deliver ROI.</div>
+              </div>
+              <div class="tv-guide-rating">TV-14</div>
+            </div>
+            <div class="tv-guide-row">
+              <div class="tv-guide-time">10:00<br><span class="ampm">PM</span></div>
+              <div class="tv-guide-channel"><span class="ch-label">CH</span><span class="ch-num">11</span></div>
+              <div class="tv-guide-show">
+                <div class="tv-guide-show-title">Technical Consulting</div>
+                <div class="tv-guide-show-desc">Architecture reviews, technology assessments, and strategic advisory to ensure your engineering investments are sound and future-ready.</div>
+              </div>
+              <div class="tv-guide-rating">TV-G</div>
+            </div>
+          </div>
+        </div>
+        <div class="cover-character">
+          <span class="cover-flag cover-flag--top">EXCLUSIVE!</span>
+          <img src="/assets/characters/v2/hello.png" alt="Andrew Deitrick" class="cover-img">
+          <span class="cover-flag cover-flag--bottom">STARRING<br><strong>ANDREW DEITRICK</strong></span>
+        </div>
       </div>
     </div>
   </div>
@@ -50,85 +87,192 @@ title: Andrew Deitrick — Software Engineering & AI Implementation
 
 <!-- Channel 3: Experience -->
 <section class="channel" data-channel="3" id="ch-experience">
-  <div class="channel-content channel-centered">
+  <div class="channel-content recap-stack">
     <a href="#" class="back-link" data-target="1">&larr; Back</a>
-    <img src="/assets/characters/southpark.png" alt="" class="channel-mascot">
-    <p class="section-label">Season Recap</p>
-    <h2>Previously On...</h2>
-    <p class="section-intro">From two-person startups to large enterprises, I've built and scaled systems across the full spectrum of company size and complexity.</p>
-    <div class="divider"></div>
-    <div class="experience-content">
-      <p>Much of my career has been rooted in fintech and financial services, where reliability isn't optional. I've written code that powers payments for brands like Twitch, CBS, and Sling TV — including systems built specifically to handle Super Bowl-scale traffic. The platforms I've contributed to move billions of dollars a year.</p>
-      <p>Beyond building software, I've taught over 300 students and helped many of them land their first jobs in tech. That experience teaching and mentoring sharpens how I communicate, collaborate, and break down complex problems.</p>
-      <p>I've been through the full lifecycle: early-stage startups finding product-market fit, growth-stage companies scaling under pressure, acquisitions, and IPOs. I've seen what works and what doesn't — and those lessons shape how I approach every engagement today.</p>
+    <div class="recap-card">
+      <div class="recap-chyron">
+        <span class="recap-chyron-text">Previously on<span class="recap-ellipsis">&hellip;</span></span>
+      </div>
+      <div class="recap-meta">
+        <span class="recap-show">THE ANDREWS</span>
+        <span class="recap-meta-sep">&bull;</span>
+        <span class="recap-season">SEASON 3</span>
+        <span class="recap-meta-sep">&bull;</span>
+        <span class="recap-episode">EPISODE 14</span>
+        <span class="recap-meta-sep">&bull;</span>
+        <span class="recap-title">"THE WHITEBOARD SESSION"</span>
+      </div>
+      <div class="recap-screen">
+        <div class="recap-screen-bezel">
+          <img src="/assets/characters/v2/the-andrews.png" alt="The Andrews working on an AI document assistant" class="recap-screen-img">
+          <div class="recap-scanlines" aria-hidden="true"></div>
+          <div class="recap-vignette" aria-hidden="true"></div>
+          <div class="recap-rec">
+            <span class="recap-rec-dot"></span>REC
+          </div>
+          <div class="recap-timecode">00:14:32:09</div>
+        </div>
+      </div>
+      <div class="recap-synopsis">
+        <div class="recap-synopsis-header">
+          <span class="recap-synopsis-label">EPISODE RECAP</span>
+          <span class="recap-runtime">RUNTIME 30 MIN &middot; TV-PG</span>
+        </div>
+        <article class="recap-act">
+          <header class="recap-act-header">
+            <span class="recap-act-num">ACT I</span>
+            <h3>The Fintech Years</h3>
+          </header>
+          <p>Much of my career has been rooted in fintech and financial services, where reliability isn't optional. I've written code that powers payments for brands like Twitch, CBS, and Sling TV — including systems built specifically to handle Super Bowl-scale traffic. The platforms I've contributed to move billions of dollars a year.</p>
+        </article>
+        <article class="recap-act">
+          <header class="recap-act-header">
+            <span class="recap-act-num">ACT II</span>
+            <h3>The Teaching Arc</h3>
+          </header>
+          <p>Beyond building software, I've taught over 300 students and helped many of them land their first jobs in tech. That experience teaching and mentoring sharpens how I communicate, collaborate, and break down complex problems.</p>
+        </article>
+        <article class="recap-act">
+          <header class="recap-act-header">
+            <span class="recap-act-num">ACT III</span>
+            <h3>The Lifecycle Lessons</h3>
+          </header>
+          <p>I've been through the full lifecycle: early-stage startups finding product-market fit, growth-stage companies scaling under pressure, acquisitions, and IPOs. I've seen what works and what doesn't — and those lessons shape how I approach every engagement today.</p>
+        </article>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- Channel 4: Portfolio -->
 <section class="channel" data-channel="4" id="ch-portfolio">
-  <div class="channel-content channel-centered">
+  <div class="channel-content marquee-stack">
     <a href="#" class="back-link" data-target="2">&larr; Back</a>
-    <p class="section-label">Featured Shows</p>
-    <h2>Now Showing</h2>
-    <p class="section-intro">A selection of personal projects I've been building recently.</p>
-    <div class="divider"></div>
-    <div class="portfolio-grid">
-      <a href="https://frontierrelay.com" target="_blank" rel="noopener" class="project-card">
-        <div class="project-thumb-wrapper">
-          <img src="/assets/frontier-relay.jpg" alt="Frontier Relay" class="project-thumb">
-          <div class="card-scanlines"></div>
+    <div class="marquee">
+      <div class="marquee-bulbs" aria-hidden="true"></div>
+      <div class="marquee-inner">
+        <span class="marquee-stars">&#9733; &#9733; &#9733;</span>
+        <h2 class="marquee-title">Now Showing</h2>
+        <span class="marquee-sub">A WAND-TV STUDIOS PRESENTATION &middot; THIS WEEK ONLY</span>
+      </div>
+      <div class="marquee-bulbs" aria-hidden="true"></div>
+    </div>
+    <div class="poster-row">
+      <a href="https://frontierrelay.com" target="_blank" rel="noopener" class="poster">
+        <div class="poster-rating">PG</div>
+        <div class="poster-credit">WAND-TV STUDIOS PRESENTS</div>
+        <div class="poster-art">
+          <img src="/assets/frontier-relay.jpg" alt="Frontier Relay">
         </div>
-        <div class="project-info">
-          <h3>Frontier Relay</h3>
-          <p>A grid-based exploration and racing game with fog of war, day/night cycles, companion abilities, and multiplayer leaderboards.</p>
+        <h3 class="poster-title">Frontier<br>Relay</h3>
+        <p class="poster-tagline">&ldquo;One tile at a time, a frontier unfolds.&rdquo;</p>
+        <div class="poster-cast">
+          <span class="poster-cast-label">STARRING</span>
+          <strong>FOG-OF-WAR &middot; A SILENT COMPANION &middot; THE OPEN GRID</strong>
+        </div>
+        <div class="poster-stub">
+          <div class="poster-stub-side">
+            <span>SHOWTIMES</span>
+            <strong>NIGHTLY 8:00</strong>
+          </div>
+          <div class="poster-stub-perfs" aria-hidden="true"></div>
+          <div class="poster-stub-side poster-stub-side--right">
+            <span>SCREEN</span>
+            <strong>01</strong>
+          </div>
         </div>
       </a>
-      <a href="https://nestedacademy.com" target="_blank" rel="noopener" class="project-card">
-        <div class="project-thumb-wrapper">
-          <img src="/assets/owleyes.png" alt="Nested Academy" class="project-thumb">
-          <div class="card-scanlines"></div>
+      <a href="https://nestedacademy.com" target="_blank" rel="noopener" class="poster">
+        <div class="poster-rating">G</div>
+        <div class="poster-credit">WAND-TV STUDIOS PRESENTS</div>
+        <div class="poster-art">
+          <img src="/assets/owleyes.png" alt="Nested Academy">
         </div>
-        <div class="project-info">
-          <h3>Nested Academy</h3>
-          <p>A Pinterest-style resource discovery platform for homeschooling families with semantic search and AI-generated assessments.</p>
+        <h3 class="poster-title">Nested<br>Academy</h3>
+        <p class="poster-tagline">&ldquo;Every curious mind deserves a map.&rdquo;</p>
+        <div class="poster-cast">
+          <span class="poster-cast-label">STARRING</span>
+          <strong>SEMANTIC SEARCH &middot; AN OWL &middot; A THOUSAND OPEN TABS</strong>
+        </div>
+        <div class="poster-stub">
+          <div class="poster-stub-side">
+            <span>SHOWTIMES</span>
+            <strong>MATINEES DAILY</strong>
+          </div>
+          <div class="poster-stub-perfs" aria-hidden="true"></div>
+          <div class="poster-stub-side poster-stub-side--right">
+            <span>SCREEN</span>
+            <strong>02</strong>
+          </div>
         </div>
       </a>
-      <a href="https://aipoignantguide.com" target="_blank" rel="noopener" class="project-card">
-        <div class="project-thumb-wrapper">
-          <img src="/assets/relaxed-duck.png" alt="A(i) Poignant Guide" class="project-thumb" style="background: #f5f0ea; object-fit: contain;">
-          <div class="card-scanlines"></div>
+      <a href="https://aipoignantguide.com" target="_blank" rel="noopener" class="poster">
+        <div class="poster-rating">PG-13</div>
+        <div class="poster-credit">WAND-TV STUDIOS PRESENTS</div>
+        <div class="poster-art poster-art--contain">
+          <img src="/assets/relaxed-duck.png" alt="A(i) Poignant Guide">
         </div>
-        <div class="project-info">
-          <h3>A(i) Poignant Guide</h3>
-          <p>An illustrated, interactive narrative guide to AI-assisted development through storytelling and custom character art.</p>
+        <h3 class="poster-title">A(i) Poignant<br>Guide</h3>
+        <p class="poster-tagline">&ldquo;A story about code &mdash; and the machines who write it.&rdquo;</p>
+        <div class="poster-cast">
+          <span class="poster-cast-label">STARRING</span>
+          <strong>A WHY THE LUCKY DUCK &middot; A NARRATOR &middot; THE LOOP</strong>
+        </div>
+        <div class="poster-stub">
+          <div class="poster-stub-side">
+            <span>SHOWTIMES</span>
+            <strong>FRI 9:00 ENCORE</strong>
+          </div>
+          <div class="poster-stub-perfs" aria-hidden="true"></div>
+          <div class="poster-stub-side poster-stub-side--right">
+            <span>SCREEN</span>
+            <strong>03</strong>
+          </div>
         </div>
       </a>
     </div>
   </div>
 </section>
 
-<!-- Channel 5: Contact -->
+{% endcomment %}
+
+<!-- Channel 5: Contact (currently CH 2 while channels 2–4 are parked) -->
 <section class="channel" data-channel="5" id="ch-contact">
-  <div class="channel-content channel-centered">
-    <a href="#" class="back-link" data-target="3">&larr; Back</a>
-    <p class="section-label">Don't Touch That Dial</p>
-    <h2>Call the Station</h2>
-    <p class="section-intro">Ready to discuss your next project? I'd welcome the opportunity to learn about your goals and explore how I can help.</p>
-    <div class="divider"></div>
-    <div class="contact-layout">
-      <div class="contact-text">
-        <p>Whether you need a custom application built from the ground up, AI integrated into your operations, or expert guidance on a technical decision, I'm here to help.</p>
-        <p>Send a note using the form, and I'll respond within one business day.</p>
-      </div>
-      <form class="contact-form" action="https://formspree.io/f/mzdywzey" method="POST">
-        <label for="name">Full Name</label>
-        <input type="text" id="name" name="name" placeholder="Your full name" required>
-        <label for="email">Email Address</label>
-        <input type="email" id="email" name="email" placeholder="you@company.com" required>
-        <label for="message">Project Details</label>
-        <textarea id="message" name="message" placeholder="Tell me about your project, timeline, and goals..." required></textarea>
-        <button type="submit" class="btn btn-primary">Send Message</button>
+  <div class="channel-content callin-stack">
+    <a href="#" class="back-link" data-target="0">&larr; Back</a>
+    <header class="callin-chyron">
+      <div class="callin-onair"><span class="callin-onair-dot"></span>ON AIR</div>
+      <span class="callin-eyebrow">DON'T TOUCH THAT DIAL</span>
+      <h2 class="callin-title">Call the Station</h2>
+      <span class="callin-station">WAND-TV &middot; CHANNEL 05 &middot; LIVE FROM THE NEWSROOM</span>
+    </header>
+    <div class="callin-grid">
+      <form class="callin-form" action="https://formspree.io/f/mzdywzey" method="POST">
+        <header class="callin-form-header">
+          <span class="callin-form-stamp">VIEWER MAIL</span>
+          <div class="callin-form-meta">
+            <span>CALL INTAKE FORM</span>
+            <span>NO. 047-B</span>
+          </div>
+        </header>
+        <div class="callin-form-field">
+          <label for="name"><span class="field-num">01</span> CALLER NAME</label>
+          <input type="text" id="name" name="name" placeholder="Last name, first name" required>
+        </div>
+        <div class="callin-form-field">
+          <label for="email"><span class="field-num">02</span> RETURN LINE</label>
+          <input type="email" id="email" name="email" placeholder="you@company.com" required>
+        </div>
+        <div class="callin-form-field">
+          <label for="message"><span class="field-num">03</span> CALL DETAILS</label>
+          <textarea id="message" name="message" placeholder="Project, timeline, goals..." required></textarea>
+        </div>
+        <div class="callin-form-footer">
+          <span class="callin-form-op">OP. INITIALS ____</span>
+          <button type="submit" class="callin-transmit">
+            <span class="callin-transmit-dot"></span>TRANSMIT
+          </button>
+        </div>
       </form>
     </div>
   </div>
